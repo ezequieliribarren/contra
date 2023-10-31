@@ -1,14 +1,17 @@
 // import React, { useState, useEffect } from 'react';
 import Projects from '../Components/Projects/Projects';
+import Nav from '../Components/Nav/Nav';
+
 
 
 const Work = () => {
 
 
   return (
-    <div>
-<Projects/>
-    </div>
+    <main className='work'>
+      <Nav black='black' img='images/logo-black.png' />
+      <Projects />
+    </main>
   );
 };
 

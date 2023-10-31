@@ -1,0 +1,42 @@
+.top-left-button, .top-right-button, .bottom-left-button, .bottom-right-button {
+    position: absolute;
+    font-size: 16;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .top-left-button {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .top-right-button {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .bottom-left-button {
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  .bottom-right-button {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .flecha-container {
+    position: absolute;
+    bottom: 1.5rem; /* Ajusta la distancia desde la parte inferior */
+    left: 50%; /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
+    transform: translateX(-50%); /* Centra el contenedor horizontalmente */
+    z-index: 1;
+  }
+  
+  /* Estilos para la imagen personalizada */
+  .flecha {
+    border-radius: 50%; /* Si quieres que la imagen sea redonda */
+  }

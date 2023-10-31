@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+
+
+}
+
+@font-face {
+    font-family: "machina";
+    src: url(/public/fonts/PPNeueMachina-InktrapRegular.otf);
+    font-display: swap;
+}
+
+
+h1 {
+    font-family: machina;
+    font-size: 3rem;
+}
+
+h3{
+    font-family: machina;
+    font-size: 2.8rem;
+    font-weight: 200;
+}
+
+h4{
+    font-family: machina;
+    font-size: 1.8rem;
+    font-weight: 200; 
+}
+
+a {
+    font-family: machina;
+    font-size: 4rem;
+    text-decoration: none;
+}
+
+td{
+    font-family: machina;
+    font-size: 1.8rem;
+}
+
+.black{
+    color: black;
+}
+
+li{
+    list-style: none;
+    font-size: 1.8rem;
+    font-family: machina;
+    margin: 0 2.5rem;
+    font-style: italic;
+}

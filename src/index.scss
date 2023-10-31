@@ -1,35 +1,9 @@
 @use './Components/Slider/slider';
 @use './Components/Project/project';
+@use './Components/Projects/projects';
+@use './Components/Nav/nav';
+@use './Sass/reset';
 
 
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 
-}
-
-html {
-    font-size: 62.5%;
-    scroll-behavior: smooth;
-
-
-}
-
-@font-face {
-    font-family: "machina";
-    src: url(/public/fonts/PPNeueMachina-InktrapRegular.otf);
-    font-display: swap;
-}
-
-
-h1 {
-    font-family: machina;
-    font-size: 3rem;
-}
-
-a {
-    font-family: machina;
-    font-size: 4rem;
-}
