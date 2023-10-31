@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { HashLink as Link } from 'react-router-hash-link';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Nav2 from '../Nav2/Nav2';
 
 const Project = ({ imageUrls, index, id }) => {
   const projectRef = useRef(null);
@@ -68,8 +69,7 @@ const Project = ({ imageUrls, index, id }) => {
 
   return (
     <div id={`project-${index}`} ref={projectRef} className="project-container">
-      <a className="project-bottom-right-button">Abstract</a>
-      <a className="project-top-right-button">What</a>
+<Nav2/>
       <Slider id={id} {...settings}>
         {imageUrls.map((imageUrl, index) => (
           <div key={index} className="project-img-container">

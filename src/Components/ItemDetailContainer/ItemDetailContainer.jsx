@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Slider from 'react-slick';
 import { HashLink as Link } from 'react-router-hash-link';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { useParams } from 'react-router-dom';
 import { useData } from '../../../Context/Context';
+import Nav2 from '../Nav2/Nav2';
 
 const ItemDetailContainer = () => {
     const { id } = useParams();
@@ -18,17 +22,30 @@ const ItemDetailContainer = () => {
         return <div>Proyecto no encontrado</div>;
     }
 
-    return (
-        <div>
-            <h1>Detalles del Proyecto: {project.c[0]?.v}</h1>
-            <p>Categoría: {project.c[1]?.v}</p>
-            <p>Lugar: {project.c[2]?.v}</p>
-            <p>Fecha: {project.c[3]?.v}</p>
-            <p>Cliente: {project.c[4]?.v}</p>
-            <img src={project.c[5]?.v} alt="" />
+    const imageUrls = [
+        project.c[8].v, project.c[9].v, project.c[10].v, project.c[11].v, project.c[12].v, project.c[13].v, project.c[14].v,
+    ]
 
-            {/* Agrega un enlace para volver a la lista de proyectos */}
-            <Link to="/#proyectos">Volver a la Lista de Proyectos</Link>
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+
+    };
+
+    return (
+        <div className='item-detail-container'>
+        <Nav2/>
+            <Slider id={id} {...settings}>
+                {imageUrls.map((imageUrl, index) => (
+                    <div key={index} className="project-img-container">
+                        <img src={imageUrl} alt={`Slide ${index}`} />
+                    </div>
+                ))}
+            </Slider>
         </div>
     );
 };

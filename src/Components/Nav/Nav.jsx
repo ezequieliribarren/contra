@@ -14,7 +14,6 @@ const Nav = ({black, img}) => {
       <Link to='/more'>
       <a className={`bottom-left-button ${black}`} >More</a>
       </Link>
-
       <Link to='/about'>
       <a className={`bottom-right-button ${black}`} >About</a>
       </Link>
