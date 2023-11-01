@@ -5,12 +5,13 @@ import { HashLink as Link } from 'react-router-hash-link';
 const Projects = () => {
   const allData = useData();
   const [filter, setFilter] = useState(null);
-  const [projectsPerPage] = useState(8);
+  const [projectsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = allData.slice(indexOfFirstProject, indexOfLastProject);
+  const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
 
   const handleFilterClick = (value) => {
     setFilter(value);
@@ -24,14 +25,32 @@ const Projects = () => {
     setCurrentPage(currentPage - 1);
   };
 
+  const handleMouseEnter = (index, background) => {
+    setHoveredRowIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRowIndex(null);
+  };
+
   const totalPages = Math.ceil(allData.length / projectsPerPage);
 
   return (
     <section id='projects'>
       <div className='container-fluid table-projects'>
         {currentProjects.map((row, index) => (
-          // Renderizar proyectos de la página actual
-          <div className={`row ${row.c[1]?.v.toLowerCase() === filter ? 'filtered-row' : ''}`} key={index}>
+          <div
+            className={`row ${row.c[1]?.v.toLowerCase() === filter ? 'filtered-row' : ''}`}
+            key={index}
+            onMouseEnter={() => handleMouseEnter(index, `url(${row.c[15]?.v})`)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              backgroundImage: hoveredRowIndex === index ? `url(${row.c[15]?.v})` : null,
+              backgroundSize: hoveredRowIndex === index ? 'cover' : null,
+              backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
+              backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
+            }}
+          >
             <div className='col-2 title-project'><h3>{row.c[0]?.v}</h3></div>
             <div className='col-2'><h4>{row.c[1]?.v}</h4></div>
             <div className='col-2'><h4>{row.c[2]?.v}</h4></div>
