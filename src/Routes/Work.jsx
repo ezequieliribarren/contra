@@ -9,7 +9,7 @@ const Work = () => {
 
   return (
     <main className='work'>
-      <Nav black='black' img='images/logo-black.png' />
+      <Nav black='black' img='images/logo-black.png' work='orange' />
       <Projects />
     </main>
   );

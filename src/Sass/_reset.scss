@@ -39,7 +39,7 @@ h4{
 a {
     font-family: machina;
     font-size: 4rem;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 td{
@@ -49,6 +49,9 @@ td{
 
 .black{
     color: black;
+}
+.orange{
+    color: #E3570D;
 }
 
 li{

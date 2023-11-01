@@ -6,6 +6,8 @@ import Root from './Routes/Root';
 import { DataProvider } from '../Context/Context'; // Importa el DataProvider
 import Work from './Routes/Work';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 const router = createHashRouter([

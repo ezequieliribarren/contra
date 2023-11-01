@@ -13,7 +13,6 @@ const ItemDetailContainer = () => {
     const [project, setProject] = useState(null);
 
     useEffect(() => {
-        // Encuentra el proyecto correspondiente al ID en los datos
         const selectedProject = data.find((row) => row.c[7]?.v.toString() === id.toString());
         setProject(selectedProject);
     }, [id, data]);

@@ -1,44 +1,100 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
 
-
 const Projects = () => {
-    const data = useData();
-    const [filter, setFilter] = useState(null);
+  const allData = useData();
+  const [filter, setFilter] = useState(null);
+  const [projectsPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = allData.slice(indexOfFirstProject, indexOfLastProject);
+
+  const handleFilterClick = (value) => {
+    setFilter(value);
+  };
+
+  const handleLoadMoreClick = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleLoadPreviousClick = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const totalPages = Math.ceil(allData.length / projectsPerPage);
 
   return (
-<section id='projects'>
-
-            <div className='container-fluid table-projects'>
-                    {data.map((row, index) => (
-                        <div className={`row ${row.c[1]?.v.toLowerCase() === filter ? 'filtered-row' : ''}`} key={index}>
-                            <div className='col-2 title-project'><h3>{row.c[0]?.v}</h3></div> 
-                            <div className='col-2'><h4>{row.c[1]?.v}</h4></div>
-                            <div className='col-2'><h4>{row.c[2]?.v}</h4></div>
-                            <div className='col-2'><h4>{row.c[3]?.v}</h4></div>
-                            <div className='col-2'><h4>{row.c[4]?.v}</h4></div>
-                            <div className='col-2 '>
-                                <Link className='dossier-project' to={`/project/${row.c[7]?.v}`}><h4>dossier ⭷</h4></Link>
-                            </div>
-                        </div>
-                    ))}
+    <section id='projects'>
+      <div className='container-fluid table-projects'>
+        {currentProjects.map((row, index) => (
+          // Renderizar proyectos de la página actual
+          <div className={`row ${row.c[1]?.v.toLowerCase() === filter ? 'filtered-row' : ''}`} key={index}>
+            <div className='col-2 title-project'><h3>{row.c[0]?.v}</h3></div>
+            <div className='col-2'><h4>{row.c[1]?.v}</h4></div>
+            <div className='col-2'><h4>{row.c[2]?.v}</h4></div>
+            <div className='col-2'><h4>{row.c[3]?.v}</h4></div>
+            <div className='col-2'><h4>{row.c[4]?.v}</h4></div>
+            <div className='col-2 '>
+              <Link className='dossier-project' to={`/project/${row.c[7]?.v}`}><h4>dossier ⭷</h4></Link>
             </div>
-            <div>
-           
-          </div> 
-          <div>
-              <ul className='filter-projects'>
-              <li onClick={() => setFilter('housing')}>housing</li>
-              <li onClick={() => setFilter('office')}>office</li>
-              <li onClick={() => setFilter('playground')}>playground</li>
-              <li onClick={() => setFilter('events')}>events</li>
-              <li onClick={() => setFilter('web')}>communication</li>
-          </ul>
           </div>
+        ))}
+      </div>
+      <div>
+        <ul className='filter-projects'>
+          <li
+            className={`filter-item ${filter === 'housing' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('housing')}
+          >
+            housing
+          </li>
+          <li
+            className={`filter-item ${filter === 'office' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('office')}
+          >
+            office
+          </li>
+          <li
+            className={`filter-item ${filter === 'playground' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('playground')}
+          >
+            playground
+          </li>
+          <li
+            className={`filter-item ${filter === 'events' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('events')}
+          >
+            events
+          </li>
+          <li
+            className={`filter-item ${filter === 'web' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('web')}
+          >
+            comunication
+          </li>
+        </ul>
+      </div>
+      <div className="pagination-buttons-container">
+        {currentPage > 1 && (
+          <button className="pagination-button" onClick={handleLoadPreviousClick}>
+            {currentPage - 1}
+          </button>
+        )}
+        <button className="pagination-button" disabled>
+          {currentPage}
+        </button>
+        {currentPage < totalPages && (
+          <button className="pagination-button" onClick={handleLoadMoreClick}>
+            {currentPage + 1}
+          </button>
+        )}
         
-        </section>
-  )
+      </div>
+    </section>
+  );
 }
 
-export default Projects
+export default Projects;

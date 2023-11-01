@@ -1,7 +1,7 @@
 import React from 'react'
 import { HashLink as Link } from 'react-router-hash-link';
 
-const Nav = ({black, img}) => {
+const Nav = ({black, img, work, more, about}) => {
 
 
 
@@ -9,13 +9,13 @@ const Nav = ({black, img}) => {
     <>
  <Link to='/'><h1 className="top-left-button"><img src={img} alt="" /></h1></Link>
       <Link to='/work'>
-      <a className={`top-right-button ${black}`} >Work</a>
+      <a className={`top-right-button ${black} ${work}`} >Work</a>
       </Link>
       <Link to='/more'>
-      <a className={`bottom-left-button ${black}`} >More</a>
+      <a className={`bottom-left-button ${black} ${more}`} >More</a>
       </Link>
       <Link to='/about'>
-      <a className={`bottom-right-button ${black}`} >About</a>
+      <a className={`bottom-right-button ${black} ${about}`} >About</a>
       </Link>
     </>
   )

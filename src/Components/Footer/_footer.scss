@@ -1,0 +1,33 @@
+
+@keyframes complexTransform {
+    from {
+      transform: rotate(0deg) scale(1);
+    }
+    to {
+      transform: rotate(360deg) scale(0.8);
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #circle-footer {
+    transition: all 0.3s ease; /* Agrega una transición para suavizar los cambios */
+    border-radius: 0%; /* Asegúrate de que el elemento tenga un radio de borde inicial del 0% */
+  }
+  
+  #circle-footer:hover {
+    animation: rotate 6s  linear, complexTransform 6s  linear; /* Aplica las animaciones de rotación, transformación compleja y redondeo al hacer hover */
+  }
+  
