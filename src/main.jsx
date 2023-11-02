@@ -8,6 +8,7 @@ import Work from './Routes/Work';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import About from './Routes/About';
 
 
 const router = createHashRouter([
@@ -25,6 +26,12 @@ const router = createHashRouter([
       <DataProvider> 
         <Work />
       </DataProvider>
+    )
+  },
+  {
+    path: "/about",
+    element: (
+        <About />
     )
   },
   {

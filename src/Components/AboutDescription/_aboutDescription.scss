@@ -1,0 +1,41 @@
+.about-description {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 8rem;
+        padding: 3rem;
+
+        .about-grafic {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-description-a {
+            font-size: 2rem;
+            font-style: italic;
+            color: #E3570D;
+            margin-top: 4rem;
+        }
+
+        p {
+            margin: 2.5rem 0;
+        }
+
+        .about-p {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        img {
+            max-width: 55rem;
+        }
+
+    }
+
+}

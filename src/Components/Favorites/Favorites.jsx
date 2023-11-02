@@ -1,6 +1,7 @@
 import React from 'react';
 import { useData } from '../../../Context/Context';
 import Project from '../Project/Project';
+import Abstract from '../Abstract/Abstract';
 
 const Favorites = () => {
   const data = useData(); 
@@ -19,6 +20,7 @@ const Favorites = () => {
             row.c[12]?.v,
             row.c[13]?.v,
             row.c[14]?.v,
+            <Abstract p1={row.c[16]?.v} p2={row.c[17]?.v} p3={row.c[18]?.v}  title={row.c[0]?.v} id={row.c[7]?.v}/>
           ]
           const id = row.c[7].v
           // Pasa el array de URLs como prop al componente Project

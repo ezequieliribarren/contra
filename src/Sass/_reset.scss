@@ -18,8 +18,15 @@ html {
     font-display: swap;
 }
 
-
+body{
+    background-color: #E6E7E8;
+}
 h1 {
+    font-family: machina;
+    font-size: 4rem;
+}
+
+h2{
     font-family: machina;
     font-size: 3rem;
 }
@@ -32,7 +39,7 @@ h3{
 
 h4{
     font-family: machina;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 200; 
 }
 
@@ -42,9 +49,9 @@ a {
     text-decoration: none !important;
 }
 
-td{
-    font-family: machina;
-    font-size: 1.8rem;
+p{
+font-family: machina;
+font-size: 1.4rem;
 }
 
 .black{
@@ -61,3 +68,4 @@ li{
     margin: 0 2.5rem;
     font-style: italic;
 }
+

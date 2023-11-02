@@ -36,32 +36,46 @@
             }
         }
 
-        li:hover{
-            a{
-                color: #E3570D ;
+        li:hover {
+            a {
+                color: #E3570D;
             }
 
-            .what-span{
+            .what-span {
                 display: inherit;
             }
         }
     }
 
-    .what-close-button{
+    .what-close-button {
         border: none;
         background-color: transparent;
         color: white;
         font-family: machina;
         font-size: 4rem;
         padding: 0;
-        margin-top: 3rem;
+        margin-top: 7rem;
         display: flex;
         justify-content: center;
     }
 
-    .what-span{
-        display: none;
+    .what-close-button:hover {
+        color: #E3570D;
     }
 
-    
+    .what-span {
+        display: none;
+        margin: 0 1rem;
+    }
+
+    .what-redes {
+        display: flex;
+        justify-content: center;
+        margin-top: 7rem;
+
+        a {
+            margin: 0rem 1rem;
+        }
+    }
+
 }

@@ -1,0 +1,60 @@
+.abstract {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+  
+  }
+  
+  .abstract-h2 {
+    color: white;
+    font-size: 4rem;
+    font-family: machina;
+    margin-top: 10rem;
+  }
+  
+  .abstract-p {
+    color: white;
+    margin: 3rem 0;
+    padding: 0 3rem;
+    font-size: 1.2rem;
+  }
+  
+  .abstract-menu {
+    display: flex;
+    justify-content: center;
+    margin-left: 4rem;
+    margin-top: 1rem;
+  
+    .abstract-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 2rem;
+  
+      h4 {
+        text-align: center;
+        color: white;
+        margin-top: 1rem;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  
+  .abstract-a1,
+  .abstract-a2,
+  .abstract-a3 {
+    h4 {
+      text-align: center;
+    }
+  }
+  
+  .abstract-a1 img,
+  .abstract-a2 img,
+  .abstract-a3 img {
+    height: 3rem;
+    width: auto;
+  
+  }

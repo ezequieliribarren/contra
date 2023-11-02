@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import What from '../What/What';
 
-const Nav2 = () => {
-    const [open, setOpen] = useState(false);
 
+
+const Nav2 = ({onAbstractClick}) => {
+    const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
 
+
     return (
         <>
-            <a className="project-bottom-right-button">Abstract</a>
+        <a onClick={onAbstractClick} className="project-bottom-right-button">Abstract</a>
+
+           
             <a className="project-top-right-button" onClick={handleOpen}>
                 What
             </a>

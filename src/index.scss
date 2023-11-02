@@ -5,7 +5,14 @@
 @use './Components/Nav/nav';
 @use './Components/Footer/footer';
 @use './Components/What/what';
+@use './Components/Abstract/abstract';
+@use './Components/AboutDescription/aboutDescription';
+@use './Components/Arrows/arrows';
+
+
 @use './Sass/reset';
+@use './Sass/about';
+
 
 
 
