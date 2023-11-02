@@ -1,0 +1,63 @@
+#equipo {
+    h2 {
+        font-size: 4rem;
+        padding-left: 6%;
+        margin-bottom: 5rem;
+    }
+
+    .equipo-grafic-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .equipo-grafic {
+        max-width: 75rem;
+    }
+
+}
+
+.equipo {
+li:hover{
+    h3{
+        color: #E3570D;
+        cursor: pointer;
+    }
+}
+    li {
+        margin: 2rem 0;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+
+        .equipo-description {
+            margin-top: 1rem;
+        }
+
+        h3 {
+            font-family: machina;
+            font-size: 3rem;
+            font-style: normal;
+        }
+        img {
+            margin-right: 1rem;
+        }
+    }
+
+    .equipo-person-img {
+        display: none;
+    }
+
+    .selected-member .equipo-person-img {
+        display: inherit;
+        /* Fija la posición de la imagen */
+        transition: 3s ease-in-out;
+    }
+
+    .selected-member h3 {
+        color: #E3570D;
+    }
+
+
+}

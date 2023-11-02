@@ -18,4 +18,7 @@
   .slider-image.active {
     opacity: 1;
   }
-  
+
+  .flecha-container img:hover {
+    transform: translateY(10px); /* Cambia el valor según la cantidad que deseas que se desplace hacia abajo */
+  }
