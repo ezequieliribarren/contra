@@ -31,3 +31,70 @@ export const DataProvider = ({ children }) => {
 export const useData = () => {
   return useContext(DataContext);
 };
+
+
+const SecondDataContext = createContext();
+
+export const SecondDataProvider = ({ children }) => {
+  const [secondData, setSecondData] = useState([]);
+
+  useEffect(() => {
+    const fetchSecondData = async () => {
+      try {
+        // Lógica para obtener datos de la segunda hoja de cálculo
+        const response = await fetch('https://docs.google.com/spreadsheets/d/1ZqyNJaWT6MtzdJ5FyNaqKLaKt3k3bz0bTZc0mAVl9kw/gviz/tq?tqx=out:json&gid=1917340270');
+        const textData = await response.text();
+        const jsonData = textData.substring(47, textData.length - 2);
+        const parsedData = JSON.parse(jsonData);
+        setSecondData(parsedData.table.rows);
+      } catch (error) {
+        console.error('Error al obtener datos desde la segunda hoja de cálculo:', error);
+      }
+    };
+
+    fetchSecondData();
+  }, []); 
+
+  return (
+    <SecondDataContext.Provider value={secondData}>
+      {children}
+    </SecondDataContext.Provider>
+  );
+};
+
+export const useSecondData = () => {
+  return useContext(SecondDataContext);
+};
+
+
+const ThirdDataContext = createContext();
+
+export const ThirdDataProvider = ({ children }) => {
+  const [ThirdData, setThirdData] = useState([]);
+
+  useEffect(() => {
+    const fetchThirdData = async () => {
+      try {
+        const response = await fetch('https://docs.google.com/spreadsheets/d/1ZqyNJaWT6MtzdJ5FyNaqKLaKt3k3bz0bTZc0mAVl9kw/gviz/tq?tqx=out:json&gid=547037425');
+        const textData = await response.text();
+        const jsonData = textData.substring(47, textData.length - 2);
+        const parsedData = JSON.parse(jsonData);
+        setThirdData(parsedData.table.rows);
+      } catch (error) {
+        console.error('Error al obtener datos desde la tercera hoja de cálculo:', error);
+      }
+    };
+
+    fetchThirdData();
+  }, []); 
+
+  return (
+    <ThirdDataContext.Provider value={ThirdData}>
+      {children}
+    </ThirdDataContext.Provider>
+  );
+};
+
+export const useThirdData = () => {
+  return useContext(ThirdDataContext);
+};

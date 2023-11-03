@@ -1,8 +1,13 @@
 #equipo {
+    margin-top: 5rem;
+.row{
+    padding-left: 2%;
+}
     h2 {
+        font-family: montreal-medium;
         font-size: 4rem;
-        padding-left: 6%;
-        margin-bottom: 5rem;
+        padding-left: 3%;
+        margin-bottom: 6rem;
     }
 
     .equipo-grafic-container {
@@ -17,12 +22,13 @@
 }
 
 .equipo {
-li:hover{
-    h3{
-        color: #E3570D;
-        cursor: pointer;
+    li:hover {
+        h3 {
+            color: #E3570D;
+            cursor: pointer;
+        }
     }
-}
+
     li {
         margin: 2rem 0;
 
@@ -40,6 +46,7 @@ li:hover{
             font-size: 3rem;
             font-style: normal;
         }
+
         img {
             margin-right: 1rem;
         }

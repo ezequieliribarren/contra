@@ -3,19 +3,20 @@ import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.scss';
 import Root from './Routes/Root';
-import { DataProvider } from '../Context/Context'; // Importa el DataProvider
+import { DataProvider, SecondDataProvider } from '../Context/Context'; // Importa el DataProvider
 import Work from './Routes/Work';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import About from './Routes/About';
+import More from './Routes/More';
 
 
 const router = createHashRouter([
   {
     path: "/",
     element: (
-      <DataProvider> 
+      <DataProvider>
         <Root />
       </DataProvider>
     )
@@ -23,7 +24,7 @@ const router = createHashRouter([
   {
     path: "/work",
     element: (
-      <DataProvider> 
+      <DataProvider>
         <Work />
       </DataProvider>
     )
@@ -31,14 +32,27 @@ const router = createHashRouter([
   {
     path: "/about",
     element: (
+      <SecondDataProvider>
         <About />
+      </SecondDataProvider>
+
+    )
+  },
+
+  {
+    path: "/more",
+    element: (
+      <SecondDataProvider>
+        <More/>
+      </SecondDataProvider>
+
     )
   },
   {
     path: "/project/:id",
     element: (
-      <DataProvider> 
-        <ItemDetailContainer/>
+      <DataProvider>
+        <ItemDetailContainer />
       </DataProvider>
     )
   },
@@ -49,4 +63,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-  

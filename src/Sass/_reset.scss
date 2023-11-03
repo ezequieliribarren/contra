@@ -18,6 +18,20 @@ html {
     font-display: swap;
 }
 
+@font-face {
+    font-family: "montreal";
+    src: url(/public/fonts/NeueMontreal-Regular.otf);
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: "montreal-medium";
+    src: url(/public/fonts/NeueMontreal-Medium.otf);
+    font-display: swap;
+}
+
+
 body{
     background-color: #E6E7E8;
 }
