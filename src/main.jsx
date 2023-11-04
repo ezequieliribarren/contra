@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import About from './Routes/About';
 import More from './Routes/More';
+import { ThirdDataProvider } from '../Context/Context';
 
 
 const router = createHashRouter([
@@ -42,9 +43,9 @@ const router = createHashRouter([
   {
     path: "/more",
     element: (
-      <SecondDataProvider>
+      <ThirdDataProvider>
         <More/>
-      </SecondDataProvider>
+      </ThirdDataProvider>
 
     )
   },

@@ -1,6 +1,122 @@
-#more-switch{
+#more-switch {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: space-around;
+    background-color: #E6E7E8;
+
+    .more-select,
+    .more-slider {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .more-slider {
+        position: absolute;
+        .slider-bottom {
+            height: 100vh;
+            width: 100%;
+
+            .slider-item {
+                height: 100vh;
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+        }
+
+    }
+
+    .more-select {
+        display: flex;
+        align-items: center;
+    }
+
+    .more-span {
+        display: none;
+        margin-right: 0.5rem;
+        font-size: 3rem;
+    }
+
+    .more-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        padding-left: 2%;
+        margin-top: 1rem;
+
+        p {
+            margin: 1rem 0;
+            font-family: montreal-medium;
+        }
+
+        .p1 {
+            font-weight: 600;
+        }
+
+        ul {
+            margin-top: 2rem;
+        }
+
+        li {
+            display: flex;
+            justify-content: start;
+            margin: 1rem 0;
+            width: 10rem;
+            font-size: 3rem;
+            text-decoration: none;
+            color: black;
+            font-style: normal;
+
+
+        }
+
+        li:hover {
+
+            color: #E3570D;
+
+
+            .more-span {
+                display: inherit;
+            }
+        }
+    }
+
+    .more-first {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh !important;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .more-hover-content {
+     position: relative;
+        bottom: 20;
+        width: 100%;
+        text-align: center;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.225);
+        padding: 10px;
+        transition: 0.3s ease;
+      }
+      
+      .slider-item:hover .more-hover-content {
+        display: inherit;
+      }
+
+    .more-h3 {
+        color: white;
+    }
+
+    .p-more {
+        color: white;
+    }
 }

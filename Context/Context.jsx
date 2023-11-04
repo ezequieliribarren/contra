@@ -70,13 +70,15 @@ export const useSecondData = () => {
 const ThirdDataContext = createContext();
 
 export const ThirdDataProvider = ({ children }) => {
-  const [ThirdData, setThirdData] = useState([]);
+  const [thirdData, setThirdData] = useState([]);
 
   useEffect(() => {
     const fetchThirdData = async () => {
       try {
         const response = await fetch('https://docs.google.com/spreadsheets/d/1ZqyNJaWT6MtzdJ5FyNaqKLaKt3k3bz0bTZc0mAVl9kw/gviz/tq?tqx=out:json&gid=547037425');
         const textData = await response.text();
+        console.log(textData)
+
         const jsonData = textData.substring(47, textData.length - 2);
         const parsedData = JSON.parse(jsonData);
         setThirdData(parsedData.table.rows);
@@ -88,8 +90,10 @@ export const ThirdDataProvider = ({ children }) => {
     fetchThirdData();
   }, []); 
 
+
+
   return (
-    <ThirdDataContext.Provider value={ThirdData}>
+    <ThirdDataContext.Provider value={thirdData}>
       {children}
     </ThirdDataContext.Provider>
   );
