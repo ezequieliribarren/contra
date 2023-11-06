@@ -13,27 +13,7 @@ const Clientes = () => {
     clientsRef.current = clientsRef.current.slice(0, data.length); // Asegúrate de que la longitud del array de referencias coincida con la cantidad de clientes.
   }, [data.length]);
 
-  const handleScroll = (event) => {
-    const delta = Math.sign(event.deltaY);
 
-    if (delta > 0 && currentClientIndex < data.length - 1) {
-      setCurrentClientIndex((prevIndex) => prevIndex + 1);
-    } else if (delta < 0 && currentClientIndex > 0) {
-      setCurrentClientIndex((prevIndex) => prevIndex - 1);
-    }
-  };
-
-  useEffect(() => {
-    const handleWheel = (event) => {
-      handleScroll(event);
-    };
-
-    window.addEventListener('wheel', handleWheel);
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [currentClientIndex]);
 
   return (
     <div className='clientes-container'>

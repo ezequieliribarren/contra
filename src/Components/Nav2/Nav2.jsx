@@ -3,7 +3,7 @@ import What from '../What/What';
 
 
 
-const Nav2 = ({onAbstractClick}) => {
+const Nav2 = ({ onAbstractClick }) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
@@ -11,9 +11,7 @@ const Nav2 = ({onAbstractClick}) => {
 
     return (
         <>
-        <a onClick={onAbstractClick} className="project-bottom-right-button">Abstract</a>
-
-           
+            <a onClick={onAbstractClick} className="project-bottom-right-button">Abstract</a>
             <a className="project-top-right-button" onClick={handleOpen}>
                 What
             </a>

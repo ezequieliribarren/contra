@@ -13,10 +13,11 @@
 }
 
 .more-slider {
-    position: absolute;
+
     cursor: pointer;
 
     .slider-bottom {
+        position: absolute;
         height: 100vh;
         width: 100%;
 
