@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import useScrollHandler from '../../js/useScrollHandler';
 
 
 const images = ['images/Slider/1.png', 'images/Slider/2.png', 'images/Slider/3.png'];
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const myRef = useRef(null);
+  const isScrolling = useScrollHandler(myRef);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,10 +28,10 @@ const Slider = () => {
   };
 
   return (
-    <header className="slider-container">
+    <header className="slider-container" ref={myRef}>
 
-    <div className="flecha-container" onClick={handleScrollToFavorites}>
-        <img src="images/flecha.png" alt="" className="flecha"/>
+      <div className="flecha-container" onClick={handleScrollToFavorites}>
+        <img src="images/flecha.png" alt="" className="flecha" />
       </div>
       {images.map((image, index) => (
         <div

@@ -4,6 +4,7 @@
     justify-content: space-around;
     background-color: #E6E7E8;
     position: relative;
+
 }
 
 .more-select,
@@ -16,7 +17,7 @@
 
     cursor: pointer;
 
-    .slider-bottom {
+    .slider-bottom {position: relative;
         position: absolute;
         height: 100vh;
         width: 100%;

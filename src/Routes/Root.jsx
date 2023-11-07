@@ -11,7 +11,7 @@ const Root = () => {
 
   return (
     <>
-  <Nav img='images/logo.png'/>
+  <Nav mitad='mitad' nav='top-left-button' />
     <Slider/>
    <Favorites/>
    {/* <Footer/> */}

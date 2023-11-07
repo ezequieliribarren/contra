@@ -1,21 +1,38 @@
 import React, { useState } from 'react';
 import What from '../What/What';
 
+const Nav2 = ({ onAbstractClick, onWhatClick }) => {
+    const [openAbstract, setOpenAbstract] = useState(false);
+    const [openWhat, setOpenWhat] = useState(false);
 
+    const handleClose = () => {
+        setOpenAbstract(false);
+        setOpenWhat(false);
+    };
 
-const Nav2 = ({ onAbstractClick }) => {
-    const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
-    const handleOpen = () => setOpen(true);
+    const handleAbstractClick = () => {
+        if (onAbstractClick) {
+            onAbstractClick();
+        }
+        setOpenAbstract(true);
+    };
 
+    const handleWhatClick = () => {
+        if (onWhatClick) {
+            onWhatClick();
+        }
+        setOpenWhat(true);
+    };
 
     return (
         <>
-            <a onClick={onAbstractClick} className="project-bottom-right-button">Abstract</a>
-            <a className="project-top-right-button" onClick={handleOpen}>
+            <a className="project-bottom-right-button" onClick={handleAbstractClick}>
+                Abstract
+            </a>
+            <a className="project-top-right-button" onClick={handleWhatClick}>
                 What
             </a>
-            {open && <What onClose={handleClose} />}
+            {(openAbstract || openWhat) && <What onClose={handleClose} />}
         </>
     );
 }

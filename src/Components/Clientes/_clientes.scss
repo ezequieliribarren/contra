@@ -1,7 +1,23 @@
+#clientes{
+    scroll-snap-align: start;
+}
+
+.clientes-container{
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.clientes-container::-webkit-scrollbar {
+    width: 0em; 
+  }
+  
+
 .cliente {
     width: 100%;
     height: 100vh;
     position: relative;
+    scroll-snap-align: start;
 }
 
 .image-container {
@@ -11,13 +27,14 @@
 
     img{
         width: 100%;
+        height: 100%;
     }
 }
 
 .image-container img {
-    width: 100%;
-    height: 100%;
-}
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Mantiene la proporción de aspecto */
+  }
 
 .image-container h3 {
     font-family: montreal-medium;

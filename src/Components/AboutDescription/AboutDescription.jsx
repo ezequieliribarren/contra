@@ -1,50 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef  } from 'react';
+// import useScrollHandler from '../../js/useScrollHandler';
 
 const AboutDescription = () => {
 
-  const aboutDescriptionRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      if (isScrolling || !aboutDescriptionRef.current) {
-        return;
-      }
-
-      const delta = Math.sign(event.deltaY);
-      const nextSection = delta > 0 ? aboutDescriptionRef.current.nextSibling : aboutDescriptionRef.current.previousSibling;
-
-      if (nextSection) {
-        setIsScrolling(true);
-
-        const offsetTop = nextSection.offsetTop;
-        const currentScrollTop = window.pageYOffset;
-        const targetScrollTop = offsetTop > currentScrollTop ? offsetTop : offsetTop - window.innerHeight;
-
-        window.scrollTo({
-          top: targetScrollTop,
-          behavior: 'smooth',
-        });
-
-        setTimeout(() => {
-          setIsScrolling(false);
-        }, 500);
-      }
-    };
-
-    if (aboutDescriptionRef.current) {
-      aboutDescriptionRef.current.addEventListener('wheel', handleScroll);
-    }
-
-    return () => {
-      if (aboutDescriptionRef.current) {
-        aboutDescriptionRef.current.removeEventListener('wheel', handleScroll);
-      }
-    };
-  }, [isScrolling]);
+  // const mySectionRef = useRef(null);
+  // const isScrolling = useScrollHandler(mySectionRef);
 
   return (
-    <section id='about-description' ref={aboutDescriptionRef}>
+    <section id='about-description' >
             <div className="container-fluid about-description">
                 <div className="row">
                     <div className="col-12 col-lg-6">

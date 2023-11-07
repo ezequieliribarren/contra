@@ -1,43 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Grafic from '../Grafic/Grafic';
+// import useScrollHandler from '../../js/useScrollHandler';
 
 const Equipo = () => {
+  // const equipoRef = useRef(null);
+  // const isScrolling = useScrollHandler(equipoRef);
 
-  const equipoRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      if (isScrolling || !equipoRef.current) {
-        return;
-      }
-
-      const delta = Math.sign(event.deltaY);
-      const nextSection = delta > 0 ? equipoRef.current.nextSibling : equipoRef.current.previousSibling;
-
-      if (nextSection) {
-        setIsScrolling(true);
-        window.scrollTo({
-          top: nextSection.offsetTop,
-          behavior: 'smooth',
-        });
-
-        setTimeout(() => {
-          setIsScrolling(false);
-        }, 500);
-      }
-    };
-
-    if (equipoRef.current) {
-      equipoRef.current.addEventListener('wheel', handleScroll);
-    }
-
-    return () => {
-      if (equipoRef.current) {
-        equipoRef.current.removeEventListener('wheel', handleScroll);
-      }
-    };
-  }, [isScrolling]);
     const equipoData = [
         {
             id: 1,
@@ -94,7 +62,7 @@ const Equipo = () => {
     };
   
     return (
-      <section id='equipo' ref={equipoRef}>
+      <section id='equipo' >
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-12 col-lg-4'>

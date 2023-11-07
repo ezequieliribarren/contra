@@ -1,8 +1,15 @@
 #equipo {
     height: 100vh !important;
-.row{
-    padding-left: 2%;
-}
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+
+
+    .row {
+        padding-left: 2%;
+
+    }
+
     h2 {
         font-family: montreal-medium;
         font-size: 4rem;

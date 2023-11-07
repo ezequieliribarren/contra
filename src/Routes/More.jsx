@@ -10,8 +10,8 @@ const More = () => {
   return (
     <>
       <main>
-        <Nav img='images/logo-black.png' black='black' more='orange' />
-        <MoreSwitch />
+        <Nav mitad='mitad-black' nav='nav-black' more='orange' work='fixed' about='fixed'/>
+        <MoreSwitch/>
       </main>
       <Footer background='blue' color='blue' />
     </>

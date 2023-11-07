@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const Nav = ({ black, img, work, more, about, fixed }) => {
+const Nav = ({ black, mitad, work, more, about, fixed, nav }) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -28,17 +28,16 @@ const Nav = ({ black, img, work, more, about, fixed }) => {
 
   return (
     <>
-      <Link className={`top-left-button ${isButtonVisible ? 'fixed' : 'sticky'}`} to='/'>
-        <img src={img} alt="" />
+<Link className={`${nav} ${isButtonVisible ? 'fixed' : mitad}`} to='/'>
       </Link>
       <Link to='/work'>
-        <a className={`top-right-button ${black} ${work} ${fixed}`} >Work</a>
+        <a className={`top-right-button ${black} ${work}`} >Work</a>
       </Link>
       <Link to='/more'>
-        <a className={`bottom-left-button ${black} ${more} ${fixed}`} >More</a>
+        <a className={`bottom-left-button ${black} ${more}`} >More</a>
       </Link>
       <Link to='/about'>
-        <a className={`bottom-right-button ${black} ${about} ${fixed}`} >About</a>
+        <a className={`bottom-right-button ${black} ${about}`} >About</a>
       </Link>
     </>
   );

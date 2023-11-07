@@ -1,59 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
+// import useScrollHandler from '../../js/useScrollHandler';
 
 const HanTrabajadoAqui = () => {
-  const listContainerRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      event.preventDefault();
-
-      if (isScrolling || !listContainerRef.current) {
-        return;
-      }
-
-      const delta = Math.sign(event.deltaY);
-      const scrollAmount = window.innerHeight;
-
-      if (delta > 0) {
-        const nextSection = listContainerRef.current.nextSibling;
-        if (nextSection) {
-          setIsScrolling(true);
-          window.scrollTo({
-            top: window.pageYOffset + scrollAmount,
-            behavior: 'smooth',
-          });
-
-          setTimeout(() => {
-            setIsScrolling(false);
-          }, 1000);
-        }
-      } else if (delta < 0 && window.pageYOffset > 0) {
-        setIsScrolling(true);
-        window.scrollTo({
-          top: window.pageYOffset - scrollAmount,
-          behavior: 'smooth',
-        });
-
-        setTimeout(() => {
-          setIsScrolling(false);
-        }, 1000);
-      }
-    };
-
-    if (listContainerRef.current) {
-      listContainerRef.current.addEventListener('wheel', handleScroll, { passive: false });
-    }
-
-    return () => {
-      if (listContainerRef.current) {
-        listContainerRef.current.removeEventListener('wheel', handleScroll);
-      }
-    };
-  }, [isScrolling]);
+  // const listContainerRef = useRef(null);
+  // const isScrolling = useScrollHandler(listContainerRef);
 
   return (
-    <section id='han-trabajado-aqui' ref={listContainerRef}>
+    <section id='han-trabajado-aqui' >
       <div className="container-fluid">    
         <h2>Han trabajado aquí</h2>
         <div className="row">

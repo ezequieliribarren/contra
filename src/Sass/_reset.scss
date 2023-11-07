@@ -32,29 +32,30 @@ html {
 }
 
 
-body{
+body {
     background-color: #E6E7E8;
 }
+
 h1 {
     font-family: machina;
     font-size: 4rem;
 }
 
-h2{
+h2 {
     font-family: machina;
     font-size: 3rem;
 }
 
-h3{
+h3 {
     font-family: machina;
     font-size: 2.8rem;
     font-weight: 200;
 }
 
-h4{
+h4 {
     font-family: machina;
     font-size: 1.4rem;
-    font-weight: 200; 
+    font-weight: 200;
 }
 
 a {
@@ -63,21 +64,24 @@ a {
     text-decoration: none !important;
 }
 
-p{
-font-family: machina;
-font-size: 1.4rem;
+p {
+    font-family: machina;
+    font-size: 1.4rem;
 }
 
-.black{
+.black {
     color: black;
 }
-.orange{
+
+.orange {
     color: #E3570D;
 }
-.blue{
-    background-color: #01239A ;
+
+.blue {
+    background-color: #01239A;
 }
-li{
+
+li {
     list-style: none;
     font-size: 1.8rem;
     font-family: machina;
@@ -85,3 +89,32 @@ li{
     font-style: italic;
 }
 
+.container-scroll {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100%;
+}
+
+.container-scroll::-webkit-scrollbar {
+    width: 0.5em;
+    /* Ancho de la barra de desplazamiento */
+}
+
+.container-scroll::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Color del pulgar de la barra de desplazamiento */
+}
+
+.container-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    /* Color de fondo de la pista de la barra de desplazamiento */
+}
+
+.section {
+    scroll-snap-align: start;
+}
+
+.none{
+    display: none;
+}

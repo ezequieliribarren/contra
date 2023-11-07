@@ -27,9 +27,10 @@ const MoreSwitch = () => {
   };
 
   return (
-    <section id='more-switch'>
-      <div className="container-fluid">
-        <div className="row more-select">
+    <section id='more-switch '>
+      <div className="container-fluid ">
+     
+        <div className="row more-select section">
           <div className="col-12 col-lg-4 more-buttons">
 
             <p className='p1'>
@@ -87,13 +88,13 @@ const MoreSwitch = () => {
             <img src="images/more/1.png" alt="" />
           </div>
         </div>
-        <div id='slider' className="row more-slider">
+        <div id='slider' className="row more-slider section"> 
           <Slider className="slider-bottom" {...sliderSettings}>
             {thirdData.map((item, index) => (
               (selectedCategory === 'All' || item.c[1]?.v === selectedCategory) && (
                 <div key={index} className="slider-item">
                   <a className="slider-item-content">
-                    <img src={item.c[3]?.v} alt="" /> 
+                    <img src={item.c[3]?.v} alt="" />
                     <div className="more-hover-content">
                       <h3 className='more-h3'>{item.c[0]?.v}</h3>
                       <p className='more-p'>{item.c[4]?.v}</p>
