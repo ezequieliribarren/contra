@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
-// import useScrollHandler from '../../js/useScrollHandler';
+import useScrollHandler from '../../js/useScrollHandler';
 
 const HanTrabajadoAqui = () => {
-  // const listContainerRef = useRef(null);
-  // const isScrolling = useScrollHandler(listContainerRef);
+  const listContainerRef = useRef(null);
+  const isScrolling = useScrollHandler(listContainerRef);
 
   return (
-    <section id='han-trabajado-aqui' >
+    <section id='han-trabajado-aqui' ref={listContainerRef} >
       <div className="container-fluid">    
         <h2>Han trabajado aquí</h2>
         <div className="row">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const Nav = ({ black, mitad, work, more, about, fixed, nav }) => {
+const Nav = ({ black, mitad, work, more, about, fixed, nav, customClass }) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -27,7 +27,7 @@ const Nav = ({ black, mitad, work, more, about, fixed, nav }) => {
   }, [isButtonVisible, scrollPosition]);
 
   return (
-    <>
+    <div className={`nav-container ${fixed ? 'fixed' : ''} ${customClass}`}>
 <Link className={`${nav} ${isButtonVisible ? 'fixed' : mitad}`} to='/'>
       </Link>
       <Link to='/work'>
@@ -39,7 +39,7 @@ const Nav = ({ black, mitad, work, more, about, fixed, nav }) => {
       <Link to='/about'>
         <a className={`bottom-right-button ${black} ${about}`} >About</a>
       </Link>
-    </>
+    </div>
   );
 };
 

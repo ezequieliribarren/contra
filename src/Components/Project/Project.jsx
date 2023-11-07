@@ -7,9 +7,8 @@ import Nav from '../Nav/Nav';
 
 const Project = ({ content, imageUrls, id, index }) => {
   const projectRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
   const sliderRef = useRef(null);
-  
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     const handleScroll = (event) => {
@@ -78,9 +77,9 @@ const Project = ({ content, imageUrls, id, index }) => {
   };
 
   return (
-    <div id={`project-${index}`} ref={projectRef} className="project-container">
+    <div id={`project-${index}`} ref={projectRef} className="project-container smooth-scrolling">
       <Nav mitad='mitad' nav='top-left-button' />
-      <Slider id={id} {...settings}>
+      <Slider ref={sliderRef} id={id} {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">
             {typeof imageOrText === 'string' ? (

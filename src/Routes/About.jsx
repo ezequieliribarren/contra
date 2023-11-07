@@ -7,11 +7,11 @@ import Clientes from '../Components/Clientes/Clientes'
 
 const About = () => {
   return (
-    <main className='about container-scroll'>
+    <main className='about'>
       <Nav about='orange' mitad='mitad-black' nav='nav-black' work='black' more='black' />
-      <AboutDescription className='section'/>
-      <Equipo className='section' />
-      <HanTrabajadoAqui className='section' />
+      <AboutDescription />
+      <Equipo  />
+      <HanTrabajadoAqui />
       <Clientes/>
     </main>
   )

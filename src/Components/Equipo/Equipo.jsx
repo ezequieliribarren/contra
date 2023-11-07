@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Grafic from '../Grafic/Grafic';
-// import useScrollHandler from '../../js/useScrollHandler';
+import useScrollHandler from '../../js/useScrollHandler';
 
 const Equipo = () => {
-  // const equipoRef = useRef(null);
-  // const isScrolling = useScrollHandler(equipoRef);
+  const equipoRef = useRef(null);
+  const isScrolling = useScrollHandler(equipoRef);
 
     const equipoData = [
         {
@@ -62,7 +62,7 @@ const Equipo = () => {
     };
   
     return (
-      <section id='equipo' >
+      <section id='equipo' ref={equipoRef} >
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-12 col-lg-4'>

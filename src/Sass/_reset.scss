@@ -118,3 +118,16 @@ li {
 .none{
     display: none;
 }
+
+@keyframes smoothScroll {
+    from {
+      scroll-behavior: initial;
+    }
+    to {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  .smooth-scrolling {
+    animation: smoothScroll 0.9s ease-in-out;
+  }

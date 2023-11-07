@@ -1,13 +1,13 @@
 import React, { useRef  } from 'react';
-// import useScrollHandler from '../../js/useScrollHandler';
+import useScrollHandler from '../../js/useScrollHandler';
 
 const AboutDescription = () => {
 
-  // const mySectionRef = useRef(null);
-  // const isScrolling = useScrollHandler(mySectionRef);
+  const mySectionRef = useRef(null);
+  const isScrolling = useScrollHandler(mySectionRef);
 
   return (
-    <section id='about-description' >
+    <section id='about-description' ref={mySectionRef}>
             <div className="container-fluid about-description">
                 <div className="row">
                     <div className="col-12 col-lg-6">
