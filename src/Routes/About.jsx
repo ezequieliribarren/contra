@@ -8,7 +8,7 @@ import Clientes from '../Components/Clientes/Clientes'
 const About = () => {
   return (
     <main className='about'>
-      <Nav about='orange' mitad='mitad-black' nav='nav-black' work='black' more='black' />
+      <Nav about='orange' mitad='mitad-black' nav='nav-black' work='black fixed' more='black fixed' />
       <AboutDescription />
       <Equipo  />
       <HanTrabajadoAqui />

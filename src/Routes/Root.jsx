@@ -12,7 +12,7 @@ const Root = () => {
   return (
     <>
   <Nav mitad='mitad' nav='top-left-button' />
-    <Slider/>
+    <Slider />
    <Favorites/>
    {/* <Footer/> */}
     </>

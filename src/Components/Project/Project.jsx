@@ -11,13 +11,14 @@ const Project = ({ content, imageUrls, id, index }) => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
+    
     const handleScroll = (event) => {
       if (isScrolling || !projectRef.current) {
         return;
       }
-
+    
       const delta = Math.sign(event.deltaY);
-
+    
       if (delta > 0) {
         const nextProject = projectRef.current.nextSibling;
         if (nextProject) {
@@ -25,8 +26,9 @@ const Project = ({ content, imageUrls, id, index }) => {
           window.scrollTo({
             top: nextProject.offsetTop,
             behavior: 'smooth',
+            duration: 1000, // Duración de la animación en milisegundos (por ejemplo, 1000ms para 1 segundo)
           });
-
+    
           setTimeout(() => {
             setIsScrolling(false);
           }, 500);
@@ -38,8 +40,9 @@ const Project = ({ content, imageUrls, id, index }) => {
           window.scrollTo({
             top: prevProject.offsetTop,
             behavior: 'smooth',
+            duration: 1000, // Duración de la animación en milisegundos
           });
-
+    
           setTimeout(() => {
             setIsScrolling(false);
           }, 500);
@@ -58,28 +61,29 @@ const Project = ({ content, imageUrls, id, index }) => {
     };
   }, [isScrolling]);
 
-  const handleGoToLastSlide = () => {
-    if (sliderRef.current) {
-      const lastIndex = imageUrls.length - 1;
-      sliderRef.current.slickGoTo(lastIndex);
-    }
-  };
+  // const handleGoToLastSlide = () => {
+  //   if (sliderRef.current) {
+  //     const lastIndex = imageUrls.length - 1;
+  //     sliderRef.current.slickGoTo(lastIndex);
+  //   }
+  // };
 
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: true,
-    prevArrow: <ArrowLeft />, // Usar componente personalizado para la flecha izquierda
-    nextArrow: <ArrowRight />, // Usar componente personalizado para la flecha derecha
+    arrows: false,
+    easing: 'ease',
+    // prevArrow: <ArrowLeft />, // Usar componente personalizado para la flecha izquierda
+    // nextArrow: <ArrowRight />, // Usar componente personalizado para la flecha derecha
   };
 
   return (
-    <div id={`project-${index}`} ref={projectRef} className="project-container smooth-scrolling">
-      <Nav mitad='mitad' nav='top-left-button' />
-      <Slider ref={sliderRef} id={id} {...settings}>
+    <div id={`project-${index}`} ref={projectRef} className="project-container" >
+      <Nav/>
+      <Slider className='slider-project' ref={sliderRef} id={id} {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">
             {typeof imageOrText === 'string' ? (

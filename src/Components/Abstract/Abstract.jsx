@@ -1,10 +1,13 @@
 import React from 'react'
 
-const Abstract = ({ p1, p2, p3, title, id }) => {
+const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver }) => {
     return (
-        <div id={id} className='abstract'>
-            <div>
+        <div id={id} className={`abstract ${abstract}`} style={{ backgroundImage: `url(${img})` }}>
+            <div className='abstract-sombra'>
                 <h2 className='abstract-h2'>{title}</h2>
+                <div>
+                    {ver}
+                </div>
             </div>
             <div>
                 <p className='abstract-p'>
@@ -18,7 +21,7 @@ const Abstract = ({ p1, p2, p3, title, id }) => {
                 </p>
 
             </div>
-            <div className='abstract-menu'>
+            <div className={`abstract-menu ${none}`}>
                 <div className='abstract-item'>
                     <a className='abstract-a1' href=''><img src="images/abstract/descargar.svg" alt="" /></a>
                     <h4>Descargar<br />proyecto</h4>
@@ -31,6 +34,8 @@ const Abstract = ({ p1, p2, p3, title, id }) => {
                     <a className='abstract-a3' href=""><img src="images/abstract/compartir.svg" alt="" />  </a>
                     <h4>Compartir<br />proyecto</h4>
                 </div>
+
+
 
             </div>
 

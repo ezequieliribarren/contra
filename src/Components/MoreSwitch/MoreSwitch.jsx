@@ -10,8 +10,6 @@ const MoreSwitch = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredData = thirdData.filter(item => selectedCategory === 'All' || item.c[1]?.v === selectedCategory);
-  // const firstItem = filteredData[0]; // Obtén el primer elemento de la lista filtrada
-  // const remainingItems = filteredData.slice(1); // Obtén los elementos restantes de la lista filtrada
   const categories = ['All', 'article', 'workshop', 'culture', 'product'];
 
 
@@ -56,35 +54,6 @@ const MoreSwitch = () => {
             </ul>
           </div>
           <div className="col-12 col-lg-8 more-first">
-            {/* {firstItem && ( // Verifica si hay un primer elemento
-              <div  className="content-item">
-                {firstItem.c[1]?.v === 'article' && (
-                  <div className="article-content">
-                    <h3>{firstItem.c[0]?.v}</h3>
-                    <img src={firstItem.c[3]?.v} alt="" />
-                  </div>
-                )}
-                {firstItem.c[1]?.v === 'workshop' && (
-                  <div id='workshop' className="workshop-content">
-                    <h3>{firstItem.c[0]?.v}</h3>
-                    <img src={firstItem.c[3]?.v} alt="" />
-                  </div>
-                )}
-                {firstItem.c[1]?.v === 'culture' && (
-                  <div id='culture' className="culture-content">
-                    <h3>{firstItem.c[0]?.v}</h3>
-                    <img src={firstItem.c[3]?.v} alt="" />
-                  </div>
-                )}
-                {firstItem.c[1]?.v === 'product' && (
-                  <div id='product' className="product-content">
-                    <h3>{firstItem.c[0]?.v}</h3>
-                    <img src={firstItem.c[3]?.v} alt="" />
-                  </div>
-                )}
-              </div>
-            )} */}
-
             <img src="images/more/1.png" alt="" />
           </div>
         </div>

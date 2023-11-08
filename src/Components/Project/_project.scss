@@ -3,34 +3,40 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  
+  cursor: all-scroll;
 
 }
+
+
 /* Estilos para las flechas de Slick Slider */
-.slick-prev, .slick-next {
-  font-size: 30px; /* Tamaño del icono de la flecha */
-  color: white; /* Color de las flechas */
-  background-color: #333; /* Fondo de las flechas */
-  width: 40px; /* Ancho de las flechas */
-  height: 40px; /* Altura de las flechas */
-  border-radius: 50%; /* Hacer las flechas redondas */
-  z-index: 111; /* Asegurarse de que las flechas estén sobre las imágenes */
+.slick-prev,
+.slick-next {
+  font-size: 30px;
+  color: white;
+  background-color: #333;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  z-index: 111;
 }
 
 .slick-prev {
-  left: 10px; /* Posición izquierda para la flecha izquierda */
+  left: 10px;
+  /* Posición izquierda para la flecha izquierda */
 }
 
 .slick-next {
-  right: 10px; /* Posición derecha para la flecha derecha */
+  right: 10px;
+  /* Posición derecha para la flecha derecha */
 }
 
 
 .project-img-container {
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-  /* Asegura que las imágenes estén centradas verticalmente */
+
 }
 
 .project-img-container img {
@@ -62,3 +68,28 @@
   right: 10px;
 }
 
+
+
+
+
+
+
+
+
+// .slider {
+//   display: flex;
+//   max-width: 500px;
+//   height: 300px;
+//   width: 100%;
+//   overflow-x: scroll !important ;
+//   scroll-snap-type: x mandatory !important;
+
+// }
+
+// .slider img {
+//   width: 100%;
+//   object-fit: cover;
+//   scroll-snap-align: center;
+
+
+// }
