@@ -5,7 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows'; // Asegúrate de importar los componentes de flechas personalizadas
 import Nav from '../Nav/Nav';
 
-const Project = ({ content, imageUrls, id, index }) => {
+
+const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const sliderRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -76,14 +77,18 @@ const Project = ({ content, imageUrls, id, index }) => {
     slidesToScroll: 1,
     arrows: false,
     easing: 'ease',
-    // prevArrow: <ArrowLeft />, // Usar componente personalizado para la flecha izquierda
-    // nextArrow: <ArrowRight />, // Usar componente personalizado para la flecha derecha
+    swipe: true,
+  };
+
+  const sliderSettings = {
+    ...settings,
+    ref: sliderRef, // Asigna la ref del Slider
   };
 
   return (
-    <div id={`project-${index}`} ref={projectRef} className="project-container" >
-      <Nav/>
-      <Slider className='slider-project' ref={sliderRef} id={id} {...settings}>
+    <div id={`project-${index}`} ref={projectRef} className="project-container">
+      <Nav />
+      <Slider className='slider-project' {...sliderSettings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">
             {typeof imageOrText === 'string' ? (

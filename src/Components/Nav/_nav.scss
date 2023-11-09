@@ -15,7 +15,7 @@
 
 .top-left-button, .nav-black {
   left: 10px;
-  background-image: url(images/logo.png);
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo_atptog.png);
   background-repeat: no-repeat;
   height: 8rem;
   width: 90rem;
@@ -26,7 +26,7 @@
 }
 
 .nav-black{
-  background-image: url(images/logo-black.png);
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-black_hudswl.png);
   width: 35rem;
 }
 
@@ -74,14 +74,14 @@
   background-position: center top;
   height: 4rem;
   margin-top: 0;
-  background-image: url(images/logo-mitad-white.png);
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-white_m03ka8.png);
   transition: height 0.5s ease; /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
   z-index: 11;
 
 }
 
 .mitad-black{
-  background-image: url(images/logo-mitad-black.png);
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-black_mzf6wn.png);
   z-index: 111;
 }
 
