@@ -42,7 +42,7 @@ const Projects = () => {
   return (
     <section id='projects'>
       <div className='blur'></div>
-      <div className='hiden'></div>
+      <div className='row-12 hiden'></div>
       <div className='container-fluid table-projects'>
         {allData.map((row, index) => (
           <div
