@@ -1,10 +1,12 @@
 import React, { useRef  } from 'react';
 import useScrollHandler from '../../js/useScrollHandler';
+import { useData } from '../../../Context/Context';
 
 const AboutDescription = () => {
 
   const mySectionRef = useRef(null);
   const isScrolling = useScrollHandler(mySectionRef);
+  const data = useData
 
   return (
     <section id='about-description' ref={mySectionRef}>

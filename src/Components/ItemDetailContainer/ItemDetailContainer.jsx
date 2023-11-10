@@ -16,7 +16,7 @@ const ItemDetailContainer = ({onAbstractClick, onWhatClick}) => {
     const sliderRef = useRef(null);
 
     useEffect(() => {
-        const selectedProject = data.find((row) => row.c[7]?.v.toString() === id.toString());
+        const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
         setProject(selectedProject);
     }, [id, data]);
 
@@ -54,20 +54,20 @@ const ItemDetailContainer = ({onAbstractClick, onWhatClick}) => {
     };
 
     const imageUrls = [
-        project.c[8].v,
-        project.c[9].v,
         project.c[10].v,
         project.c[11].v,
         project.c[12].v,
         project.c[13].v,
         project.c[14].v,
+        project.c[15].v,
+        project.c[16].v,
     ];
     const abstractContent = {
-        p1: project.c[16]?.v,
-        p2: project.c[17]?.v,
-        p3: project.c[18]?.v,
+        p1: project.c[18]?.v,
+        p2: project.c[19]?.v,
+        p3: project.c[20]?.v,
         title: project.c[0]?.v,
-        id: project.c[7]?.v,
+        id: project.c[9]?.v,
     };
 
     const settings = {

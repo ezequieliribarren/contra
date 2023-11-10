@@ -4,11 +4,11 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 const Projects = () => {
   const allData = useData();
-  const [filter, setFilter] = useState(null);
+  const [individualFilter, setIndividualFilter] = useState(null);
+  const [generalFilter, setGeneralFilter] = useState(null);
   const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [showProjects, setShowProjects] = useState(false);
-
+  // const [scrollPosition, setScrollPosition] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
@@ -21,14 +21,45 @@ const Projects = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const containerHeight = document.getElementById('projects').clientHeight;
-    const scrollThreshold = containerHeight * 0.8;
-    setShowProjects(scrollPosition > scrollThreshold);
-  }, [scrollPosition]);
+  const filteredAndSortedProjects = () => {
+    let filteredProjects = allData;
+  
+    // Filtrar proyectos por categoría
+    if (individualFilter) {
+      const matchingProjects = allData.filter((row) => row.c[1]?.v.toLowerCase() === individualFilter);
+      const otherProjects = allData.filter((row) => row.c[1]?.v.toLowerCase() !== individualFilter);
+      filteredProjects = matchingProjects.concat(otherProjects);
+    }
+  
+    // Filtrar proyectos por término de búsqueda en cualquier columna
+    if (searchTerm) {
+      filteredProjects = filteredProjects.filter((row) =>
+        Object.values(row.c).some(
+          (cell) =>
+            cell?.v &&
+            cell.v.toString().toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  
+    // Ordenar el array combinado
+    filteredProjects.sort((a, b) => a.c[2]?.v.localeCompare(b.c[2]?.v));
+  
+    return filteredProjects;
+  };
 
   const handleFilterClick = (value) => {
-    setFilter(value);
+    if (value === 'x') {
+      // Limpiar todos los filtros
+      setIndividualFilter(null);
+      setGeneralFilter(null);
+    } else {
+      // Establecer el filtro individual
+      setIndividualFilter(value);
+
+      // Establecer el filtro general (opcional, según tus necesidades)
+      setGeneralFilter(value);
+    }
   };
 
   const handleMouseEnter = (index) => {
@@ -44,85 +75,84 @@ const Projects = () => {
       <div className='blur'></div>
       <div className='row-12 hiden'></div>
       <div className='container-fluid table-projects'>
-        {allData.map((row, index) => (
-          <div
-            className={`row ${row.c[1]?.v.toLowerCase() === filter ? 'filtered-row' : ''} ${
+        {filteredAndSortedProjects().map((row, index) => (
+          <Link
+            to={`/project/${row.c[9]?.v}`}
+            className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${
               hoveredRowIndex === index ? 'hovered-row' : ''
             }`}
             key={index}
-    onMouseEnter={() => handleMouseEnter(index, `url(${row.c[15]?.v})`)}
-    onMouseLeave={handleMouseLeave}
-    style={{
-      backgroundImage: hoveredRowIndex === index ? `url(${row.c[15]?.v})` : null,
-      backgroundSize: hoveredRowIndex === index ? 'cover' : null,
-      backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
-      backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
-    }}
-  >
-            <div className='col-2 title-project'><h3>{row.c[0]?.v}</h3></div>
-            <div className='col-2'><h4>{row.c[1]?.v}</h4></div>
-            <div className='col-2'><h4>{row.c[2]?.v}</h4></div>
-            <div className='col-2'><h4>{row.c[3]?.v}</h4></div>
-            <div className='col-2'><h4>{row.c[4]?.v}</h4></div>
-            <div className='col-2 '>
-              <Link className='dossier-project' to={`/project/${row.c[7]?.v}`}><h4>dossier ⭷</h4></Link>
+            onMouseEnter={() => handleMouseEnter(index, `url(${row.c[17]?.v})`)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              backgroundImage: hoveredRowIndex === index ? `url(${row.c[17]?.v})` : null,
+              backgroundSize: hoveredRowIndex === index ? 'cover' : null,
+              backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
+              backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
+            }}
+          >
+            <div className='col-2 title-project'>
+              <h3>{row.c[0]?.v}</h3>
             </div>
-          </div>
+            <div className='col-2 category-project'>
+              <h4>{row.c[2]?.v} / {row.c[3]?.v}</h4>
+            </div>
+            <div className='col-2'>
+              <h4>{row.c[4]?.v}</h4>
+            </div>
+            <div className='col-2'>
+              <h4>{row.c[5]?.v}</h4>
+            </div>
+            <div className='col-2'>
+              <h4>{row.c[6]?.v}</h4>
+            </div>
+            <div className='col-2 '>
+              <Link className='dossier-project'>
+                <h4>dossier ⭷</h4>
+              </Link>
+            </div>
+          </Link>
         ))}
       </div>
       <div className='container-filter'>
         <ul className='filter-projects'>
+          <li>
+          <input
+  type="text"
+  placeholder="Buscar..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
+          </li>
+       
           <li
-            className={`filter-item ${filter === 'housing' ? 'selected' : ''}`}
-            onClick={() => handleFilterClick('housing')}
+            className={`filter-item ${generalFilter === 'lifelong' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('lifelong')}
           >
-            housing
+            lifelong
           </li>
           <li
-            className={`filter-item ${filter === 'office' ? 'selected' : ''}`}
-            onClick={() => handleFilterClick('office')}
+            className={`filter-item ${generalFilter === 'temporary' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('temporary')}
           >
-            office
+            temporary
           </li>
           <li
-            className={`filter-item ${filter === 'playground' ? 'selected' : ''}`}
-            onClick={() => handleFilterClick('playground')}
-          >
-            playground
-          </li>
-          <li
-            className={`filter-item ${filter === 'events' ? 'selected' : ''}`}
-            onClick={() => handleFilterClick('events')}
-          >
-            events
-          </li>
-          <li
-            className={`filter-item ${filter === 'web' ? 'selected' : ''}`}
-            onClick={() => handleFilterClick('web')}
+            className={`filter-item ${generalFilter === 'comunication' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('comunication')}
           >
             comunication
+          </li>  
+           <li
+            className={`filter-item ${generalFilter === 'x' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('x')}
+          >
+            (x)
           </li>
         </ul>
       </div>
-      {/* <div className="pagination-buttons-container">
-        {currentPage > 1 && (
-          <button className="pagination-button" onClick={handleLoadPreviousClick}>
-            {currentPage - 1}
-          </button>
-        )}
-        <button className="pagination-button" disabled>
-          {currentPage}
-        </button>
-        {currentPage < totalPages && (
-          <button className="pagination-button" onClick={handleLoadMoreClick}>
-            {currentPage + 1}
-          </button>
-        )}
-        
-      </div> */}
     </section>
   );
-}
+};
 
 export default Projects;
-
