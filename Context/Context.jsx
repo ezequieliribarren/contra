@@ -1,15 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// function generarEnlaceConParametros() {
-//   // Esta función debe devolver el enlace generado dinámicamente
-//   // Puedes mantenerla como está o modificarla según tus necesidades
-//   var spreadsheetId = "1ZqyNJaWT6MtzdJ5FyNaqKLaKt3k3bz0bTZc0mAVl9kw";
-//   var sheetId = "0";
-//   var enlace = "https://docs.google.com/spreadsheets/d/" + spreadsheetId + "/gviz/tq?tqx=out:json&gid=" + sheetId;
-//   return enlace;
-// }
-
-
 function generarEnlaceConParametros(sheetId) {
   var spreadsheetId = "1ZqyNJaWT6MtzdJ5FyNaqKLaKt3k3bz0bTZc0mAVl9kw";
   var enlace = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&gid=${sheetId}`;
@@ -35,12 +25,6 @@ function generarEnlaceConParametros3() {
 function generarEnlaceConParametros4() {
   return generarEnlaceConParametros("1211401125");
 }
-const enlaceHoja1 = generarEnlaceConParametros1();
-const enlaceHoja2 = generarEnlaceConParametros2();
-const enlaceHoja3 = generarEnlaceConParametros3();
-const enlaceHoja4 = generarEnlaceConParametros4();
-
-
 
 const DataContext = createContext();
 
@@ -48,10 +32,11 @@ export const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const enlaceHoja1 = generarEnlaceConParametros1();
+
     const fetchData = async () => {
       try {
-        const enlace = enlaceHoja1
-        const response = await fetch(enlace);
+        const response = await fetch(enlaceHoja1);
         const textData = await response.text();
         const jsonData = textData.substring(47, textData.length - 2);
         const parsedData = JSON.parse(jsonData);
@@ -75,17 +60,18 @@ export const useData = () => {
   return useContext(DataContext);
 };
 
-
 const SecondDataContext = createContext();
+
 export const SecondDataProvider = ({ children }) => {
-  const storedSecondData = localStorage.getItem('mySecondDataKey');
-  const [secondData, setSecondData] = useState(storedSecondData ? JSON.parse(storedSecondData) : []);
+
+  const [secondData, setSecondData] = useState([]);
 
   useEffect(() => {
+    const enlaceHoja2 = generarEnlaceConParametros2();
+
     const fetchSecondData = async () => {
       try {
-        const enlace = enlaceHoja2
-        const response = await fetch(enlace);
+        const response = await fetch(enlaceHoja2);
         const textData = await response.text();
         const jsonData = textData.substring(47, textData.length - 2);
         const parsedData = JSON.parse(jsonData);
@@ -96,9 +82,8 @@ export const SecondDataProvider = ({ children }) => {
       }
     };
 
-    if (!storedSecondData) {
-      fetchSecondData();
-    }
+    // ¡Falta esta línea!
+    fetchSecondData();
   }, []); 
 
   return (
@@ -116,27 +101,25 @@ export const useSecondData = () => {
 const ThirdDataContext = createContext();
 
 export const ThirdDataProvider = ({ children }) => {
-  const storedThirdData = localStorage.getItem('myThirdDataKey');
-  const [thirdData, setThirdData] = useState(storedThirdData ? JSON.parse(storedThirdData) : []);
+  const [thirdData, setThirdData] = useState([]);
 
   useEffect(() => {
+    const enlaceHoja3 = generarEnlaceConParametros3();
+
     const fetchThirdData = async () => {
       try {
-        const enlace = enlaceHoja3
-        const response = await fetch(enlace);
+        const response = await fetch(enlaceHoja3);
         const textData = await response.text();
         const jsonData = textData.substring(47, textData.length - 2);
         const parsedData = JSON.parse(jsonData);
         setThirdData(parsedData.table.rows);
-        localStorage.setItem('myThirdDataKey', JSON.stringify(parsedData.table.rows));
       } catch (error) {
         console.error('Error al obtener datos desde la tercera hoja de cálculo:', error);
       }
     };
 
-    if (!storedThirdData) {
-      fetchThirdData();
-    }
+    // ¡Falta esta línea!
+    fetchThirdData();
   }, []); 
 
   return (
@@ -150,30 +133,31 @@ export const useThirdData = () => {
   return useContext(ThirdDataContext);
 };
 
-
+// Contexto para el cuarto conjunto de datos
 const FourDataContext = createContext();
+
 export const FourDataProvider = ({ children }) => {
-  const storedFourData = localStorage.getItem('myFourdDataKey');
-  const [fourData, setFourData] = useState(storedFourData ? JSON.parse(storedFourData) : []);
+  const [fourData, setFourData] = useState([]);
 
   useEffect(() => {
+    const enlaceHoja4 = generarEnlaceConParametros4();
+
+    console.log("Enlace Hoja 4:", enlaceHoja4); // Agrega este log para verificar el enlace generado.
+
     const fetchFourData = async () => {
       try {
-        const enlace = enlaceHoja4
-        const response = await fetch(enlace);
+        const response = await fetch(enlaceHoja4);
         const textData = await response.text();
         const jsonData = textData.substring(47, textData.length - 2);
         const parsedData = JSON.parse(jsonData);
         setFourData(parsedData.table.rows);
-        localStorage.setItem('myFourdDataKey', JSON.stringify(parsedData.table.rows));
+        console.log("Datos de la Hoja 4:", parsedData.table.rows); // Agrega este log para verificar los datos obtenidos.
       } catch (error) {
-        console.error('Error al obtener datos desde la tercera hoja de cálculo:', error);
+        console.error('Error al obtener datos desde la cuarta hoja de cálculo:', error);
       }
     };
 
-    if (!storedFourData) {
-      fetchFourData();
-    }
+    fetchFourData();
   }, []); 
 
   return (
@@ -182,10 +166,6 @@ export const FourDataProvider = ({ children }) => {
     </FourDataContext.Provider>
   );
 };
-
 export const useFourData = () => {
   return useContext(FourDataContext);
 };
-
-
-

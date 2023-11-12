@@ -13,11 +13,19 @@
     width: 100%;
 }
 
+.more-slider:hover .arrow-left,
+.more-slider:hover .arrow-right {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease-in-out;
+    /* Corrección de la sintaxis */
+}
+
 .more-slider {
 
     cursor: pointer;
 
-    .slider-bottom {position: relative;
+    .slider-bottom {
+        position: relative;
         position: absolute;
         height: 100vh;
         width: 100%;
@@ -76,6 +84,7 @@
 
     .p1 {
         font-weight: 600;
+        margin-top: 6rem;
     }
 
     ul {

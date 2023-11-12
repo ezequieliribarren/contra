@@ -3,7 +3,8 @@ import AboutDescription from '../Components/AboutDescription/AboutDescription'
 import Nav from '../Components/Nav/Nav'
 import Equipo from '../Components/Equipo/Equipo'
 import HanTrabajadoAqui from '../Components/HanTrabajadoAqui/HanTrabajadoAqui'
-import Clientes from '../Components/Clientes/Clientes'
+import Marcas from '../Components/Marcas/Marcas'
+// import Clientes from '../Components/Clientes/Clientes'
 
 const About = () => {
   return (
@@ -12,7 +13,8 @@ const About = () => {
       <AboutDescription />
       <Equipo  />
       <HanTrabajadoAqui />
-      <Clientes/>
+      {/* <Clientes/> */}
+      <Marcas/>
     </main>
   )
 }

@@ -76,11 +76,9 @@ const Projects = () => {
       <div className='row-12 hiden'></div>
       <div className='container-fluid table-projects'>
         {filteredAndSortedProjects().map((row, index) => (
-          <Link
-            to={`/project/${row.c[9]?.v}`}
-            className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${
-              hoveredRowIndex === index ? 'hovered-row' : ''
-            }`}
+          <div
+            className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${hoveredRowIndex === index ? 'hovered-row' : ''
+              }`}
             key={index}
             onMouseEnter={() => handleMouseEnter(index, `url(${row.c[17]?.v})`)}
             onMouseLeave={handleMouseLeave}
@@ -92,26 +90,37 @@ const Projects = () => {
             }}
           >
             <div className='col-2 title-project'>
-              <h3>{row.c[0]?.v}</h3>
-            </div>
-            <div className='col-2 category-project'>
-              <h4>{row.c[2]?.v} / {row.c[3]?.v}</h4>
-            </div>
-            <div className='col-2'>
-              <h4>{row.c[4]?.v}</h4>
-            </div>
-            <div className='col-2'>
-              <h4>{row.c[5]?.v}</h4>
-            </div>
-            <div className='col-2'>
-              <h4>{row.c[6]?.v}</h4>
-            </div>
-            <div className='col-2 '>
-              <Link className='dossier-project'>
-                <h4>dossier ⭷</h4>
+              {/* Enlace solo para el título */}
+              <Link to={`/project/${row.c[9]?.v}`}>
+                <h3>{row.c[0]?.v}</h3>
               </Link>
             </div>
-          </Link>
+            <div className='col-2 category-project'>
+              {/* Enlace solo para la categoría */}
+              <Link to={`/project/${row.c[9]?.v}`}>
+                <h4>{row.c[2]?.v} / {row.c[3]?.v}</h4>
+              </Link>
+            </div>
+            <div className='col-2'>
+              <Link to={`/project/${row.c[9]?.v}`}>
+                <h4>{row.c[4]?.v}</h4>
+              </Link>
+            </div>
+            <div className='col-2'>
+              <Link to={`/project/${row.c[9]?.v}`}>
+                <h4>{row.c[5]?.v}</h4>
+              </Link>
+            </div>
+            <div className='col-2'>
+              <Link to={`/project/${row.c[9]?.v}`}>
+                <h4>{row.c[6]?.v}</h4>
+              </Link>
+            </div>
+            <div className='col-2'>
+              {/* Elemento .dossier-project fuera del enlace */}
+              <a className='dossier-project' download={row.c[0]?.v} href={row.c[7]?.v}><h4>dossier ⭷</h4></a>
+            </div>
+          </div>
         ))}
       </div>
       <div className='container-filter'>

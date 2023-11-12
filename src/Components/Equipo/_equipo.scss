@@ -2,31 +2,54 @@
     height: 100vh !important;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
+
 
 
     .row {
-        padding-left: 2%;
-
+        padding-left: 3%;
     }
 
     h2 {
         font-family: montreal-medium;
         font-size: 4rem;
-        padding-left: 3%;
-        margin-bottom: 5rem;
-        margin-top: 2rem;
+        margin-bottom: 4rem;
+        margin-top: 2.5rem;
     }
+
+
 
     .equipo-grafic-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        max-width: 90rem;
+        margin-left: 6rem;
+
+
     }
 
-    .equipo-grafic {
-        max-width: 75rem;
-    }
 
+}
+
+.equipo {
+    margin-left: 2rem;
+}
+
+.container-title-cargo{
+    display: flex;
+    flex-direction: column;
+}
+
+.member-span {
+    font-family: machina;
+    margin-right: 1rem;
+}
+
+.equipo-h3 {
+    font-family: machina;
+    font-size: 2.5rem !important;
+    font-style: normal;
 }
 
 .equipo {
@@ -36,6 +59,11 @@
             cursor: pointer;
         }
     }
+
+    .member-span {
+        translate: 0.2rem;
+    }
+
 
     li {
         margin: 2rem 0;
@@ -49,12 +77,6 @@
             margin-top: 1rem;
         }
 
-        h3 {
-            font-family: machina;
-            font-size: 3rem;
-            font-style: normal;
-        }
-
         img {
             margin-right: 1rem;
         }
@@ -64,9 +86,9 @@
         display: none;
     }
 
+
     .selected-member .equipo-person-img {
         display: inherit;
-        /* Fija la posición de la imagen */
         transition: 3s ease-in-out;
     }
 

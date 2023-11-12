@@ -1,6 +1,6 @@
 import { Line } from 'react-chartjs-2';
 import React, { useRef, useEffect } from 'react';
-import Chart from 'chart.js/auto'; // Importa la clase Chart desde chart.js
+import Chart from 'chart.js/auto';
 
 var meses = ["Gestion de proyectos", "Direccion de obra", "Visualizacion 3D", "Conceptualizacion", "Ejecución y proveedores", "Gestión de equipo", "Arte y Grafismos", "Planimetrías", "RRSS", "Web/UX", "Estrategia", "Finanzas", "Pipeline", "Gestion de clientes"];
 
@@ -8,8 +8,17 @@ export default function Grafic({ graficData }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
+    if (!graficData) {
+      return;
+    }
+
+    // Parsear las cadenas en el array
+    const parsedSkills = graficData[0].split(',').map(skill => skill.trim());
+    const parsedValues = graficData[1].split(',').map(value => parseInt(value.trim()));
+
     const ctx = chartRef.current.getContext('2d');
     let myChart;
+
 
     if (myChart) {
       myChart.destroy();
@@ -33,10 +42,22 @@ export default function Grafic({ graficData }) {
       options: {
         scales: {
           y: {
-            min: 0,
+            min: 1,
+            max: 10,
+            title: {
+              display: true,
+              text: 'Tiempo Invertido',
+              color: 'black',
+            },
+            ticks: {
+              display: false,
+            },
           },
           x: {
-            ticks: { color: '#E3570D' },
+            position: 'top',
+            ticks: { 
+              color: 'black',
+            },
           },
         },
         plugins: {
@@ -44,9 +65,21 @@ export default function Grafic({ graficData }) {
             display: false,
           },
         },
+        layout: {
+          padding: {
+            top: 30,
+          },
+        },
+        elements: {
+          line: {
+            borderCapStyle: 'round',
+          },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
       }
     });
-
+    
     return () => {
       if (myChart) {
         myChart.destroy();

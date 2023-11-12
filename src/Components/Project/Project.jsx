@@ -75,9 +75,11 @@ const Project = ({ imageUrls, id, index }) => {
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     easing: 'ease',
     swipe: true,
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
   };
 
   const sliderSettings = {

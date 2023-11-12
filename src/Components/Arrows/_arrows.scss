@@ -1,17 +1,21 @@
 .arrow-left, .arrow-right{
     position: absolute;
-    bottom: 4rem; /* Ajusta la distancia desde la parte inferior */
-    left: 35%; /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
+    bottom: 50%; /* Ajusta la distancia desde la parte inferior */
+    left: 5%; /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
     transform: translateX(-50%); /* Centra el contenedor horizontalmente */
     z-index: 1;
+    // display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+opacity: 0;
+
+    img{
+width: 5rem;
+    }
 }
 
 .arrow-right{
-    left: 65%;
-}
+    left: 95%;
 
-.arrow-left:hover, .arrow-right:hover{
-img{
-    transform: scale(1.1);
-}
 }

@@ -6,11 +6,19 @@ import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 
 const MoreSwitch = () => {
   const thirdData = useThirdData();
-  console.log(thirdData);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategories, setSelectedCategories] = useState(['All']);
+  const [filteredData, setFilteredData] = useState(thirdData);
 
-  const filteredData = thirdData.filter(item => selectedCategory === 'All' || item.c[1]?.v === selectedCategory);
-  const categories = ['All', 'article', 'workshop', 'culture', 'product'];
+  const handleCategoryClick = (category) => {
+    if (category === 'All') {
+      setSelectedCategories(['All']);
+      setFilteredData(thirdData);
+    } else {
+      const filteredItems = thirdData.slice(1).filter((item) => item.c[1]?.v === category);
+      setSelectedCategories([category]);
+      setFilteredData(filteredItems);
+    }
+  };
 
 
   const sliderSettings = {
@@ -20,36 +28,42 @@ const MoreSwitch = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
-    prevArrow: <ArrowLeft />, // Usar componente personalizado para la flecha izquierda
-    nextArrow: <ArrowRight />, // Usar componente personalizado para la flecha derecha
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
   };
 
   return (
-    <section id='more-switch '>
-      <div className="container-fluid ">
-     
+    <section id='more-switch'>
+      <div className="container-fluid">
         <div className="row more-select section">
           <div className="col-12 col-lg-4 more-buttons">
-
-            <p className='p1'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, sequi incidunt unde illum, temporibus reiciendis alias vitae dolorem
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, sequi incidunt unde illum, temporibus reiciendis alias vitae dolorem cupiditate rem, repellendus consectetur delectus maxime similique quae quam autem. Eos, libero?
-            </p>
-
+            {thirdData.slice(1).map((p, index) => (
+              <div className='more-p-container' key={index}>
+                {p.c[5]?.v && (
+                  <p className='p1'>
+                    {p.c[5]?.v}
+                  </p>
+                )}
+                {p.c[6]?.v && (
+                  <p>
+                    {p.c[6]?.v}
+                  </p>
+                )}
+              </div>
+            ))}
             <ul>
-              {categories.map((category, index) => (
-                <Link smooth to={`/more/#slider`}>
+              {thirdData.slice(1).map((p, index) => (
+                <Link to={`/more/#slider`} key={index}>
                   <li
                     key={index}
-                    className={`filter-item ${selectedCategory === category ? 'selected' : ''}`}
-                    onClick={() => setSelectedCategory(category)}
+                    className={`filter-item ${
+                      selectedCategories.includes(p.c[7]?.v) ? 'selected' : ''
+                    }`}
+                    onClick={() => handleCategoryClick(p.c[7]?.v ?? 'All')}
                   >
-                    <span className='more-span'>⭷</span> {category === 'All' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1)}
+                    <span className='more-span'>⭷</span> {p.c[7]?.v === 'All' ? 'All' : (p.c[7]?.v ?? '').charAt(0).toUpperCase() + (p.c[7]?.v ?? '').slice(1)}
                   </li>
                 </Link>
-
               ))}
             </ul>
           </div>
@@ -57,20 +71,18 @@ const MoreSwitch = () => {
             <img src="images/more/1.png" alt="" />
           </div>
         </div>
-        <div id='slider' className="row more-slider section"> 
+        <div id='slider' className="row more-slider section">
           <Slider className="slider-bottom" {...sliderSettings}>
-            {thirdData.map((item, index) => (
-              (selectedCategory === 'All' || item.c[1]?.v === selectedCategory) && (
-                <div key={index} className="slider-item">
-                  <a className="slider-item-content">
-                    <img src={item.c[3]?.v} alt="" />
-                    <div className="more-hover-content">
-                      <h3 className='more-h3'>{item.c[0]?.v}</h3>
-                      <p className='more-p'>{item.c[4]?.v}</p>
-                    </div>
-                  </a>
-                </div>
-              )
+            {filteredData.slice(1).map((item, index) => (
+              <div key={index} className="slider-item">
+                <a className="slider-item-content">
+                  <img src={item.c[3]?.v} alt="" />
+                  <div className="more-hover-content">
+                    <h3 className='more-h3'>{item.c[0]?.v}</h3>
+                    <p className='more-p'>{item.c[4]?.v}</p>
+                  </div>
+                </a>
+              </div>
             ))}
           </Slider>
         </div>
