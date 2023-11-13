@@ -3,27 +3,27 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const What = ({ onClose }) => {
+const What = ({ open, onClose }) => {
   const modalStyle = {
     position: 'fixed',
     top: '50%',
-    left: '48%',
+    left: '49.5%',
     transform: 'translate(-50%, -50%)',
-    width: 500,
+    width: 520,
     height: '100vh',
     bgcolor: '#0F0F0F',
     border: '2px solid #000',
     boxShadow: 24,
   };
+
   return (
     <div>
       <Modal
-        open={true} // Deberías manejar el estado del modal desde el componente que lo llama (Nav2)
+        open={open}
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="modal-entered"
-
       >
         <Box sx={modalStyle} className='what-box'>
           <ul className='what-menu'>
