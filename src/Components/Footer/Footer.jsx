@@ -1,33 +1,27 @@
 import React from 'react';
-const Footer = ({ background, color }) => {
+const Footer = ({ background, color, colora, logo }) => {
   return (
-    <footer className={background}>
+    <footer className={background} id='contact'>
 
       <div className="container-fluid">
-        <img className='img-fluid' src="images/footer.png" alt="" />
-        <div className="links">
+        <div className='footer-circle'>
+          <div className={`a0 ${color}`}>
+            <a href=""><img src={logo} alt="" /></a>
+          </div>
           <div className={`a1 ${color}`}>
-            <a href="">contra.architecture@gmail.com</a>
+            <a className={colora} href="mailto:contra.architecture@gmail.com">contra.architecture@gmail.com</a>
           </div>
           <div className={`a2 ${color}`}>
-            <a href="">+34 697 286 914</a>
+            <a className={colora} href="tel:+34697286914">+34 697 286 914</a>
           </div>
           <div className={`a3 ${color}`}>
-            <a href="">Instagram</a>
+            <a className={colora} href="">Instagram <span><img src="images/insta.png" alt="" /></span></a> <a className={colora} href="">Linkedin<span><img src="images/linkedin.png" alt="" /></span></a><a className={colora} href="">Spotify<span><img src="images/spotify.png" alt="" /></span></a>
           </div>
-          <div className={`a4 ${color}`}>
-            <a href="">Linkedin</a>
+          <div className={`a4 ${color}`}>  <div className='div-maps'>MAPS⭷</div>
+            <a className={colora} href="">
+              <div>C/ Aldapa, 2 Local 4, Esquina,<br /> C. de Matilde Hernández,<br /> 28025, Madrid</div></a>
           </div>
-          <div className={`a5 ${color}`}>
-            <a href="">Spotify</a>
-          </div>
-          <div className={`a6 ${color}`}>
-            <a href="">MAPS
-              C/ Aldapa, 2 Local 4, Esquina,<br /> C. de Matilde Hernández,<br /> 28025, Madrid</a>
-          </div>
-
         </div>
-
       </div>
 
     </footer>

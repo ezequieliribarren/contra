@@ -3,24 +3,72 @@ footer {
   width: 100%;
   position: absolute;
 
-  a{
+  .footer-circle {
+    background-image: url(../../../public/images/footer.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 50rem;
+    width: 50rem;
+  }
+
+  a {
     font-size: 1.6rem;
     color: white;
     z-index: 1;
   }
-
-  .a1{
+  .a0 {
     position: relative;
-    bottom: 158%;
-    right: 55%;
-    height: 3rem;
+    top: -7%;
+    right: 57%;
+    width: 22rem;
   }
 
-  .a6{
+  .a1 {
     position: relative;
-    bottom: 240%;
-    left: 85%;
-    height: 3rem;
+    top: -8%;
+    right: 19%;
+    width: 25rem;
+  }
+
+  .a2 {
+    position: relative;
+    top: 2%;
+    right: 19%;
+    width: 20rem;
+  }
+
+  .a3 {
+    position: relative;
+    display: flex;
+    top: 12.5%;
+    right: 19%;
+    width: 40rem;
+
+    a{
+      margin-right:  3rem;
+      display: flex;
+      img{
+        display: flex;
+        align-items: start;
+        width: 1.8rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .a4 {
+    position: relative;
+    top: -24%;
+    left: 81%;
+    padding: 0;
+    width: 25rem;
+
+    .div-maps {
+      display: flex;
+      justify-content: right;
+    }
   }
 
   .container-fluid {
@@ -35,5 +83,8 @@ footer {
     }
   }
 
+  .div-maps {
+    color: #E3570D;
+  }
 
 }

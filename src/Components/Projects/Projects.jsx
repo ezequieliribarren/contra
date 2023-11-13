@@ -7,11 +7,23 @@ const Projects = () => {
   const [individualFilter, setIndividualFilter] = useState(null);
   const [generalFilter, setGeneralFilter] = useState(null);
   const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
-  // const [scrollPosition, setScrollPosition] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isFilterVisible, setIsFilterVisible] = useState(true);
 
   const handleScroll = () => {
-    setScrollPosition(window.scrollY);
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // Puedes ajustar el valor 100 según sea necesario
+    const threshold = documentHeight - windowHeight - 100;
+
+    if (scrollPosition > threshold) {
+      // Si el usuario ha llegado al final de la sección, oculta los elementos
+      setIsFilterVisible(false);
+    } else {
+      setIsFilterVisible(true);
+    }
   };
 
   useEffect(() => {
@@ -20,6 +32,7 @@ const Projects = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
 
   const filteredAndSortedProjects = () => {
     let filteredProjects = allData;
@@ -72,10 +85,10 @@ const Projects = () => {
 
   return (
     <section id='projects'>
-      <div className='blur'></div>
-      <div className='row-12 hiden'></div>
-      <div className='container-fluid table-projects'>
-        {filteredAndSortedProjects().map((row, index) => (
+    <div className={`blur ${isFilterVisible ? '' : 'hidden'}`}></div>
+    <div className={`row-12 hiden ${isFilterVisible ? '' : 'hidden'}`}></div>
+    <div className={`container-fluid table-projects ${isFilterVisible ? '' : 'hidden'}`}>
+      {filteredAndSortedProjects().map((row, index) => (
           <div
             className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${hoveredRowIndex === index ? 'hovered-row' : ''
               }`}
@@ -123,7 +136,7 @@ const Projects = () => {
           </div>
         ))}
       </div>
-      <div className='container-filter'>
+      <div className={`container-filter ${isFilterVisible ? '' : 'hidden'}`}>
         <ul className='filter-projects'>
           <li>
           <input

@@ -13,7 +13,7 @@ const More = () => {
         <Nav mitad='mitad-black' nav='nav-black' more='orange' work='fixed' about='fixed'/>
         <MoreSwitch/>
       </main>
-      <Footer background='blue' color='blue' />
+      <Footer background='blue' color='blue' logo='images/logo-footer' />
     </>
   )
 }

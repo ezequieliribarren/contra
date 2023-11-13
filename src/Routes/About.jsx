@@ -4,7 +4,7 @@ import Nav from '../Components/Nav/Nav'
 import Equipo from '../Components/Equipo/Equipo'
 import HanTrabajadoAqui from '../Components/HanTrabajadoAqui/HanTrabajadoAqui'
 import Marcas from '../Components/Marcas/Marcas'
-// import Clientes from '../Components/Clientes/Clientes'
+import Footer from '../Components/Footer/Footer'
 
 const About = () => {
   return (
@@ -15,6 +15,7 @@ const About = () => {
       <HanTrabajadoAqui />
       {/* <Clientes/> */}
       <Marcas/>
+      <Footer background='background-about' color='background-about' logo='images/logo-footer'/>
     </main>
   )
 }

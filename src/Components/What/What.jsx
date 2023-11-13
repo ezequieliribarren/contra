@@ -36,7 +36,7 @@ const What = ({ open, onClose }) => {
             <Link to='/more'>
               <li><a><span className='what-span'>⭷</span>More</a></li>
             </Link>
-            <Link to='/contact'>
+            <Link smooth to='/#contact'>
               <li><a><span className='what-span'>⭷</span>Contact</a></li>
             </Link>
           </ul>
