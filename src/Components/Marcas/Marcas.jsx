@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useFourData } from '../../../Context/Context';
 
 const Marcas = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const data = useFourData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,15 +40,18 @@ const Marcas = () => {
     };
   }, []);
 
-  const marcas = [
-    { nombre: '', imagen: '' },
-    { nombre: 'Cliente 2', imagen: 'images/Slider/2.png' },
-    { nombre: 'Cliente 3', imagen: 'images/Slider/3.png' },
-    { nombre: 'Cliente 4', imagen: 'images/Slider/1.png' },
-  ];
+  // Mapear los datos de la hoja de cálculo a un formato compatible
+  const marcas = data.map((row) => ({
+    nombre: row.c[10]?.v,
+    imagen: row.c[11]?.v,
+  }));
+
+  const backgroundImageStyle = marcas[activeIndex]?.imagen
+    ? { backgroundImage: `url(${marcas[activeIndex].imagen})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', backgroundPosition: 'center center', }
+    : {};
 
   return (
-    <div className='fondo-change' style={{ backgroundImage: `url(${marcas[activeIndex].imagen})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <div className='fondo-change' style={backgroundImageStyle}>
       <ol>
         {marcas.map((marca, index) => (
           <li
@@ -60,7 +65,7 @@ const Marcas = () => {
               fontSize: '5rem',
             }}
           >
-            <div>{marca.nombre}</div>
+            <div><img src={marca.nombre} alt="" /></div>
           </li>
         ))}
       </ol>
