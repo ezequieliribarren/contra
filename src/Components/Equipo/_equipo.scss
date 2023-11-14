@@ -23,20 +23,32 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        max-width: 90rem;
         margin-left: 6rem;
+        width: 100%;
 
-
+        .grafico {
+            width: 100%;
+        }
     }
 
 
+}
+
+.grafico-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.grafico {
+    width: 100%;
+    height: auto;
 }
 
 .equipo {
     margin-left: 2rem;
 }
 
-.container-title-cargo{
+.container-title-cargo {
     display: flex;
     flex-direction: column;
 }

@@ -26,6 +26,7 @@ const Projects = () => {
     }
   };
 
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {

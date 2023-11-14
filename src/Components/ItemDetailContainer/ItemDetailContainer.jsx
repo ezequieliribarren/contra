@@ -11,15 +11,25 @@ import What from '../What/What';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
-    const { id } = useParams();
-    const data = useData();
-    const [project, setProject] = useState(null);
-    const itemDetailRef = useRef(null);
-    const sliderRef = useRef(null);
+  const { id } = useParams();
+  const data = useData();
+  const [project, setProject] = useState(null);
+  const itemDetailRef = useRef(null);
+  const sliderRef = useRef(null);
+  const [isWhatOpen, setIsWhatOpen] = useState(false);
 
     const [open, setOpen] = useState(false);
 
-   
+    const handleWhatClick = () => {
+      if (onWhatClick) {
+        onWhatClick();
+      }
+      setIsWhatOpen(true);
+    };
+  
+    const handleWhatClose = () => {
+      setIsWhatOpen(false);
+    };
 
     useEffect(() => {
         const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
@@ -43,14 +53,6 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
             sliderRef.current.slickGoTo(lastIndex);
         }
     };
-
-    const handleWhatClick = () => {
-        console.log('handleWhatClick called');
-        if (onWhatClick) {
-          onWhatClick();
-        }
-        setOpen(true);
-      };
 
     const imageUrls = [
         project.c[10].v,
@@ -82,8 +84,13 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     };
 
     return (
-        <div className='item-detail-container' ref={itemDetailRef}>
-        <Nav2 onAbstractClick={handleGoToLastSlide} onWhatClick={handleWhatClick} />
+      <div className='item-detail-container' ref={itemDetailRef}>
+        <Nav2
+          onAbstractClick={handleGoToLastSlide}
+          onWhatClick={handleWhatClick}
+          isWhatOpen={isWhatOpen}
+          onClose={handleWhatClose} // Pasa la función de cierre al componente Nav2
+        />
         <Slider ref={sliderRef} id={id} {...settings}>
           {imageUrls.map((imageUrl, index) => (
             <div key={index} className='project-img-container'>
@@ -92,11 +99,11 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
           ))}
           <div className='project-img-container'>
             <Abstract {...abstractContent} />
-            {open && <What open={open} onClose={() => setOpen(false)} />}
+            <What open={isWhatOpen} onClose={handleWhatClose} />
           </div>
         </Slider>
       </div>
     );
-};
-
-export default ItemDetailContainer;
+  };
+  
+  export default ItemDetailContainer;

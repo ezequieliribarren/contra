@@ -85,4 +85,29 @@
   z-index: 111;
 }
 
+.navbar-mobile{
+  display: none;
+}
 
+.nav3{
+  position: fixed;
+  top: 0;
+  z-index: 111;
+  display: none;
+}
+
+@media (max-width: 1050px) {
+.nav3{
+  display: inherit;
+}
+
+
+.bottom-left-button, .bottom-right-button, .top-right-button{
+  display: none;
+}
+
+.navbar-mobile{
+  display:  inherit;
+}
+
+}

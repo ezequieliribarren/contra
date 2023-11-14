@@ -26,30 +26,30 @@ const What = ({ open, onClose }) => {
         className="modal-entered"
       >
         <Box sx={modalStyle} className='what-box'>
-          <ul className='what-menu'>
-            <Link to='/about'>
-              <li><a><span className='what-span'>⭷</span>About</a></li>
-            </Link>
-            <Link to='/work'>
-              <li><a><span className='what-span'>⭷</span>Work</a></li>
-            </Link>
-            <Link to='/more'>
-              <li><a><span className='what-span'>⭷</span>More</a></li>
-            </Link>
-            <Link smooth to='/#contact'>
-              <li><a><span className='what-span'>⭷</span>Contact</a></li>
-            </Link>
-          </ul>
-          <button className='what-close-button' onClick={onClose}>( x )</button>
-          <div className='what-redes'>
-            <a href=""><img src="images/insta.png" alt="" /></a>
-            <a href=""><img src="images/linkedin.png" alt="" /></a>
-            <a href=""><img src="images/spotify.png" alt="" /></a>
-          </div>
-        </Box>
-      </Modal>
-    </div>
-  );
+                    <ul className='what-menu'>
+                        <Link to='/about'>
+                            <li><a><span className='what-span'>⭷</span>About</a></li>
+                        </Link>
+                        <Link to='/work'>
+                            <li><a><span className='what-span'>⭷</span>Work</a></li>
+                        </Link>
+                        <Link to='/more'>
+                            <li><a><span className='what-span'>⭷</span>More</a></li>
+                        </Link>
+                        <Link smooth to='/#contact'>
+                            <li><a><span className='what-span'>⭷</span>Contact</a></li>
+                        </Link>
+                    </ul>
+                    <button className='what-close-button' onClick={onClose}>( x )</button>
+                    <div className='what-redes'>
+                        <a href=""><img src="images/insta.png" alt="" /></a>
+                        <a href=""><img src="images/linkedin.png" alt="" /></a>
+                        <a href=""><img src="images/spotify.png" alt="" /></a>
+                    </div>
+                </Box>
+            </Modal>
+        </div>
+    );
 }
 
 export default What;

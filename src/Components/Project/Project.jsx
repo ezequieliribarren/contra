@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows'; // Asegúrate de importar los componentes de flechas personalizadas
-import Nav from '../Nav/Nav';
 
 
 const Project = ({ imageUrls, id, index }) => {
@@ -62,12 +61,6 @@ const Project = ({ imageUrls, id, index }) => {
     };
   }, [isScrolling]);
 
-  // const handleGoToLastSlide = () => {
-  //   if (sliderRef.current) {
-  //     const lastIndex = imageUrls.length - 1;
-  //     sliderRef.current.slickGoTo(lastIndex);
-  //   }
-  // };
 
   const settings = {
     dots: false,
@@ -80,6 +73,24 @@ const Project = ({ imageUrls, id, index }) => {
     swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
+    responsive: [
+      {
+        breakpoint: 1250,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+    ],
   };
 
   const sliderSettings = {
@@ -89,7 +100,6 @@ const Project = ({ imageUrls, id, index }) => {
 
   return (
     <div id={`project-${index}`} ref={projectRef} className="project-container">
-      <Nav />
       <Slider className='slider-project' {...sliderSettings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">

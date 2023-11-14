@@ -129,3 +129,18 @@
 .more-p {
     color: white !important;
 }
+
+
+@media (max-width: 991px) {
+.more-p-container{
+    display: none;
+}
+.more-buttons{
+align-items: center;
+padding-top: 8rem;
+}
+
+.more-first{
+    display: none;
+}
+}

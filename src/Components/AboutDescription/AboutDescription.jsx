@@ -11,7 +11,7 @@ const AboutDescription = () => {
     <section id='about-description' ref={mySectionRef}>
       <div className="container-fluid about-description">
         <div className="row">
-          <div className="col-12 col-lg-6 about-description-text">
+          <div className="col-12 col-xl-6 about-description-text">
             {data.slice(1).map((p, index) => (
               <React.Fragment key={index}>
                 <p className='about-p'>{p.c[0]?.v}</p>
@@ -25,7 +25,7 @@ const AboutDescription = () => {
               </a>
             </div>
           </div>
-          <div className="col-12 col-lg-6 about-grafic">
+          <div className="col-12 col-xl-6 about-grafic">
             <img className='img-fluid' src="images/about/grafic.png" alt="" />
           </div>
         </div>

@@ -19,7 +19,6 @@ export default function Grafic({ graficData }) {
     const ctx = chartRef.current.getContext('2d');
     let myChart;
 
-
     if (myChart) {
       myChart.destroy();
     }
@@ -87,5 +86,9 @@ export default function Grafic({ graficData }) {
     };
   }, [graficData]);
 
-  return <canvas ref={chartRef} />;
+  return (
+    <div className='grafico-container'>
+      <canvas className='grafico' ref={chartRef} />
+    </div>
+  );
 }
