@@ -17,7 +17,7 @@ const About = () => {
       <Equipo  />
       <HanTrabajadoAqui />
       <Marcas/>
-      <Footer background='background-about' color='background-about' logo='images/logo-footer'/>
+      <Footer background='background-about' color='background-about' logo='images/logo-footer.png'/>
     </main>
   )
 }

@@ -5,6 +5,10 @@ const useScrollHandler = (scrollableRef) => {
 
   useEffect(() => {
     const handleScroll = (event) => {
+      if (shouldDisableScroll()) {
+        return;
+      }
+
       if (isScrolling || !scrollableRef.current) {
         return;
       }
@@ -36,6 +40,11 @@ const useScrollHandler = (scrollableRef) => {
           setIsScrolling(false);
         }, 1000);
       }
+    };
+
+    const shouldDisableScroll = () => {
+      // Condición para desactivar la lógica de scroll
+      return window.innerWidth < 1200;
     };
 
     if (scrollableRef.current) {

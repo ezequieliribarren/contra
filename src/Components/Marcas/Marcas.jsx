@@ -21,10 +21,13 @@ const Marcas = () => {
   useEffect(() => {
     const calculateActiveIndex = () => {
       const liElements = document.querySelectorAll('.fondo-change ol li');
-      for (let i = liElements.length - 1; i > 0; i--) {
+
+      for (let i = 0; i < liElements.length; i++) {
         const rect = liElements[i].getBoundingClientRect();
         const liTop = rect.top;
-        if (liTop <= window.innerHeight / 2) {
+        const liBottom = rect.bottom;
+
+        if (liTop <= window.innerHeight / 2 && liBottom >= window.innerHeight / 2) {
           setActiveIndex(i);
           break;
         }
@@ -47,27 +50,38 @@ const Marcas = () => {
   }));
 
   const backgroundImageStyle = marcas[activeIndex]?.imagen
-    ? { backgroundImage: `url(${marcas[activeIndex].imagen})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', backgroundPosition: 'center center', }
+    ? {
+        backgroundImage: `url(${marcas[activeIndex].imagen})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center center',
+        height: '100%', 
+      }
     : {};
 
   return (
     <div className='fondo-change' style={backgroundImageStyle}>
       <ol>
-        {marcas.map((marca, index) => (
-          <li
-            key={index}
-            style={{
-              height: index > 0 ? '40rem' : '30rem',
-              lineHeight: index > 0 ? '40rem' : '30rem',
-              textAlign: 'center',
-              color: activeIndex === index ? 'white' : 'gray',
-              fontFamily: 'machina',
-              fontSize: '5rem',
-            }}
-          >
-            <div><img src={marca.nombre} alt="" /></div>
-          </li>
-        ))}
+        {marcas.map((marca, index) =>
+          marca.nombre && marca.imagen ? (
+            <li
+              key={index}
+              style={{
+                height: '30rem', // Ajusta la altura según tus necesidades
+                lineHeight: '30rem', // Puedes ajustar esto también
+                textAlign: 'center',
+                color: activeIndex === index ? 'white' : 'gray',
+                fontFamily: 'machina',
+                fontSize: '5rem',
+                marginBottom: '80px', // Agrega un margen inferior para separar los elementos
+              }}
+            >
+              <div>
+                <img src={marca.nombre} alt="" />
+              </div>
+            </li>
+          ) : null
+        )}
       </ol>
     </div>
   );

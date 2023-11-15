@@ -17,32 +17,9 @@
     }
 
 
-
-    .equipo-grafic-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-left: 6rem;
-        width: 100%;
-
-        .grafico {
-            width: 100%;
-        }
-    }
-
-
 }
 
-.grafico-container {
-    width: 100%;
-    overflow-x: auto;
-}
 
-.grafico {
-    width: 100%;
-    height: auto;
-}
 
 .equipo {
     margin-left: 2rem;
@@ -109,4 +86,10 @@
     }
 
 
+}
+
+@media (max-width: 1200px) {
+    #equipo{
+        height: auto !important;
+    }
 }

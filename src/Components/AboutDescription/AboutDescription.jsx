@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import useScrollHandler from '../../js/useScrollHandler';
 import { useFourData } from '../../../Context/Context';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AboutDescription = () => {
   const mySectionRef = useRef(null);

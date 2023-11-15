@@ -12,10 +12,6 @@ export default function Grafic({ graficData }) {
       return;
     }
 
-    // Parsear las cadenas en el array
-    const parsedSkills = graficData[0].split(',').map(skill => skill.trim());
-    const parsedValues = graficData[1].split(',').map(value => parseInt(value.trim()));
-
     const ctx = chartRef.current.getContext('2d');
     let myChart;
 
@@ -42,7 +38,7 @@ export default function Grafic({ graficData }) {
         scales: {
           y: {
             min: 1,
-            max: 10,
+            max: 9,
             title: {
               display: true,
               text: 'Tiempo Invertido',
@@ -56,6 +52,7 @@ export default function Grafic({ graficData }) {
             position: 'top',
             ticks: { 
               color: 'black',
+              angle: 90, // Rotar las etiquetas a 90 grados
             },
           },
         },
@@ -63,10 +60,13 @@ export default function Grafic({ graficData }) {
           legend: {
             display: false,
           },
+          tooltip: {
+            enabled: false, // Desactivar la visualización del valor al posicionar el cursor sobre el punto
+          },
         },
         layout: {
           padding: {
-            top: 30,
+            top: 10,
           },
         },
         elements: {
@@ -87,7 +87,7 @@ export default function Grafic({ graficData }) {
   }, [graficData]);
 
   return (
-    <div className='grafico-container'>
+    <div className='grafico-container' style={{ height: '60rem' }}>
       <canvas className='grafico' ref={chartRef} />
     </div>
   );

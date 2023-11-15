@@ -12,7 +12,7 @@
         display: flex;
         justify-content: center;
         align-items: start;
-        margin-top: 3rem;
+        margin-top: 4rem;
         padding-left: 3%;
 
         .about-grafic {
@@ -54,10 +54,13 @@
 
 
 @media (max-width: 1200px) {
-
+#about-description{
+    height: auto !important;
+}
     .about-description{
         display: flex;
         justify-content: center;
+        height: auto;
     }
 
     .about-grafic{
@@ -65,6 +68,10 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 990px) {
 
+
+.about-description{
+margin: 0 !important;
+}
 }
