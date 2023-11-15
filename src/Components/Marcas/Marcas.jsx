@@ -45,8 +45,8 @@ const Marcas = () => {
 
   // Mapear los datos de la hoja de cálculo a un formato compatible
   const marcas = data.map((row) => ({
-    nombre: row.c[10]?.v,
-    imagen: row.c[11]?.v,
+    nombre: row.c[11]?.v,
+    imagen: row.c[12]?.v,
   }));
 
   const backgroundImageStyle = marcas[activeIndex]?.imagen

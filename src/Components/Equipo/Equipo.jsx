@@ -16,7 +16,7 @@ const Equipo = () => {
     imagen: miembro.c[7]?.v || '',
     grafic: 'images/about/equipo1.png',
     graficData: miembro.c[6]?.v,
-  }));
+  })).filter(miembro => miembro.nombre && miembro.subtitle && miembro.imagen);
 
   const [selectedMember, setSelectedMember] = useState(1);
 
@@ -37,9 +37,10 @@ const Equipo = () => {
                   onClick={() => handleMemberClick(miembro.id)}
                   className={selectedMember === miembro.id ? 'selected-member' : ''}
                 >
-                  <div>
+                  <div className='equipo-select'>
                     <img className='equipo-person-img' src={miembro.imagen} alt='' />
                     <h3>{miembro.nombre}</h3>
+                    <h4> <img src="images/about/flecha.png" alt="" />{miembro.subtitle}</h4>
                   </div>
                   {selectedMember === miembro.id && (
                     <div className='equipo-description'>

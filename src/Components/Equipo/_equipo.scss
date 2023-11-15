@@ -1,7 +1,7 @@
 #equipo {
     height: 100vh !important;
     display: flex;
-    align-items: center;
+    align-items: center !important;
 
 
 
@@ -23,6 +23,21 @@
 
 .equipo {
     margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.equipo-select{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.equipo-select:hover{
+    img{
+        translate: 2px;
+    }
 }
 
 .container-title-cargo {
@@ -43,7 +58,7 @@
 
 .equipo {
     li:hover {
-        h3 {
+        h3, h4 {
             color: #E3570D;
             cursor: pointer;
         }
@@ -55,7 +70,7 @@
 
 
     li {
-        margin: 2rem 0;
+        margin: 1rem 0;
 
         div {
             display: flex;

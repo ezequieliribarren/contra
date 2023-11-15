@@ -52,7 +52,13 @@
 
 }
 
-
+@media (max-width: 1400px) {
+#about-desciption{
+    .nav-black{
+        width: 30rem !important;
+    }
+}
+}
 @media (max-width: 1200px) {
 #about-description{
     height: auto !important;

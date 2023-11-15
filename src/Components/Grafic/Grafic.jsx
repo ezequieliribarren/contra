@@ -26,12 +26,14 @@ export default function Grafic({ graficData }) {
         datasets: [{
           data: graficData,
           tension: 0.5,
-          fill: true,
-          borderColor: 'white',
-          backgroundColor: '#E3570D',
+          fill: {
+            target: 'origin', // Rellena desde el origen hasta la línea
+            above: '#EFC99F', // Color de fondo por encima de la línea
+          },
+          borderColor: '#E3570D',
           pointRadius: 5,
           pointBorderColor: '#E3570D',
-          pointBackgroundColor: 'white',
+          pointBackgroundColor: '#E3570D',
         }]
       },
       options: {
@@ -47,12 +49,18 @@ export default function Grafic({ graficData }) {
             ticks: {
               display: false,
             },
+            grid: {
+              color: 'white', // Color de fondo para el eje Y
+            },
           },
           x: {
             position: 'top',
             ticks: { 
               color: 'black',
               angle: 90, // Rotar las etiquetas a 90 grados
+            },
+            grid: {
+              color: 'white', // Color de fondo para el eje X
             },
           },
         },
@@ -61,7 +69,7 @@ export default function Grafic({ graficData }) {
             display: false,
           },
           tooltip: {
-            enabled: false, // Desactivar la visualización del valor al posicionar el cursor sobre el punto
+            enabled: false,
           },
         },
         layout: {

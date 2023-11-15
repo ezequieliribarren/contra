@@ -15,14 +15,14 @@ const HanTrabajadoAqui = () => {
           <div className="col">
             <ul>
               {data.slice(1).map((member, index) => (
-                <li key={index}>{member.c[7]?.v}</li>
+                <li key={index}>{member.c[8]?.v}</li>
               ))}
             </ul>
           </div>
           <div className="col">
             <ul>
               {data.slice(1).map((member, index) => (
-                <li key={index}>{member.c[8]?.v}</li>
+                <li key={index}>{member.c[9]?.v}</li>
               ))}
             </ul>
           </div>
