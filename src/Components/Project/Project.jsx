@@ -2,8 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { ArrowLeft, ArrowRight } from '../Arrows/Arrows'; // Asegúrate de importar los componentes de flechas personalizadas
-
+import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 
 const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
@@ -11,14 +10,13 @@ const Project = ({ imageUrls, id, index }) => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
-    
     const handleScroll = (event) => {
       if (isScrolling || !projectRef.current) {
         return;
       }
-    
+
       const delta = Math.sign(event.deltaY);
-    
+
       if (delta > 0) {
         const nextProject = projectRef.current.nextSibling;
         if (nextProject) {
@@ -26,9 +24,9 @@ const Project = ({ imageUrls, id, index }) => {
           window.scrollTo({
             top: nextProject.offsetTop,
             behavior: 'smooth',
-            duration: 1000, // Duración de la animación en milisegundos (por ejemplo, 1000ms para 1 segundo)
+            duration: 1000,
           });
-    
+
           setTimeout(() => {
             setIsScrolling(false);
           }, 500);
@@ -40,9 +38,9 @@ const Project = ({ imageUrls, id, index }) => {
           window.scrollTo({
             top: prevProject.offsetTop,
             behavior: 'smooth',
-            duration: 1000, // Duración de la animación en milisegundos
+            duration: 1000,
           });
-    
+
           setTimeout(() => {
             setIsScrolling(false);
           }, 500);
@@ -60,7 +58,6 @@ const Project = ({ imageUrls, id, index }) => {
       }
     };
   }, [isScrolling]);
-
 
   const settings = {
     dots: false,
@@ -93,9 +90,13 @@ const Project = ({ imageUrls, id, index }) => {
     ],
   };
 
+  const isVideoLink = (url) => {
+    return url.endsWith('.mp4');
+  };
+
   const sliderSettings = {
     ...settings,
-    ref: sliderRef, // Asigna la ref del Slider
+    ref: sliderRef,
   };
 
   return (
@@ -104,7 +105,16 @@ const Project = ({ imageUrls, id, index }) => {
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">
             {typeof imageOrText === 'string' ? (
-              <img src={imageOrText} alt={`Slide ${index}`} />
+              isVideoLink(imageOrText) ? (
+                <div className="video-container">
+                  <video autoPlay loop muted playsInline>
+                    <source src={imageOrText} type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                  </video>
+                </div>
+              ) : (
+                <img src={imageOrText} alt={`Slide ${index}`} />
+              )
             ) : (
               <div className="abstract-container">
                 <p>{imageOrText}</p>

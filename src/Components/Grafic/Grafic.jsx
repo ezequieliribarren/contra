@@ -1,14 +1,22 @@
 import { Line } from 'react-chartjs-2';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
-
-var meses = ["Gestion de proyectos", "Direccion de obra", "Visualizacion 3D", "Conceptualizacion", "Ejecución y proveedores", "Gestión de equipo", "Arte y Grafismos", "Planimetrías", "RRSS", "Web/UX", "Estrategia", "Finanzas", "Pipeline", "Gestion de clientes"];
+import { useFourData } from '../../../Context/Context';
 
 export default function Grafic({ graficData }) {
   const chartRef = useRef(null);
+  const fourData = useFourData();
+  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    if (!graficData) {
+    // Mapea la información del contexto para obtener las habilidades desde la columna 7
+    const mappedSkills = fourData.map(row => row.c[7]?.v).slice(1);
+    setSkills(mappedSkills);
+
+  }, [fourData]);
+
+  useEffect(() => {
+    if (!graficData || skills.length === 0) {
       return;
     }
 
@@ -22,13 +30,13 @@ export default function Grafic({ graficData }) {
     myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: meses,
+        labels: skills,
         datasets: [{
           data: graficData,
           tension: 0.5,
           fill: {
-            target: 'origin', // Rellena desde el origen hasta la línea
-            above: '#EFC99F', // Color de fondo por encima de la línea
+            target: 'origin',
+            above: '#EFC99F',
           },
           borderColor: '#E3570D',
           pointRadius: 5,
@@ -50,17 +58,17 @@ export default function Grafic({ graficData }) {
               display: false,
             },
             grid: {
-              color: 'white', // Color de fondo para el eje Y
+              color: 'white',
             },
           },
           x: {
             position: 'top',
             ticks: { 
               color: 'black',
-              angle: 90, // Rotar las etiquetas a 90 grados
+              angle: 90,
             },
             grid: {
-              color: 'white', // Color de fondo para el eje X
+              color: 'white',
             },
           },
         },
@@ -86,13 +94,13 @@ export default function Grafic({ graficData }) {
         maintainAspectRatio: false,
       }
     });
-    
+
     return () => {
       if (myChart) {
         myChart.destroy();
       }
     };
-  }, [graficData]);
+  }, [graficData, skills]);
 
   return (
     <div className='grafico-container' style={{ height: '60rem' }}>
