@@ -9,6 +9,7 @@ const Projects = () => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterVisible, setIsFilterVisible] = useState(true);
+  
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;

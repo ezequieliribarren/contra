@@ -1,53 +1,63 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
-  const sliderRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = (event) => {
+  const handleScroll = useCallback(
+    (event) => {
       if (isScrolling || !projectRef.current) {
         return;
       }
+
+      setIsScrolling(true);
 
       const delta = Math.sign(event.deltaY);
 
       if (delta > 0) {
         const nextProject = projectRef.current.nextSibling;
         if (nextProject) {
-          setIsScrolling(true);
-          window.scrollTo({
-            top: nextProject.offsetTop,
-            behavior: 'smooth',
-            duration: 1000,
+          scroll.scrollTo(nextProject.offsetTop, {
+            duration: 1500, // Ajusta la duración del scroll
+            smooth: 'easeInOutQuart',
           });
-
-          setTimeout(() => {
-            setIsScrolling(false);
-          }, 500);
         }
       } else if (delta < 0) {
         const prevProject = projectRef.current.previousSibling;
         if (prevProject) {
-          setIsScrolling(true);
-          window.scrollTo({
-            top: prevProject.offsetTop,
-            behavior: 'smooth',
-            duration: 1000,
+          scroll.scrollTo(prevProject.offsetTop, {
+            duration: 1500, // Ajusta la duración del scroll
+            smooth: 'easeInOutQuart',
           });
-
-          setTimeout(() => {
-            setIsScrolling(false);
-          }, 500);
         }
       }
-    };
 
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 1500); // Ajusta el tiempo de espera después del scroll
+    },
+    [isScrolling]
+  );
+
+  useEffect(() => {
+    if (projectRef.current) {
+      projectRef.current.addEventListener('wheel', handleScroll, { passive: true });
+    }
+
+    return () => {
+      if (projectRef.current) {
+        projectRef.current.removeEventListener('wheel', handleScroll, { passive: true });
+      }
+    };
+  }, [handleScroll]);
+
+
+  useEffect(() => {
     if (projectRef.current) {
       projectRef.current.addEventListener('wheel', handleScroll);
     }
@@ -57,7 +67,7 @@ const Project = ({ imageUrls, id, index }) => {
         projectRef.current.removeEventListener('wheel', handleScroll);
       }
     };
-  }, [isScrolling]);
+  }, [handleScroll]);
 
   const settings = {
     dots: false,
@@ -66,7 +76,7 @@ const Project = ({ imageUrls, id, index }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
-    easing: 'ease',
+    easing: 'ease', // Desactiva o ajusta el easing según sea necesario
     swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
@@ -94,14 +104,9 @@ const Project = ({ imageUrls, id, index }) => {
     return url.endsWith('.mp4');
   };
 
-  const sliderSettings = {
-    ...settings,
-    ref: sliderRef,
-  };
-
   return (
     <div id={`project-${index}`} ref={projectRef} className="project-container">
-      <Slider className='slider-project' {...sliderSettings}>
+      <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">
             {typeof imageOrText === 'string' ? (
@@ -123,6 +128,16 @@ const Project = ({ imageUrls, id, index }) => {
           </div>
         ))}
       </Slider>
+      {index < 2 && (
+        <ScrollLink
+          to={`project-${index + 1}`}
+          smooth={true}
+          duration={1500} // Ajusta la duración del scroll
+          className="scroll-link"
+        >
+          Ir al siguiente proyecto
+        </ScrollLink>
+      )}
     </div>
   );
 };

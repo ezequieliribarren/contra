@@ -18,7 +18,10 @@ const router = createHashRouter([
     path: "/",
     element: (
       <DataProvider>
-        <Root />
+        <SecondDataProvider>
+          <Root />
+        </SecondDataProvider>
+
       </DataProvider>
     )
   },

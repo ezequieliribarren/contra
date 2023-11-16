@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
-import Slider from '../Components/Slider/Slider';
 import Nav from '../Components/Nav/Nav'
 import Footer from '../Components/Footer/Footer';
 import Nav3 from '../Components/Nav3/Nav3';
+import Slider from '../Components/Slider/Slider';
 
 
 const Root = () => {

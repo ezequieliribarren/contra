@@ -9,7 +9,7 @@ const useScrollHandler = (scrollableRef) => {
         return;
       }
 
-      if (isScrolling || !scrollableRef.current) {
+      if (isScrolling || !scrollableRef || !scrollableRef.current) {
         return;
       }
 
@@ -47,15 +47,16 @@ const useScrollHandler = (scrollableRef) => {
       return window.innerWidth < 1200;
     };
 
-    if (scrollableRef.current) {
+    if (scrollableRef && scrollableRef.current) {
       scrollableRef.current.addEventListener('wheel', handleScroll, { passive: false });
     }
 
     return () => {
-      if (scrollableRef.current) {
+      if (scrollableRef && scrollableRef.current) {
         scrollableRef.current.removeEventListener('wheel', handleScroll);
       }
     };
+
   }, [isScrolling, scrollableRef]);
 
   return isScrolling;

@@ -80,15 +80,14 @@
   height: 4rem;
   margin-top: 0;
   background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-white_m03ka8.png);
-  transition: height 0.5s ease;
-  /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
-  z-index: 11;
+  // transition: height 0.5s ease;
+  z-index: 1111;
 
 }
 
 .mitad-black {
   background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-black_mzf6wn.png);
-  z-index: 111;
+  z-index: 1111;
 }
 
 .navbar-mobile {
@@ -129,4 +128,10 @@
     display: inherit;
   }
 
+}
+
+@media (max-width: 750px) {
+  .top-left-button{
+    background-image: url(images/);
+  }
 }
