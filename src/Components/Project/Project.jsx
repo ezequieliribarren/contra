@@ -20,42 +20,29 @@ const Project = ({ imageUrls, id, index }) => {
       const delta = Math.sign(event.deltaY);
 
       if (delta > 0) {
+        // Scrolling hacia abajo
         const nextProject = projectRef.current.nextSibling;
         if (nextProject) {
           scroll.scrollTo(nextProject.offsetTop, {
-            duration: 1500, // Ajusta la duración del scroll
+            duration: 700,
             smooth: 'easeInOutQuart',
           });
         }
       } else if (delta < 0) {
+        // Scrolling hacia arriba
         const prevProject = projectRef.current.previousSibling;
         if (prevProject) {
           scroll.scrollTo(prevProject.offsetTop, {
-            duration: 1500, // Ajusta la duración del scroll
+            duration: 700,
             smooth: 'easeInOutQuart',
           });
         }
       }
 
-      setTimeout(() => {
-        setIsScrolling(false);
-      }, 1500); // Ajusta el tiempo de espera después del scroll
+      setIsScrolling(false);
     },
     [isScrolling]
   );
-
-  useEffect(() => {
-    if (projectRef.current) {
-      projectRef.current.addEventListener('wheel', handleScroll, { passive: true });
-    }
-
-    return () => {
-      if (projectRef.current) {
-        projectRef.current.removeEventListener('wheel', handleScroll, { passive: true });
-      }
-    };
-  }, [handleScroll]);
-
 
   useEffect(() => {
     if (projectRef.current) {
@@ -76,8 +63,6 @@ const Project = ({ imageUrls, id, index }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
-    easing: 'ease', // Desactiva o ajusta el easing según sea necesario
-    swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
     responsive: [
@@ -132,10 +117,9 @@ const Project = ({ imageUrls, id, index }) => {
         <ScrollLink
           to={`project-${index + 1}`}
           smooth={true}
-          duration={1500} // Ajusta la duración del scroll
+          duration={1500}
           className="scroll-link"
         >
-          Ir al siguiente proyecto
         </ScrollLink>
       )}
     </div>

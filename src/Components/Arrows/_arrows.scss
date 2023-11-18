@@ -19,3 +19,14 @@ width: 5rem;
     left: 95%;
 
 }
+
+
+@media (max-width: 750px) {
+    .arrow-right{
+        left: 85%;
+    }
+
+    .arrow-left{
+        left: 15%;
+    }
+}

@@ -90,20 +90,20 @@ const Projects = () => {
     <div className={`blur ${isFilterVisible ? '' : 'hidden'}`}></div>
     <div className={`row-12 hiden ${isFilterVisible ? '' : 'hidden'}`}></div>
     <div className={`container-fluid table-projects ${isFilterVisible ? '' : 'hidden'}`}>
-      {filteredAndSortedProjects().map((row, index) => (
-          <div
-            className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${hoveredRowIndex === index ? 'hovered-row' : ''
-              }`}
-            key={index}
-            onMouseEnter={() => handleMouseEnter(index, `url(${row.c[17]?.v})`)}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              backgroundImage: hoveredRowIndex === index ? `url(${row.c[17]?.v})` : null,
-              backgroundSize: hoveredRowIndex === index ? 'cover' : null,
-              backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
-              backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
-            }}
-          >
+    {filteredAndSortedProjects().map((row, index) => (
+  <div
+    className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${hoveredRowIndex === index ? 'hovered-row' : ''
+    }`}
+    key={index}
+    onMouseEnter={() => handleMouseEnter(index)}
+    onMouseLeave={handleMouseLeave}
+    style={{
+      backgroundImage: hoveredRowIndex === index ? `url(${row.c[17]?.v})` : null,
+      backgroundSize: hoveredRowIndex === index ? 'cover' : null,
+      backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
+      backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
+    }}
+  >
             <div className='col-2 title-project'>
               {/* Enlace solo para el título */}
               <Link to={`/project/${row.c[9]?.v}`}>

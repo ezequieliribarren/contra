@@ -43,10 +43,9 @@ const Marcas = () => {
     };
   }, []);
 
-  // Mapear los datos de la hoja de cálculo a un formato compatible
   const marcas = data.map((row) => ({
-    nombre: row.c[11]?.v,
-    imagen: row.c[12]?.v,
+    nombre: row.c[12]?.v,
+    imagen: row.c[13]?.v,
   }));
 
   const backgroundImageStyle = marcas[activeIndex]?.imagen
@@ -58,6 +57,9 @@ const Marcas = () => {
         height: '100%', 
       }
     : {};
+
+  // Ajusta el valor de scrollThreshold según tus necesidades
+  const scrollThreshold = 20; 
 
   return (
     <div className='fondo-change' style={backgroundImageStyle}>
@@ -74,10 +76,11 @@ const Marcas = () => {
                 fontFamily: 'machina',
                 fontSize: '5rem',
                 marginBottom: '80px', // Agrega un margen inferior para separar los elementos
+                transition: 'background-image 0.5s ease-in-out', // Agregado para suavizar el cambio
               }}
             >
               <div>
-                <img src={marca.nombre} alt="" />
+                <img className='img-fluid' src={marca.nombre} alt="" />
               </div>
             </li>
           ) : null

@@ -10,7 +10,7 @@ export default function Grafic({ graficData }) {
 
   useEffect(() => {
     // Mapea la información del contexto para obtener las habilidades desde la columna 7
-    const mappedSkills = fourData.map(row => row.c[7]?.v).slice(1);
+    const mappedSkills = fourData.map(row => row.c[8]?.v).slice(1);
     setSkills(mappedSkills);
 
   }, [fourData]);
@@ -103,7 +103,7 @@ export default function Grafic({ graficData }) {
   }, [graficData, skills]);
 
   return (
-    <div className='grafico-container' style={{ height: '60rem' }}>
+    <div className='grafico-container' style={{ height: '75rem'}}>
       <canvas className='grafico' ref={chartRef} />
     </div>
   );

@@ -90,7 +90,7 @@ const MoreSwitch = () => {
             ))}
             <ul>
               {thirdData.slice(1).map((p, index) => (
-                <Link to={`/more/#slider`} key={index}>
+                <Link smooth to={`/more/#slider`} key={index}>
                   <li
                     key={index}
                     className={`filter-item ${

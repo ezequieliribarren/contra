@@ -8,7 +8,7 @@ const Slider = () => {
   const videoRef = useRef(null);
   const [isFilterVisible, setIsFilterVisible] = useState(true);
   const secondData = useSecondData();
-  const videoDuration = 5000; // Duración en milisegundos (5 segundos en este ejemplo)
+  const videoDuration = 5000;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,11 +23,14 @@ const Slider = () => {
     };
   }, [secondData, currentIndex, videoDuration]);
 
-  const handleScrollToNextSection = () => {
+  const handleScrollToSection = (direction) => {
     const nextSection = myRef.current.nextSibling;
-    if (nextSection) {
-      scroll.scrollTo(nextSection.offsetTop, { behavior: 'smooth' });
-    }
+    const offsetTop = nextSection ? nextSection.offsetTop : 0;
+
+    scroll.scrollTo(offsetTop, {
+      behavior: 'smooth',
+      duration: 800, // ajusta la duración del scroll según sea necesario
+    });
   };
 
   const handleVideoEnded = () => {
@@ -36,14 +39,31 @@ const Slider = () => {
   };
 
   const handleVideoLoadedMetadata = () => {
-    // Este evento se dispara cuando se ha cargado la metadata del video.
-    // Aprovechamos esto para establecer el tiempo de reproducción al segundo 0.
     videoRef.current.currentTime = 0;
   };
 
+  const handleScroll = (event) => {
+    if (event.deltaY > 0) {
+      handleScrollToSection('down');
+    }
+    // Puedes agregar lógica para manejar el scroll hacia arriba si es necesario
+  };
+
+  useEffect(() => {
+    if (myRef.current) {
+      myRef.current.addEventListener('wheel', handleScroll);
+    }
+
+    return () => {
+      if (myRef.current) {
+        myRef.current.removeEventListener('wheel', handleScroll);
+      }
+    };
+  }, [handleScroll]);
+
   return (
     <header className="slider-container" ref={myRef}>
-      <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToNextSection}>
+      <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={() => handleScrollToSection('down')}>
         <img src="images/flecha.png" alt="" className="flecha" />
       </div>
       {secondData &&

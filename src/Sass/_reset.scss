@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    scroll-behavior: smooth;
 }
 
 html {
@@ -118,26 +118,5 @@ li {
   .hidden{
     opacity: 0;
   }
-
-// @keyframes show {
-//     from {
-//       transform: scale(0.9);
- 
-//     }
-//     to {
-//       transform: scale(1);     scroll-snap-interval: 100px;
-//     }
-//   }
-
-// @keyframes fadeScroll {
-//     0% {
-//       opacity: 0;
-//       transform: translateY(20px); /* Puedes ajustar el valor de translateY según tu preferencia */
-//     }
-//     100% {
-//       opacity: 1;
-//       transform: translateY(0);
-//     }
-//   }
 
 

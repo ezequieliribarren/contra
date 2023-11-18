@@ -3,28 +3,25 @@
 .bottom-left-button,
 .bottom-right-button {
   position: absolute;
-  font-size: 16;
+  font-size: 3.2rem;
   padding: 10px 20px;
   color: white;
   border: none;
   cursor: pointer;
   z-index: 111;
-  // transition: top 0.3s ease; /* Agrega una transición suave de 0.3 segundos a la propiedad top */
 
 }
 
 .top-left-button,
 .nav-black {
   left: 10px;
-  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo_atptog.png);
+  background-image: url(images/logo-white.png);
   background-repeat: no-repeat;
   background-size: contain;
+  width: 35rem;
   height: 8rem;
-  width: 90rem;
   margin-left: 1rem;
   margin-top: 1rem;
-  transition: height 0.5s ease;
-  /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
   z-index: 111;
 }
 
@@ -52,18 +49,14 @@
 .flecha-container {
   position: absolute;
   bottom: 1.5rem;
-  /* Ajusta la distancia desde la parte inferior */
   left: 50%;
-  /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
   transform: translateX(-50%);
-  /* Centra el contenedor horizontalmente */
   z-index: 1;
 }
 
-/* Estilos para la imagen personalizada */
 .flecha {
   border-radius: 50%;
-  /* Si quieres que la imagen sea redonda */
+
 }
 
 .fixed {
@@ -79,8 +72,7 @@
   background-position: center top;
   height: 4rem;
   margin-top: 0;
-  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-white_m03ka8.png);
-  // transition: height 0.5s ease;
+  background-image: url(images/logo-mitad-white.png);
   z-index: 1111;
 
 }
@@ -132,6 +124,15 @@
 
 @media (max-width: 750px) {
   .top-left-button{
-    background-image: url(images/);
+    background-image: url(images/logo-white.png);
+    width: 30rem !important;
   }
 }
+
+@media (max-width: 450px) {
+  .top-left-button{
+    width: 20rem !important;
+    top: 1.5rem;
+  }
+}
+

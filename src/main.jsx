@@ -21,7 +21,6 @@ const router = createHashRouter([
         <SecondDataProvider>
           <Root />
         </SecondDataProvider>
-
       </DataProvider>
     )
   },

@@ -7,13 +7,10 @@
     align-items: center;
     background-color: #E6E7E8;
 
-
-
     .line {
         width: 100%;
         background-color: black;
         height: 2px;
-
     }
 
     .blur {
@@ -57,9 +54,7 @@
         .filter-item.housing.selected {
             color: blue;
         }
-
     }
-
 
     .table-projects {
         width: 100%;
@@ -69,8 +64,16 @@
         align-items: center;
         background-color: #E6E7E8;
 
+        .row:hover {
+            height: 20rem;
+        }
 
-        .row{
+        .row {
+            height: 5rem;
+            transition: height 0.6s ease;
+        }
+
+        .row {
             border-bottom: 1px solid black;
             padding: 5px 0;
             color: black;
@@ -90,20 +93,16 @@
             .title-project {
                 width: 20rem;
                 margin-right: 3rem;
-         
             }
 
-            .category-project{
+            .category-project {
                 width: 20rem;
                 margin-right: 4rem;
             }
 
-
             .dossier-project:hover {
                 transform: scale(1.1);
-
             }
-
         }
 
         .row:first-child {
@@ -111,22 +110,27 @@
         }
 
         .row:hover {
-            height: 20rem;
-        }
 
-        .row {
-            height: 5rem;
-            transition: height 0.6s ease;
-        }
-
-        .filtered-row {
-            color: blue;
-
-            a {
-                color: blue !important;
+            h3,
+            h4 {
+                color: transparent;
+                -webkit-text-stroke: 0.5px black;
+                /* Ancho y color del borde (en este caso, blanco) para navegadores WebKit como Chrome y Safari */
+                text-stroke: 2px white;
+                /* Ancho y color del borde para otros navegadores */
+                font-size: 2rem;
             }
+
         }
-
     }
+}
 
+
+
+.filtered-row {
+    color: blue;
+
+    a {
+        color: blue !important;
+    }
 }
