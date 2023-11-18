@@ -113,17 +113,16 @@
 
             h3,
             h4 {
-                color: transparent;
-                -webkit-text-stroke: 0.5px black;
-                /* Ancho y color del borde (en este caso, blanco) para navegadores WebKit como Chrome y Safari */
-                text-stroke: 2px white;
-                /* Ancho y color del borde para otros navegadores */
+                mix-blend-mode: difference; /* o utiliza otro modo según tus necesidades */
+                color: white;
                 font-size: 2rem;
+                font-style: normal;
             }
+        }
 
         }
     }
-}
+
 
 
 
