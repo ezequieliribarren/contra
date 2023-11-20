@@ -57,8 +57,8 @@ const Projects = () => {
       );
     }
   
-    // Ordenar el array combinado
-    filteredProjects.sort((a, b) => a.c[2]?.v.localeCompare(b.c[2]?.v));
+    // Ordenar el array el ultimo de las filas es el primero
+    filteredProjects.sort((a, b) => b.c[9]?.v - a.c[9]?.v);
   
     return filteredProjects;
   };

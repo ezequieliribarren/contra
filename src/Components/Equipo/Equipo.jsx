@@ -1,3 +1,4 @@
+// Equipo.js
 import React, { useRef, useState, useEffect } from 'react';
 import Grafic from '../Grafic/Grafic';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
@@ -6,6 +7,7 @@ import { useFourData } from '../../../Context/Context';
 const Equipo = () => {
   const equipoRef = useRef(null);
   const fourData = useFourData();
+  const [selectedMembers, setSelectedMembers] = useState([]);
 
   const equipoData = fourData
     .slice(1)
@@ -24,6 +26,13 @@ const Equipo = () => {
 
   const handleMemberClick = (id) => {
     setSelectedMember(id);
+    setSelectedMembers((prevMembers) => {
+      if (prevMembers.includes(id)) {
+        return prevMembers;
+      } else {
+        return [...prevMembers, id];
+      }
+    });
   };
 
   const handleScroll = (event) => {
@@ -98,7 +107,7 @@ const Equipo = () => {
             </ul>
           </div>
           <div className='col-12 col-lg-8 equipo-grafic-container'>
-            <Grafic graficData={equipoData[selectedMember - 1]?.graficData} />
+            <Grafic graficData={equipoData[selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
           </div>
         </div>
       </div>
