@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
 import Nav from '../Components/Nav/Nav'
 import Footer from '../Components/Footer/Footer';
@@ -7,6 +7,9 @@ import Slider from '../Components/Slider/Slider';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

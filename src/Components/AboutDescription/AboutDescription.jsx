@@ -3,6 +3,8 @@ import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { useFourData } from '../../../Context/Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import Diagrama from '../Diagrama/Diagrama';
+
 
 const AboutDescription = () => {
   // const mySectionRef = useRef(null);
@@ -66,7 +68,8 @@ const AboutDescription = () => {
             </div>
           </div>
           <div className="col-12 col-xl-6 about-grafic">
-            <img className='img-fluid' src="images/about/grafic.png" alt="" />
+            {/* <img className='img-fluid' src="images/about/grafic.png" alt="" /> */}
+            <Diagrama/>
           </div>
         </div>
       </div>

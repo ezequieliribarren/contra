@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import What from '../What/What';
+import Abstract from '../Abstract/Abstract'; // Importa el componente Abstract
 
 const Nav2 = ({ onAbstractClick, onWhatClick }) => {
   const [openAbstract, setOpenAbstract] = useState(false);
@@ -16,6 +17,8 @@ const Nav2 = ({ onAbstractClick, onWhatClick }) => {
       onAbstractClick();
     }
     setAbstractButtonClicked(true);
+    setOpenAbstract(true); // Cambia el estado de openAbstract
+    setOpenWhat(false);
   };
 
   const handleWhatClick = () => {
@@ -28,13 +31,17 @@ const Nav2 = ({ onAbstractClick, onWhatClick }) => {
 
   return (
     <>
-      <a className={`project-bottom-right-button ${abstractButtonClicked ? 'opacity-zero' : ''}`} onClick={handleAbstractClick}>
+      <a className={`project-bottom-right-button`} onClick={handleAbstractClick}>
         Abstract
       </a>
       <a className="project-top-right-button" onClick={handleWhatClick}>
         What
       </a>
-      {(openAbstract || openWhat) && <What onClose={handleClose} />}
+      {(openAbstract || openWhat) && (
+        <>
+          <What onClose={handleClose} />
+        </>
+      )}
     </>
   );
 };

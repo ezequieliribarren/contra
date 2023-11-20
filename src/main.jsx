@@ -11,6 +11,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import About from './Routes/About';
 import More from './Routes/More';
 import { ThirdDataProvider } from '../Context/Context';
+import { ToastContainer } from 'react-toastify';
+
 
 
 const router = createHashRouter([
@@ -67,5 +69,27 @@ const router = createHashRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={true}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      pauseOnHover
+      style={{
+        zIndex: 1111111,
+        fontSize: '16px',
+        fontWeight: 'bold',
+        color: 'white',  // Color del texto
+        fontFamily: 'machina',
+      }}
+      toastStyle={{
+        backgroundColor: 'black',  // Puedes agregar estilos adicionales para las notificaciones individuales
+        color: 'white',
+        border: '2px solid orange',
+      }}
+    />
   </React.StrictMode>
 );

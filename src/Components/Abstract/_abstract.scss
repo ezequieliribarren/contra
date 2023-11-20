@@ -106,3 +106,7 @@
   width: auto;
 
 }
+
+.Toastify__toast-container {
+  z-index: 1111; /* Establece el z-index deseado */
+}

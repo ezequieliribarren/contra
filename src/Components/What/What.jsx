@@ -17,7 +17,7 @@ const What = ({ open, onClose }) => {
   };
 
   return (
-    <div>
+    <>
       <Modal
         open={open}
         onClose={onClose}
@@ -48,7 +48,7 @@ const What = ({ open, onClose }) => {
                     </div>
                 </Box>
             </Modal>
-        </div>
+        </>
     );
 }
 
