@@ -51,14 +51,14 @@ const HanTrabajadoAqui = () => {
         <div className="row">
           <div className="col">
             <ul>
-              {data.slice(1).map((member, index) => (
+              {data.slice(1).filter(member => member.c[9]?.v).map((member, index) => (
                 <li key={index}>{member.c[9]?.v}</li>
               ))}
             </ul>
           </div>
           <div className="col">
             <ul>
-              {data.slice(1).map((member, index) => (
+              {data.slice(1).filter(member => member.c[10]?.v).map((member, index) => (
                 <li key={index}>{member.c[10]?.v}</li>
               ))}
             </ul>
