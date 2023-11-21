@@ -8,7 +8,9 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState('middle'); 
 
+// SCROLL VERTICAL
   const handleScroll = useCallback(
     (event) => {
       if (isScrolling || !projectRef.current) {
@@ -56,15 +58,50 @@ const Project = ({ imageUrls, id, index }) => {
     };
   }, [handleScroll]);
 
+// MOVIMIENTO DEL MOUSE
+  const handleMouseMove = (event) => {
+    const sliderRect = projectRef.current.getBoundingClientRect();
+    const cursorX = event.clientX - sliderRect.left;
+    const sliderWidth = sliderRect.width;
+
+    const percentage = (cursorX / sliderWidth) * 100;
+
+    if (percentage < 30) {
+      setCursorPosition('left');
+    } else if (percentage > 70) {
+      setCursorPosition('right');
+    } else {
+      setCursorPosition('middle');
+    }
+  };
+
+  useEffect(() => {
+    if (projectRef.current) {
+      projectRef.current.addEventListener('wheel', handleScroll);
+      projectRef.current.addEventListener('mousemove', handleMouseMove);
+    }
+
+    return () => {
+      if (projectRef.current) {
+        projectRef.current.removeEventListener('wheel', handleScroll);
+        projectRef.current.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, [handleScroll, handleMouseMove]);
+
+
   const settings = {
     dots: false,
     infinite: false,
     speed: 1000,
     slidesToShow: 3,
+    swipeToSlide: false,
     slidesToScroll: 1,
     arrows: true,
+    swipe: false,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
+
     responsive: [
       {
         breakpoint: 1250,
@@ -90,7 +127,11 @@ const Project = ({ imageUrls, id, index }) => {
   };
 
   return (
-    <div id={`project-${index}`} ref={projectRef} className="project-container">
+  <div
+      id={`project-${index}`}
+      ref={projectRef}
+      className={`project-container ${cursorPosition}-slide`}
+    >
       <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">

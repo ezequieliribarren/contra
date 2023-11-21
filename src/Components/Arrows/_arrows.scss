@@ -1,32 +1,35 @@
-.arrow-left, .arrow-right{
+.arrow-left,
+.arrow-right {
     position: absolute;
-    bottom: 50%; /* Ajusta la distancia desde la parte inferior */
-    left: 5%; /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
-    transform: translateX(-50%); /* Centra el contenedor horizontalmente */
+    bottom: 10%;
+    left: 5%;
+    transform: translateX(-50%);
     z-index: 1;
-    // display: none;
     display: flex;
     align-items: center;
     justify-content: center;
-opacity: 0;
+    opacity: 0;
+    height: 100vh;
+    width: 80rem;
 
-    img{
-width: 5rem;
+    img {
+        opacity: 0;
     }
 }
 
-.arrow-right{
+.arrow-right {
     left: 95%;
 
 }
 
 
+
 @media (max-width: 750px) {
-    .arrow-right{
+    .arrow-right {
         left: 85%;
     }
 
-    .arrow-left{
+    .arrow-left {
         left: 15%;
     }
 }
