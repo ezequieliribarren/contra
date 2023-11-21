@@ -1,13 +1,15 @@
-// Equipo.js
 import React, { useRef, useState, useEffect } from 'react';
 import Grafic from '../Grafic/Grafic';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
+import GraficoThree from '../GraficoThree/GraficoThree';
 
 const Equipo = () => {
   const equipoRef = useRef(null);
   const fourData = useFourData();
+  const [hoveredMember, setHoveredMember] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
+  const [selectedMember, setSelectedMember] = useState(null); // Inicializar con null
 
   const equipoData = fourData
     .slice(1)
@@ -22,17 +24,19 @@ const Equipo = () => {
     }))
     .filter((miembro) => miembro.nombre && miembro.subtitle && miembro.imagen);
 
-  const [selectedMember, setSelectedMember] = useState(1);
+  const handleMemberHover = (id) => {
+    setHoveredMember(id);
+  };
 
   const handleMemberClick = (id) => {
-    setSelectedMember(id);
     setSelectedMembers((prevMembers) => {
       if (prevMembers.includes(id)) {
-        return prevMembers;
+        return [];
       } else {
-        return [...prevMembers, id];
+        return [id];
       }
     });
+    setSelectedMember(id);
   };
 
   const handleScroll = (event) => {
@@ -75,14 +79,16 @@ const Equipo = () => {
     <section id='equipo' ref={equipoRef}>
       <div className='container-fluid'>
         <div className='row'>
-          <div className='col-12 col-lg-4'>
+          <div className='col-12 col-lg-6'>
             <h2>Quienes somos</h2>
             <ul className='equipo'>
               {equipoData.map((miembro) => (
                 <li
                   key={miembro.id}
+                  onMouseEnter={() => handleMemberHover(miembro.id)}
+                  onMouseLeave={() => handleMemberHover(null)}
                   onClick={() => handleMemberClick(miembro.id)}
-                  className={selectedMember === miembro.id ? 'selected-member' : ''}
+                  className={(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id) ? 'selected-member' : ''}
                 >
                   <div className='equipo-select'>
                     <div>
@@ -97,7 +103,7 @@ const Equipo = () => {
                       </h4>
                     </div>
                   </div>
-                  {selectedMember === miembro.id && (
+                  {(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id || selectedMember !== null) && (
                     <div className='equipo-description'>
                       <p>{miembro.descripcion}</p>
                     </div>
@@ -106,11 +112,13 @@ const Equipo = () => {
               ))}
             </ul>
           </div>
-          <div className='col-12 col-lg-8 equipo-grafic-container'>
+          <div className='col-12 col-lg-6 equipo-grafic-container'>
             <Grafic graficData={equipoData[selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
+            {/* <GraficoThree/> */}
           </div>
         </div>
       </div>
+
       <ScrollLink
         to={`about-description`}
         smooth={true}

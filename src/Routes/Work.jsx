@@ -13,7 +13,7 @@ const Work = () => {
 
   return (
     <main className='work'>
-      <Nav nav='nav-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
+      <Nav nav='nav-black' mitad='mitad-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <Projects />
       <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer.png'/>

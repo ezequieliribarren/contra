@@ -13,7 +13,7 @@ const Root = () => {
 
   return (
     <>
-      <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed'  />
+      <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'}  />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <Slider />
       <Favorites />

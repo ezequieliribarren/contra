@@ -1,128 +1,142 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(0);
+    }
+    to {
+        transform: translate(2px);
+    }
+}
+
 #equipo {
     height: 100vh !important;
     display: flex;
     align-items: center !important;
     justify-content: center;
 
-
     .row {
         padding-left: 3%;
+        display: flex;
+        align-items: center;
     }
 
     h2 {
         font-family: montreal-medium;
         font-size: 4rem;
-        margin-bottom: 4rem;
-        margin-top: 2.5rem;
+        margin-top: 5rem;
     }
-
-
 }
-
-
 
 .equipo {
-    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.equipo-select {
+    margin: 1rem 0;
+    width: 100%;
+    transition: transform 1s ease; /* Ajustar la duración de la transición */
+}
+
+.equipo-select:hover {
+    animation: slideIn 1s ease; /* Aplicar animación keyframe al hacer hover */
+}
+
+.equipo-subtitle {
     display: flex;
     flex-direction: column;
-    align-items: start;
-margin-top: 10rem;
-}
 
-.equipo-select{
-    display: flex;
-    justify-content: start;
-}
+    h3,
+    h4 {
+        font-style: normal;
+    }
 
-.equipo-select:hover{
-    img{
-        translate: 2px;
+    h3 {
+        font-size: 1.8rem;
     }
 }
 
-.equipo-subtitle{
-    display: flex;
-    flex-direction: column;
+.equipo li {
+    margin: 0.5rem 0;
+    width: 30rem;
+    transition: width 1s ease; /* Ajustar la duración de la transición al cambiar el tamaño */
+    cursor: pointer;
 
-h3,h4{
-    font-style: normal;
-}
-h3{
-    font-size: 2.2rem;
-}
-}
+    div {
+        display: flex;
+        align-items: center;
+    }
 
-.container-title-cargo {
-    display: flex;
-    flex-direction: column;
-}
+    .equipo-description {
+        margin-top: 1rem;
+        opacity: 0;
+        animation: fadeIn 1s ease; /* Aplicar animación keyframe a la descripción */
+        max-height: 0;
+        overflow: hidden;
 
-.member-span {
-    font-family: machina;
-    margin-right: 1rem;
-}
-
-
-.equipo {
-    li:hover {
-        h3, h4 {
-            color: #E3570D;
-            cursor: pointer;
+        p {
+            font-style: normal;
+            font-size: 1.3rem !important;
         }
     }
 
-    .member-span {
-        translate: 0.2rem;
+    img {
+        margin-right: 1rem;
     }
-
-
-    li {
-        margin: 1.2rem 0;
-
-        div {
-            display: flex;
-            align-items: center;
-        }
-
-        .equipo-description {
-            margin-top: 2rem;
-            width: 80%;
-            p{
-                font-style: normal;
-            }
-        }
-
-        img {
-            margin-right: 1rem;
-        }
-    }
-
-    .equipo-person-img {
-        display: none;
-    }
-
-
-    .selected-member .equipo-person-img {
-        display: inherit;
-        transition: 3s ease-in-out;
-    }
-
-    .selected-member h3 {
-        color: #E3570D;
-    }
-
-
 }
 
-.grafico-container{
-    canvas{
+.equipo li:hover {
+    width: 32rem; /* Ajustar tamaño al hacer hover */
+    .equipo-description {
+        opacity: 1;
+        max-height: 1000px; /* Valor suficientemente grande */
+    }
+}
+
+.equipo .equipo-person-img {
+    display: none;
+    width: 8rem;
+    transition: display 1s ease; /* Ajustar la duración de la transición al cambiar la propiedad de visualización */
+}
+
+.equipo .selected-member .equipo-person-img {
+    display: inherit;
+}
+.equipo .selected-member h3 {
+    color: #E3570D;
+}
+
+.grafico-container {
+    canvas {
         margin-top: 20rem;
     }
 }
 
 @media (max-width: 1200px) {
-    #equipo{
+    #equipo {
         height: auto !important;
     }
 }
 
+.equipo li.selected-member .equipo-description {
+    display: block;
+    opacity: 1;
+    max-height: 1000px; /* Valor suficientemente grande */
+}
+
+.equipo li.selected-member .equipo-person-img {
+    display: inherit;
+}

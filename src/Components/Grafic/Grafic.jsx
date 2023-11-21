@@ -1,5 +1,4 @@
 // Grafic.js
-import { Line } from 'react-chartjs-2';
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { useFourData } from '../../../Context/Context';
@@ -33,20 +32,19 @@ export default function Grafic({ graficData, selectedMembers }) {
         labels: skills,
         datasets: fourData.slice(1).map((user, index) => {
           const hasData = user.c[7]?.v && user.c[7]?.v.length > 0;
-    
+
           return {
             label: hasData ? user.c[3]?.v || `User ${index + 1}` : '',
             data: hasData ? user.c[7]?.v : [],
             tension: 0.5,
             fill: {
               target: 'origin',
-              above: '#EFC99F',
+              above: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
             },
-            borderColor: selectedMembers.includes(index + 1) ? '#E3570D' : 'white',
-            backgroundColor: selectedMembers.includes(index + 1) ? '#E3570D' : 'rgba(255, 255, 255, 0)', // Color transparente
-            pointRadius: 5,
-            pointBorderColor: selectedMembers.includes(index + 1) ? '#E3570D' : 'white',
-            pointBackgroundColor: selectedMembers.includes(index + 1) ? '#E3570D' : 'white',
+            borderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75', // Borde blanco para el miembro activo, de lo contrario, utiliza el color transparente
+            backgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75', // Color transparente para el miembro activo, de lo contrario, utiliza el color transparente
+            pointBorderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75', // Borde blanco para el miembro activo, de lo contrario, utiliza el color transparente
+            pointBackgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75', // Color transparente para el miembro activo, de lo contrario, utiliza el color transparente
             order: 1, // Asegura que todas las líneas sean visibles
           };
         }).sort((a, b) => {
@@ -72,11 +70,34 @@ export default function Grafic({ graficData, selectedMembers }) {
               display: false,
             },
             grid: {
-              color: '#E6E7E8',
+              drawOnChartArea: false, // Dibuja el grid fuera del área del gráfico
+              color: (context) => {
+                if (context.tick && context.tick.major) {
+                  // Líneas punteadas solo para las marcas mayores (etiquetas)
+                  return 'rgba(0, 0, 0, 0)'; // Color transparente para líneas horizontales
+                }
+                return 'rgba(0, 0, 0, 1)'; // Color sólido para líneas verticales
+              },
+              lineWidth: (context) => {
+                if (context.tick && context.tick.major) {
+                  return 0; // Ancho cero para líneas horizontales (transparentes)
+                }
+                return 1; // Ancho de línea para líneas verticales (no transparentes)
+              },
+              borderDash: (context) => {
+                if (context.tick && context.tick.major) {
+                  return [5, 5]; // Patrón de línea punteada para líneas horizontales
+                }
+                return []; // Sin patrón para líneas verticales
+              },
             },
           },
           x: {
-            display: false, // Oculta las etiquetas en el eje x
+            display: true,
+            position: 'top', // Posiciona el eje x arriba del grafico
+            ticks: {
+              display: true, // Oculta las etiquetas del eje x
+            },
           },
         },
         plugins: {
@@ -89,7 +110,7 @@ export default function Grafic({ graficData, selectedMembers }) {
         },
         layout: {
           padding: {
-            top: 10,
+            top: 30, // Aumenta el espacio para el texto de las skills
           },
         },
         elements: {
