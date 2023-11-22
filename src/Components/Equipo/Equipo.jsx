@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Grafic from '../Grafic/Grafic';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
-import GraficoThree from '../GraficoThree/GraficoThree';
+
 
 const Equipo = () => {
   const equipoRef = useRef(null);
@@ -92,13 +92,13 @@ const Equipo = () => {
                 >
                   <div className='equipo-select'>
                     <div>
-                      <img className='equipo-person-img' src={miembro.imagen} alt='' />
+                      <img className='equipo-person-img' src={miembro.imagen} alt='Miembro' />
                     </div>
                     <div className='equipo-subtitle'>
                       <h3>{miembro.nombre}</h3>
                       <h4>
                         {' '}
-                        <img src='images/about/flecha.png' alt='' />
+                        <img src='images/about/flecha.png' alt='Flecha' />
                         {miembro.subtitle}
                       </h4>
                     </div>
@@ -114,7 +114,6 @@ const Equipo = () => {
           </div>
           <div className='col-12 col-lg-6 equipo-grafic-container'>
             <Grafic graficData={equipoData[selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
-            {/* <GraficoThree/> */}
           </div>
         </div>
       </div>

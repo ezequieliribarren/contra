@@ -8,9 +8,9 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
-  const [cursorPosition, setCursorPosition] = useState('middle'); 
+  const [cursorPosition, setCursorPosition] = useState('middle');
 
-// SCROLL VERTICAL
+  // SCROLL VERTICAL
   const handleScroll = useCallback(
     (event) => {
       if (isScrolling || !projectRef.current) {
@@ -29,12 +29,24 @@ const Project = ({ imageUrls, id, index }) => {
             duration: 700,
             smooth: 'easeInOutQuart',
           });
+        } else {
+          // Si es el último proyecto, hacer scroll al siguiente elemento (en este caso, el footer)
+          scroll.scrollTo(document.body.scrollHeight, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
         }
       } else if (delta < 0) {
         // Scrolling hacia arriba
         const prevProject = projectRef.current.previousSibling;
         if (prevProject) {
           scroll.scrollTo(prevProject.offsetTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+        } else {
+          // Si es el primer proyecto, hacer scroll al elemento con el id "slider"
+          scroll.scrollTo(document.getElementById('slider').offsetTop, {
             duration: 700,
             smooth: 'easeInOutQuart',
           });
@@ -58,7 +70,7 @@ const Project = ({ imageUrls, id, index }) => {
     };
   }, [handleScroll]);
 
-// MOVIMIENTO DEL MOUSE
+  // MOVIMIENTO DEL MOUSE
   const handleMouseMove = (event) => {
     const sliderRect = projectRef.current.getBoundingClientRect();
     const cursorX = event.clientX - sliderRect.left;
@@ -88,7 +100,6 @@ const Project = ({ imageUrls, id, index }) => {
       }
     };
   }, [handleScroll, handleMouseMove]);
-
 
   const settings = {
     dots: false,
@@ -127,7 +138,7 @@ const Project = ({ imageUrls, id, index }) => {
   };
 
   return (
-  <div
+    <div
       id={`project-${index}`}
       ref={projectRef}
       className={`project-container ${cursorPosition}-slide`}
@@ -160,8 +171,25 @@ const Project = ({ imageUrls, id, index }) => {
           smooth={true}
           duration={1500}
           className="scroll-link"
-        >
-        </ScrollLink>
+        ></ScrollLink>
+      )}
+      {index === 0 && (
+        <ScrollLink
+          to={`#slider`}
+          smooth={true}
+          duration={1500}
+          offset={-50}
+          className="scroll-link"
+        ></ScrollLink>
+      )}
+      {index === imageUrls.length - 1 && (
+        <ScrollLink
+          to={`#contact`}
+          smooth={true}
+          duration={1500}
+          offset={-50}
+          className="scroll-link"
+        ></ScrollLink>
       )}
     </div>
   );

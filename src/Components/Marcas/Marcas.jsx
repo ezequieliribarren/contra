@@ -80,7 +80,7 @@ const Marcas = () => {
               }}
             >
               <div>
-                <img className='img-fluid' src={marca.nombre} alt="" />
+                <img className='img-fluid' src={marca.nombre} alt="Marca" />
               </div>
             </li>
           ) : null

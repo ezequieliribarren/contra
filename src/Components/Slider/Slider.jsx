@@ -62,9 +62,9 @@ const Slider = () => {
   }, [handleScroll]);
 
   return (
-    <header className="slider-container" ref={myRef}>
+    <header className="slider-container" ref={myRef} id='slider'>
       <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={() => handleScrollToSection('down')}>
-        <img src="images/flecha.png" alt="" className="flecha" />
+        <img src="images/flecha.png" alt="flecha" className="flecha" />
       </div>
       {secondData &&
         secondData.map((item, index) => {
