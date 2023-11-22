@@ -75,7 +75,7 @@ const Footer = ({ background, color, colora, logo }) => {
         <img className='img-fluid' src="images/footer2.png" alt="Logo" />
       </div>
       <ScrollLink
-        to={`#favorites`}
+        to={``}
         smooth={true}
         duration={1500}
         offset={-50}

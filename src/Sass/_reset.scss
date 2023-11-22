@@ -120,3 +120,16 @@ li {
   }
 
 
+.mobile-only{
+    display: none;
+}
+
+@media (max-width: 730px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+}

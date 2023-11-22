@@ -56,12 +56,8 @@
 }
 
 
-
-.blur-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: blur(10px); /* Ajusta el valor de blur según sea necesario */
+@media (max-width: 730px) {
+  #favorites{
+    display: none !important;
+  }
 }

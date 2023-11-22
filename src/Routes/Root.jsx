@@ -6,6 +6,7 @@ import Nav3 from '../Components/Nav3/Nav3';
 import Slider from '../Components/Slider/Slider';
 import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
+import SliderMobile from '../Components/SliderMobile/SliderMobile';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -15,12 +16,19 @@ const Root = () => {
 
   return (
     <>
-      <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'}  />
+      <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'} />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
-      <Slider />
-      <Favorites />
-      <CallActionWork/>
-      <WorkMobile/>
+      <div className="desktop-only">
+        <Slider />
+        <Favorites />
+      </div>
+
+      <div className="mobile-only">
+        <SliderMobile />
+        <CallActionWork />
+        <WorkMobile />
+      </div>
+
       <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
     </>
   );

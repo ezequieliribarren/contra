@@ -2,9 +2,9 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 100vh;
-    display: flex !important;
-    display: none;
+    height: 34vh;    
+    display: flex ;
+
 
     .image-div {
         width: 33%;
@@ -14,6 +14,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        video{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
         }
     }
 
@@ -59,7 +65,7 @@
     }
 }
 
-.call-action-work{
+.call-action-work {
     background-color: #002DCA;
     width: 100%;
     height: 100vh;
@@ -68,7 +74,8 @@
     align-items: center;
     justify-content: space-evenly;
 
-    h3{
+
+    h3 {
         font-family: montreal;
         font-style: italic;
         font-size: 4.5rem;
@@ -77,8 +84,4 @@
     }
 }
 
-@media (max-width: 730px) {
-.image-container{
-    display: inherit;
-}
-}
+
