@@ -8,53 +8,11 @@
 
 }
 
-.abstract-favorites {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100vh;
+
+.abstract:hover .hover-content {
   opacity: 1;
-  transition: opacity 0.3s ease;
-
-  h2 {
-    opacity: 0;
-  }
-
-
 }
 
-.link-proyecto-completo {
-  color: white;
-  opacity: 0;
-
-  :hover {
-    transform: scale(1.2);
-    color: orange;
-  }
-}
-
-.abstract-favorites:hover {
-  background-color: rgba(0, 0, 0, 0.581);
-
-  h2,
-  .link-proyecto-completo {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
-
-
-  .abstract-sombra {
-    background-color: rgba(0, 0, 0, 0.196);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 30rem;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    /* Agrega la propiedad de transición para suavizar el cambio de background-color */
-  }
-}
 
 .abstract-h2 {
   color: white;
@@ -109,4 +67,46 @@
 
 .Toastify__toast-container {
   z-index: 1111; /* Establece el z-index deseado */
+}
+
+
+
+
+.last-favorites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+
+}
+
+.shadow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.538); 
+}
+
+.hover-content {
+  text-align: center;
+  position: relative;
+  margin: 0.5rem 0;
+
+}
+
+
+.link-proyecto-completo h4 {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.link-proyecto-completo:hover h4 {
+  transform: scale(1.2);
+  color: orange;
 }

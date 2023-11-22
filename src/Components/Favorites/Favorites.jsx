@@ -1,6 +1,8 @@
 import React from 'react';
 import { useData } from '../../../Context/Context';
 import Project from '../Project/Project';
+import LastFavorite from '../LastFavorite/LastFavorite';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const Favorites = () => {
   const data = useData() ?? [];
@@ -8,21 +10,27 @@ const Favorites = () => {
   return (
     <section id='favorites'>
       {data.map((row, index) => {
-        // Verifica si todas las celdas necesarias tienen contenido antes de renderizar
         if (row.c[8]?.v === 'V' && row.c[9]?.v && row.c[10]?.v && row.c[11]?.v && row.c[12]?.v && row.c[13]?.v && row.c[14]?.v) {
-          // Crea un array de URLs de imágenes
           const imageUrls = [
             row.c[10]?.v,
             row.c[11]?.v,
             row.c[12]?.v,
             row.c[13]?.v,
             row.c[14]?.v,
+            <LastFavorite
+            ver={
+              <Link className='link-proyecto-completo' to={`/project/${row.c[9]?.v}`}>
+                <h4>Ver proyecto ⭷</h4>
+              </Link>
+            }
+            title={row.c[0]?.v}
+            id={row.c[9]?.v}
+            img={row.c[15]?.v}
+          />
           ];
           const id = row.c[9]?.v;
-          // Pasa el array de URLs como prop al componente Project
           return <Project key={index} imageUrls={imageUrls} index={index} id={id} />;
         }
-        // Si alguna celda no tiene contenido, no renderiza nada (puede retornar null o un componente vacío)
         return null;
       })}
     </section>

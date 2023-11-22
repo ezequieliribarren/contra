@@ -43,47 +43,67 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     setProject(selectedProject);
   }, [id, data]);
 
-  useEffect(() => {
-    if (sliderRef.current) {
-      const lastIndex = imageUrls.length - 1;
-      sliderRef.current.slickGoTo(lastIndex);
-    }
-  }, [project]);
-
   if (!project) {
     return <div>Proyecto no encontrado</div>;
   }
 
+  // Filtrar las celdas vacías en imageUrls
   const imageUrls = [
-    project.c[10].v,
-    project.c[11].v,
-    project.c[12].v,
-    project.c[13].v,
-    project.c[14].v,
-    project.c[15].v,
-    project.c[16].v,
-  ];
+    project.c[10]?.v,
+    project.c[11]?.v,
+    project.c[12]?.v,
+    project.c[13]?.v,
+    project.c[14]?.v,
+    project.c[15]?.v,
+    project.c[16]?.v,
+    project.c[17]?.v,
+    project.c[18]?.v,
+    project.c[19]?.v,
+    project.c[20]?.v,
+    project.c[21]?.v,
+  ].filter(url => url);
 
   const abstractContent = {
-    p1: project.c[18]?.v,
-    p2: project.c[19]?.v,
-    p3: project.c[20]?.v,
+    p1: project.c[23]?.v,
+    p2: project.c[24]?.v,
+    p3: project.c[25]?.v,
     title: project.c[0]?.v,
     id: project.c[9]?.v,
     dossier: project.c[7]?.v,
-    zip: project.c[21]?.v,
-    video: project.c[22]?.v
+    zip: project.c[26]?.v,
+    video: project.c[27]?.v
   };
 
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 3,
+    swipeToSlide: false,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
+    swipe: false,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
+
+    responsive: [
+      {
+        breakpoint: 1250,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+    ],
   };
 
   return (
@@ -94,20 +114,40 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
         isWhatOpen={isWhatOpen}
         onClose={handleWhatClose}
       />
-      <Slider ref={sliderRef} id={id} {...settings}>
-        {imageUrls.map((imageUrl, index) => (
-          <div key={index} className='project-img-container'>
-            <img src={imageUrl} alt={`Slide ${index}`} />
+      {imageUrls.length > 0 && (
+        <>
+          <Slider ref={sliderRef} id={id} {...settings}>
+            {imageUrls.map((media, index) => (
+              <div key={index} className='project-img-container'>
+                {typeof media === 'string' ? (
+                  media.endsWith('.mp4') ? (
+                    <div className="video-container">
+                      <video autoPlay loop muted playsInline>
+                        <source src={media} type="video/mp4" />
+                        Tu navegador no soporta el tag de video.
+                      </video>
+                    </div>
+                  ) : (
+                    <img src={media} alt={`Slide ${index}`} />
+                  )
+                ) : (
+                  <div className="abstract-container">
+                    <p>{media}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </Slider>
+          <div className='project-img-container'>
+            <What open={isWhatOpen} onClose={handleWhatClose} />
+            <Abstract
+              open={openAbstract}
+              onClose={handleAbstractClose}
+              {...abstractContent}
+            />
           </div>
-        ))}
-      </Slider>  <div className='project-img-container'>
-          <What open={isWhatOpen} onClose={handleWhatClose} />
-          <Abstract
-            open={openAbstract}
-            onClose={handleAbstractClose}
-            {...abstractContent}
-          />
-        </div>
+        </>
+      )}
     </div>
   );
 };

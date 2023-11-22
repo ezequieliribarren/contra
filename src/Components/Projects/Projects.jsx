@@ -98,7 +98,7 @@ const Projects = () => {
     onMouseEnter={() => handleMouseEnter(index)}
     onMouseLeave={handleMouseLeave}
     style={{
-      backgroundImage: hoveredRowIndex === index ? `url(${row.c[17]?.v})` : null,
+      backgroundImage: hoveredRowIndex === index ? `url(${row.c[22]?.v})` : null,
       backgroundSize: hoveredRowIndex === index ? 'cover' : null,
       backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
       backgroundPosition: hoveredRowIndex === index ? 'center center' : null,

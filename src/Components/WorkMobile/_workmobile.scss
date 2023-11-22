@@ -1,0 +1,84 @@
+.image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+    display: flex !important;
+    display: none;
+
+    .image-div {
+        width: 33%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .project-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        padding: 15px;
+        background-color: white;
+        transition: opacity 0.3s ease;
+        /* Usamos opacity en lugar de box-shadow */
+        opacity: 0;
+        /* Inicialmente transparente */
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.43);
+        color: white;
+        cursor: pointer;
+
+        h2 {
+            font-size: 4rem;
+            font-family: montreal-medium;
+            color: rgb(135, 126, 126);
+        }
+
+        p {
+            font-family: montreal;
+            color: white;
+            font-size: 2rem;
+        }
+    }
+
+    &:hover .project-info {
+        opacity: 1;
+        /* Hacemos visible en hover */
+    }
+}
+
+.call-action-work{
+    background-color: #002DCA;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h3{
+        font-family: montreal;
+        font-style: italic;
+        font-size: 4.5rem;
+        color: white;
+        margin: 2.5rem 0;
+    }
+}
+
+@media (max-width: 730px) {
+.image-container{
+    display: inherit;
+}
+}

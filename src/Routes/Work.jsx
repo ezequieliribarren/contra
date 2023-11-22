@@ -16,7 +16,7 @@ const Work = () => {
       <Nav nav='nav-black' mitad='mitad-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <Projects />
-      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer.png'/>
+      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png'/>
     </main>
   );
 };

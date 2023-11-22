@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    height: 100vh;
+    height: 65vh;
     width: 80rem;
 
     img {
@@ -31,5 +31,15 @@
 
     .arrow-left {
         left: 15%;
+    }
+}
+
+@media (max-width: 564px) {
+    .arrow-right {
+       width: 40rem;
+    }
+
+    .arrow-left {
+        width: 40rem;
     }
 }

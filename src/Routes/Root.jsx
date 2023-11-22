@@ -4,6 +4,8 @@ import Nav from '../Components/Nav/Nav'
 import Footer from '../Components/Footer/Footer';
 import Nav3 from '../Components/Nav3/Nav3';
 import Slider from '../Components/Slider/Slider';
+import WorkMobile from '../Components/WorkMobile/WorkMobile';
+import CallActionWork from '../Components/CallActionWork/CallActionWork';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -17,6 +19,8 @@ const Root = () => {
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <Slider />
       <Favorites />
+      <CallActionWork/>
+      <WorkMobile/>
       <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
     </>
   );
