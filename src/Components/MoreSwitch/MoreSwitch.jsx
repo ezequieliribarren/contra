@@ -12,14 +12,18 @@ const MoreSwitch = () => {
   const [isFirstRender, setIsFirstRender] = useState(true);
 
   const handleCategoryClick = (category) => {
+    let filteredItems;
+
     if (category === 'All') {
       setSelectedCategories(['All']);
-      setFilteredData(thirdData.slice(1));
+      // Filtrar solo aquellos elementos que tienen contenido relevante
+      filteredItems = thirdData.slice(1).filter((item) => item.c[1]?.v);
     } else {
-      const filteredItems = thirdData.slice(1).filter((item) => item.c[1]?.v === category);
+      filteredItems = thirdData.slice(1).filter((item) => item.c[1]?.v === category);
       setSelectedCategories([category]);
-      setFilteredData(filteredItems);
     }
+
+    setFilteredData(filteredItems);
 
     // Activar el slider solo después de la primera renderización
     if (!isFirstRender) {
@@ -42,7 +46,7 @@ const MoreSwitch = () => {
 
   const sliderSettings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -55,7 +59,7 @@ const MoreSwitch = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: false,
+          infinite: true,
         },
       },
       {
@@ -63,7 +67,7 @@ const MoreSwitch = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: false,
+          infinite: true,
         },
       },
     ],
@@ -93,9 +97,8 @@ const MoreSwitch = () => {
                 <Link smooth to={`/more/#slider`} key={index}>
                   <li
                     key={index}
-                    className={`filter-item ${
-                      selectedCategories.includes(p.c[7]?.v) ? 'selected' : ''
-                    }`}
+                    className={`filter-item ${selectedCategories.includes(p.c[7]?.v) ? 'selected' : ''
+                      }`}
                     onClick={() => handleCategoryClick(p.c[7]?.v ?? 'All')}
                   >
                     <span className='more-span'>⭷</span> {p.c[7]?.v === 'All' ? 'All' : (p.c[7]?.v ?? '').charAt(0).toUpperCase() + (p.c[7]?.v ?? '').slice(1)}
@@ -110,7 +113,7 @@ const MoreSwitch = () => {
         </div>
         <div id='slider' className={`row more-slider ${isSliderActive ? 'slider-active' : ''}`}>
           <Slider className="slider-bottom" {...sliderSettings}>
-            {filteredData.map((item, index) => (
+            {(selectedCategories[0] === 'All' ? thirdData.slice(1) : filteredData).map((item, index) => (
               <div key={index} className="slider-item">
                 <a className="slider-item-content">
                   <img src={item.c[3]?.v} alt="" />
@@ -122,6 +125,7 @@ const MoreSwitch = () => {
               </div>
             ))}
           </Slider>
+
         </div>
       </div>
     </section>

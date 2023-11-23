@@ -8,6 +8,7 @@ footer {
   position: absolute;
   display: flex;
   flex-direction: column;
+  justify-content: start;
 padding-top: 10rem;
   align-items: center;
 
@@ -145,6 +146,7 @@ padding-top: 10rem;
 @media (max-width: 870px) {
   footer{
     height: auto !important;
+    padding-top: 0rem;
   }
   .a3 {
     .red {
@@ -206,7 +208,6 @@ padding-top: 10rem;
 }
 
 @media (max-width: 450px) {
-
   .a0 {
     img {
       width: 25rem;

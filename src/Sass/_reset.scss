@@ -120,10 +120,18 @@ li {
   }
 
 
-.mobile-only{
+.mobile-only, .mobile-only-work{
     display: none;
 }
 
+@media (max-width: 1200px) {
+    .desktop-only-work{
+        display: none;
+    }
+    .mobile-only-work{
+        display: inherit;
+    }
+}
 @media (max-width: 730px) {
     .desktop-only {
         display: none;

@@ -39,7 +39,7 @@ const Nav2 = ({ onAbstractClick, onWhatClick }) => {
       </a>
       {(openAbstract || openWhat) && (
         <>
-          <What onClose={handleClose} />
+          <What onClose={handleClose} work= '/work' />
         </>
       )}
     </>

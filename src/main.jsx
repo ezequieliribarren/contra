@@ -12,6 +12,7 @@ import About from './Routes/About';
 import More from './Routes/More';
 import { ThirdDataProvider } from '../Context/Context';
 import { ToastContainer } from 'react-toastify';
+import WorkMobile from './Components/WorkMobile/WorkMobile';
 
 
 
@@ -53,6 +54,16 @@ const router = createHashRouter([
       <ThirdDataProvider>
         <More />
       </ThirdDataProvider>
+
+    )
+  },
+
+  {
+    path: "/workMobile",
+    element: (
+      <DataProvider>
+        <WorkMobile />
+      </DataProvider>
 
     )
   },

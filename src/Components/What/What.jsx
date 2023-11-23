@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const What = ({ open, onClose }) => {
+const What = ({ open, onClose, work}) => {
   const modalStyle = {
     position: 'fixed',
     top: '50%',
@@ -30,7 +30,7 @@ const What = ({ open, onClose }) => {
                         <Link to='/about'>
                             <li><a><span className='what-span'>⭷</span>About</a></li>
                         </Link>
-                        <Link to='/work'>
+                        <Link to={work}>
                             <li><a><span className='what-span'>⭷</span>Work</a></li>
                         </Link>
                         <Link to='/more'>

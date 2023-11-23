@@ -139,7 +139,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
             ))}
           </Slider>
           <div className='project-img-container'>
-            <What open={isWhatOpen} onClose={handleWhatClose} />
+            <What open={isWhatOpen} onClose={handleWhatClose} work='/work' />
             <Abstract
               open={openAbstract}
               onClose={handleAbstractClose}

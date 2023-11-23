@@ -66,6 +66,10 @@
 
         .row:hover {
             height: 20rem;
+
+            .height {
+                height: 20rem;
+            }
         }
 
         .row {
@@ -113,17 +117,15 @@
 
             h3,
             h4 {
-                mix-blend-mode: difference; /* o utiliza otro modo según tus necesidades */
+                mix-blend-mode: difference;
                 color: white;
                 font-size: 2rem;
                 font-style: normal;
             }
         }
 
-        }
     }
-
-
+}
 
 
 .filtered-row {
@@ -132,4 +134,16 @@
     a {
         color: blue !important;
     }
+}
+
+.input-busqueda {
+    transition: width 0.3s ease-in-out;
+    /* Puedes ajustar la duración y la función de temporización según tus preferencias */
+    width: 30px;
+    /* Ancho inicial del input */
+}
+
+.input-busqueda.activo {
+    width: 150px;
+    /* Ancho del input cuando está activo */
 }

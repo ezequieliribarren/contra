@@ -29,6 +29,7 @@
         position: absolute;
         height: 100vh;
         width: 100%;
+        overflow: hidden;
 
         .slider-item {
             height: 100vh;
@@ -132,15 +133,16 @@
 
 
 @media (max-width: 991px) {
-.more-p-container{
-    display: none;
-}
-.more-buttons{
-align-items: center;
-padding-top: 8rem;
-}
+    .more-p-container {
+        display: none;
+    }
 
-.more-first{
-    display: none;
-}
+    .more-buttons {
+        align-items: center;
+        padding-top: 8rem;
+    }
+
+    .more-first {
+        display: none;
+    }
 }

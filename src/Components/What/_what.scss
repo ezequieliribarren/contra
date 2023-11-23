@@ -79,3 +79,52 @@
     }
 
 }
+
+@media (max-width: 730px) {
+    .what-menu {
+        li {
+            a {
+                font-size: 3.5rem; 
+            }
+        }
+    }
+    .what-close-button{
+        font-size: 3.5rem !important;
+    }
+
+    .what-box{
+width: 40rem !important;
+    }
+
+    .what-redes{
+        a{
+            img{
+                width: 3.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .what-box{
+        width: 30rem !important;
+    }
+    .what-menu {
+        li {
+            a {
+                font-size: 3rem; 
+            }
+        }
+    }
+    .what-close-button{
+        font-size: 3rem !important;
+    }
+    .what-redes{
+        a{
+            img{
+                width: 3rem;
+            }
+        }
+    }
+
+}

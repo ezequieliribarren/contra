@@ -9,6 +9,7 @@ const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [cursorPosition, setCursorPosition] = useState('middle');
+  const customCursorRef = useRef(null);
 
   // SCROLL VERTICAL
   const handleScroll = useCallback(
@@ -78,12 +79,20 @@ const Project = ({ imageUrls, id, index }) => {
 
     const percentage = (cursorX / sliderWidth) * 100;
 
-    if (percentage < 30) {
-      setCursorPosition('left');
-    } else if (percentage > 70) {
-      setCursorPosition('right');
+    // Ajusta el estilo del cursor según la posición del mouse
+    if (percentage < 33) {
+      customCursorRef.current.style.left = `${cursorX}px`;
+      customCursorRef.current.style.top = `${event.clientY}px`;
+      customCursorRef.current.classList.add('left-cursor');
+      isCursorVisibleRef.current = true; // El cursor es visible cuando está en la zona 'left'
+    } else if (percentage > 66) {
+      customCursorRef.current.style.left = `${cursorX}px`;
+      customCursorRef.current.style.top = `${event.clientY}px`;
+      customCursorRef.current.classList.add('right-cursor');
+      isCursorVisibleRef.current = true; // El cursor es visible cuando está en la zona 'right'
     } else {
-      setCursorPosition('middle');
+      customCursorRef.current.classList.remove('left-cursor', 'right-cursor');
+      isCursorVisibleRef.current = false; // El cursor no es visible cuando no está en 'left' ni 'right'
     }
   };
 
@@ -100,6 +109,8 @@ const Project = ({ imageUrls, id, index }) => {
       }
     };
   }, [handleScroll, handleMouseMove]);
+  
+
 
   const settings = {
     dots: false,
@@ -143,6 +154,7 @@ const Project = ({ imageUrls, id, index }) => {
       ref={projectRef}
       className={`project-container ${cursorPosition}-slide`}
     >
+      <div ref={customCursorRef} className="custom-cursor"></div>
       <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">

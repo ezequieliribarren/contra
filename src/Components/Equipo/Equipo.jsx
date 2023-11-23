@@ -3,13 +3,12 @@ import Grafic from '../Grafic/Grafic';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
 
-
 const Equipo = () => {
   const equipoRef = useRef(null);
   const fourData = useFourData();
   const [hoveredMember, setHoveredMember] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
-  const [selectedMember, setSelectedMember] = useState(null); // Inicializar con null
+  const [selectedMember, setSelectedMember] = useState('all'); // Inicializar con 'all'
 
   const equipoData = fourData
     .slice(1)
@@ -103,7 +102,7 @@ const Equipo = () => {
                       </h4>
                     </div>
                   </div>
-                  {(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id || selectedMember !== null) && (
+                  {(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id || selectedMember === 'all') && (
                     <div className='equipo-description'>
                       <p>{miembro.descripcion}</p>
                     </div>
@@ -113,7 +112,7 @@ const Equipo = () => {
             </ul>
           </div>
           <div className='col-12 col-lg-6 equipo-grafic-container'>
-            <Grafic graficData={equipoData[selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
+            <Grafic graficData={equipoData[selectedMember === 'all' ? 0 : selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
           </div>
         </div>
       </div>

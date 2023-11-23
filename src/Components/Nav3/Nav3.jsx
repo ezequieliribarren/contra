@@ -1,4 +1,3 @@
-// Nav3.jsx
 import React, { useState } from 'react';
 import What from '../What/What';
 
@@ -12,7 +11,7 @@ const Nav3 = ({ isWhatOpen, setIsWhatOpen }) => {
       <a className="project-top-right-button nav3" onClick={handleWhatClick}>
         <img src="images/burguer.png" alt="" />
       </a>
-      <What open={isWhatOpen} onClose={() => setIsWhatOpen(false)} />
+      <What open={isWhatOpen} onClose={() => setIsWhatOpen(false)} work='/workMobile'/>
     </>
   );
 };

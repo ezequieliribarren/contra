@@ -45,7 +45,7 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
       aria-describedby="modal-modal-description"
       className="modal-entered"
     >
-      <Box sx={modalStyle} className='what-box'>
+      <Box sx={modalStyle} className='abstract-box'>
         <div id={id} className={`abstract ${abstract}`} style={{ backgroundImage: `url(${img})` }}>
           <div className='abstract-sombra'>
             <h2 className='abstract-h2'>{title}</h2>

@@ -59,6 +59,7 @@ const Slider = () => {
     };
   }, [handleScroll]);
 
+
   return (
     <header className="slider-container" ref={myRef} id='slider'>
 <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToSection}>

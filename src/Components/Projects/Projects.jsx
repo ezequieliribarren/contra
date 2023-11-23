@@ -9,24 +9,21 @@ const Projects = () => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterVisible, setIsFilterVisible] = useState(true);
-  
+  const [isSearchActive, setIsSearchActive] = useState(false); // Nuevo estado
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
 
-    // Puedes ajustar el valor 100 según sea necesario
     const threshold = documentHeight - windowHeight - 100;
 
     if (scrollPosition > threshold) {
-      // Si el usuario ha llegado al final de la sección, oculta los elementos
       setIsFilterVisible(false);
     } else {
       setIsFilterVisible(true);
     }
   };
-
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -35,18 +32,15 @@ const Projects = () => {
     };
   }, []);
 
-
   const filteredAndSortedProjects = () => {
     let filteredProjects = allData;
-  
-    // Filtrar proyectos por categoría
+
     if (individualFilter) {
       const matchingProjects = allData.filter((row) => row.c[1]?.v.toLowerCase() === individualFilter);
       const otherProjects = allData.filter((row) => row.c[1]?.v.toLowerCase() !== individualFilter);
       filteredProjects = matchingProjects.concat(otherProjects);
     }
-  
-    // Filtrar proyectos por término de búsqueda en cualquier columna
+
     if (searchTerm) {
       filteredProjects = filteredProjects.filter((row) =>
         Object.values(row.c).some(
@@ -56,23 +50,30 @@ const Projects = () => {
         )
       );
     }
-  
-    // Ordenar el array el ultimo de las filas es el primero
-    filteredProjects.sort((a, b) => b.c[9]?.v - a.c[9]?.v);
-  
+
+    filteredProjects.sort((a, b) => {
+      const isMatchA = a.c[1]?.v.toLowerCase() === individualFilter;
+      const isMatchB = b.c[1]?.v.toLowerCase() === individualFilter;
+
+      if (isMatchA && !isMatchB) {
+        return -1;
+      } else if (!isMatchA && isMatchB) {
+        return 1;
+      }
+
+      return b.c[9]?.v - a.c[9]?.v;
+    });
+
     return filteredProjects;
   };
 
   const handleFilterClick = (value) => {
     if (value === 'x') {
-      // Limpiar todos los filtros
       setIndividualFilter(null);
       setGeneralFilter(null);
     } else {
-      // Establecer el filtro individual
       setIndividualFilter(value);
 
-      // Establecer el filtro general (opcional, según tus necesidades)
       setGeneralFilter(value);
     }
   };
@@ -85,43 +86,45 @@ const Projects = () => {
     setHoveredRowIndex(null);
   };
 
+  const toggleSearch = () => {
+    setIsSearchActive(!isSearchActive);
+  };
+
   return (
     <section id='projects'>
-    <div className={`blur ${isFilterVisible ? '' : 'hidden'}`}></div>
-    <div className={`row-12 hiden ${isFilterVisible ? '' : 'hidden'}`}></div>
-    <div className={`container-fluid table-projects ${isFilterVisible ? '' : 'hidden'}`}>
-    {filteredAndSortedProjects().map((row, index) => (
-  <div
-    className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${hoveredRowIndex === index ? 'hovered-row' : ''
-    }`}
-    key={index}
-    onMouseEnter={() => handleMouseEnter(index)}
-    onMouseLeave={handleMouseLeave}
-    style={{
-      backgroundImage: hoveredRowIndex === index ? `url(${row.c[22]?.v})` : null,
-      backgroundSize: hoveredRowIndex === index ? 'cover' : null,
-      backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
-      backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
-    }}
-  >
-            <div className='col-2 title-project'>
-              {/* Enlace solo para el título */}
+      <div className={`blur ${isFilterVisible ? '' : 'hidden'}`}></div>
+      <div className={`row-12 hiden ${isFilterVisible ? '' : 'hidden'}`}></div>
+      <div className={`container-fluid table-projects ${isFilterVisible ? '' : 'hidden'}`}>
+        {filteredAndSortedProjects().map((row, index) => (
+          <div
+            className={`row ${row.c[1]?.v.toLowerCase() === individualFilter ? 'filtered-row' : ''} ${hoveredRowIndex === index ? 'hovered-row' : ''
+              }`}
+            key={index}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              backgroundImage: hoveredRowIndex === index ? `url(${row.c[22]?.v})` : null,
+              backgroundSize: hoveredRowIndex === index ? 'cover' : null,
+              backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
+              backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
+            }}
+          >
+            <div className='col-2 title-project height'>
               <Link to={`/project/${row.c[9]?.v}`}>
                 <h3>{row.c[0]?.v}</h3>
               </Link>
             </div>
-            <div className='col-2 category-project'>
-              {/* Enlace solo para la categoría */}
+            <div className='col-2 category-project height'>
               <Link to={`/project/${row.c[9]?.v}`}>
                 <h4>{row.c[2]?.v} / {row.c[3]?.v}</h4>
               </Link>
             </div>
-            <div className='col-2'>
+            <div className='col-2 height'>
               <Link to={`/project/${row.c[9]?.v}`}>
                 <h4>{row.c[4]?.v}</h4>
               </Link>
             </div>
-            <div className='col-2'>
+            <div className='col-2 height'>
               <Link to={`/project/${row.c[9]?.v}`}>
                 <h4>{row.c[5]?.v}</h4>
               </Link>
@@ -132,7 +135,6 @@ const Projects = () => {
               </Link>
             </div>
             <div className='col-2'>
-              {/* Elemento .dossier-project fuera del enlace */}
               <a className='dossier-project' download={row.c[0]?.v} href={row.c[7]?.v}><h4>dossier ⭷</h4></a>
             </div>
           </div>
@@ -141,14 +143,18 @@ const Projects = () => {
       <div className={`container-filter ${isFilterVisible ? '' : 'hidden'}`}>
         <ul className='filter-projects'>
           <li>
-          <input
-  type="text"
-  placeholder="Buscar..."
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-/>
+            {isSearchActive ? (
+              <input   className={`input-busqueda ${isSearchActive ? 'activo' : ''}`}
+              placeholder='Search...'
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            ) : (
+              <img src="images/lupa.png" alt="Búsqueda" onClick={toggleSearch} />
+            )}
           </li>
-       
+
           <li
             className={`filter-item ${generalFilter === 'lifelong' ? 'selected' : ''}`}
             onClick={() => handleFilterClick('lifelong')}
@@ -162,16 +168,16 @@ const Projects = () => {
             temporary
           </li>
           <li
-            className={`filter-item ${generalFilter === 'comunication' ? 'selected' : ''}`}
-            onClick={() => handleFilterClick('comunication')}
+            className={`filter-item ${generalFilter === 'digital' ? 'selected' : ''}`}
+            onClick={() => handleFilterClick('digital')}
           >
             comunication
-          </li>  
-           <li
+          </li>
+          <li
             className={`filter-item ${generalFilter === 'x' ? 'selected' : ''}`}
             onClick={() => handleFilterClick('x')}
           >
-            (x)
+            <img src="images/x.png" alt="Limpiar Filtro" />
           </li>
         </ul>
       </div>
