@@ -3,6 +3,7 @@ import Nav from '../Components/Nav/Nav'
 import MoreSwitch from '../Components/MoreSwitch/MoreSwitch'
 import Footer from '../Components/Footer/Footer'
 import Nav3 from '../Components/Nav3/Nav3';
+import Cursor from '../Components/Cursor/Cursor';
 
 const More = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -14,6 +15,7 @@ const More = () => {
   return (
     <>
       <main>
+        <Cursor/>
         <Nav mitad='mitad-black' nav='nav-black' more='orange' work='fixed' about='fixed'/>
         <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
         <MoreSwitch/>

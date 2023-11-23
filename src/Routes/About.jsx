@@ -6,6 +6,7 @@ import HanTrabajadoAqui from '../Components/HanTrabajadoAqui/HanTrabajadoAqui'
 import Marcas from '../Components/Marcas/Marcas'
 import Footer from '../Components/Footer/Footer'
 import Nav3 from '../Components/Nav3/Nav3';
+import Cursor from '../Components/Cursor/Cursor';
 
 const About = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -16,6 +17,7 @@ const About = () => {
 
   return (
     <main className='about'>
+      <Cursor/>
       <Nav about='orange' mitad='mitad-black' nav='nav-black' work='black fixed' more='black fixed' />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <AboutDescription />

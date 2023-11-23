@@ -49,14 +49,14 @@ const HanTrabajadoAqui = () => {
       <div className="container-fluid">
         <h2>Han trabajado aquí</h2>
         <div className="row">
-          <div className="col">
+          <div className="col-12 col-sm-6">
             <ul>
               {data.slice(1).filter(member => member.c[9]?.v).map((member, index) => (
                 <li key={index}>{member.c[9]?.v}</li>
               ))}
             </ul>
           </div>
-          <div className="col">
+          <div className="col-12 col-sm-6">
             <ul>
               {data.slice(1).filter(member => member.c[10]?.v).map((member, index) => (
                 <li key={index}>{member.c[10]?.v}</li>
