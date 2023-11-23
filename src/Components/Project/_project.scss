@@ -3,7 +3,6 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 
 }
 
@@ -45,57 +44,11 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  /* Ajusta esto según tus necesidades de diseño */
 }
 
-
-
-.custom-cursor {
-  position: absolute;
-  width: 18px;
-  height: 10px;
-  /* Mitad de la altura para formar un semicírculo */
-  background-color: transparent;
-  /* Puedes cambiar el color según tus preferencias */
-  border-radius: 10px 10px 0 0;
-  /* Forma un semicírculo */
-  border: solid 3px black;
-  border-bottom: none;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  animation: pulse 1s infinite;
-  /* Agrega la animación de pulsación */
+.right-slide , .left-slide{
+  cursor: url('images/cursor.png'), auto;
 }
-
-.custom-cursor:hover {
-  animation: none;
-  /* Detén la animación al pasar el ratón sobre el cursor */
-  border: orange 7px solid;
-  transform: translate(-50%, -50%) scale(1.3);
-  /* Efecto de rebote al pasar el ratón sobre el cursor */
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.5;
-    /* Empieza semi-transparente */
-  }
-
-  50% {
-    opacity: 1;
-    /* Llega a ser completamente opaco */
-    border: 2px orange solid;
-    border-bottom: none;
-
-  }
-
-  100% {
-    opacity: 0.5;
-    /* Vuelve a semi-transparente */
-  }
-}
-
 
 
 @media (max-width: 730px) {

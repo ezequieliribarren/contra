@@ -69,7 +69,9 @@ p {
     font-family: machina;
     font-size: 1.4rem;
 }
-
+body{
+    cursor: none;
+}
 .black {
     color: black;
 }
@@ -82,17 +84,17 @@ p {
     background-color: #01239A;
 }
 
-.background-home{
+.background-home {
     background-color: #2A2A2A;
 }
 
-.background-about{
+.background-about {
     background-color: #231F20;
 }
 
-.background-work{
-   background-color: #E6E7E8;
-   z-index: 111;
+.background-work {
+    background-color: #E6E7E8;
+    z-index: 111;
 }
 
 li {
@@ -103,35 +105,57 @@ li {
     font-style: italic;
 }
 
-
-.none{
+.none {
     display: none;
 }
 
-.fixed{
+.fixed {
     position: fixed;
 }
+
 .opacity-zero {
     opacity: 0;
-  }
+}
 
-  .hidden{
+.hidden {
     opacity: 0;
-  }
+}
 
 
-.mobile-only, .mobile-only-work{
+.mobile-only,
+.mobile-only-work {
     display: none;
 }
 
+
+
+
+.custom-cursor {
+    position: fixed;
+    width: 23px;
+    height: 23px;
+    border: 4px solid white;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    pointer-events: none; /* Evita que el cursor interfiera con elementos debajo */
+    z-index: 9999; /* Asegúrate de que el cursor esté en la parte superior de todos los demás elementos */
+
+  }
+  
+
+
+
+
 @media (max-width: 1200px) {
-    .desktop-only-work{
+    .desktop-only-work {
         display: none;
     }
-    .mobile-only-work{
+
+    .mobile-only-work {
         display: inherit;
     }
 }
+
 @media (max-width: 730px) {
     .desktop-only {
         display: none;

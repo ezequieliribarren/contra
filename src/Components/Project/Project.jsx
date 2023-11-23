@@ -1,3 +1,5 @@
+// Project.jsx
+
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -11,7 +13,6 @@ const Project = ({ imageUrls, id, index }) => {
   const [cursorPosition, setCursorPosition] = useState('middle');
   const customCursorRef = useRef(null);
 
-  // SCROLL VERTICAL
   const handleScroll = useCallback(
     (event) => {
       if (isScrolling || !projectRef.current) {
@@ -79,20 +80,12 @@ const Project = ({ imageUrls, id, index }) => {
 
     const percentage = (cursorX / sliderWidth) * 100;
 
-    // Ajusta el estilo del cursor según la posición del mouse
-    if (percentage < 33) {
-      customCursorRef.current.style.left = `${cursorX}px`;
-      customCursorRef.current.style.top = `${event.clientY}px`;
-      customCursorRef.current.classList.add('left-cursor');
-      isCursorVisibleRef.current = true; // El cursor es visible cuando está en la zona 'left'
-    } else if (percentage > 66) {
-      customCursorRef.current.style.left = `${cursorX}px`;
-      customCursorRef.current.style.top = `${event.clientY}px`;
-      customCursorRef.current.classList.add('right-cursor');
-      isCursorVisibleRef.current = true; // El cursor es visible cuando está en la zona 'right'
+    if (percentage < 30) {
+      setCursorPosition('left');
+    } else if (percentage > 70) {
+      setCursorPosition('right');
     } else {
-      customCursorRef.current.classList.remove('left-cursor', 'right-cursor');
-      isCursorVisibleRef.current = false; // El cursor no es visible cuando no está en 'left' ni 'right'
+      setCursorPosition('middle');
     }
   };
 
@@ -109,8 +102,6 @@ const Project = ({ imageUrls, id, index }) => {
       }
     };
   }, [handleScroll, handleMouseMove]);
-  
-
 
   const settings = {
     dots: false,
@@ -154,7 +145,7 @@ const Project = ({ imageUrls, id, index }) => {
       ref={projectRef}
       className={`project-container ${cursorPosition}-slide`}
     >
-      <div ref={customCursorRef} className="custom-cursor"></div>
+      {/* <div ref={customCursorRef} className="custom-cursor"></div> */}
       <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">

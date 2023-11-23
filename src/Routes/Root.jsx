@@ -7,6 +7,7 @@ import Slider from '../Components/Slider/Slider';
 import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
 import SliderMobile from '../Components/SliderMobile/SliderMobile';
+import Cursor from '../Components/Cursor/Cursor';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -14,8 +15,11 @@ const Root = () => {
     window.scrollTo(0, 0);
   }, []);
 
+
+
   return (
     <>
+<Cursor/>
       <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'} />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <div className="desktop-only">

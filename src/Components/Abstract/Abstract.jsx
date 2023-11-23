@@ -74,7 +74,7 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
               <h4>Nota<br />de Prensa</h4>
             </div>
             <div className='abstract-item'>
-              <a  className='abstract-a4' href={video}> <img src="images/abstract/share.svg" alt="Ver video" />     </a>
+              <a  className='abstract-a4' href={video}> <img src="images/video.png" alt="Ver video" />     </a>
               <h4>Ver<br />video</h4>
             </div>
             <div className='abstract-item'>
