@@ -6,6 +6,7 @@ import Abstract from '../Abstract/Abstract';
 import Nav2 from '../Nav2/Nav2';
 import What from '../What/What';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
+import Cursor from '../Cursor/Cursor';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const { id } = useParams();
@@ -116,6 +117,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
       />
       {imageUrls.length > 0 && (
         <>
+        <Cursor/>
           <Slider ref={sliderRef} id={id} {...settings}>
             {imageUrls.map((media, index) => (
               <div key={index} className='project-img-container'>

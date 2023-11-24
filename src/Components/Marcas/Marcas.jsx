@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useFourData } from '../../../Context/Context';
 
 const Marcas = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const data = useFourData();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const olRef = useRef(null);
 
   useEffect(() => {
     const calculateActiveIndex = () => {
-      const liElements = document.querySelectorAll('.fondo-change ol li');
+      const liElements = olRef.current.querySelectorAll('li');
 
       for (let i = 0; i < liElements.length; i++) {
-        const rect = liElements[i].getBoundingClientRect();
-        const liTop = rect.top;
-        const liBottom = rect.bottom;
+        const liRect = liElements[i].getBoundingClientRect();
+        const liTop = liRect.top;
+        const liBottom = liRect.bottom;
 
         if (liTop <= window.innerHeight / 2 && liBottom >= window.innerHeight / 2) {
           setActiveIndex(i);
@@ -36,12 +24,17 @@ const Marcas = () => {
 
     calculateActiveIndex();
 
-    window.addEventListener('scroll', calculateActiveIndex);
+    const olElement = olRef.current;
+    olElement.addEventListener('scroll', calculateActiveIndex);
 
     return () => {
-      window.removeEventListener('scroll', calculateActiveIndex);
+      olElement.removeEventListener('scroll', calculateActiveIndex);
     };
   }, []);
+
+  if (!data || data.length === 0) {
+    return null; // Si no hay datos, no renderiza nada
+  }
 
   const marcas = data.map((row) => ({
     nombre: row.c[12]?.v,
@@ -52,31 +45,29 @@ const Marcas = () => {
     ? {
         backgroundImage: `url(${marcas[activeIndex].imagen})`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover', 
+        backgroundSize: 'cover',
         backgroundPosition: 'center center',
-        height: '100%', 
+        height: '100%',
       }
     : {};
 
-  // Ajusta el valor de scrollThreshold según tus necesidades
-  const scrollThreshold = 20; 
-
   return (
     <div className='fondo-change' style={backgroundImageStyle}>
-      <ol>
+      <ol className='scrollable-list' ref={olRef}>
         {marcas.map((marca, index) =>
           marca.nombre && marca.imagen ? (
             <li
               key={index}
               style={{
-                height: '30rem', // Ajusta la altura según tus necesidades
-                lineHeight: '30rem', // Puedes ajustar esto también
+                height: index === 0 ? 0 : '30rem',
+                lineHeight: '30rem',
                 textAlign: 'center',
                 color: activeIndex === index ? 'white' : 'gray',
                 fontFamily: 'machina',
                 fontSize: '5rem',
-                marginBottom: '80px', // Agrega un margen inferior para separar los elementos
-                transition: 'background-image 0.5s ease-in-out', // Agregado para suavizar el cambio
+                marginBottom: '80px',
+                opacity: index === 0 ? 0 : 1,
+                transition: 'color 0.5s ease-in-out, opacity 0.3s ease-in-out', // Ajusta la duración y la función de temporización según tus preferencias
               }}
             >
               <div>
