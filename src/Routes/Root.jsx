@@ -19,16 +19,17 @@ const Root = () => {
 
   return (
     <>
-<Cursor/>
+      <Cursor />
       <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'} />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <div className="desktop-only">
         <Slider />
-        <Favorites />
+        <Favorites scrollTo= '#contact' />
       </div>
 
       <div className="mobile-only">
         <SliderMobile />
+        <Favorites scrollTo= '#callActionWork'/>
         <CallActionWork />
         <WorkMobile />
       </div>

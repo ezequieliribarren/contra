@@ -46,13 +46,9 @@
   object-fit: cover;
 }
 
-.right-slide , .left-slide{
-  cursor: url('images/cursor.png'), auto;
-}
 
-
-@media (max-width: 730px) {
-  #favorites {
+@media (max-width: 750px) {
+  .scroll-link-to-contact{
     display: none !important;
   }
 }

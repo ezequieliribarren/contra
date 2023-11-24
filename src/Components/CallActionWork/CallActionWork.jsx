@@ -33,7 +33,7 @@ const CallActionWork = () => {
   }, [handleScroll]);
 
   return (
-    <div className='call-action-work' ref={myRef}>
+    <div className='call-action-work' ref={myRef} id='callActionWork'>
       <div>
         <h3>Welcome,</h3>
         <h3>explore</h3>

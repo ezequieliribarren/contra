@@ -9,12 +9,10 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    height: 65vh;
-    width: 80rem;
+    top: 10%;
 
-    img {
-        opacity: 0;
-    }
+
+
 }
 
 .arrow-right {
@@ -36,7 +34,7 @@
 
 @media (max-width: 564px) {
     .arrow-right {
-       width: 40rem;
+        width: 40rem;
     }
 
     .arrow-left {

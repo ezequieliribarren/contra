@@ -5,7 +5,7 @@ import LastFavorite from '../LastFavorite/LastFavorite';
 import { HashLink as Link } from 'react-router-hash-link';
 
 const Favorites = () => {
-  const data = useData() ?? [];
+  const data = useData({scrollTo}) ?? [];
 
   return (
     <section id='favorites'>
@@ -29,7 +29,8 @@ const Favorites = () => {
           />
           ];
           const id = row.c[9]?.v;
-          return <Project key={index} imageUrls={imageUrls} index={index} id={id} />;
+          return <Project key={index} imageUrls={imageUrls} index={index} id={id} scrollTo={scrollTo} />;
+          ;
         }
         return null;
       })}

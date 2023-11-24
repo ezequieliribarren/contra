@@ -1,6 +1,6 @@
 // Project.jsx
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, scrollTo } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -145,7 +145,6 @@ const Project = ({ imageUrls, id, index }) => {
       ref={projectRef}
       className={`project-container ${cursorPosition}-slide`}
     >
-      {/* <div ref={customCursorRef} className="custom-cursor"></div> */}
       <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
           <div key={index} className="project-img-container">
@@ -187,7 +186,7 @@ const Project = ({ imageUrls, id, index }) => {
       )}
       {index === imageUrls.length - 1 && (
         <ScrollLink
-          to={`#contact`}
+          to={scrollTo}
           smooth={true}
           duration={1500}
           offset={-50}
