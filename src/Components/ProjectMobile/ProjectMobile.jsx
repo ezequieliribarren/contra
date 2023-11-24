@@ -1,15 +1,15 @@
-import React, { useRef, useEffect, useState, useCallback,  } from 'react';
+// ProjectMobile.jsx
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
-const Project = ({ imageUrls, id, index }) => {
+const ProjectMobile = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [cursorPosition, setCursorPosition] = useState('middle');
-  const customCursorRef = useRef(null);
 
   const handleScroll = useCallback(
     (event) => {
@@ -30,8 +30,8 @@ const Project = ({ imageUrls, id, index }) => {
             smooth: 'easeInOutQuart',
           });
         } else {
-          // Si es el último proyecto, hacer scroll al siguiente elemento (en este caso, el footer)
-          scroll.scrollTo(document.body.scrollHeight, {
+          // Si es el último proyecto, hacer scroll al siguiente elemento (en este caso, el componente CallActionWork)
+          scroll.scrollTo(document.getElementById('callActionWork').offsetTop, {
             duration: 700,
             smooth: 'easeInOutQuart',
           });
@@ -184,7 +184,7 @@ const Project = ({ imageUrls, id, index }) => {
       )}
       {index === imageUrls.length - 1 && (
         <ScrollLink
-          to={'#contact'}
+          to={'#callActionWork'}
           smooth={true}
           duration={1500}
           offset={-50}
@@ -195,4 +195,4 @@ const Project = ({ imageUrls, id, index }) => {
   );
 };
 
-export default Project;
+export default ProjectMobile;

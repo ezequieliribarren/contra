@@ -8,6 +8,7 @@ import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
 import SliderMobile from '../Components/SliderMobile/SliderMobile';
 import Cursor from '../Components/Cursor/Cursor';
+import FavoritesMobile from '../Components/FavoritesMobile/FavoritesMobile';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -24,12 +25,12 @@ const Root = () => {
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
       <div className="desktop-only">
         <Slider />
-        <Favorites scrollTo= '#contact' />
+        <Favorites />
       </div>
 
       <div className="mobile-only">
         <SliderMobile />
-        <Favorites scrollTo= '#callActionWork'/>
+        <FavoritesMobile />
         <CallActionWork />
         <WorkMobile />
       </div>

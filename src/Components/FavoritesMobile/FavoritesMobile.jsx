@@ -1,10 +1,10 @@
 import React from 'react';
 import { useData } from '../../../Context/Context';
-import Project from '../Project/Project';
 import LastFavorite from '../LastFavorite/LastFavorite';
 import { HashLink as Link } from 'react-router-hash-link';
+import ProjectMobile from '../ProjectMobile/ProjectMobile';
 
-const Favorites = () => {
+const FavoritesMobile = () => {
   const data = useData() ?? [];
 
   return (
@@ -29,7 +29,7 @@ const Favorites = () => {
           />
           ];
           const id = row.c[9]?.v;
-          return <Project key={index} imageUrls={imageUrls} index={index} id={id} scrollTo={scrollTo} />;
+          return <ProjectMobile key={index} imageUrls={imageUrls} index={index} id={id} scrollTo={scrollTo} />;
           ;
         }
         return null;
@@ -38,4 +38,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default FavoritesMobile;
