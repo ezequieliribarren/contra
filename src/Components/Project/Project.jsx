@@ -109,7 +109,7 @@ const Project = ({ imageUrls, id, index }) => {
     swipeToSlide: false,
     slidesToScroll: 1,
     arrows: true,
-    swipe: false,
+    swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
 

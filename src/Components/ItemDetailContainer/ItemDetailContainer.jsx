@@ -83,7 +83,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     swipeToSlide: false,
     slidesToScroll: 1,
     arrows: true,
-    swipe: false,
+    swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
 
