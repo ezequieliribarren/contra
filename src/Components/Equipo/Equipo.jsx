@@ -78,7 +78,7 @@ const Equipo = () => {
     <section id='equipo' ref={equipoRef}>
       <div className='container-fluid'>
         <div className='row'>
-          <div className='col-12 col-lg-6'>
+          <div className='col-12 col-xl-6'>
             <h2>Quienes somos</h2>
             <ul className='equipo'>
               {equipoData.map((miembro) => (
@@ -111,7 +111,7 @@ const Equipo = () => {
               ))}
             </ul>
           </div>
-          <div className='col-12 col-lg-6 equipo-grafic-container'>
+          <div className='col-12 col-xl-6 equipo-grafic-container'>
             <Grafic graficData={equipoData[selectedMember === 'all' ? 0 : selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
           </div>
         </div>

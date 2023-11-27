@@ -44,6 +44,7 @@ const Marcas = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         height: '100%',
+        transition: 'background-image 1s ease-in-out', // Ajusta la duración y la función de temporización según tus preferencias
       }
     : {};
 
@@ -64,7 +65,7 @@ const Marcas = () => {
               fontSize: '5rem',
               marginBottom: '80px',
               opacity: index === 0 ? 0 : 1,
-              transition: 'color 0.5s ease-in-out, opacity 0.5s ease-in-out',
+              transition: 'opacity 1s ease', // Ajusta la duración y la función de temporización según tus preferencias
             }}
           >
             <div>
