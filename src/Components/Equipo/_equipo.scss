@@ -46,8 +46,7 @@
 }
 
 .equipo-select {
-    margin: 1rem 0;
-    width: 100%;
+    width: 20rem;
     transition: transform 1s ease; /* Ajustar la duración de la transición */
 }
 
@@ -70,8 +69,8 @@
 }
 
 .equipo li {
-    margin: 0.0001rem 0;
-    width: 30rem;
+    margin: 0.5rem 0;
+    width: 25rem;
     transition: width 1s ease; /* Ajustar la duración de la transición al cambiar el tamaño */
     cursor: pointer;
 
