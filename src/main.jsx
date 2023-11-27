@@ -31,7 +31,9 @@ const router = createHashRouter([
     path: "/work",
     element: (
       <DataProvider>
-        <Work />
+        <SecondDataProvider>
+          <Work />
+        </SecondDataProvider>
       </DataProvider>
     )
   },
@@ -71,7 +73,9 @@ const router = createHashRouter([
     path: "/project/:id",
     element: (
       <DataProvider>
-        <ItemDetailContainer />
+        <SecondDataProvider>
+          <ItemDetailContainer />
+        </SecondDataProvider>
       </DataProvider>
     )
   },
