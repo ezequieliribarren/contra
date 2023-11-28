@@ -1,4 +1,4 @@
-#contact{
+#contact {
   z-index: 1111;
 }
 
@@ -9,7 +9,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: start;
-padding-top: 10rem;
+  padding-top: 10rem;
   align-items: center;
 
   .footer-circle {
@@ -48,12 +48,17 @@ padding-top: 10rem;
     width: 20rem;
   }
 
+  .contenedor-a3{
+    display: flex !important;
+  }
+
   .a3 {
     position: relative;
     display: flex;
     top: 10%;
     right: 19%;
     width: 40rem;
+    display: flex !important;
 
     a {
       margin-right: 0.5rem;
@@ -73,6 +78,11 @@ padding-top: 10rem;
     .div-maps {
       display: flex;
       justify-content: right;
+
+      a:hover {
+        color: #E3570D;
+        translate: 10px;
+      }
     }
   }
 
@@ -95,15 +105,20 @@ padding-top: 10rem;
   }
 
 }
-  .footer-img-none {
-    display: none !important;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20rem;
-  }
+
+.footer-img-none {
+  display: none !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20rem;
+}
+.redes-h4{
+  margin: 0 1rem;
+  color: white;
+}
 .span-footer {
-  margin-right: 1.5rem;
+  margin-right: 1.5rem !important;
 
   img {
     display: flex;
@@ -144,23 +159,27 @@ padding-top: 10rem;
 }
 
 @media (max-width: 870px) {
-  footer{
+  footer {
     height: auto !important;
     padding-top: 0rem;
   }
+
   .a3 {
     .red {
       display: none;
     }
-    .span-footer{
+
+    .span-footer {
       display: flex;
       justify-content: center;
-      img{
+
+      img {
         width: 4rem;
         margin: 0 2rem;
       }
     }
   }
+
   .a0,
   .a1,
   .a2,
@@ -200,8 +219,8 @@ padding-top: 10rem;
     height: auto !important;
   }
 
-  .span-footer{
-    img{
+  .span-footer {
+    img {
       width: 3rem !important;
     }
   }

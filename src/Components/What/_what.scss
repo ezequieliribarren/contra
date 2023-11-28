@@ -71,12 +71,12 @@
     .what-redes {
         display: flex;
         justify-content: center;
-        margin-top: 7rem;
+        margin-top: 3rem;
 
         a {
             margin: 0rem 1rem;
             img{
-                width: 6rem !important;
+                width: 5rem;
             }
         }
     }
@@ -99,13 +99,6 @@
 width: 40rem !important;
     }
 
-    .what-redes{
-        a{
-            img{
-                width: 3.5rem;
-            }
-        }
-    }
 }
 
 @media (max-width: 450px) {
@@ -125,7 +118,7 @@ width: 40rem !important;
     .what-redes{
         a{
             img{
-                width: 3rem;
+                width: 3.5rem !important;
             }
         }
     }

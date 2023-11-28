@@ -154,6 +154,10 @@ li {
     .mobile-only-work {
         display: inherit;
     }
+
+    .custom-cursor{
+        display: none;
+    }
 }
 
 @media (max-width: 730px) {

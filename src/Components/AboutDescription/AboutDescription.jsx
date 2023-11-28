@@ -54,7 +54,7 @@ const AboutDescription = () => {
     <section id='about-description' ref={aboutDescriptionRef}>
       {loading ? (
         <div className="spinner-container">
-          <GridLoader color={'#E3570D'} size={20} loading={loading} />
+          <GridLoader color={'#E3570D'} size={20} loading={loading} padd />
         </div>
       ) : (
         <div className="container-fluid about-description">

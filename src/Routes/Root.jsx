@@ -16,13 +16,11 @@ const Root = () => {
     window.scrollTo(0, 0);
   }, []);
 
-
-
   return (
     <>
       <Cursor />
       <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'} />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png'/>
       <div className="desktop-only">
         <Slider />
         <Favorites />

@@ -1,13 +1,16 @@
 // WorkMobile.js
-import React from 'react';
+import { useState } from 'react';
 import { useData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
+import Nav3 from '../Nav3/Nav3';
 
 const WorkMobile = ({ showProjectDetails }) => {
   const data = useData() ?? [];
+  const [isWhatOpen, setIsWhatOpen] = useState(false);
 
   return (
     <section id='workMobile'>
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer-white.png'  />
       {data.map((row, index) => {
         const imageUrls = [
           row.c[10]?.v,

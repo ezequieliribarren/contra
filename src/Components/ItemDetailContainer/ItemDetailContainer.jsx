@@ -7,6 +7,7 @@ import Nav2 from '../Nav2/Nav2';
 import What from '../What/What';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import Cursor from '../Cursor/Cursor';
+import Footer from '../Footer/Footer';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const { id } = useParams();
@@ -148,6 +149,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
               {...abstractContent}
             />
           </div>
+      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
         </>
       )}
     </div>

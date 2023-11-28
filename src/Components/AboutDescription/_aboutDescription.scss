@@ -75,6 +75,13 @@
     animation: none; /* Detener la animación al hacer hover */
   }
 
+  .spinner-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rem !important;
+  }
+
 @media (max-width: 1400px) {
 #about-desciption{
     .nav-black{

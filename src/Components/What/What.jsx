@@ -19,9 +19,8 @@ const What = ({ open, onClose, work }) => {
     boxShadow: 24,
   };
 
-  // Verifica si data es null o undefined
+
   if (!data) {
-    // Puedes decidir qué hacer en este caso, por ejemplo, mostrar un mensaje o simplemente retornar null
     return null;
   }
 
@@ -51,11 +50,10 @@ const What = ({ open, onClose, work }) => {
           </ul>
           <div className='what-redes'>
             {data.map((item, index) => {
-              // Verifica si las celdas necesarias no son vacías
               if (item.c[2]?.v && item.c[3]?.v) {
                 return (
-                  <a key={index} href={item.c[2]?.v}>
-                    <img src={item.c[3]?.v} alt="" />
+                  <a  key={index} href={item.c[2]?.v}>
+                    <img className='img-redes' src={item.c[3]?.v} alt="" />
                   </a>
                 );
               }

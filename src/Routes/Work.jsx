@@ -17,7 +17,7 @@ const Work = () => {
     <main className='work'>
       <Cursor/>
       <Nav nav='nav-black' mitad='mitad-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png'/>
       <div className="desktop-only-work">
          <Projects />  
       </div>

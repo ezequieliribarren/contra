@@ -54,7 +54,9 @@ const router = createHashRouter([
     path: "/more",
     element: (
       <ThirdDataProvider>
-        <More />
+        <SecondDataProvider>
+          <More />
+        </SecondDataProvider>
       </ThirdDataProvider>
 
     )
@@ -64,7 +66,9 @@ const router = createHashRouter([
     path: "/workMobile",
     element: (
       <DataProvider>
-        <WorkMobile />
+        <SecondDataProvider>
+          <WorkMobile />
+        </SecondDataProvider>
       </DataProvider>
 
     )
@@ -79,6 +83,7 @@ const router = createHashRouter([
       </DataProvider>
     )
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

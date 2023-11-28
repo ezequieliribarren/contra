@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import What from '../What/What';
 
-const Nav3 = ({ isWhatOpen, setIsWhatOpen }) => {
+const Nav3 = ({ isWhatOpen, setIsWhatOpen, burguer }) => {
   const handleWhatClick = () => {
     setIsWhatOpen(true);
   };
@@ -9,7 +9,7 @@ const Nav3 = ({ isWhatOpen, setIsWhatOpen }) => {
   return (
     <>
       <a className="project-top-right-button nav3" onClick={handleWhatClick}>
-        <img src="images/burguer.png" alt="" />
+        <img src={burguer} alt="" />
       </a>
       <What open={isWhatOpen} onClose={() => setIsWhatOpen(false)} work='/workMobile'/>
     </>
