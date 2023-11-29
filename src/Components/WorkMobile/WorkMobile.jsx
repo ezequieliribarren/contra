@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
 import Nav3 from '../Nav3/Nav3';
+import Footer from '../Footer/Footer';
 
 const WorkMobile = ({ showProjectDetails }) => {
   const data = useData() ?? [];
@@ -10,7 +11,7 @@ const WorkMobile = ({ showProjectDetails }) => {
 
   return (
     <section id='workMobile'>
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer-white.png'  />
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer-white.png' to='#contact-work'  />
       {data.map((row, index) => {
         const imageUrls = [
           row.c[10]?.v,
@@ -44,6 +45,7 @@ const WorkMobile = ({ showProjectDetails }) => {
           </div>
         );
       })}
+<Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png' contact='contact-work'/>
     </section>
   );
 };

@@ -78,7 +78,7 @@ const Equipo = () => {
     <section id='equipo' ref={equipoRef}>
       <div className='container-fluid'>
         <div className='row'>
-          <div className='col-12 col-xl-6'>
+          <div className='col-12 col-xl-6 equipo-select-container'>
             <h2>Quienes somos</h2>
             <ul className='equipo'>
               {equipoData.map((miembro) => (

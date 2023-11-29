@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { HashLink as Link } from 'react-router-hash-link';
 import { useSecondData } from '../../../Context/Context';
 
-const What = ({ open, onClose, work }) => {
+const What = ({ open, onClose, work, to }) => {
   const data = useSecondData();
 
   const modalStyle = {
@@ -19,10 +19,14 @@ const What = ({ open, onClose, work }) => {
     boxShadow: 24,
   };
 
-
   if (!data) {
     return null;
   }
+
+  // Nueva función para cerrar el modal y navegar a la sección "Contact"
+  const handleCloseAndNavigate = () => {
+    onClose(); // Cierra el modal
+  };
 
   return (
     <>
@@ -35,16 +39,16 @@ const What = ({ open, onClose, work }) => {
       >
         <Box sx={modalStyle} className='what-box'>
           <ul className='what-menu'>
-            <Link to='/about'>
+            <Link to='/about' onClick={onClose}>
               <li><a><span className='what-span'>⭷</span>About</a></li>
             </Link>
-            <Link to={work}>
+            <Link to={work} onClick={onClose}>
               <li><a><span className='what-span'>⭷</span>Work</a></li>
             </Link>
-            <Link to='/more'>
+            <Link to='/more' onClick={onClose}>
               <li><a><span className='what-span'>⭷</span>More</a></li>
             </Link>
-            <Link smooth to='/#contact'>
+            <Link smooth to={to} onClick={handleCloseAndNavigate}>
               <li><a><span className='what-span'>⭷</span>Contact</a></li>
             </Link>
           </ul>
@@ -52,7 +56,7 @@ const What = ({ open, onClose, work }) => {
             {data.map((item, index) => {
               if (item.c[2]?.v && item.c[3]?.v) {
                 return (
-                  <a  key={index} href={item.c[2]?.v}>
+                  <a key={index} href={item.c[2]?.v}>
                     <img className='img-redes' src={item.c[3]?.v} alt="" />
                   </a>
                 );
@@ -65,6 +69,6 @@ const What = ({ open, onClose, work }) => {
       </Modal>
     </>
   );
-}
+};
 
 export default What;

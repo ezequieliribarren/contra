@@ -14,13 +14,13 @@ const More = () => {
 
   return (
     <>        
-    <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' />
+    <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' to='#contact-more' />
       <main>
         <Cursor/>
         <Nav mitad='mitad-black' nav='nav-black' more='orange' work='fixed' about='fixed'/>
         <MoreSwitch/>
       </main>
-      <Footer background='blue' color='blue' logo='images/logo-footer.png' />
+      <Footer background='blue' color='blue' logo='images/logo-footer.png' contact='contact-more'  />
     </>
   )
 }

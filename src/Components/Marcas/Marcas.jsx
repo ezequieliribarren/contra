@@ -65,7 +65,6 @@ const Marcas = () => {
               fontSize: '5rem',
               marginBottom: '80px',
               opacity: index === 0 ? 0 : 1,
-              transition: 'opacity 1s ease', // Ajusta la duración y la función de temporización según tus preferencias
             }}
           >
             <div>

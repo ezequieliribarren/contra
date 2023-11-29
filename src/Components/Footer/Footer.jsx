@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
 
-const Footer = ({ background, color, colora, logo }) => {
+const Footer = ({ background, color, colora, logo, contact }) => {
   const footerRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const data = useSecondData();
@@ -44,7 +44,7 @@ const Footer = ({ background, color, colora, logo }) => {
   }, [handleScroll]);
 
   return (
-    <footer ref={footerRef} className={background} id='contact'>
+    <footer ref={footerRef} className={background} id={contact}>
       <div className="container-fluid">
         <div className='footer-circle'>
           <div className={`a0 ${color}`}>
@@ -58,18 +58,18 @@ const Footer = ({ background, color, colora, logo }) => {
           </div>
 
           <div className={`a4 ${color}`}>
-            <div className='div-maps'> <a target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS⭷</a></div>
+            <div className='div-maps'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS⭷</a></div>
             <a className={colora} href="">
-              <div> <a  target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">C/ Aldapa, 2 Local 4, Esquina,<br /> C. de Matilde Hernández,<br /> 28025, Madrid</a></div>
+              <div> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">C/ Aldapa, 2 Local 4, Esquina,<br /> C. de Matilde Hernández,<br /> 28025, Madrid</a></div>
             </a>
           </div>
-          <div className={`a3 ${color}`}>
+          <div className={`a3 ${color} `}>
               {data.slice(1).map((item, index) => (
                 <React.Fragment key={index}>
                   {item.c[2]?.v && item.c[3]?.v && (
                     <div className='contenedor-a3'>
-                      <div><a target='_blank' href={item.c[2]?.v}><h4 className='redes-h4'>{item.c[4]?.v}</h4></a></div>
-                      <a target='_blank' href={item.c[2]?.v} className='span-footer'>
+                      <div><a target='_blank' href={item.c[2]?.v}><h4 className={`redes-h4 ${colora}`}>{item.c[4]?.v}</h4></a></div>
+                      <a  target='_blank' href={item.c[2]?.v} className={`span-footer ${colora}`}>
                         <img src={item.c[3]?.v} alt={item.c[4]?.v} />
                       </a>
                     </div>
@@ -83,7 +83,7 @@ const Footer = ({ background, color, colora, logo }) => {
         <img className='img-fluid' src="images/footer2.png" alt="Logo" />
       </div>
       <ScrollLink
-        to="contact"
+        to={contact}
         smooth={true}
         duration={1500}
         offset={-50}

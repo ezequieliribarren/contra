@@ -1,5 +1,5 @@
 #contact {
-  z-index: 1111;
+
 }
 
 footer {
@@ -11,6 +11,8 @@ footer {
   justify-content: start;
   padding-top: 10rem;
   align-items: center;
+  z-index: 1111;
+  
 
   .footer-circle {
     background-image: url(../../../public/images/footer.png);
@@ -78,6 +80,7 @@ footer {
     .div-maps {
       display: flex;
       justify-content: right;
+      
 
       a:hover {
         color: #E3570D;
@@ -115,7 +118,7 @@ footer {
 }
 .redes-h4{
   margin: 0 1rem;
-  color: white;
+ 
 }
 .span-footer {
   margin-right: 1.5rem !important;

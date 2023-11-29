@@ -19,12 +19,12 @@ const About = () => {
     <main className='about'>
       <Cursor/>
       <Nav about='orange' mitad='mitad-black' nav='nav-black' work='black fixed' more='black fixed' />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' />
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' to='#contact-about' />
       <AboutDescription />
       <Equipo  />
       <HanTrabajadoAqui />
       <Marcas/>
-      <Footer background='background-about' color='background-about' logo='images/logo-footer.png'/>
+      <Footer background='background-about' color='background-about' logo='images/logo-footer.png' contact='contact-about'/>
     </main>
   )
 }

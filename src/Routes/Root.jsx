@@ -9,6 +9,7 @@ import CallActionWork from '../Components/CallActionWork/CallActionWork';
 import SliderMobile from '../Components/SliderMobile/SliderMobile';
 import Cursor from '../Components/Cursor/Cursor';
 import FavoritesMobile from '../Components/FavoritesMobile/FavoritesMobile';
+import PreLoader from '../Components/Preloader/Preloader';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -16,11 +17,14 @@ const Root = () => {
     window.scrollTo(0, 0);
   }, []);
 
+
+
   return (
     <>
+    <PreLoader/>
       <Cursor />
       <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'} />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png'/>
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact'/>
       <div className="desktop-only">
         <Slider />
         <Favorites />
@@ -33,7 +37,7 @@ const Root = () => {
         <WorkMobile />
       </div>
 
-      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
+      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact='contact' />
     </>
   );
 };
