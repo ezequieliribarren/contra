@@ -8,6 +8,7 @@ import What from '../What/What';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import Cursor from '../Cursor/Cursor';
 import Footer from '../Footer/Footer';
+import { GridLoader } from 'react-spinners';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const sliderRef = useRef(null);
   const [isWhatOpen, setIsWhatOpen] = useState(false);
   const [openAbstract, setOpenAbstract] = useState(false);
+  const [loading, setLoading] = useState(true); // Nuevo estado para el spinner
 
   const handleWhatClick = () => {
     if (onWhatClick) {
@@ -43,11 +45,22 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   useEffect(() => {
     const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
     setProject(selectedProject);
+    setLoading(false); // Marcamos como cargado una vez que se obtiene el proyecto
   }, [id, data]);
+
+  if (loading) {
+    // Mostrar el spinner mientras se carga el proyecto
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <GridLoader type="Puff" color="#E3570D" height={100} width={100} />
+      </div>
+    );
+  }
 
   if (!project) {
     return <div>Proyecto no encontrado</div>;
   }
+
 
   // Filtrar las celdas vacías en imageUrls
   const imageUrls = [
