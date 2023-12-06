@@ -138,7 +138,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
                 {typeof media === 'string' ? (
                   media.endsWith('.mp4') ? (
                     <div className="video-container">
-                      <video autoPlay loop muted playsInline>
+                      <video autoPlay loop muted playsInline preload>
                         <source src={media} type="video/mp4" />
                         Tu navegador no soporta el tag de video.
                       </video>
