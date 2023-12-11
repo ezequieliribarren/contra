@@ -5,8 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-
+    padding-top: 1rem;
 
     .row {
         display: flex;
@@ -15,7 +14,6 @@
         margin-top: 4rem;
         padding-left: 3%;
         height: 100%;
-        padding-top: 10rem;
 
         .about-grafic {
             display: flex;
@@ -54,27 +52,7 @@
 
 }
 
-.about-diagrama {
-    animation: heartbeat 3s infinite;
-  }
   
-  @keyframes heartbeat {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.01);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .about-diagrama:hover {
-    transform: scale(1.01);
-    animation: none; /* Detener la animación al hacer hover */
-  }
-
   .spinner-container{
     display: flex;
     justify-content: center;
@@ -105,8 +83,6 @@
 }
 
 @media (max-width: 990px) {
-
-
 .about-description{
 margin: 0 !important;
 }

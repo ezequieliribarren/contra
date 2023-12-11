@@ -15,16 +15,16 @@ const Work = () => {
 
   return (
     <main className='work'>
-      <Cursor/>
+      <Cursor />
       <Nav nav='nav-black' mitad='mitad-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact-work'/>
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact-work' />
       <div className="desktop-only-work">
-         <Projects />  
+        <Projects />
       </div>
-   <div className="mobile-only-work">
-    <WorkMobile/>
-   </div>
-      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png' contact='contact-work'/>
+      <div className="mobile-only-work">
+        <WorkMobile />
+      </div>
+      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png' contact='contact-work' />
     </main>
   );
 };

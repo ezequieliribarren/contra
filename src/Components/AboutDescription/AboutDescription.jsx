@@ -74,7 +74,7 @@ const AboutDescription = () => {
               </div>
             </div>
             <div className="col-12 col-xl-6 about-grafic">
-              <Diagrama/>
+       <img src="images/about/grafic.png" alt="" />
             </div>
           </div>
         </div>

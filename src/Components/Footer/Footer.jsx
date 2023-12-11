@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const Footer = ({ background, color, colora, logo, contact }) => {
   const footerRef = useRef(null);
@@ -46,6 +47,12 @@ const Footer = ({ background, color, colora, logo, contact }) => {
   return (
     <footer ref={footerRef} className={background} id={contact}>
       <div className="container-fluid">
+        <div className='ver-proyectos-footer'>
+          <Link to='/work'>
+          <a href="">Ver Proyectos</a>
+          </Link>
+          
+        </div>
         <div className='footer-circle'>
           <div className={`a0 ${color}`}>
             <a href=""><img className='img-fluid' src={logo} alt="Logo" /></a>
@@ -56,7 +63,6 @@ const Footer = ({ background, color, colora, logo, contact }) => {
           <div className={`a2 ${color}`}>
             <a className={colora} href="tel:+34697286914">+34 697 286 914</a>
           </div>
-
           <div className={`a4 ${color}`}>
             <div className='div-maps'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS⭷</a></div>
             <a className={colora} href="">
@@ -64,18 +70,18 @@ const Footer = ({ background, color, colora, logo, contact }) => {
             </a>
           </div>
           <div className={`a3 ${color} `}>
-              {data.slice(1).map((item, index) => (
-                <React.Fragment key={index}>
-                  {item.c[2]?.v && item.c[3]?.v && (
-                    <div className='contenedor-a3'>
-                      <div><a target='_blank' href={item.c[2]?.v}><h4 className={`redes-h4 ${colora}`}>{item.c[4]?.v}</h4></a></div>
-                      <a  target='_blank' href={item.c[2]?.v} className={`span-footer ${colora}`}>
-                        <img src={item.c[3]?.v} alt={item.c[4]?.v} />
-                      </a>
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
+            {data.slice(1).map((item, index) => (
+              <React.Fragment key={index}>
+                {item.c[2]?.v && item.c[3]?.v && (
+                  <div className='contenedor-a3'>
+                    <div><a target='_blank' href={item.c[2]?.v}><h4 className={`redes-h4 ${colora}`}>{item.c[4]?.v}</h4></a></div>
+                    <a target='_blank' href={item.c[2]?.v} className={`span-footer ${colora}`}>
+                      <img src={item.c[3]?.v} alt={item.c[4]?.v} />
+                    </a>
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

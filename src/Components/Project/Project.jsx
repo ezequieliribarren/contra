@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback,  } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,6 +8,7 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 const Project = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [cursorPosition, setCursorPosition] = useState('middle');
   const customCursorRef = useRef(null);
 
@@ -20,42 +21,49 @@ const Project = ({ imageUrls, id, index }) => {
       setIsScrolling(true);
 
       const delta = Math.sign(event.deltaY);
+      const scrollThreshold = 1;
 
-      if (delta > 0) {
-        // Scrolling hacia abajo
-        const nextProject = projectRef.current.nextSibling;
-        if (nextProject) {
-          scroll.scrollTo(nextProject.offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
+      setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
+
+      if (Math.abs(scrollY) >= scrollThreshold) {
+        const direction = delta > 0 ? 1 : -1;
+
+        if (direction === 1) {
+          // Scrolling hacia abajo
+          const nextProject = projectRef.current.nextSibling;
+          if (nextProject) {
+            scroll.scrollTo(nextProject.offsetTop, {
+              duration: 700,
+              smooth: 'easeInOutQuart',
+            });
+          } else {
+            scroll.scrollTo(document.body.scrollHeight, {
+              duration: 700,
+              smooth: 'easeInOutQuart',
+            });
+          }
         } else {
-          // Si es el último proyecto, hacer scroll al siguiente elemento (en este caso, el footer)
-          scroll.scrollTo(document.body.scrollHeight, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
+          // Scrolling hacia arriba
+          const prevProject = projectRef.current.previousSibling;
+          if (prevProject) {
+            scroll.scrollTo(prevProject.offsetTop, {
+              duration: 700,
+              smooth: 'easeInOutQuart',
+            });
+          } else {
+            scroll.scrollTo(document.getElementById('slider').offsetTop, {
+              duration: 700,
+              smooth: 'easeInOutQuart',
+            });
+          }
         }
-      } else if (delta < 0) {
-        // Scrolling hacia arriba
-        const prevProject = projectRef.current.previousSibling;
-        if (prevProject) {
-          scroll.scrollTo(prevProject.offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
-        } else {
-          // Si es el primer proyecto, hacer scroll al elemento con el id "slider"
-          scroll.scrollTo(document.getElementById('slider').offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
-        }
+
+        setScrollY(0);
       }
 
       setIsScrolling(false);
     },
-    [isScrolling]
+    [isScrolling, scrollY]
   );
 
   useEffect(() => {

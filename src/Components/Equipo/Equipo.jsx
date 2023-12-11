@@ -79,8 +79,8 @@ const Equipo = () => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-12 col-xl-6 equipo-select-container'>
+            <ul className='equipo'>  
             <h2>Quienes somos</h2>
-            <ul className='equipo'>
               {equipoData.map((miembro) => (
                 <li
                   key={miembro.id}
@@ -121,14 +121,14 @@ const Equipo = () => {
         to={`about-description`}
         smooth={true}
         duration={1500}
-        offset={-50} // Ajusta este valor según sea necesario
+        offset={-50} 
         className='scroll-link'
       ></ScrollLink>
       <ScrollLink
         to={`han-trabajado-aqui`}
         smooth={true}
         duration={1500}
-        offset={-50} // Ajusta este valor según sea necesario
+        offset={-50}
         className='scroll-link'
       ></ScrollLink>
     </section>

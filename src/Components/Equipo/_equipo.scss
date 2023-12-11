@@ -38,16 +38,18 @@
 }
 
 .equipo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: start;
 }
 
 .equipo-select {
-    width: 20rem;
+    width: 25rem;
     transition: transform 1s ease; /* Ajustar la duración de la transición */
+    text-align: start;
 }
 
 .equipo-select:hover {
@@ -127,6 +129,10 @@
 @media (max-width: 1200px) {
     #equipo {
         height: auto !important;
+    }
+
+    .equipo-grafic-container{
+        display: none;
     }
 }
 
