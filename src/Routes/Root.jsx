@@ -29,14 +29,12 @@ const Root = () => {
         <Slider />
         <Favorites />
       </div>
-
       <div className="mobile-only">
         <SliderMobile />
         <FavoritesMobile />
         <CallActionWork />
         <WorkMobile />
       </div>
-
       <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact='contact' />
     </>
   );

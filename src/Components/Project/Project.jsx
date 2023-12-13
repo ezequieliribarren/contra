@@ -110,11 +110,11 @@ const Project = ({ imageUrls, id, index }) => {
   }, [handleScroll, handleMouseMove]);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 1000,
     slidesToShow: 3,
-    swipeToSlide: false,
+    swipeToSlide: true,
     slidesToScroll: 1,
     arrows: true,
     swipe: true,
@@ -136,6 +136,7 @@ const Project = ({ imageUrls, id, index }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: false,
+          dots: true,
         },
       },
     ],
@@ -153,24 +154,27 @@ const Project = ({ imageUrls, id, index }) => {
     >
       <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
-          <div key={index} className="project-img-container">
-            {typeof imageOrText === 'string' ? (
-              isVideoLink(imageOrText) ? (
-                <div className="video-container">
-                  <video autoPlay loop muted playsInline>
-                    <source src={imageOrText} type="video/mp4" />
-                    Tu navegador no soporta el tag de video.
-                  </video>
-                </div>
+          // Verificar si la celda está vacía o es inválida
+          imageOrText ? (
+            <div key={index} className="project-img-container">
+              {typeof imageOrText === 'string' ? (
+                isVideoLink(imageOrText) ? (
+                  <div className="video-container">
+                    <video autoPlay loop muted playsInline>
+                      <source src={imageOrText} type="video/mp4" />
+                      Tu navegador no soporta el tag de video.
+                    </video>
+                  </div>
+                ) : (
+                  <img src={imageOrText} alt={`Slide ${index}`} />
+                )
               ) : (
-                <img src={imageOrText} alt={`Slide ${index}`} />
-              )
-            ) : (
-              <div className="abstract-container">
-                <p>{imageOrText}</p>
-              </div>
-            )}
-          </div>
+                <div className="abstract-container">
+                  <p>{imageOrText}</p>
+                </div>
+              )}
+            </div>
+          ) : null
         ))}
       </Slider>
       {index < 2 && (

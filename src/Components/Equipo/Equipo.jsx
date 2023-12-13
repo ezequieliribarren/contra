@@ -25,16 +25,8 @@ const Equipo = () => {
 
   const handleMemberHover = (id) => {
     setHoveredMember(id);
-  };
 
-  const handleMemberClick = (id) => {
-    setSelectedMembers((prevMembers) => {
-      if (prevMembers.includes(id)) {
-        return [];
-      } else {
-        return [id];
-      }
-    });
+    // Cambia el gráfico al miembro correspondiente al hacer hover
     setSelectedMember(id);
   };
 
@@ -79,14 +71,13 @@ const Equipo = () => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-12 col-xl-6 equipo-select-container'>
-            <ul className='equipo'>  
-            <h2>Quienes somos</h2>
+            <ul className='equipo'>
+              <h2>Quienes somos</h2>
               {equipoData.map((miembro) => (
                 <li
                   key={miembro.id}
                   onMouseEnter={() => handleMemberHover(miembro.id)}
                   onMouseLeave={() => handleMemberHover(null)}
-                  onClick={() => handleMemberClick(miembro.id)}
                   className={(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id) ? 'selected-member' : ''}
                 >
                   <div className='equipo-select'>
@@ -112,6 +103,7 @@ const Equipo = () => {
             </ul>
           </div>
           <div className='col-12 col-xl-6 equipo-grafic-container'>
+            {/* Cambia el gráfico según el miembro seleccionado o hover */}
             <Grafic graficData={equipoData[selectedMember === 'all' ? 0 : selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
           </div>
         </div>
@@ -121,7 +113,7 @@ const Equipo = () => {
         to={`about-description`}
         smooth={true}
         duration={1500}
-        offset={-50} 
+        offset={-50}
         className='scroll-link'
       ></ScrollLink>
       <ScrollLink

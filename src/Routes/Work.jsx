@@ -24,7 +24,7 @@ const Work = () => {
       <div className="mobile-only-work">
         <WorkMobile />
       </div>
-      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png' contact='contact-work' />
+      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png' contact='contact-work' none='none' padding='padding-top' />
     </main>
   );
 };

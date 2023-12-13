@@ -3,6 +3,7 @@ import { useFourData } from '../../../Context/Context';
 
 const Marcas = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const data = useFourData();
   const olRef = useRef(null);
 
@@ -37,14 +38,30 @@ const Marcas = () => {
     imagen: row.c[13]?.v,
   }));
 
-  const backgroundImageStyle = marcas[activeIndex]?.imagen
+  useEffect(() => {
+    // Precarga de imágenes
+    const imagePromises = marcas.map((marca) => {
+      return new Promise((resolve) => {
+        const image = new Image();
+        image.src = marca.imagen;
+        image.onload = () => resolve();
+      });
+    });
+
+    Promise.all(imagePromises).then(() => {
+      // Todas las imágenes han sido precargadas
+      setImageLoaded(true);
+    });
+  }, [marcas]);
+
+  const backgroundImageStyle = marcas[activeIndex]?.imagen && imageLoaded
     ? {
         backgroundImage: `url(${marcas[activeIndex].imagen})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         height: '100%',
-        transition: 'background-image 1s ease-in-out', // Ajusta la duración y la función de temporización según tus preferencias
+        transition: 'none',
       }
     : {};
 

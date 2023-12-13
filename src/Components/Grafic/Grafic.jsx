@@ -1,9 +1,8 @@
-// Grafic.js
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { useFourData } from '../../../Context/Context';
 
-export default function Grafic({ graficData, selectedMembers }) {
+export default function Grafic({ graficData, selectedMembers, isHovered }) {
   const chartRef = useRef(null);
   const fourData = useFourData();
   const [skills, setSkills] = useState([]);
@@ -38,21 +37,14 @@ export default function Grafic({ graficData, selectedMembers }) {
             tension: 0.5,
             fill: {
               target: 'origin',
-              above: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
+              above: isHovered && selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
             },
-            borderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
-            backgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
-            pointBorderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
-            pointBackgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
-            order: 1,
+            borderColor: isHovered && selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
+            backgroundColor: isHovered && selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
+            pointBorderColor: isHovered && selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
+            pointBackgroundColor: isHovered && selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
+            order: isHovered && selectedMembers.includes(index + 1) ? 1 : 0,
           };
-        }).sort((a, b) => {
-
-          if (selectedMembers.includes(fourData.slice(1).indexOf(a) + 1)) {
-            return 1;
-          } else {
-            return -1;
-          }
         }),
       },
       options: {
@@ -72,7 +64,6 @@ export default function Grafic({ graficData, selectedMembers }) {
               drawOnChartArea: false,
               color: (context) => {
                 if (context.tick && context.tick.major) {
-
                   return 'rgba(0, 0, 0, 0)';
                 }
                 return 'rgba(0, 0, 0, 1)';
@@ -127,7 +118,7 @@ export default function Grafic({ graficData, selectedMembers }) {
         myChart.destroy();
       }
     };
-  }, [graficData, skills, fourData, selectedMembers]);
+  }, [graficData, skills, fourData, selectedMembers, isHovered]);
 
   return (
     <div className='grafico-container' style={{ height: '75rem' }}>

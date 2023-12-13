@@ -3,7 +3,7 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const Footer = ({ background, color, colora, logo, contact }) => {
+const Footer = ({ background, color, colora, logo, contact, none, padding }) => {
   const footerRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const data = useSecondData();
@@ -45,9 +45,9 @@ const Footer = ({ background, color, colora, logo, contact }) => {
   }, [handleScroll]);
 
   return (
-    <footer ref={footerRef} className={background} id={contact}>
+    <footer ref={footerRef} className={`${background} ${padding}`} id={contact}>
       <div className="container-fluid">
-        <div className='ver-proyectos-footer'>
+        <div className={`ver-proyectos-footer ${none}`}>
           <Link to='/work'>
           <a href="">Ver Proyectos</a>
           </Link>

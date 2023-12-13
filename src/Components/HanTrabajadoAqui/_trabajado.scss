@@ -1,16 +1,31 @@
-#han-trabajado-aqui{
+#han-trabajado-aqui {
     height: 100vh !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3rem;
-h2{
-    font-family: montreal-medium;
-    font-size: 4rem;
-    padding-left: 3%;
-    margin-bottom: 10rem;
-}
-    li{
+
+    .li-trabajado, .li-trabajado1 {
+        height: 3rem;
+        transition: height 0.6s ease;
+    }
+
+    .li-trabajado:hover , .li-trabajado1:hover {
+        height: 10rem;
+        h4{
+            color: white;
+            mix-blend-mode: difference;
+        }
+    }
+
+    h2 {
+        font-family: montreal-medium;
+        font-size: 4rem;
+        padding-left: 3%;
+        margin-bottom: 10rem;
+    }
+
+    h4 {
         font-size: 1.8rem;
         font-style: normal;
         border-bottom: solid 1px black;
@@ -18,22 +33,23 @@ h2{
 }
 
 @media (max-width: 1200px) {
-    #han-trabajado-aqui{
+    #han-trabajado-aqui {
         margin: 10rem 0;
         height: auto !important;
     }
 }
 
 @media (max-width: 575px) {
-#han-trabajado-aqui{
-ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-    li{
-        text-align: center;
-        width: 25rem;
+    #han-trabajado-aqui {
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        li {
+            text-align: center;
+            width: 25rem;
+        }
     }
-}
 }

@@ -9,7 +9,6 @@
   border: none;
   cursor: pointer;
   z-index: 111;
-
 }
 
 .project-bottom-right-button,
@@ -21,6 +20,7 @@
   border: none;
   cursor: pointer;
   z-index: 1;
+  mix-blend-mode: difference;
 }
 
 .project-top-right-button {

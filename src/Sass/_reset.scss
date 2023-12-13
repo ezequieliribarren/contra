@@ -106,7 +106,11 @@ li {
 }
 
 .none {
-    display: none;
+    display: none !important;
+}
+
+.padding-top{
+    padding-top: 15rem;
 }
 
 .fixed {
@@ -137,12 +141,15 @@ li {
     border: 4px solid white;
     border-radius: 50%;
     mix-blend-mode: difference;
-    pointer-events: none; /* Evita que el cursor interfiera con elementos debajo */
-    z-index: 9999; /* Asegúrate de que el cursor esté en la parte superior de todos los demás elementos */
+    pointer-events: none; 
+    z-index: 999999 !important; 
 
   }
   
-
+.slick-dots{
+    display: inherit !important;
+    font-size: 1rem;
+}
 
 
 

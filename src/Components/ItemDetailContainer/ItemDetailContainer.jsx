@@ -18,7 +18,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const sliderRef = useRef(null);
   const [isWhatOpen, setIsWhatOpen] = useState(false);
   const [openAbstract, setOpenAbstract] = useState(false);
-  const [loading, setLoading] = useState(true); // Nuevo estado para el spinner
+  const [loading, setLoading] = useState(true);
 
   const handleWhatClick = () => {
     if (onWhatClick) {
@@ -45,11 +45,10 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   useEffect(() => {
     const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
     setProject(selectedProject);
-    setLoading(false); // Marcamos como cargado una vez que se obtiene el proyecto
+    setLoading(false);
   }, [id, data]);
 
   if (loading) {
-    // Mostrar el spinner mientras se carga el proyecto
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <GridLoader type="Puff" color="#E3570D" height={100} width={100} />
@@ -61,9 +60,8 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     return <div>Proyecto no encontrado</div>;
   }
 
-
-  // Filtrar las celdas vacías en imageUrls
-  const imageUrls = [
+  // Verificar si hay información en todas las celdas
+  const hasContent = [
     project.c[10]?.v,
     project.c[11]?.v,
     project.c[12]?.v,
@@ -76,7 +74,12 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     project.c[19]?.v,
     project.c[20]?.v,
     project.c[21]?.v,
-  ].filter(url => url);
+  ].every(content => content);
+
+  if (!hasContent) {
+    // Si falta información en alguna celda, no renderizar el Slider
+    return null;
+  }
 
   const abstractContent = {
     p1: project.c[23]?.v,
@@ -129,42 +132,51 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
         isWhatOpen={isWhatOpen}
         onClose={handleWhatClose}
       />
-      {imageUrls.length > 0 && (
-        <>
-        <Cursor/>
-          <Slider ref={sliderRef} id={id} {...settings}>
-            {imageUrls.map((media, index) => (
-              <div key={index} className='project-img-container'>
-                {typeof media === 'string' ? (
-                  media.endsWith('.mp4') ? (
-                    <div className="video-container">
-                      <video autoPlay loop muted playsInline preload>
-                        <source src={media} type="video/mp4" />
-                        Tu navegador no soporta el tag de video.
-                      </video>
-                    </div>
-                  ) : (
-                    <img src={media} alt={`Slide ${index}`} />
-                  )
-                ) : (
-                  <div className="abstract-container">
-                    <p>{media}</p>
-                  </div>
-                )}
+      <Cursor/>
+      <Slider ref={sliderRef} id={id} {...settings}>
+        {[
+          project.c[10]?.v,
+          project.c[11]?.v,
+          project.c[12]?.v,
+          project.c[13]?.v,
+          project.c[14]?.v,
+          project.c[15]?.v,
+          project.c[16]?.v,
+          project.c[17]?.v,
+          project.c[18]?.v,
+          project.c[19]?.v,
+          project.c[20]?.v,
+          project.c[21]?.v,
+        ].map((media, index) => (
+          <div key={index} className='project-img-container'>
+            {typeof media === 'string' ? (
+              media.endsWith('.mp4') ? (
+                <div className="video-container">
+                  <video autoPlay loop muted playsInline preload>
+                    <source src={media} type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                  </video>
+                </div>
+              ) : (
+                <img src={media} alt={`Slide ${index}`} />
+              )
+            ) : (
+              <div className="abstract-container">
+                <p>{media}</p>
               </div>
-            ))}
-          </Slider>
-          <div className='project-img-container'>
-            <What open={isWhatOpen} onClose={handleWhatClose} work='/work' />
-            <Abstract
-              open={openAbstract}
-              onClose={handleAbstractClose}
-              {...abstractContent}
-            />
+            )}
           </div>
+        ))}
+      </Slider>
+      <div className='project-img-container'>
+        <What open={isWhatOpen} onClose={handleWhatClose} work='/work' />
+        <Abstract
+          open={openAbstract}
+          onClose={handleAbstractClose}
+          {...abstractContent}
+        />
+      </div>
       <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
-        </>
-      )}
     </div>
   );
 };

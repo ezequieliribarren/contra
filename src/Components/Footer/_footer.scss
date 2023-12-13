@@ -100,8 +100,6 @@ footer {
     }
   }
 
-
-
   .container-fluid {
     display: flex;
     flex-direction: column;
@@ -247,6 +245,27 @@ footer {
     img {
       width: 3rem !important;
     }
+  }
+}
+
+@media (max-width: 730px){
+  .redes-h4{
+    display: none !important;
+  }
+.a1, .a0, .a2, .a3, .a4{
+  margin: 2rem 0;
+}
+  .span-footer{
+    margin-right: 1.5rem !important;
+    img{
+      margin: 0 !important;
+    }
+  }
+
+  .footer-circle{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
   }
 }
 

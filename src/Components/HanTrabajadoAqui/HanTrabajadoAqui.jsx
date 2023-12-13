@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+// HanTrabajadoAqui.jsx
+import React, { useRef, useEffect, useState } from 'react';
 import useScrollHandler from '../../js/useScrollHandler';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
@@ -44,6 +45,9 @@ const HanTrabajadoAqui = () => {
     };
   }, [handleScroll]);
 
+  const [hoveredIndexLeft, setHoveredIndexLeft] = useState(null);
+  const [hoveredIndexRight, setHoveredIndexRight] = useState(null);
+
   return (
     <section id='han-trabajado-aqui' ref={listContainerRef}>
       <div className="container-fluid">
@@ -52,14 +56,30 @@ const HanTrabajadoAqui = () => {
           <div className="col-12 col-sm-6">
             <ul>
               {data.slice(1).filter(member => member.c[9]?.v).map((member, index) => (
-                <li key={index}>{member.c[9]?.v}</li>
+                <li
+                  className={`li-trabajado ${hoveredIndexLeft === index ? 'hovered' : ''}`}
+                  key={index}
+                  onMouseEnter={() => setHoveredIndexLeft(index)}
+                  onMouseLeave={() => setHoveredIndexLeft(null)}
+                  style={{ backgroundImage: `url(${hoveredIndexLeft === index ? member.c[14]?.v : ''})` }}
+                >
+                  <h4>{member.c[9]?.v}</h4>
+                </li>
               ))}
             </ul>
           </div>
           <div className="col-12 col-sm-6">
             <ul>
               {data.slice(1).filter(member => member.c[10]?.v).map((member, index) => (
-                <li key={index}>{member.c[10]?.v}</li>
+                <li
+                  className={`li-trabajado ${hoveredIndexRight === index ? 'hovered' : ''}`}
+                  key={index}
+                  onMouseEnter={() => setHoveredIndexRight(index)}
+                  onMouseLeave={() => setHoveredIndexRight(null)}
+                  style={{ backgroundImage: `url(${hoveredIndexRight === index ? member.c[14]?.v : ''})` }}
+                >
+                 <h4>{member.c[10]?.v}</h4> 
+                </li>
               ))}
             </ul>
           </div>

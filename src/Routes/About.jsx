@@ -24,7 +24,7 @@ const About = () => {
       <Equipo  />
       <HanTrabajadoAqui />
       <Marcas/>
-      <Footer background='background-about' color='background-about' logo='images/logo-footer.png' contact='contact-about'/>
+      <Footer background='background-about' color='background-about' logo='images/logo-footer.png' contact='contact-about' none='none' padding='padding-top'/>
     </main>
   )
 }

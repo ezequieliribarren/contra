@@ -10,8 +10,7 @@
     justify-content: center;
     opacity: 0;
     top: 10%;
-
-
+    mix-blend-mode: difference;
 
 }
 
@@ -19,7 +18,6 @@
     left: 95%;
 
 }
-
 
 
 @media (max-width: 750px) {

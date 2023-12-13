@@ -20,11 +20,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.558) !important;
+    border: none;
+
 
     .what-menu {
         display: flex;
         flex-direction: column;
         align-items: center;
+
 
 
         li {
@@ -55,6 +59,7 @@
         font-size: 4rem;
         padding: 0;
         margin-top: 7rem;
+        margin-left: 2rem;
         display: flex;
         justify-content: center;
     }
@@ -84,6 +89,9 @@
 }
 
 @media (max-width: 730px) {
+    .what-box{
+        width: 100% !important;
+    }
     .what-menu {
         li {
             a {
@@ -99,8 +107,23 @@
 width: 40rem !important;
     }
 
+    .what-redes{
+        a{
+            img{
+                width: 3.5rem !important;
+            }
+        }
+    }
+
 }
 
+@media (min-width: 601px) {
+    .what-box {
+      width: 100% !important;
+    }
+  }
+
+  
 @media (max-width: 450px) {
     .what-box{
         width: 30rem !important;
@@ -118,7 +141,7 @@ width: 40rem !important;
     .what-redes{
         a{
             img{
-                width: 3.5rem !important;
+                width: 3rem !important;
             }
         }
     }
