@@ -8,7 +8,7 @@ const FavoritesMobile = () => {
   const data = useData() ?? [];
 
   return (
-    <section id='favorites'>
+    <section id='favorites-mobile'>
       {data.map((row, index) => {
         if (row.c[8]?.v === 'V' && row.c[9]?.v && row.c[10]?.v && row.c[11]?.v && row.c[12]?.v && row.c[13]?.v && row.c[14]?.v) {
           const imageUrls = [

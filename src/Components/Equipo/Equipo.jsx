@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Grafic from '../Grafic/Grafic';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
@@ -9,6 +9,7 @@ const Equipo = () => {
   const [hoveredMember, setHoveredMember] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedMember, setSelectedMember] = useState('all'); // Inicializar con 'all'
+  const [scrollY, setScrollY] = useState(0);
 
   const equipoData = fourData
     .slice(1)
@@ -30,29 +31,39 @@ const Equipo = () => {
     setSelectedMember(id);
   };
 
-  const handleScroll = (event) => {
+  const handleScroll = useCallback((event) => {
     const delta = Math.sign(event.deltaY);
 
-    if (delta < 0) {
-      // Scrolling hacia arriba
-      const prevSection = equipoRef.current.previousSibling;
-      if (prevSection) {
-        scroll.scrollTo(prevSection.offsetTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
-      }
-    } else {
-      // Scrolling hacia abajo
+    // Ajusta el umbral de desplazamiento
+    const scrollThreshold = 2;
+
+    setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
+
+    if (Math.abs(scrollY) >= scrollThreshold) {
       const nextSection = equipoRef.current.nextSibling;
-      if (nextSection) {
-        scroll.scrollTo(nextSection.offsetTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
+      const prevSection = equipoRef.current.previousSibling;
+
+      if (delta > 0) {
+        // Scrolling hacia abajo
+        if (nextSection) {
+          scroll.scrollTo(nextSection.offsetTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+        }
+      } else {
+        // Scrolling hacia arriba
+        if (prevSection) {
+          scroll.scrollTo(prevSection.offsetTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+        }
       }
+
+      setScrollY(0);
     }
-  };
+  }, [scrollY]);
 
   useEffect(() => {
     if (equipoRef.current) {
@@ -69,10 +80,11 @@ const Equipo = () => {
   return (
     <section id='equipo' ref={equipoRef}>
       <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-12 col-xl-6 equipo-select-container'>
+        <div className='row'>              
+        <h2 className='equipo-h2'>Quienes somos</h2>
+          <div className='col-12 col-xl-4 equipo-select-container'>
             <ul className='equipo'>
-              <h2>Quienes somos</h2>
+
               {equipoData.map((miembro) => (
                 <li
                   key={miembro.id}
@@ -102,7 +114,7 @@ const Equipo = () => {
               ))}
             </ul>
           </div>
-          <div className='col-12 col-xl-6 equipo-grafic-container'>
+          <div className='col-12 col-xl-8 equipo-grafic-container'>
             {/* Cambia el gráfico según el miembro seleccionado o hover */}
             <Grafic graficData={equipoData[selectedMember === 'all' ? 0 : selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
           </div>

@@ -47,9 +47,9 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
     >
       <Box sx={modalStyle} className='abstract-box'>
         <div id={id} className={`abstract ${abstract}`} style={{ backgroundImage: `url(${img})` }}>
-          <div className='abstract-sombra'>   
-            <h2 className='abstract-h2'>{title}</h2> 
-         <button className='abstract-close-button' onClick={onClose}>( x )</button>
+          <div className='abstract-sombra'>
+            <h2 className='abstract-h2'>{title}</h2>
+            <button className='abstract-close-button' onClick={onClose}>( x )</button>
             <div>
               {ver}
             </div>
@@ -67,17 +67,19 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
           </div>
           <div className={`abstract-menu ${none}`}>
             <div className='abstract-item'>
-              <a  target='_blank' download={title} className='abstract-a1' href={dossier}><img src="images/abstract/descargar.svg" alt="Descargar" /></a>
+              <a target='_blank' download={title} className='abstract-a1' href={dossier}><img src="images/abstract/descargar.svg" alt="Descargar" /></a>
               <h4>Descargar<br />proyecto</h4>
             </div>
             <div className='abstract-item'>
-              <a  target='_blank' download={title} className='abstract-a2' href={zip}> <img src="images/abstract/share.svg" alt="Nota de prensa" />     </a>
+              <a target='_blank' download={title} className='abstract-a2' href={zip}> <img src="images/abstract/share.svg" alt="Nota de prensa" /> </a>
               <h4>Nota<br />de Prensa</h4>
             </div>
-            <div className='abstract-item'>
-              <a target='_blank'  className='abstract-a4' href={video}> <img src="images/video.png" alt="Ver video" />     </a>
-              <h4>Ver<br />video</h4>
-            </div>
+            {video && ( // Condición para renderizar solo si video no está vacío
+              <div className='abstract-item'>
+                <a target='_blank' className='abstract-a4' href={video}> <img src="images/video.png" alt="Ver video" /> </a>
+                <h4>Ver<br />video</h4>
+              </div>
+            )}
             <div className='abstract-item'>
               <input ref={linkRef} type="text" readOnly value={window.location.href} style={{ display: 'none' }} />
               <a target='_blank' className='abstract-a3' onClick={copyToClipboard}><img src="images/abstract/compartir.svg" alt="Compartir" /></a>
@@ -89,6 +91,7 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
     </Modal>
   );
 }
+
 
 export default Abstract;
 

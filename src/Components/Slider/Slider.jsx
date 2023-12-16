@@ -67,32 +67,32 @@ const Slider = () => {
         <img src="images/flecha.png" alt="flecha" className="flecha" />
       </div>
       {secondData &&
-  secondData
-    .filter((item) => typeof item.c[0]?.v === 'string' && item.c[0]?.v.trim() !== '') // Filtra elementos con URL de video no vacía
-    .map((item, index) => {
-      const videoUrl = item.c[0]?.v;
+        secondData
+          .filter((item) => typeof item.c[0]?.v === 'string' && item.c[0]?.v.trim() !== '') // Filtra elementos con URL de video no vacía
+          .map((item, index) => {
+            const videoUrl = item.c[0]?.v;
 
-      return (
-        <div key={index} className={`slider-image ${index === currentIndex ? 'active' : ''}`}>
-          <div className="video-container">
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload
-              onLoadedMetadata={handleVideoLoadedMetadata}
-              onEnded={handleVideoEnded}
-              style={{ width: '100%', height: '100%' }}
-            >
-              <source src={videoUrl} type="video/mp4" />
-              Tu navegador no soporta el tag de video.
-            </video>
-          </div>
-        </div>
-      );
-    })}
+            return (
+              <div key={index} className={`slider-image ${index === currentIndex ? 'active' : ''}`}>
+                <div className="video-container">
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    onLoadedMetadata={handleVideoLoadedMetadata}
+                    onEnded={handleVideoEnded}
+                    style={{ width: '100%', height: '100%' }}
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                  </video>
+                </div>
+              </div>
+            );
+          })}
     </header>
   );
 };

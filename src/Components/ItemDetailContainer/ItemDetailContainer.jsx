@@ -60,8 +60,18 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     return <div>Proyecto no encontrado</div>;
   }
 
-  // Verificar si hay información en todas las celdas
-  const hasContent = [
+  const abstractContent = {
+    p1: project.c[23]?.v,
+    p2: project.c[24]?.v,
+    p3: project.c[25]?.v,
+    title: project.c[0]?.v,
+    id: project.c[9]?.v,
+    dossier: project.c[7]?.v,
+    zip: project.c[26]?.v,
+    video: project.c[27]?.v,
+  };
+
+  const mediaContent = [
     project.c[10]?.v,
     project.c[11]?.v,
     project.c[12]?.v,
@@ -74,22 +84,31 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     project.c[19]?.v,
     project.c[20]?.v,
     project.c[21]?.v,
-  ].every(content => content);
+  ];
 
-  if (!hasContent) {
-    // Si falta información en alguna celda, no renderizar el Slider
-    return null;
-  }
+  const filteredMediaContent = mediaContent.filter(item => item);
 
-  const abstractContent = {
-    p1: project.c[23]?.v,
-    p2: project.c[24]?.v,
-    p3: project.c[25]?.v,
-    title: project.c[0]?.v,
-    id: project.c[9]?.v,
-    dossier: project.c[7]?.v,
-    zip: project.c[26]?.v,
-    video: project.c[27]?.v
+  const renderMedia = () => {
+    return filteredMediaContent.map((media, index) => (
+      <div key={index} className='project-img-container'>
+        {typeof media === 'string' ? (
+          media.endsWith('.mp4') ? (
+            <div className="video-container">
+              <video autoPlay loop muted playsInline preload>
+                <source src={media} type="video/mp4" />
+                Tu navegador no soporta el tag de video.
+              </video>
+            </div>
+          ) : (
+            <img src={media} alt={`Slide ${index}`} />
+          )
+        ) : (
+          <div className="abstract-container">
+            <p>{media}</p>
+          </div>
+        )}
+      </div>
+    ));
   };
 
   const settings = {
@@ -103,7 +122,6 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
-
     responsive: [
       {
         breakpoint: 1250,
@@ -134,39 +152,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
       />
       <Cursor/>
       <Slider ref={sliderRef} id={id} {...settings}>
-        {[
-          project.c[10]?.v,
-          project.c[11]?.v,
-          project.c[12]?.v,
-          project.c[13]?.v,
-          project.c[14]?.v,
-          project.c[15]?.v,
-          project.c[16]?.v,
-          project.c[17]?.v,
-          project.c[18]?.v,
-          project.c[19]?.v,
-          project.c[20]?.v,
-          project.c[21]?.v,
-        ].map((media, index) => (
-          <div key={index} className='project-img-container'>
-            {typeof media === 'string' ? (
-              media.endsWith('.mp4') ? (
-                <div className="video-container">
-                  <video autoPlay loop muted playsInline preload>
-                    <source src={media} type="video/mp4" />
-                    Tu navegador no soporta el tag de video.
-                  </video>
-                </div>
-              ) : (
-                <img src={media} alt={`Slide ${index}`} />
-              )
-            ) : (
-              <div className="abstract-container">
-                <p>{media}</p>
-              </div>
-            )}
-          </div>
-        ))}
+        {renderMedia()}
       </Slider>
       <div className='project-img-container'>
         <What open={isWhatOpen} onClose={handleWhatClose} work='/work' />

@@ -6,6 +6,13 @@ import Footer from '../Footer/Footer';
 import { GridLoader } from 'react-spinners';
 
 const WorkMobile = ({ showProjectDetails }) => {
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 200);
+  }, []);
+
   const data = useData() ?? [];
   const [isWhatOpen, setIsWhatOpen] = useState(false);
   const [loadingImages, setLoadingImages] = useState(Array(data.length).fill(true));

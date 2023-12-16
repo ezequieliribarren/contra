@@ -7,27 +7,43 @@ import Slider from '../Components/Slider/Slider';
 import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
 import SliderMobile from '../Components/SliderMobile/SliderMobile';
-import Cursor from '../Components/Cursor/Cursor';
 import FavoritesMobile from '../Components/FavoritesMobile/FavoritesMobile';
 import PreLoader from '../Components/Preloader/Preloader';
+import { motion } from 'framer-motion';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }, []);
 
+  const [cursorPosition, setCursorPosition] = useState('middle');
 
+  const handleMouseMove = (e) => {
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+  };
 
   return (
     <>
-    <PreLoader/>
-      <Cursor />
-      <Nav mitad='mitad' nav='top-left-button' img='images/logo-white.png' work='fixed' about='fixed' more='fixed' customClass={'hidden'} />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact'/>
+      <PreLoader />
+      <Nav
+        mitad="mitad"
+        nav="top-left-button"
+        img="images/logo-white.png"
+        work="fixed"
+        about="fixed"
+        more="fixed"
+        customClass={'hidden'}
+        blend='blend'
+        cursorPosition={cursorPosition}
+        setCursorPosition={setCursorPosition}
+      />
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
       <div className="desktop-only">
         <Slider />
-        <Favorites />
+        <Favorites cursorPosition={cursorPosition} setCursorPosition={setCursorPosition} />
       </div>
       <div className="mobile-only">
         <SliderMobile />

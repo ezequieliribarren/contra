@@ -4,13 +4,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import Cursor from '../Cursor/Cursor';
 
-const Project = ({ imageUrls, id, index }) => {
+const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState('middle');
-  const customCursorRef = useRef(null);
+  const [cursorType, setCursorType] = useState('default');
 
   const handleScroll = useCallback(
     (event) => {
@@ -78,39 +78,49 @@ const Project = ({ imageUrls, id, index }) => {
     };
   }, [handleScroll]);
 
-  // MOVIMIENTO DEL MOUSE
-  const handleMouseMove = (event) => {
-    const sliderRect = projectRef.current.getBoundingClientRect();
-    const cursorX = event.clientX - sliderRect.left;
-    const sliderWidth = sliderRect.width;
-
-    const percentage = (cursorX / sliderWidth) * 100;
-
-    if (percentage < 30) {
-      setCursorPosition('left');
-    } else if (percentage > 70) {
-      setCursorPosition('right');
-    } else {
-      setCursorPosition('middle');
-    }
-  };
-
   useEffect(() => {
+    const handleMouseMove = (event) => {
+      setCursorPosition({ x: event.clientX, y: event.clientY });
+
+      // Determine the type of cursor based on the position of the mouse in the slider
+      const newCursorType = determineCursorType(event.clientX);
+      setCursorType(newCursorType);
+    };
+
     if (projectRef.current) {
-      projectRef.current.addEventListener('wheel', handleScroll);
       projectRef.current.addEventListener('mousemove', handleMouseMove);
     }
 
     return () => {
       if (projectRef.current) {
-        projectRef.current.removeEventListener('wheel', handleScroll);
         projectRef.current.removeEventListener('mousemove', handleMouseMove);
       }
     };
-  }, [handleScroll, handleMouseMove]);
+  }, [cursorPosition]);
+
+  const determineCursorType = (x) => {
+  const sliderRect = projectRef.current.getBoundingClientRect();
+  const sliderWidth = sliderRect.width;
+
+  // Define el umbral para determinar si el mouse está en el slider de la derecha o izquierda
+  const leftThreshold = sliderWidth / 3;
+  const rightThreshold = (sliderWidth / 3) * 2;
+
+  // Tu criterio específico para diferenciar large de large2 y large3
+  const someSpecificCondition = true; // Puedes cambiar esto según tu lógica
+
+  if (x < leftThreshold) {
+    return { type: someSpecificCondition ? 'large2' : 'left-cursor', isLarge: true, isLarge3: false };
+  } else if (x > rightThreshold) {
+    return { type: someSpecificCondition ? 'large3' : 'right-cursor', isLarge: false, isLarge3: true };
+  } else {
+    return { type: 'default', isLarge: false, isLarge3: false };
+  }
+};
+
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 1000,
     slidesToShow: 3,
@@ -150,31 +160,31 @@ const Project = ({ imageUrls, id, index }) => {
     <div
       id={`project-${index}`}
       ref={projectRef}
-      className={`project-container ${cursorPosition}-slide`}
+      className={`project-container ${cursorType.type}-slide`}
+      onMouseMove={(e) => {
+        setCursorPosition({ x: e.clientX, y: e.clientY });
+      }}
     >
       <Slider className='slider-project' {...settings}>
         {imageUrls.map((imageOrText, index) => (
-          // Verificar si la celda está vacía o es inválida
-          imageOrText ? (
-            <div key={index} className="project-img-container">
-              {typeof imageOrText === 'string' ? (
-                isVideoLink(imageOrText) ? (
-                  <div className="video-container">
-                    <video autoPlay loop muted playsInline>
-                      <source src={imageOrText} type="video/mp4" />
-                      Tu navegador no soporta el tag de video.
-                    </video>
-                  </div>
-                ) : (
-                  <img src={imageOrText} alt={`Slide ${index}`} />
-                )
-              ) : (
-                <div className="abstract-container">
-                  <p>{imageOrText}</p>
+          <div key={index} className="project-img-container">
+            {typeof imageOrText === 'string' ? (
+              isVideoLink(imageOrText) ? (
+                <div className="video-container">
+                  <video autoPlay loop muted playsInline>
+                    <source src={imageOrText} type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                  </video>
                 </div>
-              )}
-            </div>
-          ) : null
+              ) : (
+                <img src={imageOrText} alt={`Slide ${index}`} />
+              )
+            ) : (
+              <div className="abstract-container">
+                <p>{imageOrText}</p>
+              </div>
+            )}
+          </div>
         ))}
       </Slider>
       {index < 2 && (
@@ -203,6 +213,14 @@ const Project = ({ imageUrls, id, index }) => {
           className="scroll-link"
         ></ScrollLink>
       )}
+      {/* Renderiza el componente Cursor con el tipo de cursor */}
+      <Cursor
+  isHovered={false}
+  blendMode='normal'
+  cursorType={cursorType.type}
+  isLarge={cursorType.isLarge}
+  isLarge3={cursorType.isLarge3} 
+/>
     </div>
   );
 };

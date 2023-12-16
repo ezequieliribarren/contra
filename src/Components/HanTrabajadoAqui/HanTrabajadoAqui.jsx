@@ -1,5 +1,4 @@
-// HanTrabajadoAqui.jsx
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import useScrollHandler from '../../js/useScrollHandler';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
@@ -8,30 +7,43 @@ const HanTrabajadoAqui = () => {
   const listContainerRef = useRef(null);
   const isScrolling = useScrollHandler(listContainerRef);
   const data = useFourData();
+  const [hoveredIndexLeft, setHoveredIndexLeft] = useState(null);
+  const [hoveredIndexRight, setHoveredIndexRight] = useState(null);
+  const [scrollY, setScrollY] = useState(0);
 
-  const handleScroll = (event) => {
+  const handleScroll = useCallback((event) => {
     const delta = Math.sign(event.deltaY);
 
-    if (delta < 0) {
-      // Scrolling hacia arriba
-      const prevSection = listContainerRef.current.previousSibling;
-      if (prevSection) {
-        scroll.scrollTo(prevSection.offsetTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
-      }
-    } else {
-      // Scrolling hacia abajo
+    // Ajusta el umbral de desplazamiento
+    const scrollThreshold = 2;
+
+    setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
+
+    if (Math.abs(scrollY) >= scrollThreshold) {
       const nextSection = listContainerRef.current.nextSibling;
-      if (nextSection) {
-        scroll.scrollTo(nextSection.offsetTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
+      const prevSection = listContainerRef.current.previousSibling;
+
+      if (delta > 0) {
+        // Scrolling hacia abajo
+        if (nextSection) {
+          scroll.scrollTo(nextSection.offsetTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+        }
+      } else {
+        // Scrolling hacia arriba
+        if (prevSection) {
+          scroll.scrollTo(prevSection.offsetTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+        }
       }
+
+      setScrollY(0);
     }
-  };
+  }, [scrollY]);
 
   useEffect(() => {
     if (listContainerRef.current) {
@@ -44,9 +56,6 @@ const HanTrabajadoAqui = () => {
       }
     };
   }, [handleScroll]);
-
-  const [hoveredIndexLeft, setHoveredIndexLeft] = useState(null);
-  const [hoveredIndexRight, setHoveredIndexRight] = useState(null);
 
   return (
     <section id='han-trabajado-aqui' ref={listContainerRef}>
@@ -78,7 +87,7 @@ const HanTrabajadoAqui = () => {
                   onMouseLeave={() => setHoveredIndexRight(null)}
                   style={{ backgroundImage: `url(${hoveredIndexRight === index ? member.c[14]?.v : ''})` }}
                 >
-                 <h4>{member.c[10]?.v}</h4> 
+                  <h4>{member.c[10]?.v}</h4>
                 </li>
               ))}
             </ul>

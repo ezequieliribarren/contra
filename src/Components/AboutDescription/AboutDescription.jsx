@@ -8,11 +8,17 @@ const AboutDescription = () => {
   const data = useFourData();
   const aboutDescriptionRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = (event) => {
     const delta = Math.sign(event.deltaY);
-  
-    if (delta > 0) {
+
+    // Ajusta el umbral de desplazamiento
+    const scrollThreshold = 2;
+
+    setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
+
+    if (Math.abs(scrollY) >= scrollThreshold) {
       const nextSection = aboutDescriptionRef.current.nextSibling;
       if (nextSection) {
         scroll.scrollTo(nextSection.offsetTop, {
@@ -20,14 +26,8 @@ const AboutDescription = () => {
           smooth: 'easeInOutQuart',
         });
       }
-    } else if (delta < 0) {
-      const prevSection = aboutDescriptionRef.current.previousSibling;
-      if (prevSection) {
-        scroll.scrollTo(prevSection.offsetTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
-      }
+
+      setScrollY(0);
     }
   };
 
@@ -74,7 +74,7 @@ const AboutDescription = () => {
               </div>
             </div>
             <div className="col-12 col-xl-6 about-grafic">
-       <img src="images/about/grafic.png" alt="" />
+              <img src="images/about/grafic.png" alt="" />
             </div>
           </div>
         </div>

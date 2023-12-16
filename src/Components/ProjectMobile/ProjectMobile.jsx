@@ -102,14 +102,14 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
   }, [handleScroll, handleMouseMove]);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 1000,
     slidesToShow: 3,
-    swipeToSlide: false,
+    swipeToSlide: true,
     slidesToScroll: 1,
     arrows: true,
-    swipe: false,
+    swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
 
@@ -120,6 +120,7 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: false,
+          dots: true,
         },
       },
       {
@@ -128,6 +129,7 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: false,
+          dots: true,
         },
       },
     ],

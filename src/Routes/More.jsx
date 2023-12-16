@@ -9,14 +9,15 @@ const More = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }, []);
-
+  
   return (
     <>        
     <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' to='#contact-more' />
       <main>
-        <Cursor/>
         <Nav mitad='mitad-black' nav='nav-black' more='orange' work='fixed' about='fixed'/>
         <MoreSwitch/>
       </main>

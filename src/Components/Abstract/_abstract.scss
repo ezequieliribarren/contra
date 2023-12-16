@@ -131,8 +131,12 @@
 
 @media (max-width: 750px) {
   .abstract-box {
-    width: 40rem !important;
+    width: 100% !important;
 
+  }
+
+  .abstract-close-button{
+    font-size: 2rem;
   }
 
   .abstract {
@@ -175,21 +179,22 @@
 }
 
 @media (max-width: 460px) {
-  .abstract-box {
-    width: 33rem !important;
-  }
-
   .abstract {
     transition: none;
 
     h2 {
       font-size: 2.3rem;
+      padding-top: 1rem;
     }
 
     p {
       font-size: 1.2rem;
       width: 30rem;
     }
+  }
+
+  .abstract-close-button{
+    font-size: 1.5rem;
   }
 
   .abstract-menu {
@@ -219,9 +224,6 @@
 }
 
 @media (max-width: 370px) {
-  .abstract-box {
-    width: 28rem !important;
-  }
 
   .abstract {
     transition: none;

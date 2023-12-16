@@ -8,14 +8,10 @@ const PreLoader = () => {
 
     return (
         <div className="preloader">
-            <div className="texts-container">
-                <div className="preloader-1">
-                    <h1 className="span-contra">CONTRA</h1>
-                </div>
-                <div className="preloader-2">
-                    <h2>Architecture</h2>
-                </div>
-
+            <div className="image-container">
+                <img src="images/video.png" alt="Imagen 1" />
+                <img src="images/lupa.png" alt="Imagen 2" />
+                <img src="images/x.png" alt="Imagen 3" />
             </div>
         </div>
     );

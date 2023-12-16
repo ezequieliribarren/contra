@@ -13,27 +13,20 @@
     justify-content: center;
     color: white;
     overflow: hidden !important;
+    display: flex;
+    justify-content: center;
 
-    .texts-container {
+    .image-container{
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
-        width: 45rem;
+        align-items: center;
+        position: relative;
 
-        overflow: hidden;
-        opacity: 0;
-        font-family: machina;
-        color: white;
-
-h1{
-    color: white;        
-    font-size: 8rem;
-}
-
-h2{
-    color: orange;
-    font-size: 3rem;
-}
+        img{
+            position: absolute;
+            top: 50%;
+        }
     }
+
 }

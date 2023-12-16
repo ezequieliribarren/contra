@@ -56,14 +56,14 @@ const What = ({ open, onClose, work, to }) => {
             {data.map((item, index) => {
               if (item.c[2]?.v && item.c[3]?.v) {
                 return (
-                  <a key={index} href={item.c[2]?.v}>
+                  <a target='_blank' key={index} href={item.c[2]?.v}>
                     <img className='img-redes' src={item.c[3]?.v} alt="" />
                   </a>
                 );
               }
               return null;
             })}
-          </div>          
+          </div>
           <button className='what-close-button' onClick={onClose}>( x )</button>
         </Box>
       </Modal>
