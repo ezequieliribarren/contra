@@ -81,7 +81,6 @@ const Slider = () => {
                     loop
                     muted
                     playsInline
-                    preload="auto"
                     onLoadedMetadata={handleVideoLoadedMetadata}
                     onEnded={handleVideoEnded}
                     style={{ width: '100%', height: '100%' }}
