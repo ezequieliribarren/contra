@@ -64,7 +64,7 @@ const Favorites = () => {
                 }
                 title={row.c[0]?.v}
                 id={row.c[9]?.v}
-                img={row.c[13]?.v}
+                img={row.c[15]?.v}
               />
             ];
             const id = row.c[9]?.v;

@@ -129,6 +129,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: false,
+          dots: true,
         },
       },
       {
@@ -137,6 +138,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: false,
+          dots: true,
         },
       },
     ],
@@ -155,14 +157,14 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
         {renderMedia()}
       </Slider>
       <div className='project-img-container'>
-        <What open={isWhatOpen} onClose={handleWhatClose} work='/work' />
+        <What open={isWhatOpen} onClose={handleWhatClose} work='/work' to="#contact-item"/>
         <Abstract
           open={openAbstract}
           onClose={handleAbstractClose}
           {...abstractContent}
         />
       </div>
-      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
+      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact="contact-item"/>
     </div>
   );
 };

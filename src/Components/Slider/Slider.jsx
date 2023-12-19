@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
 
-
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const myRef = useRef(null);
@@ -33,16 +32,6 @@ const Slider = () => {
       });
     }
   };
-
-  const handleVideoEnded = () => {
-    const nextIndex = (currentIndex + 1) % secondData.length;
-    setCurrentIndex(nextIndex);
-  };
-
-  const handleVideoLoadedMetadata = () => {
-    videoRef.current.currentTime = 0;
-  };
-
   const handleScroll = (event) => {
     if (event.deltaY > 0) {
       handleScrollToSection('down');
@@ -62,36 +51,36 @@ const Slider = () => {
   }, [handleScroll]);
 
   return (
-    <header className="slider-container" ref={myRef} id="slider">
-      <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToSection}>
+    <header className="slider-container"  ref={myRef} id="slider">
+   <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToSection}>
         <img src="images/flecha.png" alt="flecha" className="flecha" />
       </div>
       {secondData &&
-        secondData
-          .filter((item) => typeof item.c[0]?.v === 'string' && item.c[0]?.v.trim() !== '') // Filtra elementos con URL de video no vacía
-          .map((item, index) => {
-            const videoUrl = item.c[0]?.v;
+        secondData.map((item, index) => {
+          const videoUrl = item.c[0]?.v;
 
+          // Verificar si hay una URL de video disponible
+          if (videoUrl && typeof videoUrl === 'string' && videoUrl.trim() !== '') {
             return (
               <div key={index} className={`slider-image ${index === currentIndex ? 'active' : ''}`}>
                 <div className="video-container">
                   <video
-                    ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    onLoadedMetadata={handleVideoLoadedMetadata}
-                    onEnded={handleVideoEnded}
                     style={{ width: '100%', height: '100%' }}
+                    src={videoUrl}
                   >
-                    <source src={videoUrl} type="video/mp4" />
                     Tu navegador no soporta el tag de video.
                   </video>
                 </div>
               </div>
             );
-          })}
+          } else {
+            return null; // Otra opción es mostrar un mensaje de carga o un mensaje de error
+          }
+        })}
     </header>
   );
 };

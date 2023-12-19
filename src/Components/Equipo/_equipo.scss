@@ -203,8 +203,6 @@
     }
 
     .equipo li {
-        width: 40rem;
-
         .equipo-description {
             opacity: 1;
             max-height: 1000px;
@@ -217,6 +215,32 @@
 
     .equipo .equipo-description {
         opacity: 1;
+    }
+}
+
+@media (max-width: 387px) {
+    h2{
+
+        font-size: 3rem !important;
+    }
+    .equipo-person-img {
+        display: none !important;
+
+    }
+    .equipo-description{
+        width: 20rem;
+        text-align: center;
+
+    }
+
+    .equipo-select{
+        align-items: center;
+        justify-content: center;
+    }
+    .selected-member{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 

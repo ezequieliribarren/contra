@@ -87,7 +87,7 @@ const AboutDescription = () => {
             <div className="col-12 col-xl-6 about-grafic"  data-aos="fade-left">
             {data.slice(1).map((p, index) => (
   p.c[16]?.v && (
-    <img  src={p.c[16]?.v} key={index} alt=''>
+    <img className='img-fluid'src={p.c[16]?.v} key={index} alt=''>
     </img>
   )
 ))}

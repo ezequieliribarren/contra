@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
-import Nav from '../Components/Nav/Nav'
+import Nav from '../Components/Nav/Nav';
 import Footer from '../Components/Footer/Footer';
 import Nav3 from '../Components/Nav3/Nav3';
-import Slider from '../Components/Slider/Slider';
 import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
-import SliderMobile from '../Components/SliderMobile/SliderMobile';
 import FavoritesMobile from '../Components/FavoritesMobile/FavoritesMobile';
-import PreLoader from '../Components/Preloader/Preloader';
-import { motion } from 'framer-motion';
+import Preloader from '../Components/Preloader/Preloader';
+
+// Lazy load Slider component
+const Slider = lazy(() => import('../Components/Slider/Slider'));
+const SliderMobile = lazy(() => import('../Components/SliderMobile/SliderMobile'));
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
@@ -27,7 +28,6 @@ const Root = () => {
 
   return (
     <>
-      <PreLoader />
       <Nav
         mitad="mitad"
         nav="top-left-button"
@@ -37,16 +37,22 @@ const Root = () => {
         more="fixed"
         customClass={'hidden'}
         blend='blend'
-        cursorPosition={cursorPosition}
-        setCursorPosition={setCursorPosition}
       />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
-      <div className="desktop-only">
+
+
+      <div className="desktop-only">      
+      <Suspense fallback={<Preloader />}>
         <Slider />
+      </Suspense>
+        {/* Other components */}
         <Favorites cursorPosition={cursorPosition} setCursorPosition={setCursorPosition} />
       </div>
       <div className="mobile-only">
+        {/* Other components */}
+        <Suspense fallback={<Preloader />}>
         <SliderMobile />
+        </Suspense>
         <FavoritesMobile />
         <CallActionWork />
         <WorkMobile />

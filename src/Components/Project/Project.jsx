@@ -4,9 +4,19 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-import Cursor from '../Cursor/Cursor';
+import { GridLoader } from 'react-spinners';
 
 const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) => {
+  const [loading, setLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
+
+  const handleVideoLoad = () => {
+    setLoading(false);
+  };
+
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -82,7 +92,6 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
     const handleMouseMove = (event) => {
       setCursorPosition({ x: event.clientX, y: event.clientY });
 
-      // Determine the type of cursor based on the position of the mouse in the slider
       const newCursorType = determineCursorType(event.clientX);
       setCursorType(newCursorType);
     };
@@ -99,35 +108,31 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
   }, [cursorPosition]);
 
   const determineCursorType = (x) => {
-  const sliderRect = projectRef.current.getBoundingClientRect();
-  const sliderWidth = sliderRect.width;
-
-  // Define el umbral para determinar si el mouse está en el slider de la derecha o izquierda
-  const leftThreshold = sliderWidth / 3;
-  const rightThreshold = (sliderWidth / 3) * 2;
-
-  // Tu criterio específico para diferenciar large de large2 y large3
-  const someSpecificCondition = true; // Puedes cambiar esto según tu lógica
-
-  if (x < leftThreshold) {
-    return { type: someSpecificCondition ? 'large2' : 'left-cursor', isLarge: true, isLarge3: false };
-  } else if (x > rightThreshold) {
-    return { type: someSpecificCondition ? 'large3' : 'right-cursor', isLarge: false, isLarge3: true };
-  } else {
-    return { type: 'default', isLarge: false, isLarge3: false };
-  }
-};
+    const sliderRect = projectRef.current.getBoundingClientRect();
+    const sliderWidth = sliderRect.width;
+    const leftThreshold = sliderWidth / 3;
+    const rightThreshold = (sliderWidth / 3) * 2;
+    const someSpecificCondition = true;
+  
+    if (x < leftThreshold) {
+      return { type: someSpecificCondition ? 'large2' : 'left-cursor', isLarge: true, isLarge3: false };
+    } else if (x > rightThreshold) {
+      return { type: someSpecificCondition ? 'large3' : 'right-cursor', isLarge: false, isLarge3: true };
+    } else {
+      return { type: 'default', isLarge: false, isLarge3: false };
+    }
+  };
 
 
   const settings = {
     dots: false,
     infinite: false,
     speed: 1000,
-    slidesToShow: 3,
+    slidesToShow: 3, 
+    swipe: true,
     swipeToSlide: true,
     slidesToScroll: 1,
     arrows: true,
-    swipe: true,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
 
@@ -137,7 +142,6 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: false,
         },
       },
       {
@@ -145,7 +149,6 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: false,
           dots: true,
         },
       },
@@ -171,13 +174,26 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
             {typeof imageOrText === 'string' ? (
               isVideoLink(imageOrText) ? (
                 <div className="video-container">
-                  <video autoPlay loop muted playsInline>
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedData={handleVideoLoad}
+                    className={`video-element ${loading ? 'loading' : ''}`}
+                  >
                     <source src={imageOrText} type="video/mp4" />
                     Tu navegador no soporta el tag de video.
                   </video>
+                  {loading && <GridLoader />}
                 </div>
               ) : (
-                <img src={imageOrText} alt={`Slide ${index}`} />
+                <img
+                  className={`img-fluid ${loading ? 'loading' : ''}`}
+                  src={imageOrText}
+                  alt={`Slide ${index}`}
+                  onLoad={handleImageLoad}
+                />
               )
             ) : (
               <div className="abstract-container">
@@ -213,13 +229,6 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
           className="scroll-link"
         ></ScrollLink>
       )}
-      <Cursor
-  isHovered={false}
-  blendMode='normal'
-  cursorType={cursorType.type}
-  isLarge={cursorType.isLarge}
-  isLarge3={cursorType.isLarge3} 
-/>
     </div>
   );
 };

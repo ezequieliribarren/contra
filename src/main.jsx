@@ -1,89 +1,94 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.scss';
-import Root from './Routes/Root';
-import { DataProvider, FourDataProvider, SecondDataProvider } from '../Context/Context'; // Importa el DataProvider
-import Work from './Routes/Work';
-import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
+import { DataProvider, FourDataProvider, SecondDataProvider, ThirdDataProvider } from '../Context/Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import About from './Routes/About';
-import More from './Routes/More';
-import { ThirdDataProvider } from '../Context/Context';
 import { ToastContainer } from 'react-toastify';
-import WorkMobile from './Components/WorkMobile/WorkMobile';
+import PreLoader from './Components/Preloader/Preloader';
 
-
+// Lazy load components
+const Root = lazy(() => import('./Routes/Root'));
+const Work = lazy(() => import('./Routes/Work'));
+const About = lazy(() => import('./Routes/About'));
+const More = lazy(() => import('./Routes/More'));
+const WorkMobile = lazy(() => import('./Components/WorkMobile/WorkMobile'));
+const ItemDetailContainer = lazy(() => import('./Components/ItemDetailContainer/ItemDetailContainer'));
 
 const router = createHashRouter([
   {
-    path: "/",
+    path: '/',
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <Root />
+          <Suspense fallback={<PreLoader/>}>
+            <Root />
+          </Suspense>
         </SecondDataProvider>
       </DataProvider>
-    )
+    ),
   },
   {
-    path: "/work",
+    path: '/work',
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <Work />
+          <Suspense fallback={<PreLoader/>}>
+            <Work />
+          </Suspense>
         </SecondDataProvider>
       </DataProvider>
-    )
+    ),
   },
   {
-    path: "/about",
+    path: '/about',
     element: (
       <FourDataProvider>
         <SecondDataProvider>
-          <About />
+          <Suspense fallback={<PreLoader/>}>
+            <About />
+          </Suspense>
         </SecondDataProvider>
       </FourDataProvider>
-
-
-    )
+    ),
   },
-
   {
-    path: "/more",
+    path: '/more',
     element: (
       <ThirdDataProvider>
         <SecondDataProvider>
-          <More />
+          <Suspense fallback={<PreLoader/>}>
+            <More />
+          </Suspense>
         </SecondDataProvider>
       </ThirdDataProvider>
-
-    )
+    ),
   },
-
   {
-    path: "/workMobile",
+    path: '/workMobile',
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <WorkMobile />
+          <Suspense fallback={<PreLoader/>}>
+            <WorkMobile />
+          </Suspense>
         </SecondDataProvider>
       </DataProvider>
-
-    )
+    ),
   },
   {
-    path: "/project/:id",
+    path: '/project/:id',
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <ItemDetailContainer />
+          <Suspense fallback={<PreLoader/>}>
+            <ItemDetailContainer />
+          </Suspense>
         </SecondDataProvider>
       </DataProvider>
-    )
+    ),
   },
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -102,11 +107,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         zIndex: 1111111,
         fontSize: '16px',
         fontWeight: 'bold',
-        color: 'white',  // Color del texto
+        color: 'white',
         fontFamily: 'machina',
       }}
       toastStyle={{
-        backgroundColor: 'black',  // Puedes agregar estilos adicionales para las notificaciones individuales
+        backgroundColor: 'black',
         color: 'white',
         border: '2px solid orange',
       }}

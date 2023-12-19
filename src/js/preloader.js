@@ -1,16 +1,14 @@
 import gsap from "gsap";
 
-export const preLoaderAnim = () => {
+export const preLoaderAnim = (areVideosLoaded) => {
   const tl = gsap.timeline();
 
-  // Ajusta la opacidad inicial y escala
   tl.from(".image-container img", {
     duration: 0.5,
     scale: 0.8,
     opacity: 0,
     ease: "Power3.easeInOut",
   })
-    // Ajusta el tiempo de visualización y el escalado para cada imagen
     .to(".image-container img:nth-child(1)", {
       duration: 0.5,
       scale: 1,
@@ -47,14 +45,12 @@ export const preLoaderAnim = () => {
       opacity: 0,
       ease: "Power3.easeInOut",
     })
-    // Ajusta el tiempo final de visualización para la primera imagen
     .to(".image-container img:nth-child(1)", {
       duration: 0.5,
       scale: 1,
       opacity: 1,
       ease: "Power3.easeInOut",
     })
-    // Completa el resto de la animación
     .fromTo(
       ".texts-container",
       {
@@ -75,31 +71,11 @@ export const preLoaderAnim = () => {
     )
     .to(".preloader", {
       duration: 0,
-      css: { display: "none" },
+      visibility: "hidden", // Use visibility property instead of display
     });
-};
 
-
-const changeColorToOrange = () => {
-  gsap.to(".texts-container span", {
-    duration: 1,
-    color: "#ff9900",
-    ease: "Power3.easeInOut",
-  });
-};
-
-const animateArchitecture = () => {
-  gsap.fromTo(
-    ".texts-container span:last-child",
-    {
-      opacity: 1,
-      y: 0,
-    },
-    {
-      duration: 1,
-      opacity: 0,
-      y: 20,
-      ease: "Power3.easeInOut",
-    }
-  );
+  if (!areVideosLoaded) {
+    // If the videos haven't loaded completely, restart the animation
+    tl.play();
+  }
 };

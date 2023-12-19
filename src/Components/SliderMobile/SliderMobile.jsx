@@ -66,25 +66,30 @@ const SliderMobile = () => {
         <img src="images/flecha.png" alt="flecha" className="flecha" />
       </div>
       {secondData.length > 0 && 
-        secondData.map((item, index) => (
-          <div key={index} className={`slider-image ${index === currentIndex ? 'active' : ''}`}>
-            <div className="video-container">
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                onLoadedMetadata={handleVideoLoadedMetadata}
-                onEnded={handleVideoEnded}
-                style={{ width: '100%', height: '100%' }}
-              >
-                <source src={item.c[1]?.v} type="video/mp4" />
-                Tu navegador no soporta el tag de video.
-              </video>
+        secondData.map((item, index) => {
+          const videoUrl = item.c[1]?.v;
+          return (
+            <div key={index} className={`slider-image ${index === currentIndex ? 'active' : ''}`}>
+              {videoUrl && (
+                <div className="video-container">
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={handleVideoLoadedMetadata}
+                    onEnded={handleVideoEnded}
+                    style={{ width: '100%', height: '100%' }}
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                  </video>
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
     </header>
   );
 };

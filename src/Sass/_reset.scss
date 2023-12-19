@@ -166,11 +166,13 @@ li {
     border: none;
     margin-top: 3rem;
     animation: bounce 0.5s 3 alternate ease-in-out, hide 0.5s 1 1.5s forwards;
+    z-index: 0 !important;
   }
 
   .cursor.large3{
     background-image: url(images/cursor-right.png) !important;
   }
+  
   
   @keyframes bounce {
     0%, 100% {
@@ -190,6 +192,8 @@ li {
     z-index: 1111111111 !important;
     position: absolute;
     top: 90%;
+    left: 41%;
+    width: 20rem !important;
 
 }
 
@@ -197,7 +201,7 @@ li {
 .slick-dots li button {
     content: '\2022'; 
     font-size: 1rem !important;
-    color: #000;
+    color: white;
     mix-blend-mode: difference;
   }
 
