@@ -46,7 +46,7 @@ const Equipo = () => {
     <section id='equipo' ref={equipoRef} >
       <div className='container-fluid'>
         <div className='row' >
-          <div className='col-12 col-lg-4'  >
+          <div className='col-12 col-xl-4'  >
             <h2 data-aos="fade-up">Quienes somos</h2 >
             <ul className='equipo'>
               {equipoData.map((miembro) => (
@@ -78,7 +78,7 @@ const Equipo = () => {
               ))}
             </ul>
           </div>
-          <div className='col-12 col-lg-8 equipo-grafic-container'>
+          <div className='col-12 col-xl-8 equipo-grafic-container'>
             {/* Mostrar el gráfico con todos los miembros si no hay hover */}
             <Grafic  graficData={hoveredMember ? equipoData[hoveredMember - 1]?.graficData : equipoData.map((miembro) => miembro.graficData)} selectedMembers={selectedMembers} />
           </div>

@@ -13,13 +13,14 @@ const AboutDescription = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+  
   const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = (event) => {
     const delta = Math.sign(event.deltaY);
 
     // Ajusta el umbral de desplazamiento
-    const scrollThreshold = 2;
+    const scrollThreshold = 1;
 
     setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
 
@@ -60,7 +61,7 @@ const AboutDescription = () => {
     <section id='about-description' ref={aboutDescriptionRef}>
       {loading ? (
         <div className="spinner-container">
-          <GridLoader color={'#E3570D'} size={20} loading={loading} padd />
+          <GridLoader color={'#E3570D'} size={20} loading={loading} />
         </div>
       ) : (
         <div className="container-fluid about-description">
@@ -74,13 +75,22 @@ const AboutDescription = () => {
                 </React.Fragment>
               ))}
               <div>
-                <a className='about-description-a' download='' href="">
-                  Descarga nuestro dossier (.pdf)
-                </a>
+                  {data.slice(1).map((p, index) => (
+                    p.c[11]?.v && (
+                      <a target='_blank' className='about-description-a' download='' href={p.c[11]?.v} key={index}>
+                        Descarga nuestro dossier (.pdf)
+                      </a>
+                    )
+                  ))}
               </div>
             </div>
             <div className="col-12 col-xl-6 about-grafic"  data-aos="fade-left">
-              <img src="images/about/grafic.png" alt="" />
+            {data.slice(1).map((p, index) => (
+  p.c[16]?.v && (
+    <img  src={p.c[16]?.v} key={index} alt=''>
+    </img>
+  )
+))}
             </div>
           </div>
         </div>

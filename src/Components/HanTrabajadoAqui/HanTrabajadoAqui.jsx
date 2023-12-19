@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll'; // Importa ScrollLink de react-scroll
 import { useFourData } from '../../../Context/Context';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HanTrabajadoAqui = () => {
   const listContainerRef = useRef(null);
@@ -8,6 +10,11 @@ const HanTrabajadoAqui = () => {
   const [hoveredIndexLeft, setHoveredIndexLeft] = useState(null);
   const [hoveredIndexRight, setHoveredIndexRight] = useState(null);
   const [scrollY, setScrollY] = useState(0);
+
+  
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const handleScroll = (event) => {
     const delta = Math.sign(event.deltaY);
@@ -47,9 +54,9 @@ const HanTrabajadoAqui = () => {
   return (
     <section id='han-trabajado-aqui' ref={listContainerRef}>
       <div className="container-fluid">
-        <h2>Han trabajado aquí</h2>
+        <h2 data-aos="zoom-in">Han trabajado aquí</h2>
         <div className="row">
-          <div className="col-12 col-sm-6">
+          <div className="col-12 col-sm-6" data-aos="zoom-in">
             <ul>
               {data.slice(1).filter(member => member.c[9]?.v).map((member, index) => (
                 <li
@@ -64,7 +71,7 @@ const HanTrabajadoAqui = () => {
               ))}
             </ul>
           </div>
-          <div className="col-12 col-sm-6">
+          <div className="col-12 col-sm-6" data-aos="zoom-in">
             <ul>
               {data.slice(1).filter(member => member.c[10]?.v).map((member, index) => (
                 <li

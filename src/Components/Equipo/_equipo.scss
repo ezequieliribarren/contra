@@ -107,7 +107,6 @@
 
 .equipo-select:hover {
     animation: slideIn 1s ease;
-    /* Aplicar animación keyframe al hacer hover */
 }
 
 .equipo-subtitle {
@@ -132,7 +131,6 @@
     margin: 3rem 0;
     width: 25rem;
     transition: width 1s ease;
-    /* Ajustar la duración de la transición al cambiar el tamaño */
     cursor: none;
 
     div {
@@ -144,7 +142,6 @@
         margin-top: 1rem;
         opacity: 0;
         animation: fadeIn 2s ease;
-        /* Aplicar animación keyframe a la descripción */
         max-height: 0;
         overflow: hidden;
 
@@ -162,7 +159,6 @@
 .equipo li:hover {
     width: 32rem;
 
-    /* Ajustar tamaño al hacer hover */
     .equipo-description {
         opacity: 1;
     }
@@ -172,7 +168,6 @@
     display: none;
     width: 8rem;
     transition: display 1s ease;
-    /* Ajustar la duración de la transición al cambiar la propiedad de visualización */
 }
 
 .equipo .selected-member .equipo-person-img {
@@ -207,19 +202,29 @@
         width: 100%;
     }
 
+    .equipo li {
+        width: 40rem;
 
+        .equipo-description {
+            opacity: 1;
+            max-height: 1000px;
+        }
 
+        .equipo-person-img {
+            display: inherit;
+        }
+    }
 
-    .equipo-grafic-container {
-        display: none;
+    .equipo .equipo-description {
+        opacity: 1;
     }
 }
+
 
 .equipo li.selected-member .equipo-description {
     display: block;
     opacity: 1;
     max-height: 1000px;
-    /* Valor suficientemente grande */
 }
 
 .equipo li.selected-member .equipo-person-img {
