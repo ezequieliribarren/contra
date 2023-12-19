@@ -213,7 +213,6 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
           className="scroll-link"
         ></ScrollLink>
       )}
-      {/* Renderiza el componente Cursor con el tipo de cursor */}
       <Cursor
   isHovered={false}
   blendMode='normal'

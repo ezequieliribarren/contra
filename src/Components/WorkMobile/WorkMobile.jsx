@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
 import Nav3 from '../Nav3/Nav3';
@@ -6,13 +6,6 @@ import Footer from '../Footer/Footer';
 import { GridLoader } from 'react-spinners';
 
 const WorkMobile = ({ showProjectDetails }) => {
-
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 200);
-  }, []);
-
   const data = useData() ?? [];
   const [isWhatOpen, setIsWhatOpen] = useState(false);
   const [loadingImages, setLoadingImages] = useState(Array(data.length).fill(true));
@@ -28,6 +21,37 @@ const WorkMobile = ({ showProjectDetails }) => {
       return updatedLoadingImages;
     });
   };
+
+  const handleTouchStart = (event) => {
+    // Guardamos la posición inicial del toque
+    startY = event.touches[0].clientY;
+  };
+
+  const handleTouchMove = (event) => {
+    // Obtenemos la altura de la ventana (viewport height)
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+
+    // Calculamos la distancia recorrida desde el inicio del toque
+    const deltaY = event.touches[0].clientY - startY;
+
+    // Scroll hacia arriba o hacia abajo según la dirección del desplazamiento
+    window.scrollBy(0, -deltaY * 0.5);
+
+    // Actualizamos la posición inicial del toque
+    startY = event.touches[0].clientY;
+  };
+
+  useEffect(() => {
+    // Agregamos los listeners de eventos táctiles al montar el componente
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+
+    // Eliminamos los listeners al desmontar el componente
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
 
   return (
     <section id='workMobile'>

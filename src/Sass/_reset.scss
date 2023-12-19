@@ -144,14 +144,15 @@ li {
     border-radius: 50%;
     z-index: 999999 !important;
     position: fixed;
-
+    mix-blend-mode: difference !important;
   }
   
   .cursor.large {
-    width: 57px;
-    height: 57px;
-    background: linear-gradient(to right, orange, silver);
-    transition: height 0.1s ease-in-out; 
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(to right, rgb(5, 63, 222), silver);
+    transition: height 0.1s ease-in-out;
+    border: solid 2px white;
   }
   
 
@@ -220,7 +221,7 @@ li {
         display: none;
     }
 
-    .custom-cursor {
+    .cursor {
         display: none;
     }
 

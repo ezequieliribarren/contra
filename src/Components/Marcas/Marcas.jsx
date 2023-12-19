@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useFourData } from '../../../Context/Context';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 const Marcas = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -38,6 +39,17 @@ const Marcas = () => {
     imagen: row.c[13]?.v,
   }));
 
+  const backgroundImageStyle = marcas[activeIndex]?.imagen && imageLoaded
+  ? {
+      backgroundImage: `url(${marcas[activeIndex].imagen})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      height: '100%',
+      transition: 'none',
+    }
+  : {};
+
   useEffect(() => {
     // Precarga de imágenes
     const imagePromises = marcas.map((marca) => {
@@ -54,19 +66,37 @@ const Marcas = () => {
     });
   }, [marcas]);
 
-  const backgroundImageStyle = marcas[activeIndex]?.imagen && imageLoaded
-    ? {
-        backgroundImage: `url(${marcas[activeIndex].imagen})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        height: '100%',
-        transition: 'none',
-      }
-    : {};
+  const handleScroll = (scrollDirection) => {
+    const totalItems = marcas.length;
+
+    if (scrollDirection === 'up' && activeIndex === 0) {
+      // Scroll hacia arriba desde el primer elemento
+      scroll.scrollTo('han-trabajado-aqui', {
+        duration: 700,
+        smooth: 'easeInOutQuart',
+      });
+    } else if (scrollDirection === 'down' && activeIndex === totalItems - 1) {
+      // Scroll hacia abajo desde el último elemento
+      scroll.scrollTo('contact', {
+        duration: 700,
+        smooth: 'easeInOutQuart',
+      });
+    }
+  };
+
+  const handleScrollLinkClick = () => {
+    // Si haces clic en el enlace de ScrollLink, haz scroll al siguiente elemento
+    const nextSection = olRef.current.nextSibling;
+    if (nextSection) {
+      scroll.scrollTo(nextSection.offsetTop, {
+        duration: 700,
+        smooth: 'easeInOutQuart',
+      });
+    }
+  };
 
   return (
-    <div className='fondo-change' style={backgroundImageStyle}>
+    <div id='marcas' className='fondo-change' style={backgroundImageStyle}>
       <ol className='scrollable-list' ref={olRef}>
         {marcas.map((marca, index) => (
           <li
@@ -90,6 +120,24 @@ const Marcas = () => {
           </li>
         ))}
       </ol>
+
+      <ScrollLink
+        to="han-trabajado-aqui"
+        spy={true}
+        smooth={true}
+        duration={700}
+        className='scroll-link'
+        onClick={handleScrollLinkClick}
+      ></ScrollLink>
+
+      <ScrollLink
+        to="contact"
+        spy={true}
+        smooth={true}
+        duration={700}
+        className='scroll-link'
+        onClick={handleScrollLinkClick}
+      ></ScrollLink>
     </div>
   );
 };

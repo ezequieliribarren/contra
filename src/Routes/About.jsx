@@ -18,7 +18,7 @@ const About = () => {
 
   return (
     <main className='about'>
-      <Nav about='orange' mitad='mitad-black' nav='nav-black' work='black fixed' more='black fixed' />
+      <Nav about='orange fixed' mitad='mitad-black' nav='nav-black' work='black fixed' more='black fixed' />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' to='#contact-about' />
       <AboutDescription />
       <Equipo  />

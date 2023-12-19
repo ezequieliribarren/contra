@@ -1,49 +1,36 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import useScrollHandler from '../../js/useScrollHandler';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll'; // Importa ScrollLink de react-scroll
 import { useFourData } from '../../../Context/Context';
 
 const HanTrabajadoAqui = () => {
   const listContainerRef = useRef(null);
-  const isScrolling = useScrollHandler(listContainerRef);
   const data = useFourData();
   const [hoveredIndexLeft, setHoveredIndexLeft] = useState(null);
   const [hoveredIndexRight, setHoveredIndexRight] = useState(null);
   const [scrollY, setScrollY] = useState(0);
 
-  const handleScroll = useCallback((event) => {
+  const handleScroll = (event) => {
     const delta = Math.sign(event.deltaY);
 
     // Ajusta el umbral de desplazamiento
-    const scrollThreshold = 2;
+    const scrollThreshold = 1;
 
     setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
 
-    if (Math.abs(scrollY) >= scrollThreshold) {
+    if (delta > 0 && Math.abs(scrollY) >= scrollThreshold) {
+      // Solo permite desplazamiento hacia abajo
       const nextSection = listContainerRef.current.nextSibling;
-      const prevSection = listContainerRef.current.previousSibling;
-
-      if (delta > 0) {
-        // Scrolling hacia abajo
-        if (nextSection) {
-          scroll.scrollTo(nextSection.offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
-        }
-      } else {
-        // Scrolling hacia arriba
-        if (prevSection) {
-          scroll.scrollTo(prevSection.offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
-        }
+      if (nextSection) {
+        // Utiliza ScrollLink para realizar el scroll hacia abajo
+        scroll.scrollTo(nextSection.offsetTop, {
+          duration: 700,
+          smooth: 'easeInOutQuart',
+        });
       }
 
       setScrollY(0);
     }
-  }, [scrollY]);
+  };
 
   useEffect(() => {
     if (listContainerRef.current) {
@@ -94,11 +81,12 @@ const HanTrabajadoAqui = () => {
           </div>
         </div>
       </div>
+      {/* Utiliza ScrollLink para ir a la sección #marcas */}
       <ScrollLink
-        to={`equipo`}
+        to="marcas"
+        spy={true}
         smooth={true}
-        duration={1500}
-        offset={-50} // Ajusta este valor según sea necesario
+        duration={700}
         className='scroll-link'
       ></ScrollLink>
     </section>

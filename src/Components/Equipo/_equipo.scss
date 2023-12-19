@@ -3,6 +3,7 @@
         opacity: 0;
         max-height: 0;
     }
+
     to {
         opacity: 1;
         max-height: 1000px;
@@ -13,6 +14,7 @@
     from {
         transform: translate(0);
     }
+
     to {
         transform: translate(2px);
     }
@@ -27,38 +29,85 @@
     .row {
         padding-left: 3%;
         display: flex;
-        align-items: center;
+        align-items: start;
     }
 
     h2 {
         font-family: montreal-medium;
         font-size: 4rem;
+        padding: 0;
+        margin: 0;
+        padding-top: 4rem;
     }
 }
-.equipo-h2{
-    padding: 0;
-    margin: 0;
-    padding-top: 10rem;
-}
+
 .equipo {
-    height: 100vh !important;
+    height: 75vh !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: start;
     overflow-y: scroll;
+    box-shadow: 2px 2px 12px rgba(148, 147, 147, 0.355);
+    margin-top: 2rem;
 }
 
-.equipo-select {
-    width: 25rem;
-    transition: transform 1s ease; 
-    text-align: start;
+.equipo::-webkit-scrollbar {
+    width: 5px;
+    /* Ancho de la barra de desplazamiento */
+}
 
+.equipo::-webkit-scrollbar-thumb {
+    background-color: orange;
+}
+
+.equipo::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para la flecha hacia arriba */
+.equipo::-webkit-scrollbar-button:start {
+    background-color: orange;
+}
+
+.equipo::-webkit-scrollbar-button:end {
+    background-color: orange;
+}
+
+.equipo::-webkit-scrollbar-button:single-button {
+    height: 10px;
+    /* Altura de la flecha */
+    width: 5px;
+    /* Ancho de la flecha */
+}
+
+.equipo::-webkit-scrollbar-button:vertical:decrement {
+    background-color: rgb(121, 120, 117);
+}
+
+.equipo::-webkit-scrollbar-button:vertical:increment {
+    background-color: rgb(129, 127, 124);
+}
+
+.equipo::-webkit-scrollbar-button:decrement:hover {
+    background-color: rgb(132, 132, 131);
+}
+
+.equipo::-webkit-scrollbar-button:increment:hover {
+    background-color: rgb(132, 132, 132);
+}
+
+
+.equipo-select {
+    width: 100%;
+    transition: transform 1s ease;
+    text-align: start;
 }
 
 .equipo-select:hover {
-    animation: slideIn 1s ease; /* Aplicar animación keyframe al hacer hover */
+    animation: slideIn 1s ease;
+    /* Aplicar animación keyframe al hacer hover */
 }
 
 .equipo-subtitle {
@@ -75,10 +124,15 @@
     }
 }
 
+.equipo li:first-child {
+    padding-top: 33rem;
+}
+
 .equipo li {
-    margin: 2rem 0;
+    margin: 3rem 0;
     width: 25rem;
-    transition: width 1s ease; /* Ajustar la duración de la transición al cambiar el tamaño */
+    transition: width 1s ease;
+    /* Ajustar la duración de la transición al cambiar el tamaño */
     cursor: none;
 
     div {
@@ -89,7 +143,8 @@
     .equipo-description {
         margin-top: 1rem;
         opacity: 0;
-        animation: fadeIn 1s ease; /* Aplicar animación keyframe a la descripción */
+        animation: fadeIn 2s ease;
+        /* Aplicar animación keyframe a la descripción */
         max-height: 0;
         overflow: hidden;
 
@@ -105,48 +160,57 @@
 }
 
 .equipo li:hover {
-    width: 32rem; /* Ajustar tamaño al hacer hover */
+    width: 32rem;
+
+    /* Ajustar tamaño al hacer hover */
     .equipo-description {
         opacity: 1;
-        max-height: 1000px; /* Valor suficientemente grande */
     }
 }
 
 .equipo .equipo-person-img {
     display: none;
     width: 8rem;
-    transition: display 1s ease; /* Ajustar la duración de la transición al cambiar la propiedad de visualización */
+    transition: display 1s ease;
+    /* Ajustar la duración de la transición al cambiar la propiedad de visualización */
 }
 
 .equipo .selected-member .equipo-person-img {
     display: inherit;
 }
+
 .equipo .selected-member h3 {
     color: #E3570D;
 }
 
 .grafico-container {
-display: flex;
-align-items: start;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
     canvas {
-        width: 90% !important;
-        height: 90% !important;
+        width: 80% !important;
+        height: 75% !important;
     }
 }
+
 
 @media (max-width: 1200px) {
     #equipo {
         height: auto !important;
     }
 
-    .equipo{
+    .equipo {
         align-items: center;
         justify-content: center;
+        width: 100%;
     }
 
 
-    .equipo-grafic-container{
+
+
+    .equipo-grafic-container {
         display: none;
     }
 }
@@ -154,7 +218,8 @@ justify-content: center;
 .equipo li.selected-member .equipo-description {
     display: block;
     opacity: 1;
-    max-height: 1000px; /* Valor suficientemente grande */
+    max-height: 1000px;
+    /* Valor suficientemente grande */
 }
 
 .equipo li.selected-member .equipo-person-img {

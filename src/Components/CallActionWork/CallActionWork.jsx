@@ -4,9 +4,9 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 const CallActionWork = () => {
   const myRef = useRef(null);
 
-  const handleScrollToSection = () => {
+  const handleScrollToSection = (offset) => {
     if (myRef.current) {
-      const offsetTop = myRef.current.offsetTop + window.innerHeight; // Suma 100vh
+      const offsetTop = myRef.current.offsetTop + offset; // Agregando o restando el offset
       scroll.scrollTo(offsetTop, {
         behavior: 'smooth',
         duration: 800,
@@ -16,7 +16,11 @@ const CallActionWork = () => {
 
   const handleScroll = (event) => {
     if (event.deltaY > 0) {
-      handleScrollToSection();
+      // Scrolling down
+      handleScrollToSection(window.innerHeight); // Hacia abajo 100vh
+    } else {
+      // Scrolling up
+      handleScrollToSection(-window.innerHeight); // Hacia arriba 100vh
     }
   };
 
@@ -40,12 +44,10 @@ const CallActionWork = () => {
         <h3>our work</h3>
       </div>
       <div>
-        <ScrollLink
-          to='workMobile' // El ID de la sección a la que te gustaría desplazarte
-          smooth={true}
-          duration={800}
-        >
-          <img src="images/flecha-down.png" alt="" onClick={handleScrollToSection} />
+        <ScrollLink to='favorites-mobile' smooth={true} duration={800}>
+        </ScrollLink>
+        <ScrollLink to='workMobile' smooth={true} duration={800}>
+          <img src="images/flecha-down.png" alt="" onClick={() => handleScrollToSection(window.innerHeight)} />
         </ScrollLink>
       </div>
     </div>

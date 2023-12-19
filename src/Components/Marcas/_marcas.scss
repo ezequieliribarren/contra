@@ -2,14 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-items: center;
+    align-items: start;
     background-image: url(images/Slider/1.png);
     width: 100%;
     height: 100vh !important;
 ol{
-    width: 100%;
-    li{
+    width: 100%; 
+    height: 70%;  
+    li{                                                  
     margin: 18rem 0;
+
     }
 }
 }
@@ -21,7 +23,7 @@ ol{
   
   .scrollable-list {
     max-height: 100vh; /* Ajusta la altura máxima según tus necesidades */
-    overflow-y: scroll; /* Permite el desbordamiento vertical con una barra de desplazamiento si es necesario */
+    overflow-y: scroll;
   }
 
   .scrollable-list::-webkit-scrollbar {

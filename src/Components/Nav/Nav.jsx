@@ -40,7 +40,8 @@ const Nav = ({ black, mitad, work, more, about, fixed, nav, blend }) => {
   return (
     <div className={`nav-container ${fixed ? 'fixed' : ''}`}>
       <Cursor isHovered={isHovered} blendMode={isHovered ? 'difference' : 'normal'} />
-      <Link className={`${nav} ${blend} ${isButtonVisible ? 'fixed' : mitad}`} to="/">
+      <Link  onMouseEnter={handleHover}
+          onMouseLeave={handleLeave} className={`${nav} ${blend} ${isButtonVisible ? 'fixed' : mitad}`} to="/">
       </Link>
       <Link to="/work">
         <a

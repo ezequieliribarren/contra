@@ -2,12 +2,17 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useFourData } from '../../../Context/Context';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { GridLoader } from 'react-spinners';
-import Diagrama from '../Diagrama/Diagrama';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AboutDescription = () => {
   const data = useFourData();
   const aboutDescriptionRef = useRef(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = (event) => {
@@ -18,7 +23,8 @@ const AboutDescription = () => {
 
     setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
 
-    if (Math.abs(scrollY) >= scrollThreshold) {
+    if (delta > 0 && Math.abs(scrollY) >= scrollThreshold) {
+      // Solo permite desplazamiento hacia abajo
       const nextSection = aboutDescriptionRef.current.nextSibling;
       if (nextSection) {
         scroll.scrollTo(nextSection.offsetTop, {
@@ -73,19 +79,12 @@ const AboutDescription = () => {
                 </a>
               </div>
             </div>
-            <div className="col-12 col-xl-6 about-grafic">
+            <div className="col-12 col-xl-6 about-grafic"  data-aos="fade-left">
               <img src="images/about/grafic.png" alt="" />
             </div>
           </div>
         </div>
       )}
-      <ScrollLink
-        to={`equipo`}
-        smooth={true}
-        duration={1500}
-        offset={-50}
-        className="scroll-link"
-      ></ScrollLink>
     </section>
   );
 }

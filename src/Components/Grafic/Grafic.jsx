@@ -1,13 +1,22 @@
+// Grafic.js
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { useFourData } from '../../../Context/Context';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-export default function Grafic({ graficData, selectedMembers, isHovered }) {
+export default function Grafic({ graficData, selectedMembers }) {
   const chartRef = useRef(null);
   const fourData = useFourData();
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
+    AOS.init();
+  }, []);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    // Mapea la información del contexto para obtener las habilidades desde la columna 8
     const mappedSkills = fourData.map((row) => row.c[8]?.v).slice(1);
     setSkills(mappedSkills);
   }, [fourData]);
@@ -37,14 +46,21 @@ export default function Grafic({ graficData, selectedMembers, isHovered }) {
             tension: 0.5,
             fill: {
               target: 'origin',
-              above: isHovered && selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
+              above: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
             },
-            borderColor: isHovered && selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
-            backgroundColor: isHovered && selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
-            pointBorderColor: isHovered && selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
-            pointBackgroundColor: isHovered && selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
-            order: isHovered && selectedMembers.includes(index + 1) ? 1 : 0,
+            borderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75', // Borde blanco para el miembro activo, de lo contrario, utiliza el color transparente
+            backgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75', // Color transparente para el miembro activo, de lo contrario, utiliza el color transparente
+            pointBorderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75', // Borde blanco para el miembro activo, de lo contrario, utiliza el color transparente
+            pointBackgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75', // Color transparente para el miembro activo, de lo contrario, utiliza el color transparente
+            order: 1, // Asegura que todas las líneas sean visibles
           };
+        }).sort((a, b) => {
+          // Coloca los conjuntos de datos seleccionados al final del array
+          if (selectedMembers.includes(fourData.slice(1).indexOf(a) + 1)) {
+            return 1;
+          } else {
+            return -1;
+          }
         }),
       },
       options: {
@@ -61,38 +77,39 @@ export default function Grafic({ graficData, selectedMembers, isHovered }) {
               display: false,
             },
             grid: {
-              drawOnChartArea: false,
+              drawOnChartArea: false, // Dibuja el grid fuera del área del gráfico
               color: (context) => {
                 if (context.tick && context.tick.major) {
-                  return 'rgba(0, 0, 0, 0)';
+                  // Líneas punteadas solo para las marcas mayores (etiquetas)
+                  return 'rgba(0, 0, 0, 0)'; // Color transparente para líneas horizontales
                 }
-                return 'rgba(0, 0, 0, 1)';
+                return 'rgba(0, 0, 0, 1)'; // Color sólido para líneas verticales
               },
               lineWidth: (context) => {
                 if (context.tick && context.tick.major) {
-                  return 0;
+                  return 0; // Ancho cero para líneas horizontales (transparentes)
                 }
-                return 1;
+                return 1; // Ancho de línea para líneas verticales (no transparentes)
               },
               borderDash: (context) => {
                 if (context.tick && context.tick.major) {
-                  return [5, 5];
+                  return [5, 5]; // Patrón de línea punteada para líneas horizontales
                 }
-                return [];
+                return []; // Sin patrón para líneas verticales
               },
             },
           },
           x: {
             display: true,
-            position: 'top',
+            position: 'top', // Posiciona el eje x arriba del grafico
             ticks: {
-              display: true,
+              display: true, // Oculta las etiquetas del eje x
             },
           },
         },
         plugins: {
           legend: {
-            display: false,
+            display: false, // Oculta la leyenda
           },
           tooltip: {
             enabled: true,
@@ -100,7 +117,7 @@ export default function Grafic({ graficData, selectedMembers, isHovered }) {
         },
         layout: {
           padding: {
-            top: 30,
+            top: 30, // Aumenta el espacio para el texto de las skills
           },
         },
         elements: {
@@ -118,11 +135,11 @@ export default function Grafic({ graficData, selectedMembers, isHovered }) {
         myChart.destroy();
       }
     };
-  }, [graficData, skills, fourData, selectedMembers, isHovered]);
+  }, [graficData, skills, fourData, selectedMembers]);
 
   return (
-    <div className='grafico-container' style={{ height: '75rem' }}>
-      <canvas className='grafico' ref={chartRef} />
+    <div data-aos="fade-left" className='grafico-container' style={{ height: '75rem' }}>
+      <canvas  className='grafico' ref={chartRef} />
     </div>
   );
 }

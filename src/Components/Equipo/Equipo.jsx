@@ -1,14 +1,22 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Grafic from '../Grafic/Grafic';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const Equipo = () => {
   const equipoRef = useRef(null);
   const fourData = useFourData();
   const [hoveredMember, setHoveredMember] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
-  const [selectedMember, setSelectedMember] = useState('all'); // Inicializar con 'all'
+  const [selectedMember, setSelectedMember] = useState(null); // Inicializar con null
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+  
   const [scrollY, setScrollY] = useState(0);
 
   const equipoData = fourData
@@ -26,86 +34,42 @@ const Equipo = () => {
 
   const handleMemberHover = (id) => {
     setHoveredMember(id);
-
-    // Cambia el gráfico al miembro correspondiente al hacer hover
+    setSelectedMembers([id]); 
     setSelectedMember(id);
   };
 
-  const handleScroll = useCallback((event) => {
-    const delta = Math.sign(event.deltaY);
-
-    // Ajusta el umbral de desplazamiento
-    const scrollThreshold = 2;
-
-    setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
-
-    if (Math.abs(scrollY) >= scrollThreshold) {
-      const nextSection = equipoRef.current.nextSibling;
-      const prevSection = equipoRef.current.previousSibling;
-
-      if (delta > 0) {
-        // Scrolling hacia abajo
-        if (nextSection) {
-          scroll.scrollTo(nextSection.offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
-        }
-      } else {
-        // Scrolling hacia arriba
-        if (prevSection) {
-          scroll.scrollTo(prevSection.offsetTop, {
-            duration: 700,
-            smooth: 'easeInOutQuart',
-          });
-        }
-      }
-
-      setScrollY(0);
-    }
-  }, [scrollY]);
-
-  useEffect(() => {
-    if (equipoRef.current) {
-      equipoRef.current.addEventListener('wheel', handleScroll);
-    }
-
-    return () => {
-      if (equipoRef.current) {
-        equipoRef.current.removeEventListener('wheel', handleScroll);
-      }
-    };
-  }, [handleScroll]);
+  const handleMemberLeave = () => {
+    setHoveredMember(all);
+  };
 
   return (
-    <section id='equipo' ref={equipoRef}>
+    <section id='equipo' ref={equipoRef} >
       <div className='container-fluid'>
-        <div className='row'>              
-        <h2 className='equipo-h2'>Quienes somos</h2>
-          <div className='col-12 col-xl-4 equipo-select-container'>
+        <div className='row' >
+          <div className='col-12 col-lg-4'  >
+            <h2 data-aos="fade-up">Quienes somos</h2 >
             <ul className='equipo'>
-
               {equipoData.map((miembro) => (
                 <li
                   key={miembro.id}
                   onMouseEnter={() => handleMemberHover(miembro.id)}
-                  onMouseLeave={() => handleMemberHover(null)}
+                  onMouseLeave={handleMemberLeave}
                   className={(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id) ? 'selected-member' : ''}
                 >
                   <div className='equipo-select'>
                     <div>
-                      <img className='equipo-person-img' src={miembro.imagen} alt='Miembro' />
+                      <img className='equipo-person-img' src={miembro.imagen} alt='' />
                     </div>
                     <div className='equipo-subtitle'>
                       <h3>{miembro.nombre}</h3>
                       <h4>
                         {' '}
-                        <img src='images/about/flecha.png' alt='Flecha' />
+                        <img src='images/about/flecha.png' alt='' />
                         {miembro.subtitle}
                       </h4>
                     </div>
                   </div>
-                  {(selectedMembers.includes(miembro.id) || hoveredMember === miembro.id || selectedMember === 'all') && (
+                  {(hoveredMember === miembro.id || selectedMember === miembro.id) && (
                     <div className='equipo-description'>
                       <p>{miembro.descripcion}</p>
                     </div>
@@ -114,9 +78,9 @@ const Equipo = () => {
               ))}
             </ul>
           </div>
-          <div className='col-12 col-xl-8 equipo-grafic-container'>
-            {/* Cambia el gráfico según el miembro seleccionado o hover */}
-            <Grafic graficData={equipoData[selectedMember === 'all' ? 0 : selectedMember - 1]?.graficData} selectedMembers={selectedMembers} />
+          <div className='col-12 col-lg-8 equipo-grafic-container'>
+            {/* Mostrar el gráfico con todos los miembros si no hay hover */}
+            <Grafic  graficData={hoveredMember ? equipoData[hoveredMember - 1]?.graficData : equipoData.map((miembro) => miembro.graficData)} selectedMembers={selectedMembers} />
           </div>
         </div>
       </div>
@@ -125,14 +89,14 @@ const Equipo = () => {
         to={`about-description`}
         smooth={true}
         duration={1500}
-        offset={-50}
+        offset={-50} // Ajusta este valor según sea necesario
         className='scroll-link'
       ></ScrollLink>
       <ScrollLink
         to={`han-trabajado-aqui`}
         smooth={true}
         duration={1500}
-        offset={-50}
+        offset={-50} // Ajusta este valor según sea necesario
         className='scroll-link'
       ></ScrollLink>
     </section>
