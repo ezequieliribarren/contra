@@ -232,4 +232,13 @@ li {
     .mobile-only {
         display: block;
     }
+
+    .slick-dots {
+        z-index: 1111111111 !important;
+        position: absolute;
+        top: 90%;
+        left: 34%;
+        width: 20rem !important;
+    
+    }
 }
