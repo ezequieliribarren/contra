@@ -115,7 +115,7 @@ const MoreSwitch = () => {
           <Slider className="slider-bottom" {...sliderSettings}>
             {(selectedCategories[0] === 'All' ? thirdData.slice(1) : filteredData).map((item, index) => (
               <div key={index} className="slider-item">
-                <a className="slider-item-content">
+                <a className="slider-item-content" href={item.c[2]?.v}>
                   <img src={item.c[3]?.v} alt="" />
                   <div className="more-hover-content">
                     <h3 className='more-h3'>{item.c[0]?.v}</h3>
@@ -123,7 +123,7 @@ const MoreSwitch = () => {
                   </div>
                 </a>
               </div>
-            ))}
+            ))} 
           </Slider>
 
         </div>
