@@ -45,11 +45,9 @@ const Root = () => {
       <Suspense fallback={<Preloader />}>
         <Slider />
       </Suspense>
-        {/* Other components */}
         <Favorites cursorPosition={cursorPosition} setCursorPosition={setCursorPosition} />
       </div>
       <div className="mobile-only">
-        {/* Other components */}
         <Suspense fallback={<Preloader />}>
         <SliderMobile />
         </Suspense>

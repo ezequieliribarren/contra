@@ -1,4 +1,6 @@
-footer {
+
+  
+  footer {
   height: 100vh !important;
   width: 100%;
   position: absolute;
@@ -25,6 +27,33 @@ footer {
 
   }
 
+  .ver-proyectos-footer {
+    overflow: hidden;
+    a{
+      width: 100%; 
+      display: flex;
+      justify-content: space-around; /* Ajusta según sea necesario */
+    }
+  
+    a h3 {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
+      animation: scrollRight 6s linear infinite; /* Ajusta la duración según sea necesario */
+      font-size: 3rem;
+      background-color: none;
+    }
+  }
+  
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
   .footer-circle {
     background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1701884181/LOGOS/footer_mgzqrc.png);
     background-position: center;
@@ -32,7 +61,8 @@ footer {
     background-repeat: no-repeat;
     height: 50rem;
     width: 50rem;
-  }
+  } 
+
 
   a {
     font-size: 1.6rem;

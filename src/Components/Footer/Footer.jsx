@@ -49,7 +49,7 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
       <div className="container-fluid">
         <div className={`ver-proyectos-footer ${none}`}>
           <Link to='/work'>
-          <a href="">Ver Proyectos</a>
+          <a href=""><h3>Ver Proyectos</h3> <h3>Ver Proyectos</h3> <h3>Ver Proyectos</h3></a>
           </Link>
           
         </div>

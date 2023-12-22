@@ -110,27 +110,27 @@ const Projects = () => {
             }}
           >
             <div className='col-2 title-project height'>
-              <Link to={`/project/${row.c[9]?.v}`}>
+              <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=0`}>
                 <h3>{row.c[0]?.v}</h3>
               </Link>
             </div>
             <div className='col-2 category-project height'>
-              <Link to={`/project/${row.c[9]?.v}`}>
+              <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=0`}>
                 <h4>{row.c[2]?.v} / {row.c[3]?.v}</h4>
               </Link>
             </div>
             <div className='col-2 height'>
-              <Link to={`/project/${row.c[9]?.v}`}>
+              <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=0`}>
                 <h4>{row.c[4]?.v}</h4>
               </Link>
             </div>
             <div className='col-2 height'>
-              <Link to={`/project/${row.c[9]?.v}`}>
+              <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=0`}>
                 <h4>{row.c[5]?.v}</h4>
               </Link>
             </div>
             <div className='col-2'>
-              <Link to={`/project/${row.c[9]?.v}`}>
+              <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=0`}>
                 <h4>{row.c[6]?.v}</h4>
               </Link>
             </div>

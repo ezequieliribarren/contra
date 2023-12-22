@@ -24,11 +24,12 @@
 
     .hiden {
         display: block;
-        background-color: #e6e8e6;
+        backdrop-filter: blur(5px);
         height: 10rem;
         position: fixed;
         bottom: 0%;
         width: 100%;
+        
     }
 
     .filter-projects {
@@ -38,6 +39,7 @@
         left: 50%;
         transform: translateX(-50%);
         z-index: 111;
+
 
         li {
             cursor: pointer;

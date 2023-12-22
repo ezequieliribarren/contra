@@ -1,23 +1,10 @@
 import React, { useRef } from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, open, onClose, zip, video }) => {
+const AbstractSlider = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, zip, video }) => {
   const linkRef = useRef(null);
 
-  const modalStyle = {
-    position: 'fixed',
-    top: 0,
-    right: open ? 0 : '-521.5px', // Ajusta según el ancho del modal
-    width: 521.5,
-    height: '100vh',
-    bgcolor: '#0F0F0F',
-    border: '2px solid #000',
-    boxShadow: 24,
-    transition: 'right 1s ease-in-out',
-  };
   const copyToClipboard = () => {
     if (linkRef.current) {
       // Seleccionar el contenido del enlace
@@ -38,18 +25,10 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={onClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      className="modal-entered"
-    >
-      <Box sx={modalStyle} className='abstract-box'>
+      <div className='abstract-slider'>
         <div id={id} className={`abstract ${abstract}`} style={{ backgroundImage: `url(${img})` }}>
           <div className='abstract-sombra'>
             <h2 className='abstract-h2'>{title}</h2>
-            <button className='abstract-close-button' onClick={onClose}>( x )</button>
             <div>
               {ver}
             </div>
@@ -87,13 +66,12 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
             </div>
           </div>
         </div>
-      </Box>
-    </Modal>
+      </div>
   );
 }
 
 
-export default Abstract;
+export default AbstractSlider;
 
 
 

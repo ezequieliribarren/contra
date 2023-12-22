@@ -142,7 +142,7 @@ li {
     height: 23px;
     border: 4px solid white;
     border-radius: 50%;
-    z-index: 999999 !important;
+    z-index: 999999999 !important;
     position: fixed;
     mix-blend-mode: difference !important;
   }
@@ -154,6 +154,8 @@ li {
     transition: height 0.1s ease-in-out;
     border: solid 2px white;
   }
+
+
   
 
   .cursor.large2, .cursor.large3 {
@@ -215,9 +217,6 @@ li {
         display: inherit;
     }
 
-    .custom-cursor {
-        display: none;
-    }
 }
 
 @media (max-width: 730px) {

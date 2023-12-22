@@ -5,7 +5,10 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+}
 
+.abstract-slider{
+z-index: 10000 !important;
 }
 
 
@@ -72,6 +75,7 @@
 
 .abstract-a1,
 .abstract-a2,
+.abstract-a3,
 .abstract-a3 {
   h4 {
     text-align: center;
@@ -80,7 +84,8 @@
 
 .abstract-a1 img,
 .abstract-a2 img,
-.abstract-a3 img {
+.abstract-a3 img,
+.abstract-a4 img  {
   height: 3rem;
   width: auto;
 

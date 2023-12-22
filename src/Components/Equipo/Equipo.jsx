@@ -5,7 +5,6 @@ import { useFourData } from '../../../Context/Context';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-
 const Equipo = () => {
   const equipoRef = useRef(null);
   const fourData = useFourData();
@@ -16,8 +15,6 @@ const Equipo = () => {
   useEffect(() => {
     AOS.init();
   }, []);
-  
-  const [scrollY, setScrollY] = useState(0);
 
   const equipoData = fourData
     .slice(1)
@@ -34,20 +31,23 @@ const Equipo = () => {
 
   const handleMemberHover = (id) => {
     setHoveredMember(id);
-    setSelectedMembers([id]); 
+    setSelectedMembers([id]);
     setSelectedMember(id);
   };
 
   const handleMemberLeave = () => {
-    setHoveredMember(all);
+    // No cambia hoveredMember a null si ya hay un miembro seleccionado
+    if (!selectedMember) {
+      setHoveredMember(null);
+    }
   };
 
   return (
-    <section id='equipo' ref={equipoRef} >
+    <section id='equipo' ref={equipoRef}>
       <div className='container-fluid'>
-        <div className='row' >
-          <div className='col-12 col-xl-4'  >
-            <h2 data-aos="fade-up">Quienes somos</h2 >
+        <div className='row'>
+          <div className='col-12 col-xl-4'>
+            <h2 data-aos="fade-up">Quienes somos</h2>
             <ul className='equipo'>
               {equipoData.map((miembro) => (
                 <li
@@ -79,8 +79,11 @@ const Equipo = () => {
             </ul>
           </div>
           <div className='col-12 col-xl-8 equipo-grafic-container'>
-            {/* Mostrar el gráfico con todos los miembros si no hay hover */}
-            <Grafic  graficData={hoveredMember ? equipoData[hoveredMember - 1]?.graficData : equipoData.map((miembro) => miembro.graficData)} selectedMembers={selectedMembers} />
+            <Grafic
+              data-aos="fade-up"
+              graficData={hoveredMember ? equipoData[hoveredMember - 1]?.graficData : equipoData.map((miembro) => miembro.graficData)}
+              selectedMembers={selectedMembers}
+            />
           </div>
         </div>
       </div>

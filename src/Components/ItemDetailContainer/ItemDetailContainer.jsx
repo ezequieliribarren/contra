@@ -6,9 +6,11 @@ import Abstract from '../Abstract/Abstract';
 import Nav2 from '../Nav2/Nav2';
 import What from '../What/What';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
-import Cursor from '../Cursor/Cursor';
 import Footer from '../Footer/Footer';
 import { GridLoader } from 'react-spinners';
+import Nav from '../Nav/Nav';
+import AbstractSlider from '../Abstract-Slider/AbstractSlider';
+import { useLocation } from 'react-router-dom';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const { id } = useParams();
@@ -19,6 +21,11 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
   const [openAbstract, setOpenAbstract] = useState(false);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const from = queryParams.get('from');
+  const initialSlide = parseInt(queryParams.get('initialSlide'), 10) || 0;
+
 
   const handleWhatClick = () => {
     if (onWhatClick) {
@@ -48,6 +55,42 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     setLoading(false);
   }, [id, data]);
 
+  useEffect(() => {
+    // Scroll a la posición correcta del slider
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(initialSlide);
+    }
+  }, [initialSlide]);
+
+  useEffect(() => {
+    const handleLoad = () => {
+      // Scroll a la posición correcta del slider después de cargar la página
+      if (sliderRef.current) {
+        sliderRef.current.slickGoTo(initialSlide);
+      }
+  
+      // Ajusta la posición de cada slider individualmente
+      const sliderElements = document.querySelectorAll('.slick-slide');
+      sliderElements.forEach((element, index) => {
+        element.style.transform = `translate3d(${index * 100}%, 0px, 0px)`;
+      });
+    };
+  
+    // Si la página ya se ha cargado, ejecutamos el código de manejo de carga de inmediato
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      // Si la página aún no se ha cargado, agregamos el listener al evento onload
+      window.addEventListener('load', handleLoad);
+    }
+  
+    // Limpia el listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('load', handleLoad);
+    };
+  }, [initialSlide]);
+  
+  
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -84,6 +127,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     project.c[19]?.v,
     project.c[20]?.v,
     project.c[21]?.v,
+    <AbstractSlider {...abstractContent} />
   ];
 
   const filteredMediaContent = mediaContent.filter(item => item);
@@ -113,13 +157,14 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: initialSlide,
     speed: 1000,
     slidesToShow: 3,
     swipeToSlide: false,
     slidesToScroll: 1,
     arrows: true,
     swipe: true,
+    initialSlide: initialSlide,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
     responsive: [
@@ -146,14 +191,14 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
 
   return (
     <div className='item-detail-container' ref={itemDetailRef}>
+      <Nav about='none' mitad='mitad-black blend' nav='top-left-button blend' work='none' more='none'/>
       <Nav2
         onAbstractClick={handleAbstractClick}
         onWhatClick={handleWhatClick}
         isWhatOpen={isWhatOpen}
         onClose={handleWhatClose}
       />
-      <Cursor/>
-      <Slider ref={sliderRef} id={id} {...settings}>
+      <Slider ref={sliderRef} id={id} {...settings} className='slider-project-item'>
         {renderMedia()}
       </Slider>
       <div className='project-img-container'>

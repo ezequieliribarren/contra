@@ -1,11 +1,10 @@
-// Grafic.js
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { useFourData } from '../../../Context/Context';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-export default function Grafic({ graficData, selectedMembers }) {
+const Grafic = ({ graficData, selectedMembers }) => {
   const chartRef = useRef(null);
   const fourData = useFourData();
   const [skills, setSkills] = useState([]);
@@ -13,7 +12,6 @@ export default function Grafic({ graficData, selectedMembers }) {
   useEffect(() => {
     AOS.init();
   }, []);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     // Mapea la información del contexto para obtener las habilidades desde la columna 8
@@ -48,14 +46,13 @@ export default function Grafic({ graficData, selectedMembers }) {
               target: 'origin',
               above: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
             },
-            borderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75', // Borde blanco para el miembro activo, de lo contrario, utiliza el color transparente
-            backgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75', // Color transparente para el miembro activo, de lo contrario, utiliza el color transparente
-            pointBorderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75', // Borde blanco para el miembro activo, de lo contrario, utiliza el color transparente
-            pointBackgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75', // Color transparente para el miembro activo, de lo contrario, utiliza el color transparente
-            order: 1, // Asegura que todas las líneas sean visibles
+            borderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
+            backgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
+            pointBorderColor: selectedMembers.includes(index + 1) ? 'white' : '#efca9f75',
+            pointBackgroundColor: selectedMembers.includes(index + 1) ? '#F9A952' : '#efca9f75',
+            order: 1,
           };
         }).sort((a, b) => {
-          // Coloca los conjuntos de datos seleccionados al final del array
           if (selectedMembers.includes(fourData.slice(1).indexOf(a) + 1)) {
             return 1;
           } else {
@@ -64,6 +61,10 @@ export default function Grafic({ graficData, selectedMembers }) {
         }),
       },
       options: {
+        animation: {
+          duration: 2500,
+          easing: 'easeInOutQuart',
+        },
         scales: {
           y: {
             min: 1,
@@ -77,39 +78,38 @@ export default function Grafic({ graficData, selectedMembers }) {
               display: false,
             },
             grid: {
-              drawOnChartArea: false, // Dibuja el grid fuera del área del gráfico
+              drawOnChartArea: false,
               color: (context) => {
                 if (context.tick && context.tick.major) {
-                  // Líneas punteadas solo para las marcas mayores (etiquetas)
-                  return 'rgba(0, 0, 0, 0)'; // Color transparente para líneas horizontales
+                  return 'rgba(0, 0, 0, 0)';
                 }
-                return 'rgba(0, 0, 0, 1)'; // Color sólido para líneas verticales
+                return 'rgba(0, 0, 0, 1)';
               },
               lineWidth: (context) => {
                 if (context.tick && context.tick.major) {
-                  return 0; // Ancho cero para líneas horizontales (transparentes)
+                  return 0;
                 }
-                return 1; // Ancho de línea para líneas verticales (no transparentes)
+                return 1;
               },
               borderDash: (context) => {
                 if (context.tick && context.tick.major) {
-                  return [5, 5]; // Patrón de línea punteada para líneas horizontales
+                  return [5, 5];
                 }
-                return []; // Sin patrón para líneas verticales
+                return [];
               },
             },
           },
           x: {
             display: true,
-            position: 'top', // Posiciona el eje x arriba del grafico
+            position: 'top',
             ticks: {
-              display: true, // Oculta las etiquetas del eje x
+              display: true,
             },
           },
         },
         plugins: {
           legend: {
-            display: false, // Oculta la leyenda
+            display: false,
           },
           tooltip: {
             enabled: true,
@@ -117,7 +117,7 @@ export default function Grafic({ graficData, selectedMembers }) {
         },
         layout: {
           padding: {
-            top: 30, // Aumenta el espacio para el texto de las skills
+            top: 30,
           },
         },
         elements: {
@@ -138,8 +138,13 @@ export default function Grafic({ graficData, selectedMembers }) {
   }, [graficData, skills, fourData, selectedMembers]);
 
   return (
-    <div data-aos="fade-left" className='grafico-container' style={{ height: '75rem' }}>
-      <canvas  className='grafico' ref={chartRef} />
+    <div data-aos="fade-left" className='grafico-container' style={{
+      height: '75rem',
+      transition: 'height 1s ease',
+    }}>
+      <canvas className='grafico' ref={chartRef} />
     </div>
   );
-}
+};
+
+export default Grafic;

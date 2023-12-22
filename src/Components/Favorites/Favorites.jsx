@@ -4,7 +4,6 @@ import Project from '../Project/Project';
 import LastFavorite from '../LastFavorite/LastFavorite';
 import { HashLink as Link } from 'react-router-hash-link';
 import { GridLoader } from 'react-spinners';
-// import Cursor from '../Cursor/Cursor';
 
 const Favorites = () => {
   const [loading, setLoading] = useState(true);
@@ -58,9 +57,9 @@ const Favorites = () => {
               row.c[14]?.v,
               <LastFavorite
                 ver={
-                  <Link className='link-proyecto-completo' to={`/project/${row.c[9]?.v}`}>
-                    <h4>Ver proyecto ⭷</h4>
-                  </Link>
+<Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5`}>
+  <h4>Ver proyecto ⭷</h4>
+</Link>
                 }
                 title={row.c[0]?.v}
                 id={row.c[9]?.v}

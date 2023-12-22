@@ -31,7 +31,7 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
       setIsScrolling(true);
 
       const delta = Math.sign(event.deltaY);
-      const scrollThreshold = 1;
+      const scrollThreshold = 0.5;
 
       setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
 
@@ -57,13 +57,13 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
           const prevProject = projectRef.current.previousSibling;
           if (prevProject) {
             scroll.scrollTo(prevProject.offsetTop, {
-              duration: 700,
-              smooth: 'easeInOutQuart',
+              duration: 550,
+            
             });
           } else {
             scroll.scrollTo(document.getElementById('slider').offsetTop, {
-              duration: 700,
-              smooth: 'easeInOutQuart',
+              duration: 550,
+              
             });
           }
         }
@@ -207,7 +207,7 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
         <ScrollLink
           to={`project-${index + 1}`}
           smooth={true}
-          duration={1500}
+          duration={500}
           className="scroll-link"
         ></ScrollLink>
       )}
@@ -215,7 +215,7 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
         <ScrollLink
           to={`#slider`}
           smooth={true}
-          duration={1500}
+          duration={500}
           offset={-50}
           className="scroll-link"
         ></ScrollLink>
@@ -224,7 +224,7 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
         <ScrollLink
           to={'#contact'}
           smooth={true}
-          duration={1500}
+          duration={500}
           offset={-50}
           className="scroll-link"
         ></ScrollLink>
