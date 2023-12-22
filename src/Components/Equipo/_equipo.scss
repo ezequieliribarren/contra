@@ -124,10 +124,11 @@
 }
 
 .equipo li:first-child {
-    padding-top: 48rem;
+    padding-top: 40rem;
 }
 
 .equipo li {
+    width: 27rem;
     margin: 3rem 0;
     cursor: none;
 
@@ -178,13 +179,13 @@
 
 .grafico-container {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     margin: 0;
 
     canvas {
-        width: 80% !important;
-        height: 75% !important;
+        width: 85% !important;
+        height: 90% !important;
     }
 }
 

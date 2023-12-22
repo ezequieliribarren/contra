@@ -14,8 +14,7 @@ const Grafic = ({ graficData, selectedMembers }) => {
   }, []);
 
   useEffect(() => {
-    // Mapea la información del contexto para obtener las habilidades desde la columna 8
-    const mappedSkills = fourData.map((row) => row.c[8]?.v).slice(1);
+    const mappedSkills = fourData.map((row) => row.c[8]?.v);
     setSkills(mappedSkills);
   }, [fourData]);
 
@@ -35,9 +34,8 @@ const Grafic = ({ graficData, selectedMembers }) => {
       type: 'line',
       data: {
         labels: skills,
-        datasets: fourData.slice(1).map((user, index) => {
+        datasets: fourData.map((user, index) => {
           const hasData = user.c[7]?.v && user.c[7]?.v.length > 0;
-
           return {
             label: hasData ? user.c[3]?.v || `User ${index + 1}` : '',
             data: hasData ? user.c[7]?.v : [],
@@ -72,8 +70,8 @@ const Grafic = ({ graficData, selectedMembers }) => {
             title: {
               display: true,
               text: 'Tiempo Invertido',
-              color: 'black',
             },
+            
             ticks: {
               display: false,
             },
@@ -104,6 +102,8 @@ const Grafic = ({ graficData, selectedMembers }) => {
             position: 'top',
             ticks: {
               display: true,
+              maxRotation: 90,
+              minRotation: 65,
             },
           },
         },

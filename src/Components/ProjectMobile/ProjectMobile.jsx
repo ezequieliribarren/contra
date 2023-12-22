@@ -1,4 +1,3 @@
-// ProjectMobile.jsx
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -10,6 +9,8 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [cursorPosition, setCursorPosition] = useState('middle');
+  const maxVisibleDots = 3;
+
 
   const handleScroll = useCallback(
     (event) => {
@@ -58,61 +59,17 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
     [isScrolling]
   );
 
-  useEffect(() => {
-    if (projectRef.current) {
-      projectRef.current.addEventListener('wheel', handleScroll);
-    }
 
-    return () => {
-      if (projectRef.current) {
-        projectRef.current.removeEventListener('wheel', handleScroll);
-      }
-    };
-  }, [handleScroll]);
-
-  // MOVIMIENTO DEL MOUSE
-  const handleMouseMove = (event) => {
-    const sliderRect = projectRef.current.getBoundingClientRect();
-    const cursorX = event.clientX - sliderRect.left;
-    const sliderWidth = sliderRect.width;
-
-    const percentage = (cursorX / sliderWidth) * 100;
-
-    if (percentage < 30) {
-      setCursorPosition('left');
-    } else if (percentage > 70) {
-      setCursorPosition('right');
-    } else {
-      setCursorPosition('middle');
-    }
-  };
-
-  useEffect(() => {
-    if (projectRef.current) {
-      projectRef.current.addEventListener('wheel', handleScroll);
-      projectRef.current.addEventListener('mousemove', handleMouseMove);
-    }
-
-    return () => {
-      if (projectRef.current) {
-        projectRef.current.removeEventListener('wheel', handleScroll);
-        projectRef.current.removeEventListener('mousemove', handleMouseMove);
-      }
-    };
-  }, [handleScroll, handleMouseMove]);
 
   const settings = {
     dots: true,
     infinite: false,
-    speed: 1000,
+    speed: 600,
     slidesToShow: 3,
     swipeToSlide: true,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     swipe: true,
-    prevArrow: <ArrowLeft />,
-    nextArrow: <ArrowRight />,
-
     responsive: [
       {
         breakpoint: 1250,
@@ -121,6 +78,7 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
           slidesToScroll: 1,
           infinite: false,
           dots: true,
+          arrows: false,
         },
       },
       {
@@ -129,11 +87,18 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: false,
-          dots: true,
+          dots: true,    
+          arrows: false,
         },
       },
     ],
+    appendDots: (dots) => (
+      <div>
+        {dots.slice(0, maxVisibleDots)} {/* Muestra solo los primeros maxVisibleDots dots */}
+      </div>
+    ),
   };
+
 
   const isVideoLink = (url) => {
     return url.endsWith('.mp4');

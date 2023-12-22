@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { GridLoader } from 'react-spinners';
 
-const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) => {
+const Project = ({ imageUrls, index, setCursorPosition }) => {
   const [loading, setLoading] = useState(true);
 
   const handleImageLoad = () => {
@@ -88,46 +88,11 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
     };
   }, [handleScroll]);
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setCursorPosition({ x: event.clientX, y: event.clientY });
-
-      const newCursorType = determineCursorType(event.clientX);
-      setCursorType(newCursorType);
-    };
-
-    if (projectRef.current) {
-      projectRef.current.addEventListener('mousemove', handleMouseMove);
-    }
-
-    return () => {
-      if (projectRef.current) {
-        projectRef.current.removeEventListener('mousemove', handleMouseMove);
-      }
-    };
-  }, [cursorPosition]);
-
-  const determineCursorType = (x) => {
-    const sliderRect = projectRef.current.getBoundingClientRect();
-    const sliderWidth = sliderRect.width;
-    const leftThreshold = sliderWidth / 3;
-    const rightThreshold = (sliderWidth / 3) * 2;
-    const someSpecificCondition = true;
-  
-    if (x < leftThreshold) {
-      return { type: someSpecificCondition ? 'large2' : 'left-cursor', isLarge: true, isLarge3: false };
-    } else if (x > rightThreshold) {
-      return { type: someSpecificCondition ? 'large3' : 'right-cursor', isLarge: false, isLarge3: true };
-    } else {
-      return { type: 'default', isLarge: false, isLarge3: false };
-    }
-  };
-
 
   const settings = {
     dots: false,
     infinite: false,
-    speed: 1000,
+    speed: 600,
     slidesToShow: 3, 
     swipe: true,
     swipeToSlide: true,
@@ -150,6 +115,7 @@ const Project = ({ imageUrls, id, index, cursorPosition, setCursorPosition }) =>
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: true,
+          arrows: false,
         },
       },
     ],

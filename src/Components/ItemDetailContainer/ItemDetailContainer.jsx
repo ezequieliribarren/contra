@@ -24,7 +24,9 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const from = queryParams.get('from');
-  const initialSlide = parseInt(queryParams.get('initialSlide'), 10) || 0;
+  const initialSlide = parseInt(queryParams.get('initialSlide'), 10) || 0;  
+  const maxVisibleDots = 3;
+  const [isLastSlide, setIsLastSlide] = useState(false);
 
 
   const handleWhatClick = () => {
@@ -49,6 +51,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     setOpenAbstract(false);
   };
 
+
   useEffect(() => {
     const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
     setProject(selectedProject);
@@ -62,35 +65,6 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     }
   }, [initialSlide]);
 
-  useEffect(() => {
-    const handleLoad = () => {
-      // Scroll a la posición correcta del slider después de cargar la página
-      if (sliderRef.current) {
-        sliderRef.current.slickGoTo(initialSlide);
-      }
-  
-      // Ajusta la posición de cada slider individualmente
-      const sliderElements = document.querySelectorAll('.slick-slide');
-      sliderElements.forEach((element, index) => {
-        element.style.transform = `translate3d(${index * 100}%, 0px, 0px)`;
-      });
-    };
-  
-    // Si la página ya se ha cargado, ejecutamos el código de manejo de carga de inmediato
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      // Si la página aún no se ha cargado, agregamos el listener al evento onload
-      window.addEventListener('load', handleLoad);
-    }
-  
-    // Limpia el listener cuando el componente se desmonta
-    return () => {
-      window.removeEventListener('load', handleLoad);
-    };
-  }, [initialSlide]);
-  
-  
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -158,7 +132,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const settings = {
     dots: false,
     infinite: initialSlide,
-    speed: 1000,
+    speed: 600,
     slidesToShow: 3,
     swipeToSlide: false,
     slidesToScroll: 1,
@@ -175,6 +149,8 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
           slidesToScroll: 1,
           infinite: false,
           dots: true,
+          infinite: initialSlide,
+          initialSlide: initialSlide,
         },
       },
       {
@@ -184,14 +160,22 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
           slidesToScroll: 1,
           infinite: false,
           dots: true,
+          arrows: false,
+          infinite: initialSlide,
+          initialSlide: initialSlide,
         },
       },
     ],
+    appendDots: (dots) => (
+      <div>
+        {dots.slice(0, maxVisibleDots)} {/* Muestra solo los primeros maxVisibleDots dots */}
+      </div>
+    ),
   };
 
   return (
     <div className='item-detail-container' ref={itemDetailRef}>
-      <Nav about='none' mitad='mitad-black blend' nav='top-left-button blend' work='none' more='none'/>
+      <Nav about='none' mitad='mitad blend' nav='top-left-button blend' work='none' more='none'/>
       <Nav2
         onAbstractClick={handleAbstractClick}
         onWhatClick={handleWhatClick}
@@ -212,6 +196,6 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
       <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact="contact-item"/>
     </div>
   );
-};
+  }
 
 export default ItemDetailContainer;

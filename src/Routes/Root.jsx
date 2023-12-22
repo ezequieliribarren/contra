@@ -39,8 +39,6 @@ const Root = () => {
         blend='blend'
       />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
-
-
       <div className="desktop-only">      
       <Suspense fallback={<Preloader />}>
         <Slider />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
+import Nav from '../Nav/Nav';
 import Nav3 from '../Nav3/Nav3';
 import Footer from '../Footer/Footer';
 import { GridLoader } from 'react-spinners';
@@ -55,6 +56,7 @@ const WorkMobile = ({ showProjectDetails }) => {
 
   return (
     <section id='workMobile'>
+      <Nav about='none' mitad='mitad' nav='top-left-button blend' work='none' more='none'/>
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact-work' />
       {data.map((row, index) => {
         const imageUrls = [

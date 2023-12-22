@@ -19,7 +19,7 @@ const FavoritesMobile = () => {
             row.c[14]?.v,
             <LastFavorite
             ver={
-              <Link className='link-proyecto-completo' to={`/project/${row.c[9]?.v}`}>
+<Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5`}>
                 <h4>Ver proyecto ⭷</h4>
               </Link>
             }

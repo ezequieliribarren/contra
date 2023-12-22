@@ -156,8 +156,6 @@ li {
   }
 
 
-  
-
   .cursor.large2, .cursor.large3 {
     background-image: url(images/cursor-left.png);
     background-position: center;
@@ -190,23 +188,27 @@ li {
       opacity: 0;
     }
   }
-.slick-dots {
+
+  .slick-dots {
     z-index: 1111111111 !important;
-    position: absolute;
     top: 90%;
-    left: 41%;
-    width: 20rem !important;
-
-}
-
-
-.slick-dots li button {
-    content: '\2022'; 
-    font-size: 1rem !important;
-    color: white;
-    mix-blend-mode: difference;
+    left: 41%; 
+    mix-blend-mode: difference !important;
+    height: 25px;
   }
 
+.slick-dots li button {
+    background-color: black !important;
+    mix-blend-mode: difference !important;
+    border-radius: 50%;
+    color: transparent !important;
+    border: 3.5px solid rgb(255, 255, 255) !important;
+}
+
+.slick-dots li.slick-active button {
+background-color: black !important;
+
+}
 
 @media (max-width: 1200px) {
     .desktop-only-work {
