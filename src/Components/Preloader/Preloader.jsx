@@ -7,7 +7,7 @@ const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Extrae las URLs de video desde secondData y crea el array images
-  const images = secondData.map((item) => item.c[0]?.v).filter(Boolean);
+  const images = secondData.map((item) => item.c[5]?.v).filter(Boolean);
 
   useEffect(() => {
     // Establecer un temporizador para asegurarse de que el preloader dure al menos 2 segundos

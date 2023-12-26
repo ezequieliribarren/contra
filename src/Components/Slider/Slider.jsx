@@ -69,16 +69,13 @@ const Slider = () => {
     };
   }, []);
 
-  // Ordena aleatoriamente el array secondData
-  const shuffledData = secondData.slice().sort(() => Math.random() - 0.5);
-
   return (
     <header className="slider-container" ref={myRef} id="slider">
       <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToSection}>
         <img src="images/flecha.png" alt="flecha" className="flecha" />
       </div>
-      {shuffledData &&
-        shuffledData.map((item, index) => {
+      {secondData &&
+        secondData.map((item, index) => {
           const videoUrl = item.c[0]?.v;
           const isCurrentVideo = index === currentIndex;
 
