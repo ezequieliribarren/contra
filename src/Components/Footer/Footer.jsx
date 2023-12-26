@@ -58,10 +58,10 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
             <a href=""><img className='img-fluid' src={logo} alt="Logo" /></a>
           </div>
           <div className={`a1 ${color}`}>
-            <a className={colora} href="mailto:contra.architecture@gmail.com">contra.architecture@gmail.com</a>
+            <a className={colora} href="mailto:contra.architecture@gmail.com">contra.architecture@gmail.com</a><a className={`${colora} flecha-footer`} target='_blank' href="mailto:contra.architecture@gmail.com">⭷</a>
           </div>
           <div className={`a2 ${color}`}>
-            <a className={colora} href="tel:+34697286914">+34 697 286 914</a>
+            <a className={colora} href="tel:+34697286914">+34 697 286 914</a><a className={`${colora} flecha-footer`}target='_blank' href="tel:+34697286914">⭷</a>
           </div>
           <div className={`a4 ${color}`}>
             <div className='div-maps'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS⭷</a></div>

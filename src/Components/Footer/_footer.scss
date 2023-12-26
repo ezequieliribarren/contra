@@ -54,6 +54,8 @@
       transform: translateX(-100%);
     }
   }
+
+
   .footer-circle {
     background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1701884181/LOGOS/footer_mgzqrc.png);
     background-position: center;
@@ -63,7 +65,14 @@
     width: 80rem;
   } 
 
+.flecha-footer{
+  margin-left: 1rem;
+}
 
+.flecha-footer:hover{
+  color: #E3570D;
+  translate: 14px !important;
+}
   a {
     font-size: 1.6rem;
     color: white;
@@ -79,14 +88,13 @@
 
   .a1 {
     position: relative;
-    top: -6%;
-
-    width: 25rem;
+    top: -9%;
+    width: 27rem;
   }
 
   .a2 {
     position: relative;
-    top: 3.5%;
+    top: 2.5%;
     width: 20rem;
   }
 
@@ -97,7 +105,7 @@
   .a3 {
     position: relative;
     display: flex;
-    top: 10.8%;
+    top: 12.5%;
     width: 40rem;
     display: flex !important;
 
@@ -111,8 +119,8 @@
 
   .a4 {
     position: relative;
-    top: -17%;
-    left: 65%;
+    top: -18.8%;
+    left: 66%;
     padding: 0;
     width: 25rem;
 

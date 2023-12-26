@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useSecondData } from '../../../Context/Context';
 
 const Preloader = () => {
-  const images = ['images/video.png', 'images/x.png', 'images/lupa.png'];
+  const secondData = useSecondData(); // Obtén los datos desde el contexto o de donde sea que los estés obteniendo
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Extrae las URLs de video desde secondData y crea el array images
+  const images = secondData.map((item) => item.c[0]?.v).filter(Boolean);
 
   useEffect(() => {
     // Establecer un temporizador para asegurarse de que el preloader dure al menos 2 segundos
