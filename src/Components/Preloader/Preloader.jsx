@@ -1,35 +1,41 @@
+// Preloader.js
 import React, { useEffect, useState } from 'react';
 import { useSecondData } from '../../../Context/Context';
 
-const Preloader = () => {
-  const secondData = useSecondData(); // Obtén los datos desde el contexto o de donde sea que los estés obteniendo
+const Preloader = ({ visible, onLoaded }) => {
+  const secondData = useSecondData();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Extrae las URLs de video desde secondData y crea el array images
   const images = secondData.map((item) => item.c[5]?.v).filter(Boolean);
 
   useEffect(() => {
-    // Establecer un temporizador para asegurarse de que el preloader dure al menos 2 segundos
-    const timerId = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    let intervalId;
 
-    // Intervalo para cambiar las imágenes
-    const intervalId = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 2000);
+    if (visible) {
+      const startImageRotation = () => {
+        intervalId = setInterval(() => {
+          setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 1000);
+      };
 
-    // Limpiar temporizador e intervalo al desmontar el componente
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timerId);
-    };
-  }, [images]);
+      startImageRotation();
+
+      const hidePreloaderTimeout = setTimeout(() => {
+        if (typeof onLoaded === 'function') {
+          onLoaded();
+        }
+      }, 3000);
+
+      return () => {
+        clearInterval(intervalId);
+        clearTimeout(hidePreloaderTimeout);
+      };
+    }
+  }, [images, onLoaded, visible]);
 
   return (
-    <div className={`preloader-container ${isLoading ? 'loading' : ''}`}>
-      <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />
+    <div className={`preloader-container ${visible ? '' : 'loaded'}`}>
+      {visible && <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />}
     </div>
   );
 };

@@ -7,9 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer } from 'react-toastify';
 import PreLoader from './Components/Preloader/Preloader';
+import Root from './Routes/Root'
 
 // Lazy load components
-const Root = lazy(() => import('./Routes/Root'));
 const Work = lazy(() => import('./Routes/Work'));
 const About = lazy(() => import('./Routes/About'));
 const More = lazy(() => import('./Routes/More'));
@@ -22,9 +22,7 @@ const router = createHashRouter([
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <Suspense fallback={<PreLoader/>}>
             <Root />
-          </Suspense>
         </SecondDataProvider>
       </DataProvider>
     ),

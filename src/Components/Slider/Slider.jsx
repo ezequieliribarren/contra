@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef, useLayoutEffect, useMemo } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
 
@@ -7,18 +7,24 @@ const Slider = () => {
   const myRef = useRef(null);
   const videoRefs = useRef([]);
   const [isFilterVisible, setIsFilterVisible] = useState(true);
+  const [areVideosLoaded, setAreVideosLoaded] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
   const secondData = useSecondData();
 
   const handleVideoEnd = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % secondData.length);
-  };
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledData.length);
 
+
+  };
+  const shuffleVideos = (videos) => {
+    return videos.slice().sort(() => Math.random() - 0.5);
+  };
   const handleScrollToSection = () => {
     if (myRef.current) {
       const offsetTop = myRef.current.offsetTop + window.innerHeight;
       scroll.scrollTo(offsetTop, {
         behavior: 'smooth',
-        duration: 800,
+        duration: 600,
       });
     }
   };
@@ -29,9 +35,12 @@ const Slider = () => {
     }
   };
 
+  useLayoutEffect(() => {
+    setCurrentIndex(0);
+  }, []);
+
   useEffect(() => {
     return () => {
-      // Limpia los eventos al desmontar el componente
       videoRefs.current.forEach((videoRef) => {
         if (videoRef) {
           videoRef.removeEventListener('ended', handleVideoEnd);
@@ -41,67 +50,84 @@ const Slider = () => {
   }, []);
 
   useEffect(() => {
-    // Verifica si el índice ha cambiado
     if (currentIndex !== null && currentIndex !== undefined) {
-      const currentVideoRef = videoRefs.current[currentIndex];
-      if (currentVideoRef) {
-        currentVideoRef.addEventListener('ended', handleVideoEnd);
-        currentVideoRef.play(); // Inicia la reproducción automáticamente
-      }
+      videoRefs.current.forEach((videoRef, index) => {
+        if (videoRef) {
+          if (index === currentIndex) {
+            videoRef.addEventListener('ended', handleVideoEnd);
+            videoRef.play();
+          } else {
+            videoRef.pause();
+            videoRef.currentTime = 0;
+          }
+        }
+      });
 
       return () => {
-        // Limpia el evento al desmontar el componente o al cambiar de video
-        if (currentVideoRef) {
-          currentVideoRef.removeEventListener('ended', handleVideoEnd);
-        }
+        videoRefs.current.forEach((videoRef) => {
+          if (videoRef) {
+            videoRef.removeEventListener('ended', handleVideoEnd);
+          }
+        });
       };
     }
-  }, [currentIndex]);
+  }, [currentIndex, secondData]);
 
-  useEffect(() => {
-    // Limpia los eventos al desmontar el componente
-    return () => {
-      videoRefs.current.forEach((videoRef) => {
-        if (videoRef) {
-          videoRef.removeEventListener('ended', handleVideoEnd);
-        }
-      });
-    };
-  }, []);
+  const handleVideoLoaded = () => {
+    setAreVideosLoaded(true);
+
+    // Ocultar el preloader después de 5 segundos
+    setTimeout(() => {
+      setShowPreloader(false);
+    }, 5000);
+  };
+
+  const shuffledData = useMemo(() => {
+    return shuffleVideos(secondData);
+  }, [secondData]);
+
+
 
   return (
-    <header className="slider-container" ref={myRef} id="slider">
+    <header className="slider-container" ref={myRef} id="slider" onWheel={handleScroll}>
       <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToSection}>
         <img src="images/flecha.png" alt="flecha" className="flecha" />
       </div>
-      {secondData &&
-        secondData.map((item, index) => {
-          const videoUrl = item.c[0]?.v;
-          const isCurrentVideo = index === currentIndex;
+      {shuffledData.map((item, index) => {
+        const videoUrl = item.c[0]?.v;
+        const isCurrentVideo = index === currentIndex;
 
-          if (videoUrl && typeof videoUrl === 'string' && videoUrl.trim() !== '') {
-            return (
-              <div key={index} className={`slider-image ${isCurrentVideo ? 'active' : ''}`}>
-                <div className="video-container">
-                  <video
-                    ref={(el) => (videoRefs.current[index] = el)}
-                    autoPlay={isCurrentVideo}
-                    muted
-                    playsInline
-                    style={{ width: '100%', height: '100%' }}
-                    src={videoUrl}
-                  >
-                    Tu navegador no soporta el tag de video.
-                  </video>
-                </div>
-              </div>
-            );
-          } else {
-            return null;
-          }
-        })}
+        // Skip rendering and playing videos when videoUrl is empty or null
+        if (!videoUrl) {
+          return null;
+        }
+
+        return (
+          <div key={index} className={`slider-image ${isCurrentVideo ? 'active' : ''}`}>
+            <div className="video-container">
+              <video
+                ref={(el) => {
+                  videoRefs.current[index] = el;
+                  if (el) {
+                    el.addEventListener('loadedmetadata', handleVideoLoaded);
+                  }
+                }}
+                autoPlay={isCurrentVideo}
+                preload="auto"
+                muted
+                playsInline
+                style={{ width: '100%', height: '100%' }}
+                src={videoUrl}
+              >
+                Tu navegador no soporta el tag de video.
+              </video>
+            </div>
+          </div>
+        );
+      })}
     </header>
   );
 };
+
 
 export default Slider;

@@ -1,4 +1,5 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+// Root.js
+import React, { useState, useEffect } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
 import Nav from '../Components/Nav/Nav';
 import Footer from '../Components/Footer/Footer';
@@ -7,27 +8,23 @@ import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
 import FavoritesMobile from '../Components/FavoritesMobile/FavoritesMobile';
 import Preloader from '../Components/Preloader/Preloader';
-
-// Lazy load Slider component
-const Slider = lazy(() => import('../Components/Slider/Slider'));
-const SliderMobile = lazy(() => import('../Components/SliderMobile/SliderMobile'));
+import Slider from '../Components/Slider/Slider';
+import SliderMobile from '../Components/SliderMobile/SliderMobile';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
+  const [preloaderVisible, setPreloaderVisible] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
-    }, 100);
+      setPreloaderVisible(false); // Ocultar el preloader después de 3 segundos
+    }, 3000);
   }, []);
-
-  const [cursorPosition, setCursorPosition] = useState('middle');
-
-  const handleMouseMove = (e) => {
-    setCursorPosition({ x: e.clientX, y: e.clientY });
-  };
 
   return (
     <>
+      <Preloader visible={preloaderVisible} onLoaded={() => window.scrollTo(0, 0)} />
       <Nav
         mitad="mitad"
         nav="top-left-button"
@@ -39,16 +36,12 @@ const Root = () => {
         blend='blend'
       />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
-      <div className="desktop-only">      
-      <Suspense fallback={<Preloader />}>
+      <div className="desktop-only">
         <Slider />
-      </Suspense>
-        <Favorites cursorPosition={cursorPosition} setCursorPosition={setCursorPosition} />
+        <Favorites />
       </div>
       <div className="mobile-only">
-        <Suspense fallback={<Preloader />}>
         <SliderMobile />
-        </Suspense>
         <FavoritesMobile />
         <CallActionWork />
         <WorkMobile />
