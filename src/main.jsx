@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.scss';
@@ -6,15 +6,13 @@ import { DataProvider, FourDataProvider, SecondDataProvider, ThirdDataProvider }
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer } from 'react-toastify';
-import PreLoader from './Components/Preloader/Preloader';
 import Root from './Routes/Root'
+import Work from './Routes/Work'
+import About from './Routes/About'
+import WorkMobile from './Components/WorkMobile/WorkMobile';
+import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
+import More from './Routes/More'
 
-// Lazy load components
-const Work = lazy(() => import('./Routes/Work'));
-const About = lazy(() => import('./Routes/About'));
-const More = lazy(() => import('./Routes/More'));
-const WorkMobile = lazy(() => import('./Components/WorkMobile/WorkMobile'));
-const ItemDetailContainer = lazy(() => import('./Components/ItemDetailContainer/ItemDetailContainer'));
 
 const router = createHashRouter([
   {
@@ -32,9 +30,7 @@ const router = createHashRouter([
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <Suspense fallback={<PreLoader/>}>
             <Work />
-          </Suspense>
         </SecondDataProvider>
       </DataProvider>
     ),
@@ -44,9 +40,7 @@ const router = createHashRouter([
     element: (
       <FourDataProvider>
         <SecondDataProvider>
-          <Suspense fallback={<PreLoader/>}>
             <About />
-          </Suspense>
         </SecondDataProvider>
       </FourDataProvider>
     ),
@@ -56,9 +50,7 @@ const router = createHashRouter([
     element: (
       <ThirdDataProvider>
         <SecondDataProvider>
-          <Suspense fallback={<PreLoader/>}>
             <More />
-          </Suspense>
         </SecondDataProvider>
       </ThirdDataProvider>
     ),
@@ -68,9 +60,7 @@ const router = createHashRouter([
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <Suspense fallback={<PreLoader/>}>
             <WorkMobile />
-          </Suspense>
         </SecondDataProvider>
       </DataProvider>
     ),
@@ -80,9 +70,7 @@ const router = createHashRouter([
     element: (
       <DataProvider>
         <SecondDataProvider>
-          <Suspense fallback={<PreLoader/>}>
             <ItemDetailContainer />
-          </Suspense>
         </SecondDataProvider>
       </DataProvider>
     ),

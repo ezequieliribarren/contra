@@ -5,14 +5,25 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-}
-
-.abstract-slider{
-z-index: 10000 !important;
+  padding-top: 3rem;
 }
 
 
-.abstract-close-button{
+.abstract-slider {
+  z-index: 9999999999999 !important;
+  background-color: black !important;
+  position: inherit;
+}
+
+
+.abstract-slider:hover {
+  .arrow-right {
+    opacity: 0 !important;
+  }
+}
+
+
+.abstract-close-button {
   border: none;
   background-color: transparent;
   color: white;
@@ -29,7 +40,7 @@ z-index: 10000 !important;
   right: 4%;
 }
 
-.abstract-close-button:hover{
+.abstract-close-button:hover {
   color: orange;
 }
 
@@ -85,7 +96,7 @@ z-index: 10000 !important;
 .abstract-a1 img,
 .abstract-a2 img,
 .abstract-a3 img,
-.abstract-a4 img  {
+.abstract-a4 img {
   height: 3rem;
   width: auto;
 
@@ -96,29 +107,6 @@ z-index: 10000 !important;
   /* Establece el z-index deseado */
 }
 
-.last-favorites {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-size: cover;
-  position: relative;
-
-  a{
-    color: orange !important;
-  }
-
-}
-
-.shadow-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.558) !important;
-}
 
 .hover-content {
   text-align: center;
@@ -144,7 +132,7 @@ z-index: 10000 !important;
 
   }
 
-  .abstract-close-button{
+  .abstract-close-button {
     font-size: 2rem;
   }
 
@@ -161,10 +149,10 @@ z-index: 10000 !important;
   }
 
   .abstract-menu {
-    .abstract-item{
-        margin: 0 0.7rem !important;
+    .abstract-item {
+      margin: 0 0.7rem !important;
     }
-  
+
     margin: 0 !important;
 
     .abstract-a1,
@@ -202,21 +190,22 @@ z-index: 10000 !important;
     }
   }
 
-  .abstract-close-button{
+  .abstract-close-button {
     font-size: 1.5rem;
   }
 
   .abstract-menu {
-    .abstract-item{
-        margin: 0 0.7rem !important;
+    .abstract-item {
+      margin: 0 0.7rem !important;
     }
-  
+
     margin: 0 !important;
 
     .abstract-a1,
     .abstract-a2,
     .abstract-a3,
     .abstract-a4 {
+      padding-top: 1rem;
       img {
         height: 1.8rem;
       }
@@ -225,7 +214,8 @@ z-index: 10000 !important;
     }
 
     h4 {
-      font-size: 1rem !important;
+      padding-top: 0.5rem;
+      font-size: 1.3rem !important;
     }
   }
 
@@ -236,13 +226,14 @@ z-index: 10000 !important;
 
   .abstract {
     transition: none;
+    padding-top: 6rem;
 
     h2 {
-      font-size: 2.1rem;
+      font-size: 2.6rem !important;
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1.3rem !important;
       width: 30rem;
     }
   }

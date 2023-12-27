@@ -17,31 +17,11 @@ const Favorites = () => {
       setLoading(false);
     }
   }, [data]);
+  
 
-  const handleMouseMove = (e) => {
-    setCursorPosition({ x: e.clientX, y: e.clientY });
-
-    // Determine the type of cursor based on the position of the mouse or any other specific criteria
-    const newCursorType = determineCursorType(e.clientX, e.clientY);
-    setCursorType(newCursorType);
-  };
-
-  const determineCursorType = (x, y) => {
-    // Ejemplo: Cambia el tipo de cursor si está en 1/3 de la pantalla
-    const screenWidth = window.innerWidth;
-    const threshold = screenWidth / 3;
-
-    if (x < threshold) {
-      return 'left-arrow-cursor';
-    } else if (x > threshold * 2) {
-      return 'right-arrow-cursor';
-    } else {
-      return 'default';
-    }
-  };
 
   return (
-    <section id='favorites' onMouseMove={handleMouseMove}>
+    <section id='favorites'>
       {loading ? (
         <div className="spinner-container">
           <GridLoader color={'#E3570D'} size={20} loading={loading} />
@@ -57,9 +37,10 @@ const Favorites = () => {
               row.c[14]?.v,
               <LastFavorite
                 ver={
-<Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5`}>
+<Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5&isInfinite=true`}>
   <h4>Ver proyecto ⭷</h4>
 </Link>
+
                 }
                 title={row.c[0]?.v}
                 id={row.c[9]?.v}

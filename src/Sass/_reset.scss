@@ -9,8 +9,14 @@ html {
     font-size: 62.5%;
     scroll-behavior: smooth;
     background-color: #e6e8e6;
+}
 
+body{
+    background-color: black;
+}
 
+#root{
+    background-color: black;
 }
 
 @font-face {
@@ -172,7 +178,8 @@ li {
   .cursor.large3{
     background-image: url(images/cursor-right.png) !important;
   }
-  
+
+
   
   @keyframes bounce {
     0%, 100% {
@@ -210,6 +217,9 @@ background-color: black !important;
 
 }
 
+
+
+
 @media (max-width: 1200px) {
     .desktop-only-work {
         display: none;
@@ -240,6 +250,17 @@ background-color: black !important;
         top: 90%;
         left: 34%;
         width: 20rem !important;
+    
+    }
+}
+
+@media (max-width: 550px) {
+    .slick-dots {
+        z-index: 1111111111 !important;
+        position: absolute;
+        top: 85%;
+        left: 32%;
+        width: 15rem !important;
     
     }
 }

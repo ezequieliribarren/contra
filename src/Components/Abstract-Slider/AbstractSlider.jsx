@@ -7,13 +7,9 @@ const AbstractSlider = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossi
 
   const copyToClipboard = () => {
     if (linkRef.current) {
-      // Seleccionar el contenido del enlace
       linkRef.current.select();
-      // Copiar al portapapeles
       navigator.clipboard.writeText(linkRef.current.value)
         .then(() => {
-          console.log('Enlace copiado al portapapeles');
-          // Muestra el mensaje de alerta
           toast.success('Proyecto copiado en portapapeles', {
             position: toast.POSITION.TOP_CENTER,
           });
@@ -27,6 +23,7 @@ const AbstractSlider = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossi
   return (
       <div className='abstract-slider'>
         <div id={id} className={`abstract ${abstract}`} style={{ backgroundImage: `url(${img})` }}>
+        <div className="shadow-overlay-abstract"></div>
           <div className='abstract-sombra'>
             <h2 className='abstract-h2'>{title}</h2>
             <div>

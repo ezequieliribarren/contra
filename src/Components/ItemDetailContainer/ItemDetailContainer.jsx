@@ -56,8 +56,13 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
     setProject(selectedProject);
     setLoading(false);
+  
+    // Scroll al tope de la pantalla en dispositivos móviles
+    if (window.innerWidth <= 700) {
+      window.scrollTo(0, 0);
+    }
+    
   }, [id, data]);
-
   useEffect(() => {
     // Scroll a la posición correcta del slider
     if (sliderRef.current) {

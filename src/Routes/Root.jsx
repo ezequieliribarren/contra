@@ -16,10 +16,21 @@ const Root = () => {
   const [preloaderVisible, setPreloaderVisible] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    // Scroll al principio de la página después de 100 ms
+    const scrollToTop = setTimeout(() => {
       window.scrollTo(0, 0);
-      setPreloaderVisible(false); // Ocultar el preloader después de 3 segundos
+    }, 100);
+
+    // Ocultar el preloader después de 150 ms
+    const hidePreloader = setTimeout(() => {
+      setPreloaderVisible(false);
     }, 3000);
+
+    // Limpieza de los temporizadores al desmontar el componente
+    return () => {
+      clearTimeout(scrollToTop);
+      clearTimeout(hidePreloader);
+    };
   }, []);
 
   return (

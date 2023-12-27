@@ -16,4 +16,6 @@ const ArrowRight = ({ onClick }) => {
   );
 };
 
+
+
 export { ArrowLeft, ArrowRight };
