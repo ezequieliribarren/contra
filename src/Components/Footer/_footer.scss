@@ -88,13 +88,13 @@
 
   .a1 {
     position: relative;
-    top: -9%;
+    top: -12%;
     width: 29rem;
   }
 
   .a2 {
     position: relative;
-    top: 2.5%;
+    top: -1%;
     width: 20rem;
   }
 
@@ -105,7 +105,7 @@
   .a3 {
     position: relative;
     display: flex;
-    top: 12.5%;
+    top: 8.3%;
     width: 40rem;
     display: flex !important;
 
@@ -119,10 +119,11 @@
 
   .a4 {
     position: relative;
-    top: -18.8%;
+    top: -21%;
     left: 66%;
     padding: 0;
     width: 25rem;
+    border-radius: 20%;
 
     .div-maps {
       display: flex;

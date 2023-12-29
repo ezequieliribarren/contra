@@ -24,7 +24,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const from = queryParams.get('from');
-  const initialSlide = parseInt(queryParams.get('initialSlide'), 10) || 0;  
+  const initialSlide = parseInt(queryParams.get('initialSlide'), 10) || 0;
   const maxVisibleDots = 3;
   const [isLastSlide, setIsLastSlide] = useState(false);
 
@@ -56,13 +56,14 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
     setProject(selectedProject);
     setLoading(false);
-  
+
     // Scroll al tope de la pantalla en dispositivos móviles
     if (window.innerWidth <= 700) {
       window.scrollTo(0, 0);
     }
-    
+
   }, [id, data]);
+
   useEffect(() => {
     // Scroll a la posición correcta del slider
     if (sliderRef.current) {
@@ -180,7 +181,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
 
   return (
     <div className='item-detail-container' ref={itemDetailRef}>
-      <Nav about='none' mitad='mitad blend' nav='top-left-button blend' work='none' more='none'/>
+      <Nav about='none' mitad='mitad blend' nav='top-left-button blend' work='none' more='none' />
       <Nav2
         onAbstractClick={handleAbstractClick}
         onWhatClick={handleWhatClick}
@@ -191,16 +192,16 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
         {renderMedia()}
       </Slider>
       <div className='project-img-container'>
-        <What open={isWhatOpen} onClose={handleWhatClose} work='/work' to="#contact-item"/>
+        <What open={isWhatOpen} onClose={handleWhatClose} work='/work' to="#contact-item" />
         <Abstract
           open={openAbstract}
           onClose={handleAbstractClose}
           {...abstractContent}
         />
       </div>
-      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact="contact-item"/>
+      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact="contact-item" />
     </div>
   );
-  }
+}
 
 export default ItemDetailContainer;
