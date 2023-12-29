@@ -32,6 +32,19 @@ const Projects = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Precargar las imágenes al cargar la página
+    preLoadImages();
+  }, [allData, individualFilter, searchTerm]);
+
+  const preLoadImages = () => {
+    const imageUrls = filteredAndSortedProjects().map((row) => row.c[22]?.v);
+    imageUrls.forEach((imageUrl) => {
+      const img = new Image();
+      img.src = imageUrl;
+    });
+  };
+
   const filteredAndSortedProjects = () => {
     let filteredProjects = allData;
 
@@ -73,7 +86,6 @@ const Projects = () => {
       setGeneralFilter(null);
     } else {
       setIndividualFilter(value);
-
       setGeneralFilter(value);
     }
   };

@@ -76,13 +76,11 @@ export const SecondDataProvider = ({ children }) => {
         const jsonData = textData.substring(47, textData.length - 2);
         const parsedData = JSON.parse(jsonData);
         setSecondData(parsedData.table.rows);
-        localStorage.setItem('mySecondDataKey', JSON.stringify(parsedData.table.rows));
       } catch (error) {
         console.error('Error al obtener datos desde la segunda hoja de cálculo:', error);
       }
     };
 
-    // ¡Falta esta línea!
     fetchSecondData();
   }, []); 
 
