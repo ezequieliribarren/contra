@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.scss';
-import { DataProvider, FourDataProvider, SecondDataProvider, ThirdDataProvider } from '../Context/Context';
+import { DataProvider, FourDataProvider, GifsProvider, SecondDataProvider, ThirdDataProvider } from '../Context/Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer } from 'react-toastify';
@@ -79,6 +79,7 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <GifsProvider>
     <RouterProvider router={router} />
     <ToastContainer
       position="top-right"
@@ -102,5 +103,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         border: '2px solid orange',
       }}
     />
+    </GifsProvider>
   </React.StrictMode>
 );

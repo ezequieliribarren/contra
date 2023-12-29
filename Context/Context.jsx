@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 function generarEnlaceConParametros(sheetId) {
   var spreadsheetId = "1ZqyNJaWT6MtzdJ5FyNaqKLaKt3k3bz0bTZc0mAVl9kw";
@@ -170,4 +170,42 @@ export const useFourData = () => {
 
 
 
+const GifsContext = createContext();
 
+export const GifsProvider = ({ children, onLoad }) => {
+  const [preloadedGifs, setPreloadedGifs] = useState([]);
+
+  useEffect(() => {
+    const enlaceHoja1 = generarEnlaceConParametros1();
+    const fetchGifs = async () => {
+      try {
+        // Realiza la lógica para obtener los GIFs
+        const response = await fetch(enlaceHoja1);
+        const textData = await response.text();
+        const jsonData = textData.substring(47, textData.length - 2);
+        const parsedData = JSON.parse(jsonData);
+
+        console.log("Datos de gif:", parsedData.table.rows);
+
+        // Modifica esta parte para adaptarla a la estructura de tu JSON
+        const gifs = parsedData.table.rows.map((row) => row.c[22]?.v).filter(Boolean);
+        setPreloadedGifs(gifs);
+
+        console.log('GIFs:', gifs);
+        if (typeof onLoad === 'function') {
+          onLoad(); // Llama a la función onLoad solo si es una función
+        }
+      } catch (error) {
+        console.error('Error fetching GIFs:', error);
+      }
+    };
+
+    fetchGifs();
+  }, [onLoad]);
+
+  return <GifsContext.Provider value={preloadedGifs}>{children}</GifsContext.Provider>;
+};
+
+export const useGifs = () => {
+  return useContext(GifsContext);
+};

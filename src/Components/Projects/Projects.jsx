@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useData } from '../../../Context/Context';
+import { useData, useGifs } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
 
 const Projects = () => {
@@ -10,6 +10,8 @@ const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterVisible, setIsFilterVisible] = useState(true);
   const [isSearchActive, setIsSearchActive] = useState(false); // Nuevo estado
+  const preloadedGifs = useGifs(); // Usa el hook useGifs para obtener los GIFs del contexto
+
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -31,19 +33,6 @@ const Projects = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    // Precargar las imágenes al cargar la página
-    preLoadImages();
-  }, [allData, individualFilter, searchTerm]);
-
-  const preLoadImages = () => {
-    const imageUrls = filteredAndSortedProjects().map((row) => row.c[22]?.v);
-    imageUrls.forEach((imageUrl) => {
-      const img = new Image();
-      img.src = imageUrl;
-    });
-  };
 
   const filteredAndSortedProjects = () => {
     let filteredProjects = allData;
@@ -86,6 +75,7 @@ const Projects = () => {
       setGeneralFilter(null);
     } else {
       setIndividualFilter(value);
+
       setGeneralFilter(value);
     }
   };
@@ -115,7 +105,7 @@ const Projects = () => {
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
             style={{
-              backgroundImage: hoveredRowIndex === index ? `url(${row.c[22]?.v})` : null,
+              backgroundImage: hoveredRowIndex === index ? `url(${preloadedGifs[index]})` : null,
               backgroundSize: hoveredRowIndex === index ? 'cover' : null,
               backgroundRepeat: hoveredRowIndex === index ? 'no-repeat' : null,
               backgroundPosition: hoveredRowIndex === index ? 'center center' : null,
@@ -149,6 +139,7 @@ const Projects = () => {
             <div className='col-2'>
               <a className='dossier-project' download={row.c[0]?.v} href={row.c[7]?.v}><h4>dossier ⭷</h4></a>
             </div>
+        
           </div>
         ))}
       </div>
