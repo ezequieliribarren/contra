@@ -33,9 +33,7 @@ const Favorites = () => {
               row.c[10]?.v,
               row.c[11]?.v,
               row.c[12]?.v,
-              row.c[13]?.v,
-              row.c[14]?.v,
-              <LastFavorite
+              <LastFavorite link={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5&isInfinite=true`}
                 ver={
 <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5&isInfinite=true`}>
   <h4>Ver proyecto ⭷</h4>

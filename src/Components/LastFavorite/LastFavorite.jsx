@@ -1,7 +1,10 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 
-const LastFavorite = ({ title, id, img, ver }) => {
-    return (
+const LastFavorite = ({ title, id, img, ver, link }) => {
+
+  return (
+    <Link to={link}>
       <div id={id} className="last-favorites" style={{ backgroundImage: `url(${img})`, zIndex: 2 }}>
         <div className="shadow-overlay"></div>
         <div className="hover-content">
@@ -11,7 +14,9 @@ const LastFavorite = ({ title, id, img, ver }) => {
         <div className='hover-content'>{ver}</div>
 
       </div>
-    );
-  };
-  
-  export default LastFavorite;
+    </Link>
+
+  );
+};
+
+export default LastFavorite;

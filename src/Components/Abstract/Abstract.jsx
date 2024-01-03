@@ -10,12 +10,11 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
   const modalStyle = {
     position: 'fixed',
     top: 0,
-    right: open ? 0 : '-521.5px', // Ajusta según el ancho del modal
-    width: 521.5,
+    right: open ? 0 : '34%', // Ajusta según el ancho del modal
+    width: '34%',
     height: '100vh',
     bgcolor: 'rgba(0, 0, 0, 0.170)',
     border: '2px solid #000',
-    boxShadow: 24,
     transition: 'right 1s ease-in-out',
   };
   const copyToClipboard = () => {

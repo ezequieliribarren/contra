@@ -6,7 +6,9 @@ import { HashLink as Link } from 'react-router-hash-link';
 const Footer = ({ background, color, colora, logo, contact, none, padding }) => {
   const footerRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const data = useSecondData();
+  const scrollThreshold = 8; // Cantidad de píxeles para esperar antes de activar el scroll
 
   const handleScroll = useCallback(
     (event) => {
@@ -18,18 +20,26 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
 
       const delta = Math.sign(event.deltaY);
 
-      if (delta < 0) {
-        // Scrolling hacia arriba
-        const newScrollTop = Math.max(0, window.scrollY - window.innerHeight);
-        scroll.scrollTo(newScrollTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
+      setScrollY((prevScrollY) => prevScrollY + delta);
+
+      if (Math.abs(scrollY) >= scrollThreshold) {
+        const direction = delta > 0 ? 1 : -1;
+
+        if (direction === -1) {
+          // Scrolling hacia arriba y más de 10px de scroll
+          const newScrollTop = Math.max(0, window.scrollY - window.innerHeight);
+          scroll.scrollTo(newScrollTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+
+          setScrollY(0);
+        }
       }
 
       setIsScrolling(false);
     },
-    [isScrolling]
+    [isScrolling, scrollY]
   );
 
   useEffect(() => {
@@ -47,22 +57,31 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
   return (
     <footer ref={footerRef} className={`${background} ${padding}`} id={contact}>
       <div className="container-fluid">
-        <div className={`ver-proyectos-footer ${none}`}>
-          <Link to='/work'>
-          <a href=""><h3>Ver Proyectos</h3> <h3>Ver Proyectos</h3> <h3>Ver Proyectos</h3></a>
-          </Link>
-          
-        </div>
+      <div className={`ver-proyectos-footer ${none}`}>
+  <Link to='/work'>
+    {useSecondData().slice(1).map((item, index) => (
+      <a key={index} href="">
+        <h3>{item.c[8]?.v}</h3>
+      </a>
+    ))}
+  </Link>
+</div>
         <div className='footer-circle'>
           <div className={`a0 ${color}`}>
             <a href=""><img className='img-fluid' src={logo} alt="Logo" /></a>
           </div>
           <div className={`a1 ${color}`}>
-            <a className={colora} href="mailto:contra.architecture@gmail.com">contra.architecture@gmail.com</a><a className={`${colora} flecha-footer`} target='_blank' href="mailto:contra.architecture@gmail.com"><img src="images/flecha-orange.png" alt="" /></a>
-          </div>
-          <div className={`a2 ${color}`}>
-            <a className={colora} href="tel:+34697286914">+34 697 286 914</a><a className={`${colora} flecha-footer`}target='_blank' href="tel:+34697286914"><img src="images/flecha-orange.png" alt="" /></a>
-          </div>
+  <a className={colora} href={`mailto:${data[0]?.c[6]?.v}`}>{data[0]?.c[6]?.v}</a>
+  <a className={`${colora} flecha-footer`} target='_blank' href={`mailto:${data[0]?.c[6]?.v}`}>
+    <img src="images/flecha-orange.png" alt="" />
+  </a>
+</div>
+<div className={`a2 ${color}`}>
+  <a className={colora} href={`tel:+${data[0]?.c[7]?.v}`}>+{data[0]?.c[7]?.v}</a>
+  <a className={`${colora} flecha-footer`} target='_blank' href={`tel:+${data[0]?.c[7]?.v}`}>
+    <img src="images/flecha-orange.png" alt="" />
+  </a>
+</div>
           <div className={`a4 ${color}`}>
             <div className='div-maps'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS <img src="images/flecha-orange.png" alt="" /></a></div>
             <a className={colora} href="">
@@ -70,7 +89,7 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
             </a>
           </div>
           <div className={`a3 ${color} `}>
-            {data.slice(1).map((item, index) => (
+            {data.map((item, index) => (
               <React.Fragment key={index}>
                 {item.c[2]?.v && item.c[3]?.v && (
                   <div className='contenedor-a3'>
@@ -91,8 +110,8 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
       <ScrollLink
         to={contact}
         smooth={true}
-        duration={1500}
-        offset={-50}
+        duration={1200}
+        offset={-100}
         className="scroll-link"
       ></ScrollLink>
     </footer>

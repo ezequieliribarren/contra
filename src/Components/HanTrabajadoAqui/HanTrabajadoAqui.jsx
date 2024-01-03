@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll'; // Importa ScrollLink de react-scroll
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useFourData } from '../../../Context/Context';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -11,33 +11,35 @@ const HanTrabajadoAqui = () => {
   const [hoveredIndexRight, setHoveredIndexRight] = useState(null);
   const [scrollY, setScrollY] = useState(0);
 
-  
   useEffect(() => {
     AOS.init();
   }, []);
 
-  const handleScroll = (event) => {
-    const delta = Math.sign(event.deltaY);
+  const handleScroll = useCallback(
+    (event) => {
+      const delta = Math.sign(event.deltaY);
 
-    // Ajusta el umbral de desplazamiento
-    const scrollThreshold = 1;
+      // Ajusta el umbral de desplazamiento
+      const scrollThreshold = 3; // Cambiado a 3px
 
-    setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
+      setScrollY((prevScrollY) => prevScrollY + Math.abs(delta));
 
-    if (delta > 0 && Math.abs(scrollY) >= scrollThreshold) {
-      // Solo permite desplazamiento hacia abajo
-      const nextSection = listContainerRef.current.nextSibling;
-      if (nextSection) {
-        // Utiliza ScrollLink para realizar el scroll hacia abajo
-        scroll.scrollTo(nextSection.offsetTop, {
-          duration: 700,
-          smooth: 'easeInOutQuart',
-        });
+      if (delta > 0 && Math.abs(scrollY) >= scrollThreshold) {
+        // Solo permite desplazamiento hacia abajo
+        const nextSection = listContainerRef.current.nextSibling;
+        if (nextSection) {
+          // Utiliza ScrollLink para realizar el scroll hacia abajo
+          scroll.scrollTo(nextSection.offsetTop, {
+            duration: 700,
+            smooth: 'easeInOutQuart',
+          });
+        }
+
+        setScrollY(0);
       }
-
-      setScrollY(0);
-    }
-  };
+    },
+    [scrollY]
+  );
 
   useEffect(() => {
     if (listContainerRef.current) {

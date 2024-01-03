@@ -31,6 +31,7 @@ function generarEnlaceConParametros1() {
 useEffect(() => {
   const enlaceHoja1 = generarEnlaceConParametros1();
 
+
   const fetchAndPreloadGifs = async () => {
     try {
       const startTime = performance.now();

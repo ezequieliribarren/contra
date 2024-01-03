@@ -59,10 +59,6 @@ const Grafic = ({ graficData, selectedMembers }) => {
         }),
       },
       options: {
-        animation: {
-          duration: 2500,
-          easing: 'easeInOutQuart',
-        },
         scales: {
           y: {
             min: 1,

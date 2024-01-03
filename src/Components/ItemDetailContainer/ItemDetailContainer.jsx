@@ -9,7 +9,6 @@ import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import Footer from '../Footer/Footer';
 import { GridLoader } from 'react-spinners';
 import Nav from '../Nav/Nav';
-import AbstractSlider from '../Abstract-Slider/AbstractSlider';
 import { useLocation } from 'react-router-dom';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
@@ -107,7 +106,6 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
     project.c[19]?.v,
     project.c[20]?.v,
     project.c[21]?.v,
-    <AbstractSlider {...abstractContent} />
   ];
 
   const filteredMediaContent = mediaContent.filter(item => item);
