@@ -12,6 +12,7 @@ const MoreSwitch = () => {
   const [isFirstRender, setIsFirstRender] = useState(true);
 
   const handleCategoryClick = (category) => {
+<<<<<<< HEAD
     if (category === 'All') {
       setSelectedCategories(['All']);
       setFilteredData(thirdData.slice(1));
@@ -21,6 +22,21 @@ const MoreSwitch = () => {
       setFilteredData(filteredItems);
     }
 
+=======
+    let filteredItems;
+
+    if (category === 'All') {
+      setSelectedCategories(['All']);
+      // Filtrar solo aquellos elementos que tienen contenido relevante
+      filteredItems = thirdData.slice(1).filter((item) => item.c[1]?.v);
+    } else {
+      filteredItems = thirdData.slice(1).filter((item) => item.c[1]?.v === category);
+      setSelectedCategories([category]);
+    }
+
+    setFilteredData(filteredItems);
+
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     // Activar el slider solo después de la primera renderización
     if (!isFirstRender) {
       setIsSliderActive(true);
@@ -42,7 +58,7 @@ const MoreSwitch = () => {
 
   const sliderSettings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -55,7 +71,11 @@ const MoreSwitch = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+<<<<<<< HEAD
           infinite: false,
+=======
+          infinite: true,
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
         },
       },
       {
@@ -63,7 +83,11 @@ const MoreSwitch = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+<<<<<<< HEAD
           infinite: false,
+=======
+          infinite: true,
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
         },
       },
     ],
@@ -90,12 +114,20 @@ const MoreSwitch = () => {
             ))}
             <ul>
               {thirdData.slice(1).map((p, index) => (
+<<<<<<< HEAD
                 <Link to={`/more/#slider`} key={index}>
                   <li
                     key={index}
                     className={`filter-item ${
                       selectedCategories.includes(p.c[7]?.v) ? 'selected' : ''
                     }`}
+=======
+                <Link smooth to={`/more/#slider`} key={index}>
+                  <li
+                    key={index}
+                    className={`filter-item ${selectedCategories.includes(p.c[7]?.v) ? 'selected' : ''
+                      }`}
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
                     onClick={() => handleCategoryClick(p.c[7]?.v ?? 'All')}
                   >
                     <span className='more-span'>⭷</span> {p.c[7]?.v === 'All' ? 'All' : (p.c[7]?.v ?? '').charAt(0).toUpperCase() + (p.c[7]?.v ?? '').slice(1)}
@@ -110,9 +142,15 @@ const MoreSwitch = () => {
         </div>
         <div id='slider' className={`row more-slider ${isSliderActive ? 'slider-active' : ''}`}>
           <Slider className="slider-bottom" {...sliderSettings}>
+<<<<<<< HEAD
             {filteredData.map((item, index) => (
               <div key={index} className="slider-item">
                 <a className="slider-item-content">
+=======
+            {(selectedCategories[0] === 'All' ? thirdData.slice(1) : filteredData).map((item, index) => (
+              <div key={index} className="slider-item">
+                <a className="slider-item-content" href={item.c[2]?.v}>
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
                   <img src={item.c[3]?.v} alt="" />
                   <div className="more-hover-content">
                     <h3 className='more-h3'>{item.c[0]?.v}</h3>
@@ -120,8 +158,13 @@ const MoreSwitch = () => {
                   </div>
                 </a>
               </div>
+<<<<<<< HEAD
             ))}
+=======
+            ))} 
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
           </Slider>
+
         </div>
       </div>
     </section>

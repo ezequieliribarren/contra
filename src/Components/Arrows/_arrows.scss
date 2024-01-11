@@ -1,5 +1,7 @@
-.arrow-left, .arrow-right{
+.arrow-left,
+.arrow-right {
     position: absolute;
+<<<<<<< HEAD
     bottom: 50%; /* Ajusta la distancia desde la parte inferior */
     left: 5%; /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
     transform: translateX(-50%); /* Centra el contenedor horizontalmente */
@@ -19,3 +21,34 @@ width: 5rem;
     left: 95%;
 
 }
+=======
+    bottom: 10%;
+    left: 5%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    top: 10%;
+    mix-blend-mode: difference;
+
+}
+
+.arrow-right {
+    left: 95%;
+
+}
+
+
+@media (max-width: 750px) {
+    .arrow-right {
+        left: 85%;
+    }
+
+    .arrow-left {
+        left: 15%;
+    }
+}
+
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23

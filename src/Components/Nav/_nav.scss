@@ -3,35 +3,81 @@
 .bottom-left-button,
 .bottom-right-button {
   position: absolute;
-  font-size: 16;
+  font-size: 3.4rem;
+  height: auto;
+  width: auto;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  cursor: none;
+  z-index: 11111111111;
+}
+
+
+
+.project-bottom-right-button,
+.project-top-right-button {
+  position: absolute;
+  font-size: 3.4rem;
   padding: 10px 20px;
   color: white;
   border: none;
   cursor: pointer;
-  z-index: 111;
-  // transition: top 0.3s ease; /* Agrega una transición suave de 0.3 segundos a la propiedad top */
-
+  z-index: 1;
+  mix-blend-mode: difference;
 }
 
+<<<<<<< HEAD
 .top-left-button,
 .nav-black {
   left: 10px;
   background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo_atptog.png);
   background-repeat: no-repeat;
   background-size: contain;
+=======
+  .project-top-right-button {
+  top: 10px;
+  right: 10px;
+}
+
+
+.project-bottom-right-button {
+  bottom: 10px;
+  right: 10px;
+}
+
+
+
+.top-left-button,
+.nav-black {
+  left: 10px;
+  background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305866/LOGOS/logo-white_uiu6sl.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 30rem;
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   height: 8rem;
-  width: 90rem;
-  margin-left: 1rem;
   margin-top: 1rem;
+<<<<<<< HEAD
   transition: height 0.5s ease;
   /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
+=======
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   z-index: 111;
+  width: 30rem;
 }
 
 .nav-black {
+<<<<<<< HEAD
   background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-black_hudswl.png);
   background-size: contain;
   width: 35rem;
+=======
+  background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-black_pojvic.png);
+  background-size: contain;
+  width: 30rem;
+  cursor: none;
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
 
 .top-right-button {
@@ -52,18 +98,14 @@
 .flecha-container {
   position: absolute;
   bottom: 1.5rem;
-  /* Ajusta la distancia desde la parte inferior */
   left: 50%;
-  /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
   transform: translateX(-50%);
-  /* Centra el contenedor horizontalmente */
   z-index: 1;
 }
 
-/* Estilos para la imagen personalizada */
 .flecha {
   border-radius: 50%;
-  /* Si quieres que la imagen sea redonda */
+
 }
 
 .fixed {
@@ -79,6 +121,7 @@
   background-position: center top;
   height: 4rem;
   margin-top: 0;
+<<<<<<< HEAD
   background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-white_m03ka8.png);
   // transition: height 0.5s ease;
   z-index: 1111;
@@ -135,3 +178,75 @@
     background-image: url(images/);
   }
 }
+=======
+  background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-mitad-white_nbvspl.png);
+  z-index: 1111;
+  width: 30rem;
+}
+
+.mitad {
+  left: 3rem;
+  width: 30rem;
+}
+
+.mitad-black {
+  background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305864/LOGOS/logo-mitad-black_terasj.png);
+  z-index: 1111;
+}
+
+.navbar-mobile {
+  display: none;
+}
+
+.nav3 {
+  position: fixed;
+  top: 0;
+  z-index: 9999999999;
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .nav-black {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .nav3 {
+    display: inherit;
+  }
+
+  .project-bottom-right-button,
+  .project-top-right-button {
+    font-size: 2.7rem;
+  }
+
+
+  .bottom-left-button,
+  .bottom-right-button,
+  .top-right-button {
+    display: none;
+  }
+
+  .navbar-mobile {
+    display: inherit;
+  }
+
+}
+
+@media (max-width: 750px) {
+  .top-left-button .nav-black {
+    background-image: url(images/logo-white.png);
+    width: 30rem !important;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .top-left-button,
+  .nav-black {
+    width: 20rem !important;
+    top: 1rem;
+  }
+}
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
