@@ -1,60 +1,108 @@
 .abstract {
-    background-color: black;
-    height: 100vh;
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+
+}
+
+.abstract-favorites {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+
+  h2 {
+    opacity: 0;
+  }
+
+
+}
+
+.link-proyecto-completo {
+  color: white;
+  opacity: 0;
+
+  :hover {
+    transform: scale(1.2);
+    color: orange;
+  }
+}
+
+.abstract-favorites:hover {
+  background-color: rgba(0, 0, 0, 0.581);
+
+  h2,
+  .link-proyecto-completo {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+
+  .abstract-sombra {
+    background-color: rgba(0, 0, 0, 0.196);
     display: flex;
-    align-items: center;
     flex-direction: column;
-  
-  
+    align-items: center;
+    height: 30rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    /* Agrega la propiedad de transición para suavizar el cambio de background-color */
   }
-  
-  .abstract-h2 {
-    color: white;
-    font-size: 4rem;
-    font-family: machina;
-    margin-top: 10rem;
-  }
-  
-  .abstract-p {
-    color: white;
-    margin: 3rem 0;
-    padding: 0 3rem;
-    font-size: 1.2rem;
-  }
-  
-  .abstract-menu {
+}
+
+.abstract-h2 {
+  color: white;
+  font-size: 4rem;
+  font-family: machina;
+  margin-top: 10rem;
+}
+
+.abstract-p {
+  color: white;
+  margin: 3rem 0;
+  padding: 0 3rem;
+  font-size: 1.2rem;
+}
+
+.abstract-menu {
+  display: flex;
+  justify-content: center;
+  margin-left: 4rem;
+  margin-top: 1rem;
+
+  .abstract-item {
     display: flex;
-    justify-content: center;
-    margin-left: 4rem;
-    margin-top: 1rem;
-  
-    .abstract-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 2rem;
-  
-      h4 {
-        text-align: center;
-        color: white;
-        margin-top: 1rem;
-        font-size: 1.3rem;
-      }
-    }
-  }
-  
-  .abstract-a1,
-  .abstract-a2,
-  .abstract-a3 {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2rem;
+
     h4 {
       text-align: center;
+      color: white;
+      margin-top: 1rem;
+      font-size: 1.3rem;
     }
   }
-  
-  .abstract-a1 img,
-  .abstract-a2 img,
-  .abstract-a3 img {
-    height: 3rem;
-    width: auto;
-  
+}
+
+.abstract-a1,
+.abstract-a2,
+.abstract-a3 {
+  h4 {
+    text-align: center;
   }
+}
+
+.abstract-a1 img,
+.abstract-a2 img,
+.abstract-a3 img {
+  height: 3rem;
+  width: auto;
+
+}

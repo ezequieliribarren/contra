@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.scss';
 import Root from './Routes/Root';
-import { DataProvider, SecondDataProvider } from '../Context/Context'; // Importa el DataProvider
+import { DataProvider, FourDataProvider, SecondDataProvider } from '../Context/Context'; // Importa el DataProvider
 import Work from './Routes/Work';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +18,10 @@ const router = createHashRouter([
     path: "/",
     element: (
       <DataProvider>
-        <Root />
+        <SecondDataProvider>
+          <Root />
+        </SecondDataProvider>
+
       </DataProvider>
     )
   },
@@ -33,9 +36,12 @@ const router = createHashRouter([
   {
     path: "/about",
     element: (
-      <SecondDataProvider>
-        <About />
-      </SecondDataProvider>
+      <FourDataProvider>
+        <SecondDataProvider>
+          <About />
+        </SecondDataProvider>
+      </FourDataProvider>
+
 
     )
   },
@@ -44,7 +50,7 @@ const router = createHashRouter([
     path: "/more",
     element: (
       <ThirdDataProvider>
-        <More/>
+        <More />
       </ThirdDataProvider>
 
     )

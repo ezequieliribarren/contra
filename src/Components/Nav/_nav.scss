@@ -13,20 +13,24 @@
 
 }
 
-.top-left-button, .nav-black {
+.top-left-button,
+.nav-black {
   left: 10px;
-  background-image: url(images/logo.png);
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo_atptog.png);
   background-repeat: no-repeat;
+  background-size: contain;
   height: 8rem;
   width: 90rem;
   margin-left: 1rem;
   margin-top: 1rem;
-  transition: height 0.5s ease; /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
+  transition: height 0.5s ease;
+  /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
   z-index: 111;
 }
 
-.nav-black{
-  background-image: url(images/logo-black.png);
+.nav-black {
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-black_hudswl.png);
+  background-size: contain;
   width: 35rem;
 }
 
@@ -62,27 +66,72 @@
   /* Si quieres que la imagen sea redonda */
 }
 
-.fixed{
+.fixed {
   position: fixed;
   z-index: 111;
 }
 
 
-.mitad, .mitad-black {
+.mitad,
+.mitad-black {
   position: fixed;
   top: 0;
   background-position: center top;
   height: 4rem;
   margin-top: 0;
-  background-image: url(images/logo-mitad-white.png);
-  transition: height 0.5s ease; /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
-  z-index: 11;
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-white_m03ka8.png);
+  // transition: height 0.5s ease;
+  z-index: 1111;
 
 }
 
-.mitad-black{
-  background-image: url(images/logo-mitad-black.png);
-  z-index: 11;
+.mitad-black {
+  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-black_mzf6wn.png);
+  z-index: 1111;
 }
 
+.navbar-mobile {
+  display: none;
+}
 
+.nav3 {
+  position: fixed;
+  top: 0;
+  z-index: 111;
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .top-left-button{
+      width: 60rem !important;
+      height: 8rem !important;
+  }
+
+  .nav-black{
+    width: 25rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .nav3 {
+    display: inherit;
+  }
+
+
+  .bottom-left-button,
+  .bottom-right-button,
+  .top-right-button {
+    display: none;
+  }
+
+  .navbar-mobile {
+    display: inherit;
+  }
+
+}
+
+@media (max-width: 750px) {
+  .top-left-button{
+    background-image: url(images/);
+  }
+}

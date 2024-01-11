@@ -8,6 +8,7 @@
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
+    background-color: #e6e8e6;
 
 
 }
@@ -81,6 +82,19 @@ p {
     background-color: #01239A;
 }
 
+.background-home{
+    background-color: #2A2A2A;
+}
+
+.background-about{
+    background-color: #231F20;
+}
+
+.background-work{
+   background-color: #E6E7E8;
+   z-index: 111;
+}
+
 li {
     list-style: none;
     font-size: 1.8rem;
@@ -89,32 +103,41 @@ li {
     font-style: italic;
 }
 
-.container-scroll {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-    width: 100%;
-}
-
-.container-scroll::-webkit-scrollbar {
-    width: 0.5em;
-    /* Ancho de la barra de desplazamiento */
-}
-
-.container-scroll::-webkit-scrollbar-thumb {
-    background-color: #888;
-    /* Color del pulgar de la barra de desplazamiento */
-}
-
-.container-scroll::-webkit-scrollbar-track {
-    background: transparent;
-    /* Color de fondo de la pista de la barra de desplazamiento */
-}
-
-.section {
-    scroll-snap-align: start;
-}
 
 .none{
     display: none;
 }
+
+.fixed{
+    position: fixed;
+}
+.opacity-zero {
+    opacity: 0;
+  }
+
+  .hidden{
+    opacity: 0;
+  }
+
+// @keyframes show {
+//     from {
+//       transform: scale(0.9);
+ 
+//     }
+//     to {
+//       transform: scale(1);     scroll-snap-interval: 100px;
+//     }
+//   }
+
+// @keyframes fadeScroll {
+//     0% {
+//       opacity: 0;
+//       transform: translateY(20px); /* Puedes ajustar el valor de translateY según tu preferencia */
+//     }
+//     100% {
+//       opacity: 1;
+//       transform: translateY(0);
+//     }
+//   }
+
+

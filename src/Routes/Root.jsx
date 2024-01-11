@@ -1,20 +1,21 @@
-import React from 'react';
+import { useState } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
-import Slider from '../Components/Slider/Slider';
 import Nav from '../Components/Nav/Nav'
-
-// import Footer from '../Components/Footer/Footer';
+import Footer from '../Components/Footer/Footer';
+import Nav3 from '../Components/Nav3/Nav3';
+import Slider from '../Components/Slider/Slider';
 
 
 const Root = () => {
-
+  const [isWhatOpen, setIsWhatOpen] = useState(false);
 
   return (
     <>
-  <Nav mitad='mitad' nav='top-left-button' />
-    <Slider/>
-   <Favorites/>
-   {/* <Footer/> */}
+      <Nav mitad='mitad' nav='top-left-button' img='images/logo.png' />
+      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
+      <Slider />
+      <Favorites />
+      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
     </>
   );
 };

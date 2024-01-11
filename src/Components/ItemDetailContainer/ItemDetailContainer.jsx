@@ -7,16 +7,32 @@ import { useParams } from 'react-router-dom';
 import { useData } from '../../../Context/Context';
 import Abstract from '../Abstract/Abstract';
 import Nav2 from '../Nav2/Nav2'
+import What from '../What/What';
+import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 
-const ItemDetailContainer = ({onAbstractClick, onWhatClick}) => {
-    const { id } = useParams();
-    const data = useData();
-    const [project, setProject] = useState(null);
-    const itemDetailRef = useRef(null);
-    const sliderRef = useRef(null);
+const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
+  const { id } = useParams();
+  const data = useData();
+  const [project, setProject] = useState(null);
+  const itemDetailRef = useRef(null);
+  const sliderRef = useRef(null);
+  const [isWhatOpen, setIsWhatOpen] = useState(false);
+
+    const [open, setOpen] = useState(false);
+
+    const handleWhatClick = () => {
+      if (onWhatClick) {
+        onWhatClick();
+      }
+      setIsWhatOpen(true);
+    };
+  
+    const handleWhatClose = () => {
+      setIsWhatOpen(false);
+    };
 
     useEffect(() => {
-        const selectedProject = data.find((row) => row.c[7]?.v.toString() === id.toString());
+        const selectedProject = data.find((row) => row.c[9]?.v.toString() === id.toString());
         setProject(selectedProject);
     }, [id, data]);
 
@@ -38,36 +54,22 @@ const ItemDetailContainer = ({onAbstractClick, onWhatClick}) => {
         }
     };
 
-
-    // const handleAbstractClick = () => {
-    //     if (onAbstractClick) {
-    //         onAbstractClick();
-    //     }
-    //     setOpen(true);
-    // };
-
-    const handleWhatClick = () => {
-        if (onWhatClick) {
-            onWhatClick();
-        }
-        setOpen(true);
-    };
-
     const imageUrls = [
-        project.c[8].v,
-        project.c[9].v,
         project.c[10].v,
         project.c[11].v,
         project.c[12].v,
         project.c[13].v,
         project.c[14].v,
+        project.c[15].v,
+        project.c[16].v,
     ];
     const abstractContent = {
-        p1: project.c[16]?.v,
-        p2: project.c[17]?.v,
-        p3: project.c[18]?.v,
+        p1: project.c[18]?.v,
+        p2: project.c[19]?.v,
+        p3: project.c[20]?.v,
         title: project.c[0]?.v,
-        id: project.c[7]?.v,
+        id: project.c[9]?.v,
+        dossier: project.c[7]?.v
     };
 
     const settings = {
@@ -77,23 +79,31 @@ const ItemDetailContainer = ({onAbstractClick, onWhatClick}) => {
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: true,
+        prevArrow: <ArrowLeft />,
+        nextArrow: <ArrowRight />,
     };
 
     return (
-        <div className='item-detail-container' ref={itemDetailRef}>
-        <Nav2 onAbstractClick={handleGoToLastSlide} onWhatClick={handleWhatClick} />
-            <Slider ref={sliderRef} id={id} {...settings}>
-                {imageUrls.map((imageUrl, index) => (
-                    <div key={index} className='project-img-container'>
-                        <img src={imageUrl} alt={`Slide ${index}`} />
-                    </div>
-                ))}
-                <div className='project-img-container'>
-                    <Abstract {...abstractContent} />
-                </div>
-            </Slider>
-        </div>
+      <div className='item-detail-container' ref={itemDetailRef}>
+        <Nav2
+          onAbstractClick={handleGoToLastSlide}
+          onWhatClick={handleWhatClick}
+          isWhatOpen={isWhatOpen}
+          onClose={handleWhatClose} // Pasa la función de cierre al componente Nav2
+        />
+        <Slider ref={sliderRef} id={id} {...settings}>
+          {imageUrls.map((imageUrl, index) => (
+            <div key={index} className='project-img-container'>
+              <img src={imageUrl} alt={`Slide ${index}`} />
+            </div>
+          ))}
+          <div className='project-img-container'>
+            <Abstract {...abstractContent} />
+            <What open={isWhatOpen} onClose={handleWhatClose} />
+          </div>
+        </Slider>
+      </div>
     );
-};
-
-export default ItemDetailContainer;
+  };
+  
+  export default ItemDetailContainer;

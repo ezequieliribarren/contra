@@ -5,7 +5,11 @@ const useScrollHandler = (scrollableRef) => {
 
   useEffect(() => {
     const handleScroll = (event) => {
-      if (isScrolling || !scrollableRef.current) {
+      if (shouldDisableScroll()) {
+        return;
+      }
+
+      if (isScrolling || !scrollableRef || !scrollableRef.current) {
         return;
       }
 
@@ -38,15 +42,21 @@ const useScrollHandler = (scrollableRef) => {
       }
     };
 
-    if (scrollableRef.current) {
+    const shouldDisableScroll = () => {
+      // Condición para desactivar la lógica de scroll
+      return window.innerWidth < 1200;
+    };
+
+    if (scrollableRef && scrollableRef.current) {
       scrollableRef.current.addEventListener('wheel', handleScroll, { passive: false });
     }
 
     return () => {
-      if (scrollableRef.current) {
+      if (scrollableRef && scrollableRef.current) {
         scrollableRef.current.removeEventListener('wheel', handleScroll);
       }
     };
+
   }, [isScrolling, scrollableRef]);
 
   return isScrolling;
