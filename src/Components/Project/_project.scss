@@ -3,9 +3,15 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+<<<<<<< HEAD
   cursor: all-scroll;
 
 }
+=======
+
+}
+
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
 .project-img-container {
   width: 100%;
@@ -19,7 +25,12 @@
 .project-container:hover .arrow-left,
 .project-container:hover .arrow-right {
   opacity: 1;
+<<<<<<< HEAD
   transition: opacity 0.3s ease-in-out; /* Corrección de la sintaxis */
+=======
+  transition: opacity 0.3s ease-in-out;
+  /* Corrección de la sintaxis */
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
 
 
@@ -30,28 +41,28 @@
   /* Ajusta la imagen dentro del contenedor sin distorsionarla */
 }
 
-.project-bottom-right-button,
-.project-top-right-button {
-  position: absolute;
-  font-size: 16;
-  padding: 10px 20px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  z-index: 1;
+
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.project-top-right-button {
-  top: 10px;
-  right: 10px;
+.video-container video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 }
 
 
-.project-bottom-right-button {
-  bottom: 10px;
-  right: 10px;
-}
+@media (max-width: 750px) {
+  .scroll-link-to-contact{
+    display: none !important;
+  }
 
+<<<<<<< HEAD
 
 
 
@@ -66,4 +77,9 @@
   width: 100%;
   height: 100vh;
   object-fit: cover; /* Ajusta esto según tus necesidades de diseño */
+=======
+  .arrow-left, .arrow-right{
+opacity: 0 !important;
+  }
+>>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
