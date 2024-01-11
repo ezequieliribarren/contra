@@ -2,14 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.scss';
-<<<<<<< HEAD
-import Root from './Routes/Root';
-import { DataProvider, FourDataProvider, SecondDataProvider } from '../Context/Context'; // Importa el DataProvider
-import Work from './Routes/Work';
-import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
-=======
 import { DataProvider, FourDataProvider, GifsProvider, SecondDataProvider, ThirdDataProvider } from '../Context/Context';
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer } from 'react-toastify';
@@ -27,14 +20,8 @@ const router = createHashRouter([
     element: (
       <DataProvider>
         <SecondDataProvider>
-<<<<<<< HEAD
-          <Root />
-        </SecondDataProvider>
-
-=======
             <Root />
         </SecondDataProvider>
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
       </DataProvider>
     ),
   },
@@ -53,31 +40,18 @@ const router = createHashRouter([
     element: (
       <FourDataProvider>
         <SecondDataProvider>
-<<<<<<< HEAD
-          <About />
-        </SecondDataProvider>
-      </FourDataProvider>
-
-
-    )
-=======
             <About />
         </SecondDataProvider>
       </FourDataProvider>
     ),
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   },
   {
     path: '/more',
     element: (
       <ThirdDataProvider>
-<<<<<<< HEAD
-        <More />
-=======
         <SecondDataProvider>
             <More />
         </SecondDataProvider>
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
       </ThirdDataProvider>
     ),
   },

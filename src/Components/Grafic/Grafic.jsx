@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { Line } from 'react-chartjs-2';
-import React, { useRef, useEffect, useState } from 'react';
-import Chart from 'chart.js/auto';
-import { useFourData } from '../../../Context/Context';
-
-export default function Grafic({ graficData }) {
-=======
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { useFourData } from '../../../Context/Context';
@@ -13,25 +5,17 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Grafic = ({ graficData, selectedMembers }) => {
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   const chartRef = useRef(null);
   const fourData = useFourData();
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
-    // Mapea la información del contexto para obtener las habilidades desde la columna 7
-    const mappedSkills = fourData.map(row => row.c[7]?.v).slice(1);
-    setSkills(mappedSkills);
-
-=======
     AOS.init();
   }, []);
 
   useEffect(() => {
     const mappedSkills = fourData.map((row) => row.c[8]?.v);
     setSkills(mappedSkills);
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   }, [fourData]);
 
   useEffect(() => {
@@ -50,20 +34,6 @@ const Grafic = ({ graficData, selectedMembers }) => {
       type: 'line',
       data: {
         labels: skills,
-<<<<<<< HEAD
-        datasets: [{
-          data: graficData,
-          tension: 0.5,
-          fill: {
-            target: 'origin',
-            above: '#EFC99F',
-          },
-          borderColor: '#E3570D',
-          pointRadius: 5,
-          pointBorderColor: '#E3570D',
-          pointBackgroundColor: '#E3570D',
-        }]
-=======
         datasets: fourData.map((user, index) => {
           const hasData = user.c[7]?.v && user.c[7]?.v.length > 0;
           return {
@@ -87,7 +57,6 @@ const Grafic = ({ graficData, selectedMembers }) => {
             return -1;
           }
         }),
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
       },
       options: {
         scales: {
@@ -97,30 +66,12 @@ const Grafic = ({ graficData, selectedMembers }) => {
             title: {
               display: true,
               text: 'Tiempo Invertido',
-<<<<<<< HEAD
-              color: 'black',
-            },
-=======
             },
             
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
             ticks: {
               display: false,
             },
             grid: {
-<<<<<<< HEAD
-              color: 'white',
-            },
-          },
-          x: {
-            position: 'top',
-            ticks: { 
-              color: 'black',
-              angle: 90,
-            },
-            grid: {
-              color: 'white',
-=======
               drawOnChartArea: false,
               color: (context) => {
                 if (context.tick && context.tick.major) {
@@ -149,7 +100,6 @@ const Grafic = ({ graficData, selectedMembers }) => {
               display: true,
               maxRotation: 90,
               minRotation: 65,
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
             },
           },
         },
@@ -158,20 +108,12 @@ const Grafic = ({ graficData, selectedMembers }) => {
             display: false,
           },
           tooltip: {
-<<<<<<< HEAD
-            enabled: false,
-=======
             enabled: true,
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
           },
         },
         layout: {
           padding: {
-<<<<<<< HEAD
-            top: 10,
-=======
             top: 30,
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
           },
         },
         elements: {
@@ -181,11 +123,7 @@ const Grafic = ({ graficData, selectedMembers }) => {
         },
         responsive: true,
         maintainAspectRatio: false,
-<<<<<<< HEAD
-      }
-=======
       },
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     });
 
     return () => {
@@ -193,16 +131,6 @@ const Grafic = ({ graficData, selectedMembers }) => {
         myChart.destroy();
       }
     };
-<<<<<<< HEAD
-  }, [graficData, skills]);
-
-  return (
-    <div className='grafico-container' style={{ height: '60rem' }}>
-      <canvas className='grafico' ref={chartRef} />
-    </div>
-  );
-}
-=======
   }, [graficData, skills, fourData, selectedMembers]);
 
   return (
@@ -216,4 +144,3 @@ const Grafic = ({ graficData, selectedMembers }) => {
 };
 
 export default Grafic;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23

@@ -1,27 +1,6 @@
 .arrow-left,
 .arrow-right {
     position: absolute;
-<<<<<<< HEAD
-    bottom: 50%; /* Ajusta la distancia desde la parte inferior */
-    left: 5%; /* La mitad del ancho del contenedor, para centrarlo horizontalmente */
-    transform: translateX(-50%); /* Centra el contenedor horizontalmente */
-    z-index: 1;
-    // display: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-opacity: 0;
-
-    img{
-width: 5rem;
-    }
-}
-
-.arrow-right{
-    left: 95%;
-
-}
-=======
     bottom: 10%;
     left: 5%;
     transform: translateX(-50%);
@@ -50,5 +29,3 @@ width: 5rem;
         left: 15%;
     }
 }
-
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23

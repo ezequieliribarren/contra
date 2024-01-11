@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-import React, { useRef } from 'react';
-import useScrollHandler from '../../js/useScrollHandler';
-import { useFourData } from '../../../Context/Context';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-const AboutDescription = () => {
-  const mySectionRef = useRef(null);
-  const isScrolling = useScrollHandler(mySectionRef);
-  const data = useFourData();
-
-  return (
-    <section id='about-description' ref={mySectionRef}>
-      <div className="container-fluid about-description">
-        <div className="row">
-          <div className="col-12 col-xl-6 about-description-text">
-            {data.slice(1).map((p, index) => (
-              <React.Fragment key={index}>
-                <p className='about-p'>{p.c[0]?.v}</p>
-                <p>{p.c[1]?.v}</p>
-                <p className='about-p3'>{p.c[2]?.v}</p>
-              </React.Fragment>
-            ))}
-            <div>
-              <a className='about-description-a' download='' href="">
-                Descarga nuestro dossier (.pdf)
-              </a>
-            </div>
-          </div>
-          <div className="col-12 col-xl-6 about-grafic">
-            <img className='img-fluid' src="images/about/grafic.png" alt="" />
-          </div>
-        </div>
-      </div>
-=======
 import React, { useRef, useState, useEffect } from 'react';
 import { useFourData } from '../../../Context/Context';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
@@ -130,7 +95,6 @@ const AboutDescription = () => {
           </div>
         </div>
       )}
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     </section>
   );
 }

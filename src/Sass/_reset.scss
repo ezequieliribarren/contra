@@ -9,11 +9,6 @@ html {
     font-size: 62.5%;
     scroll-behavior: smooth;
     background-color: #e6e8e6;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
 
 body{
@@ -94,19 +89,6 @@ body {
     background-color: #01239A;
 }
 
-<<<<<<< HEAD
-.background-home{
-    background-color: #2A2A2A;
-}
-
-.background-about{
-    background-color: #231F20;
-}
-
-.background-work{
-   background-color: #E6E7E8;
-   z-index: 111;
-=======
 .background-home {
     background-color: #2A2A2A;
 }
@@ -118,7 +100,6 @@ body {
 .background-work {
     background-color: #E6E7E8;
     z-index: 111;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
 
 li {
@@ -129,8 +110,6 @@ li {
     font-style: italic;
 }
 
-<<<<<<< HEAD
-=======
 .none {
     display: none !important;
 }
@@ -150,7 +129,6 @@ li {
 .hidden {
     opacity: 0;
 }
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
 .blend{
     mix-blend-mode: difference;
@@ -162,41 +140,6 @@ li {
     display: none;
 }
 
-<<<<<<< HEAD
-.fixed{
-    position: fixed;
-}
-.opacity-zero {
-    opacity: 0;
-  }
-
-  .hidden{
-    opacity: 0;
-  }
-
-// @keyframes show {
-//     from {
-//       transform: scale(0.9);
- 
-//     }
-//     to {
-//       transform: scale(1);     scroll-snap-interval: 100px;
-//     }
-//   }
-
-// @keyframes fadeScroll {
-//     0% {
-//       opacity: 0;
-//       transform: translateY(20px); /* Puedes ajustar el valor de translateY según tu preferencia */
-//     }
-//     100% {
-//       opacity: 1;
-//       transform: translateY(0);
-//     }
-//   }
-
-
-=======
 .cursor {
     width: 23px;
     height: 23px;
@@ -318,4 +261,3 @@ background-color: black !important;
     
     }
 }
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23

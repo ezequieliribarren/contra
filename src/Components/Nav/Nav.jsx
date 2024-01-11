@@ -2,12 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import Cursor from '../Cursor/Cursor';
 
-<<<<<<< HEAD
-const Nav = ({ black, mitad, work, more, about, fixed, nav, customClass }) => {
-=======
 
 const Nav = ({ black, mitad, work, more, about, fixed, nav, blend }) => {
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -42,15 +38,10 @@ const Nav = ({ black, mitad, work, more, about, fixed, nav, blend }) => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className={`nav-container ${fixed ? 'fixed' : ''} ${customClass}`}>
-<Link className={`${nav} ${isButtonVisible ? 'fixed' : mitad}`} to='/'>
-=======
     <div className={`nav-container ${fixed ? 'fixed' : ''}`}>
       <Cursor isHovered={isHovered} blendMode={isHovered ? 'difference' : 'normal'} />
       <Link  onMouseEnter={handleHover}
           onMouseLeave={handleLeave} className={`${nav} ${blend} ${isButtonVisible ? 'fixed' : mitad}`} to="/">
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
       </Link>
       <Link to="/work">
         <a

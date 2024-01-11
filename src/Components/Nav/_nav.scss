@@ -27,14 +27,6 @@
   mix-blend-mode: difference;
 }
 
-<<<<<<< HEAD
-.top-left-button,
-.nav-black {
-  left: 10px;
-  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo_atptog.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-=======
   .project-top-right-button {
   top: 10px;
   right: 10px;
@@ -55,29 +47,17 @@
   background-repeat: no-repeat;
   background-size: contain;
   width: 30rem;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   height: 8rem;
   margin-top: 1rem;
-<<<<<<< HEAD
-  transition: height 0.5s ease;
-  /* Agrega una transición de 0.3 segundos con función de temporización ease al height */
-=======
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   z-index: 111;
   width: 30rem;
 }
 
 .nav-black {
-<<<<<<< HEAD
-  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-black_hudswl.png);
-  background-size: contain;
-  width: 35rem;
-=======
   background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-black_pojvic.png);
   background-size: contain;
   width: 30rem;
   cursor: none;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
 
 .top-right-button {
@@ -121,64 +101,6 @@
   background-position: center top;
   height: 4rem;
   margin-top: 0;
-<<<<<<< HEAD
-  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-white_m03ka8.png);
-  // transition: height 0.5s ease;
-  z-index: 1111;
-
-}
-
-.mitad-black {
-  background-image: url(https://res.cloudinary.com/dkkrcphjh/image/upload/v1699489922/CONTRA/logo-mitad-black_mzf6wn.png);
-  z-index: 1111;
-}
-
-.navbar-mobile {
-  display: none;
-}
-
-.nav3 {
-  position: fixed;
-  top: 0;
-  z-index: 111;
-  display: none;
-}
-
-@media (max-width: 1200px) {
-  .top-left-button{
-      width: 60rem !important;
-      height: 8rem !important;
-  }
-
-  .nav-black{
-    width: 25rem;
-  }
-}
-
-@media (max-width: 1050px) {
-  .nav3 {
-    display: inherit;
-  }
-
-
-  .bottom-left-button,
-  .bottom-right-button,
-  .top-right-button {
-    display: none;
-  }
-
-  .navbar-mobile {
-    display: inherit;
-  }
-
-}
-
-@media (max-width: 750px) {
-  .top-left-button{
-    background-image: url(images/);
-  }
-}
-=======
   background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-mitad-white_nbvspl.png);
   z-index: 1111;
   width: 30rem;
@@ -249,4 +171,3 @@
     top: 1rem;
   }
 }
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23

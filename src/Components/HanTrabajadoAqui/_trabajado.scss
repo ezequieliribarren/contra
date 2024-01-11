@@ -3,17 +3,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-<<<<<<< HEAD
-    scroll-snap-align: start;
-    padding: 3rem;
-h2{
-    font-family: montreal-medium;
-    font-size: 4rem;
-    padding-left: 3%;
-    margin-bottom: 10rem;
-}
-    li{
-=======
     padding: 3rem;
 
     .li-trabajado, .li-trabajado1 {
@@ -37,7 +26,6 @@ h2{
     }
 
     h4 {
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
         font-size: 1.8rem;
         font-style: normal;
         border-bottom: solid 1px black;
@@ -45,12 +33,6 @@ h2{
 }
 
 @media (max-width: 1200px) {
-<<<<<<< HEAD
-    #han-trabajado-aqui{
-        margin: 10rem 0;
-        height: auto !important;
-    }
-=======
     #han-trabajado-aqui {
         margin: 10rem 0;
         height: auto !important;
@@ -70,5 +52,4 @@ h2{
             width: 25rem;
         }
     }
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }

@@ -1,29 +1,13 @@
-<<<<<<< HEAD
-import { useState } from 'react';
-=======
 import { useState, useEffect } from 'react';
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 import Projects from '../Components/Projects/Projects';
 import Nav from '../Components/Nav/Nav';
 import Footer from '../Components/Footer/Footer';
 import Nav3 from '../Components/Nav3/Nav3';
-<<<<<<< HEAD
-=======
 import WorkMobile from '../Components/WorkMobile/WorkMobile';
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
 
 const Work = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
-<<<<<<< HEAD
-
-  return (
-    <main className='work'>
-      <Nav nav='nav-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
-      <Projects />
-      <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer.png'/>
-=======
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -120,7 +104,6 @@ useEffect(() => {
         <WorkMobile />
       </div>
       <Footer background='background-work' color='background-work' colora='black' logo='images/logo-footer-work.png' contact='contact-work' none='none' padding='padding-top' />
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     </main>
   );
 };

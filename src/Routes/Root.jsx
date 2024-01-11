@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { useState } from 'react';
-import Favorites from '../Components/Favorites/Favorites';
-import Nav from '../Components/Nav/Nav'
-import Footer from '../Components/Footer/Footer';
-import Nav3 from '../Components/Nav3/Nav3';
-import Slider from '../Components/Slider/Slider';
-=======
 // Root.js
 import React, { useState, useEffect } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
@@ -19,21 +11,10 @@ import Preloader from '../Components/Preloader/Preloader';
 import Slider from '../Components/Slider/Slider';
 import SliderMobile from '../Components/SliderMobile/SliderMobile';
 import { GifsProvider } from '../../Context/Context';
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
-<<<<<<< HEAD
-
-  return (
-    <>
-      <Nav mitad='mitad' nav='top-left-button' img='images/logo.png' />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} />
-      <Slider />
-      <Favorites />
-      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' />
-=======
   const [preloaderVisible, setPreloaderVisible] = useState(true);
 
   function generarEnlaceConParametros(sheetId) {
@@ -140,7 +121,6 @@ useEffect(() => {
         <WorkMobile />
       </div>
       <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact='contact' />
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     </>
   );
 };

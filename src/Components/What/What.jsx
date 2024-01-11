@@ -7,10 +7,6 @@ import { useSecondData } from '../../../Context/Context';
 const What = ({ open, onClose, work, to }) => {
   const data = useSecondData();
 
-<<<<<<< HEAD
-const What = ({ open, onClose }) => {
-=======
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   const modalStyle = {
     position: 'fixed',
     top: '50%',
@@ -23,8 +19,6 @@ const What = ({ open, onClose }) => {
     boxShadow: 24,
   };
 
-<<<<<<< HEAD
-=======
   if (!data) {
     return null;
   }
@@ -34,7 +28,6 @@ const What = ({ open, onClose }) => {
     onClose(); // Cierra el modal
   };
 
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
   return (
     <>
       <Modal
@@ -45,33 +38,6 @@ const What = ({ open, onClose }) => {
         className="modal-entered"
       >
         <Box sx={modalStyle} className='what-box'>
-<<<<<<< HEAD
-                    <ul className='what-menu'>
-                        <Link to='/about'>
-                            <li><a><span className='what-span'>⭷</span>About</a></li>
-                        </Link>
-                        <Link to='/work'>
-                            <li><a><span className='what-span'>⭷</span>Work</a></li>
-                        </Link>
-                        <Link to='/more'>
-                            <li><a><span className='what-span'>⭷</span>More</a></li>
-                        </Link>
-                        <Link smooth to='/#contact'>
-                            <li><a><span className='what-span'>⭷</span>Contact</a></li>
-                        </Link>
-                    </ul>
-                    <button className='what-close-button' onClick={onClose}>( x )</button>
-                    <div className='what-redes'>
-                        <a href=""><img src="images/insta.png" alt="" /></a>
-                        <a href=""><img src="images/linkedin.png" alt="" /></a>
-                        <a href=""><img src="images/spotify.png" alt="" /></a>
-                    </div>
-                </Box>
-            </Modal>
-        </div>
-    );
-}
-=======
           <ul className='what-menu'>
             <Link to='/about' onClick={onClose}>
               <li><a><span className='what-span'>⭷</span>About</a></li>
@@ -104,6 +70,5 @@ const What = ({ open, onClose }) => {
     </>
   );
 };
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
 export default What;

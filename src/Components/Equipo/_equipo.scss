@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-#equipo {
-    height: 100vh !important;
-    display: flex;
-    align-items: center !important;
-
-=======
 @keyframes fadeIn {
     from {
         opacity: 0;
         max-height: 0;
     }
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
     to {
         opacity: 1;
@@ -36,77 +28,13 @@
 
     .row {
         padding-left: 3%;
-<<<<<<< HEAD
-=======
         display: flex;
         align-items: start;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     }
 
     h2 {
         font-family: montreal-medium;
         font-size: 4rem;
-<<<<<<< HEAD
-        margin-bottom: 4rem;
-        margin-top: 2.5rem;
-    }
-
-
-}
-
-
-
-.equipo {
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-
-.equipo-select{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-
-.equipo-select:hover{
-    img{
-        translate: 2px;
-    }
-}
-
-.container-title-cargo {
-    display: flex;
-    flex-direction: column;
-}
-
-.member-span {
-    font-family: machina;
-    margin-right: 1rem;
-}
-
-.equipo-h3 {
-    font-family: machina;
-    font-size: 2.5rem !important;
-    font-style: normal;
-}
-
-.equipo {
-    li:hover {
-        h3, h4 {
-            color: #E3570D;
-            cursor: pointer;
-        }
-    }
-
-    .member-span {
-        translate: 0.2rem;
-    }
-
-
-    li {
-        margin: 1rem 0;
-=======
         padding: 0;
         margin: 0;
         padding-top: 4rem;
@@ -193,7 +121,6 @@
         font-size: 1.8rem;
     }
 }
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 
 .equipo li:first-child {
     padding-top: 40rem;
@@ -204,10 +131,6 @@
     margin: 3rem 0;
     cursor: none;
 
-<<<<<<< HEAD
-        img {
-            margin-right: 1rem;
-=======
     div {
         display: flex;
         align-items: center;
@@ -223,7 +146,6 @@
         p {
             font-style: normal;
             font-size: 1.3rem !important;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
         }
     }
 
@@ -309,16 +231,9 @@
 
     }
 
-<<<<<<< HEAD
-
-    .selected-member .equipo-person-img {
-        display: inherit;
-        transition: 3s ease-in-out;
-=======
     .equipo-select{
         align-items: center;
         justify-content: center;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
     }
     .selected-member{
         display: flex;
@@ -328,14 +243,6 @@
 }
 
 
-<<<<<<< HEAD
-}
-
-@media (max-width: 1200px) {
-    #equipo{
-        height: auto !important;
-    }
-=======
 .equipo li.selected-member .equipo-description {
     display: block;
     opacity: 1;
@@ -344,5 +251,4 @@
 
 .equipo li.selected-member .equipo-person-img {
     display: inherit;
->>>>>>> d4a0c314d5728a87b15df62211e8ca3de37b5f23
 }
