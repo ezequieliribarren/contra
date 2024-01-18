@@ -15,12 +15,13 @@ const Preloader = ({ visible, onLoaded }) => {
       const startImageRotation = () => {
         intervalId = setInterval(() => {
           setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 1000);
+        }, 3000); // Cambiado a 3000 milisegundos (3 segundos)
       };
 
       startImageRotation();
 
       const hidePreloaderTimeout = setTimeout(() => {
+        clearInterval(intervalId);
         if (typeof onLoaded === 'function') {
           onLoaded();
         }
