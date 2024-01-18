@@ -93,8 +93,3 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
 
 
 export default Abstract;
-
-
-
-
-

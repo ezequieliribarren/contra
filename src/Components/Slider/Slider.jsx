@@ -13,12 +13,12 @@ const Slider = () => {
 
   const handleVideoEnd = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledData.length);
-
-
   };
+
   const shuffleVideos = (videos) => {
     return videos.slice().sort(() => Math.random() - 0.5);
   };
+
   const handleScrollToSection = () => {
     if (myRef.current) {
       const offsetTop = myRef.current.offsetTop + window.innerHeight;
@@ -86,8 +86,6 @@ const Slider = () => {
     return shuffleVideos(secondData);
   }, [secondData]);
 
-
-
   return (
     <header className="slider-container" ref={myRef} id="slider" onWheel={handleScroll}>
       <div className={`flecha-container ${isFilterVisible ? '' : 'hidden'}`} onClick={handleScrollToSection}>
@@ -128,6 +126,5 @@ const Slider = () => {
     </header>
   );
 };
-
 
 export default Slider;
