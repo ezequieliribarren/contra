@@ -58,12 +58,12 @@ const Project = ({ imageUrls, index, setCursorPosition }) => {
           if (prevProject) {
             scroll.scrollTo(prevProject.offsetTop, {
               duration: 550,
-            
+
             });
           } else {
             scroll.scrollTo(document.getElementById('slider').offsetTop, {
               duration: 550,
-              
+
             });
           }
         }
@@ -93,7 +93,7 @@ const Project = ({ imageUrls, index, setCursorPosition }) => {
     dots: false,
     infinite: false,
     speed: 600,
-    slidesToShow: 3, 
+    slidesToShow: 3,
     swipe: true,
     swipeToSlide: true,
     slidesToScroll: 1,
@@ -127,75 +127,76 @@ const Project = ({ imageUrls, index, setCursorPosition }) => {
 
   return (
     <div
-    id={`project-${index}`}
-    ref={projectRef}
-    className={`project-container ${cursorType.type}-slide`}
-    onMouseMove={(e) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    }}
-  >
-    <Slider className='slider-project' {...settings}>
-      {imageUrls.map((imageOrText, index) => (
-        <div key={index} className="project-img-container">
-          {typeof imageOrText === 'string' ? (
-            isVideoLink(imageOrText) ? (
-              <div className="video-container">
-                <video
-                  loop  // Agregado: para reproducir en bucle
-                  muted
-                  playsInline
-                  onLoadedData={handleVideoLoad}
-                  className={`video-element ${loading ? 'loading' : ''}`}
-                >
-                  <source src={imageOrText} type="video/mp4" />
-                  Tu navegador no soporta el tag de video.
-                </video>
-                {loading && <GridLoader />}
-              </div>
+      id={`project-${index}`}
+      ref={projectRef}
+      className={`project-container ${cursorType.type}-slide`}
+      onMouseMove={(e) => {
+        setCursorPosition({ x: e.clientX, y: e.clientY });
+      }}
+    >
+      <Slider className='slider-project' {...settings}>
+        {imageUrls.map((imageOrText, index) => (
+          <div key={index} className="project-img-container">
+            {typeof imageOrText === 'string' ? (
+              isVideoLink(imageOrText) ? (
+                <div className="video-container">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedData={handleVideoLoad}
+                    className={`video-element ${loading ? 'loading' : ''}`}
+                  >
+                    <source src={imageOrText} type="video/mp4" />
+                    Tu navegador no soporta el tag de video.
+                  </video>
+                  {loading && <GridLoader />}
+                </div>
+              ) : (
+                <img
+                  className={`img-fluid ${loading ? 'loading' : ''}`}
+                  src={imageOrText}
+                  alt={`Slide ${index}`}
+                  onLoad={handleImageLoad}
+                />
+              )
             ) : (
-              <img
-                className={`img-fluid ${loading ? 'loading' : ''}`}
-                src={imageOrText}
-                alt={`Slide ${index}`}
-                onLoad={handleImageLoad}
-              />
-            )
-          ) : (
-            <div className="abstract-container">
-              <p>{imageOrText}</p>
-            </div>
-          )}
-        </div>
-      ))}
-    </Slider>
-    {index < 2 && (
-      <ScrollLink
-        to={`project-${index + 1}`}
-        smooth={true}
-        duration={500}
-        className="scroll-link"
-      ></ScrollLink>
-    )}
-    {index === 0 && (
-      <ScrollLink
-        to={`#slider`}
-        smooth={true}
-        duration={500}
-        offset={-50}
-        className="scroll-link"
-      ></ScrollLink>
-    )}
-    {index === imageUrls.length - 1 && (
-      <ScrollLink
-        to={'#contact'}
-        smooth={true}
-        duration={500}
-        offset={-50}
-        className="scroll-link"
-      ></ScrollLink>
-    )}
-  </div>
-);
+              <div className="abstract-container">
+                <p>{imageOrText}</p>
+              </div>
+            )}
+          </div>
+        ))}
+      </Slider>
+      {index < 2 && (
+        <ScrollLink
+          to={`project-${index + 1}`}
+          smooth={true}
+          duration={500}
+          className="scroll-link"
+        ></ScrollLink>
+      )}
+      {index === 0 && (
+        <ScrollLink
+          to={`#slider`}
+          smooth={true}
+          duration={500}
+          offset={-50}
+          className="scroll-link"
+        ></ScrollLink>
+      )}
+      {index === imageUrls.length - 1 && (
+        <ScrollLink
+          to={'#contact'}
+          smooth={true}
+          duration={500}
+          offset={-50}
+          className="scroll-link"
+        ></ScrollLink>
+      )}
+    </div>
+  );
 };
 
 export default Project;

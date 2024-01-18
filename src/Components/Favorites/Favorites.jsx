@@ -17,7 +17,7 @@ const Favorites = () => {
       setLoading(false);
     }
   }, [data]);
-  
+
 
 
   return (
@@ -33,27 +33,27 @@ const Favorites = () => {
               row.c[10]?.v,
               row.c[11]?.v,
               row.c[12]?.v,
-              <LastFavorite link={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5&isInfinite=true`}
+              <LastFavorite link={`/project/${row.c[9]?.v}?from=favorites&initialSlide=3&isInfinite=true`}
                 ver={
-<Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=5&isInfinite=true`}>
-  <h4>Ver proyecto ⭷</h4>
-</Link>
+                  <Link to={`/project/${row.c[9]?.v}?from=favorites&initialSlide=3&isInfinite=true`}>
+                    <h4>Ver proyecto ⭷</h4>
+                  </Link>
 
                 }
                 title={row.c[0]?.v}
                 id={row.c[9]?.v}
-                img={row.c[15]?.v}
+                img={row.c[13]?.v}
               />
             ];
             const id = row.c[9]?.v;
-            return  <Project
-            key={index}
-            imageUrls={imageUrls}
-            index={index}
-            id={id}
-            cursorPosition={cursorPosition}
-            setCursorPosition={setCursorPosition}
-          />
+            return <Project
+              key={index}
+              imageUrls={imageUrls}
+              index={index}
+              id={id}
+              cursorPosition={cursorPosition}
+              setCursorPosition={setCursorPosition}
+            />
           }
           return null;
         })

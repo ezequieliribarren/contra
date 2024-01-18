@@ -57,35 +57,35 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
   return (
     <footer ref={footerRef} className={`${background} ${padding}`} id={contact}>
       <div className="container-fluid">
-      <div className={`ver-proyectos-footer ${none}`}>
-  <Link to='/work'>
-    {useSecondData().slice(1).map((item, index) => (
-      <a key={index} href="">
-        <h3>{item.c[8]?.v}</h3>
-      </a>
-    ))}
-  </Link>
-</div>
+        <div className={`ver-proyectos-footer ${none}`}>
+          <Link to='/work'>
+            {useSecondData().map((item, index) => (
+              <a key={index} href="">
+                <h3>{item.c[8]?.v}</h3>
+              </a>
+            ))}
+          </Link>
+        </div>
         <div className='footer-circle'>
           <div className={`a0 ${color}`}>
             <a href=""><img className='img-fluid' src={logo} alt="Logo" /></a>
           </div>
           <div className={`a1 ${color}`}>
-  <a className={colora} href={`mailto:${data[0]?.c[6]?.v}`}>{data[0]?.c[6]?.v}</a>
-  <a className={`${colora} flecha-footer`} target='_blank' href={`mailto:${data[0]?.c[6]?.v}`}>
-    <img src="images/flecha-orange.png" alt="" />
-  </a>
-</div>
-<div className={`a2 ${color}`}>
-  <a className={colora} href={`tel:+${data[0]?.c[7]?.v}`}>+{data[0]?.c[7]?.v}</a>
-  <a className={`${colora} flecha-footer`} target='_blank' href={`tel:+${data[0]?.c[7]?.v}`}>
-    <img src="images/flecha-orange.png" alt="" />
-  </a>
-</div>
+            <a className={colora} href={`mailto:${data[0]?.c[6]?.v}`}>{data[0]?.c[6]?.v}</a>
+            <a className={`${colora} flecha-footer`} target='_blank' href={`mailto:${data[0]?.c[6]?.v}`}>
+              <img className='img-flecha-footer' src="images/flecha-orange.png" alt="" />
+            </a>
+          </div>
+          <div className={`a2 ${color}`}>
+            <a className={colora} href={`tel:+${data[0]?.c[7]?.v}`}>+{data[0]?.c[7]?.v}</a>
+            <a className={`${colora} flecha-footer`} target='_blank' href={`tel:+${data[0]?.c[7]?.v}`}>
+              <img className='img-flecha-footer' src="images/flecha-orange.png" alt="" />
+            </a>
+          </div>
           <div className={`a4 ${color}`}>
             <div className='div-maps'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS <img src="images/flecha-orange.png" alt="" /></a></div>
             <a className={colora} href="">
-              <div> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">C/ Aldapa, 2 Local 4, Esquina,<br /> C. de Matilde Hernández,<br /> 28025, Madrid</a></div>
+              <div className='text-adress'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">C/ Aldapa, 2 Local 4, Esquina,<br /> C. de Matilde Hernández,<br /> 28025, Madrid</a></div>
             </a>
           </div>
           <div className={`a3 ${color} `}>
