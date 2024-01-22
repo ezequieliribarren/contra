@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
 import { HashLink as Link } from 'react-router-hash-link';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Footer = ({ background, color, colora, logo, contact, none, padding }) => {
   const footerRef = useRef(null);
@@ -9,7 +11,7 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
   const [scrollY, setScrollY] = useState(0);
   const data = useSecondData();
   const scrollThreshold = 8; // Cantidad de píxeles para esperar antes de activar el scroll
-
+  const phoneRef = useRef(null);
   const handleScroll = useCallback(
     (event) => {
       if (isScrolling || !footerRef.current) {
@@ -54,6 +56,27 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
     };
   }, [handleScroll]);
 
+
+  const copyPhoneNumber = () => {
+    if (phoneRef.current) {
+      // Seleccionar el contenido del enlace
+      phoneRef.current.select();
+      // Copiar al portapapeles
+      navigator.clipboard.writeText(phoneRef.current.value)
+        .then(() => {
+          console.log('Número de teléfono copiado al portapapeles');
+          // Muestra el mensaje de alerta
+          toast.success('Número de teléfono copiado al portapapeles', {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        })
+        .catch((err) => {
+          console.error('Error al copiar el número de teléfono al portapapeles: ', err);
+        });
+    }
+  };
+
+
   return (
     <footer ref={footerRef} className={`${background} ${padding}`} id={contact}>
       <div className="container-fluid">
@@ -77,10 +100,16 @@ const Footer = ({ background, color, colora, logo, contact, none, padding }) => 
             </a>
           </div>
           <div className={`a2 ${color}`}>
-            <a className={colora} href={`tel:+${data[0]?.c[7]?.v}`}>+{data[0]?.c[7]?.v}</a>
-            <a className={`${colora} flecha-footer`} target='_blank' href={`tel:+${data[0]?.c[7]?.v}`}>
+            <a className={`tel-mobile ${colora}`} href={`tel:+${data[0]?.c[7]?.v}`}>+{data[0]?.c[7]?.v}</a>
+            <input
+              type="text"
+              ref={phoneRef}
+              className={`tel-desktop ${colora}`}
+              value={`+${data[0]?.c[7]?.v}`}
+              readOnly
+              onClick={copyPhoneNumber}
+            />
               <img className='img-flecha-footer' src="images/flecha-orange.png" alt="" />
-            </a>
           </div>
           <div className={`a4 ${color}`}>
             <div className='div-maps'> <a className={colora} target='_blank' href="https://maps.app.goo.gl/VP2wyLtB8hHVkLH88">MAPS <img src="images/flecha-orange.png" alt="" /></a></div>

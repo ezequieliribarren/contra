@@ -4,13 +4,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '../Arrows/Arrows';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import CustomDots from '../CustomDots/CustomDots';
 
 const ProjectMobile = ({ imageUrls, id, index }) => {
   const projectRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [cursorPosition, setCursorPosition] = useState('middle');
-  const maxVisibleDots = 3;
-
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const handleScroll = useCallback(
     (event) => {
@@ -31,7 +31,6 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
             smooth: 'easeInOutQuart',
           });
         } else {
-          // Si es el último proyecto, hacer scroll al siguiente elemento (en este caso, el componente CallActionWork)
           scroll.scrollTo(document.getElementById('callActionWork').offsetTop, {
             duration: 700,
             smooth: 'easeInOutQuart',
@@ -46,7 +45,6 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
             smooth: 'easeInOutQuart',
           });
         } else {
-          // Si es el primer proyecto, hacer scroll al elemento con el id "slider"
           scroll.scrollTo(document.getElementById('slider').offsetTop, {
             duration: 700,
             smooth: 'easeInOutQuart',
@@ -59,10 +57,8 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
     [isScrolling]
   );
 
-
-
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 600,
     slidesToShow: 3,
@@ -87,19 +83,18 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: false,
-          dots: true,    
+          dots: true,
           arrows: false,
+          centerMode: true,
+          centerPadding: '0', // Puedes ajustar este valor según sea necesario
         },
       },
     ],
-    appendDots: (dots) => (
-      <div>
-        {dots.slice(0, maxVisibleDots)} {/* Muestra solo los primeros maxVisibleDots dots */}
-      </div>
-    ),
+    appendDots: (dots) => <CustomDots slides={imageUrls} activeIndex={activeSlide} />,
+    afterChange: (currentSlide) => {
+      setActiveSlide(currentSlide);
+    },
   };
-
-
   const isVideoLink = (url) => {
     return url.endsWith('.mp4');
   };
@@ -131,6 +126,7 @@ const ProjectMobile = ({ imageUrls, id, index }) => {
             )}
           </div>
         ))}
+
       </Slider>
       {index < 2 && (
         <ScrollLink

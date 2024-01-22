@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 import { GridLoader } from 'react-spinners';
 import Nav from '../Nav/Nav';
 import { useLocation } from 'react-router-dom';
+import CustomDots from '../CustomDots/CustomDots';
 
 const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const { id } = useParams();
@@ -24,8 +25,9 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const queryParams = new URLSearchParams(location.search);
   const from = queryParams.get('from');
   const initialSlide = parseInt(queryParams.get('initialSlide'), 10) || 0;
-  const maxVisibleDots = 3;
   const [isLastSlide, setIsLastSlide] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+
 
 
   const handleWhatClick = () => {
@@ -170,13 +172,11 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
         },
       },
     ],
-    appendDots: (dots) => (
-      <div>
-        {dots.slice(0, maxVisibleDots)} {/* Muestra solo los primeros maxVisibleDots dots */}
-      </div>
-    ),
+    appendDots: (dots) => <CustomDots slides={filteredMediaContent} activeIndex={activeSlide} setActiveSlide={setActiveSlide} />,
+    afterChange: (currentSlide) => {
+      setActiveSlide(currentSlide);
+    },
   };
-
   return (
     <div className='item-detail-container' ref={itemDetailRef}>
       <Nav about='none' mitad='mitad blend' nav='top-left-button blend' work='none' more='none' />

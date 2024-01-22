@@ -66,6 +66,7 @@ a {
     font-family: machina;
     font-size: 4rem;
     text-decoration: none !important;
+    cursor: none;
 }
 
 p {
@@ -78,7 +79,10 @@ body {
 }
 
 .black {
-    color: black;
+    color: black !important;
+}
+.white{
+    color: white !important;
 }
 
 .orange {
@@ -114,6 +118,10 @@ li {
     display: none !important;
 }
 
+.blend-none{
+    mix-blend-mode: normal !important;
+}
+
 .padding-top {
     padding-top: 15rem;
 }
@@ -143,20 +151,31 @@ li {
 .cursor {
     width: 23px;
     height: 23px;
-    border: 4px solid white;
+    border: 4px solid rgb(255, 255, 255);
     border-radius: 50%;
     z-index: 999999999 !important;
     position: fixed;
     mix-blend-mode: difference !important;
   }
   
-  .cursor.large {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(to right, rgb(5, 63, 222), silver);
-    transition: height 0.1s ease-in-out;
-    border: solid 2px white;
+  .cursor-changue {
+    // Agrega los estilos que desees para el cursor cuando está sobre la clase cursor-changue
+border: none;
   }
+
+
+  .cursor.large {
+    width: 33px;
+    height: 33px;
+    transition: height 0.1s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    mix-blend-mode: difference;
+    border: none;
+  }
+
+ 
+
+
 
 
   .cursor.large2, .cursor.large3 {
@@ -177,7 +196,6 @@ li {
   }
 
 
-  
   @keyframes bounce {
     0%, 100% {
       transform: translateY(0);
@@ -198,7 +216,6 @@ li {
     top: 90%;
     left: 41%; 
     mix-blend-mode: difference !important;
-    height: 25px;
   }
 
 .slick-dots li button {
@@ -206,15 +223,48 @@ li {
     mix-blend-mode: difference !important;
     border-radius: 50%;
     color: transparent !important;
-    border: 3.5px solid rgb(255, 255, 255) !important;
+    border: 1.5px solid rgb(255, 255, 255) !important;
 }
 
 .slick-dots li.slick-active button {
 background-color: black !important;
+border: 4.5px solid rgb(255, 255, 255) !important;
 
 }
 
+.custom-dots-container {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px; /* Ajusta según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1111 !important;
 
+  }
+  
+  .custom-dot {
+    // Estilos comunes para todos los dots
+    height: 8px;
+    width: 7.5px;
+    margin: 0 4px; // Ajusta el margen según sea necesario
+    mix-blend-mode: difference !important;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.586) ;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-dot.active {
+    height: 15px;
+    width: 15px;
+    border: 2.5px solid rgb(255, 255, 255);
+    color: white;
+    mix-blend-mode: difference;
+  }
+  
 
 
 @media (max-width: 1200px) {

@@ -10,9 +10,13 @@
   color: white;
   border: none;
   cursor: none;
-  z-index: 11111111111;
+  z-index: 1111111111 !important;
+  mix-blend-mode: difference;
 }
 
+.top-left-button{
+  mix-blend-mode: difference;
+}
 
 
 .project-bottom-right-button,
@@ -33,6 +37,7 @@
 }
 
 
+
 .project-bottom-right-button {
   bottom: 10px;
   right: 10px;
@@ -40,8 +45,7 @@
 
 
 
-.top-left-button,
-.nav-black {
+.top-left-button {
   left: 10px;
   background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305866/LOGOS/logo-white_uiu6sl.png);
   background-repeat: no-repeat;
@@ -50,15 +54,8 @@
   height: 8rem;
   margin-top: 1rem;
   z-index: 111;
-  width: 30rem;
 }
 
-.nav-black {
-  background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-black_pojvic.png);
-  background-size: contain;
-  width: 30rem;
-  cursor: none;
-}
 
 .top-right-button {
   top: 10px;
@@ -94,26 +91,17 @@
 }
 
 
-.mitad,
-.mitad-black {
+.mitad {
   position: fixed;
   top: 0;
-  background-position: center top;
-  height: 4rem;
-  margin-top: 0;
   background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-mitad-white_nbvspl.png);
-  z-index: 1111;
-  width: 30rem;
-}
-
-.mitad {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 30rem;  
   left: 3rem;
-  width: 30rem;
-}
-
-.mitad-black {
-  background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305864/LOGOS/logo-mitad-black_terasj.png);
-  z-index: 1111;
+  height: 8rem;
+  margin-top: 1rem;
+  z-index: 111;
 }
 
 .navbar-mobile {
@@ -125,13 +113,10 @@
   top: 0;
   z-index: 9999999999;
   display: none;
+  color: white !important;
+  mix-blend-mode: difference !important;
 }
 
-@media (max-width: 1200px) {
-  .nav-black {
-    width: 25rem;
-  }
-}
 
 @media (max-width: 1050px) {
   .nav3 {
@@ -156,18 +141,11 @@
 
 }
 
-@media (max-width: 750px) {
-  .top-left-button .nav-black {
-    background-image: url(images/logo-white.png);
-    width: 30rem !important;
-  }
-}
+
 
 @media (max-width: 450px) {
 
-  .top-left-button,
-  .nav-black {
+  .top-left-button {
     width: 20rem !important;
-    top: 1rem;
   }
 }

@@ -13,6 +13,7 @@ const Projects = () => {
   const preloadedGifs = useGifs(); // Usa el hook useGifs para obtener los GIFs del contexto
 
 
+
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -87,6 +88,7 @@ const Projects = () => {
   const handleMouseLeave = () => {
     setHoveredRowIndex(null);
   };
+
 
   const toggleSearch = () => {
     setIsSearchActive(!isSearchActive);

@@ -20,12 +20,12 @@ const Equipo = () => {
     .slice(1)
     .map((miembro, index) => ({
       id: index + 1,
-      nombre: miembro.c[3]?.v || '',
-      subtitle: miembro.c[4]?.v || '',
-      descripcion: miembro.c[5]?.v || '',
-      imagen: miembro.c[6]?.v || '',
+      nombre: miembro.c[5]?.v || '',
+      subtitle: miembro.c[6]?.v || '',
+      descripcion: miembro.c[7]?.v || '',
+      imagen: miembro.c[8]?.v || '',
       grafic: 'images/about/equipo1.png',
-      graficData: miembro.c[7]?.v,
+      graficData: miembro.c[9]?.v,
     }))
     .filter((miembro) => miembro.nombre && miembro.subtitle && miembro.imagen);
 

@@ -106,14 +106,23 @@ footer {
 
   .a2 {
     position: relative;
-    top: 2%;
+    top: 1%;
     width: 20rem;
 
-    a {
+    input {
+      background-color: transparent;
+      border: none;
+      font-size: 1.6rem;
+      width: 13rem;
+    }
+
+    a,
+    input {
       cursor: none !important;
     }
 
-    a:hover {
+    a:hover,
+    input:hover {
       color: #E3570D;
     }
   }
@@ -183,6 +192,9 @@ footer {
 
   }
 
+  .tel-mobile {
+    display: none;
+  }
 
   .container-fluid {
     display: flex;
@@ -367,6 +379,13 @@ footer {
 }
 
 @media (max-width: 730px) {
+  .tel-mobile {
+    display: inherit !important;
+  }
+
+  .tel-desktop {
+    display: none;
+  }
 
   .redes-h4 {
     display: none !important;

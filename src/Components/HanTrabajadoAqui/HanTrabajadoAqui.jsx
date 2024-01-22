@@ -60,30 +60,30 @@ const HanTrabajadoAqui = () => {
         <div className="row">
           <div className="col-12 col-sm-6" data-aos="zoom-in">
             <ul>
-              {data.slice(1).filter(member => member.c[9]?.v).map((member, index) => (
+              {data.slice(1).filter(member => member.c[11]?.v).map((member, index) => (
                 <li
                   className={`li-trabajado ${hoveredIndexLeft === index ? 'hovered' : ''}`}
                   key={index}
                   onMouseEnter={() => setHoveredIndexLeft(index)}
                   onMouseLeave={() => setHoveredIndexLeft(null)}
-                  style={{ backgroundImage: `url(${hoveredIndexLeft === index ? member.c[14]?.v : ''})` }}
+                  style={{ backgroundImage: `url(${hoveredIndexLeft === index ? member.c[16]?.v : ''})` }}
                 >
-                  <h4>{member.c[9]?.v}</h4>
+                  <h4>{member.c[11]?.v}</h4>
                 </li>
               ))}
             </ul>
           </div>
           <div className="col-12 col-sm-6" data-aos="zoom-in">
             <ul>
-              {data.slice(1).filter(member => member.c[10]?.v).map((member, index) => (
+              {data.slice(1).filter(member => member.c[12]?.v).map((member, index) => (
                 <li
                   className={`li-trabajado ${hoveredIndexRight === index ? 'hovered' : ''}`}
                   key={index}
                   onMouseEnter={() => setHoveredIndexRight(index)}
                   onMouseLeave={() => setHoveredIndexRight(null)}
-                  style={{ backgroundImage: `url(${hoveredIndexRight === index ? member.c[14]?.v : ''})` }}
+                  style={{ backgroundImage: `url(${hoveredIndexRight === index ? member.c[17]?.v : ''})` }}
                 >
-                  <h4>{member.c[10]?.v}</h4>
+                  <h4>{member.c[12]?.v}</h4>
                 </li>
               ))}
             </ul>

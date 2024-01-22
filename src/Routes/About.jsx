@@ -18,13 +18,13 @@ const About = () => {
 
   return (
     <main className='about'>
-      <Nav about='orange fixed' mitad='mitad-black' nav='nav-black' work='black fixed' more='black fixed' />
+      <Nav about='orange fixed blend-none' mitad='mitad' nav='top-left-button'  img="images/logo-white.png" work='fixed' more='fixed' />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen}  burguer='images/burguer.png' to='#contact-about' />
       <AboutDescription />
       <Equipo  />
       <HanTrabajadoAqui />
       <Marcas/>
-      <Footer background='background-about' color='background-about' logo='images/logo-footer.png' contact='contact-about' none='none' padding='padding-top'/>
+      <Footer background='background-about' color='background-about' colora='white' logo='images/logo-footer.png' contact='contact-about' none='none' padding='padding-top'/>
     </main>
   )
 }

@@ -72,12 +72,14 @@ const AboutDescription = () => {
                   <p className='about-p'>{p.c[0]?.v}</p>
                   <p>{p.c[1]?.v}</p>
                   <p className='about-p3'>{p.c[2]?.v}</p>
+                  <p className='about-p3'>{p.c[3]?.v}</p>
+                  <p className='about-p3'>{p.c[4]?.v}</p>
                 </React.Fragment>
               ))}
               <div>
                   {data.slice(1).map((p, index) => (
-                    p.c[11]?.v && (
-                      <a target='_blank' className='about-description-a' download='' href={p.c[11]?.v} key={index}>
+                    p.c[13]?.v && (
+                      <a target='_blank' className='about-description-a' download='' href={p.c[13]?.v} key={index}>
                         Descarga nuestro dossier (.pdf)
                       </a>
                     )
@@ -86,8 +88,8 @@ const AboutDescription = () => {
             </div>
             <div className="col-12 col-xl-6 about-grafic"  data-aos="fade-left">
             {data.slice(1).map((p, index) => (
-  p.c[16]?.v && (
-    <img className='img-fluid'src={p.c[16]?.v} key={index} alt=''>
+  p.c[18]?.v && (
+    <img className='img-fluid cursor-changue'src={p.c[18]?.v} key={index} alt=''>
     </img>
   )
 ))}

@@ -35,8 +35,8 @@ const Marcas = () => {
   }, []);
 
   const marcas = data.map((row) => ({
-    nombre: row.c[12]?.v,
-    imagen: row.c[13]?.v,
+    nombre: row.c[14]?.v,
+    imagen: row.c[15]?.v,
   }));
 
   const backgroundImageStyle = marcas[activeIndex]?.imagen && imageLoaded

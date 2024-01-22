@@ -108,7 +108,7 @@ const MoreSwitch = () => {
             </ul>
           </div>
           <div className={`col-12 col-lg-8 more-first ${isSliderActive ? 'slider-active' : ''}`}>
-            <img src="images/more/1.png" alt="" />
+            <img className='cursor-changue' src="images/more/1.png" alt="" />
           </div>
         </div>
         <div id='slider' className={`row more-slider ${isSliderActive ? 'slider-active' : ''}`}>

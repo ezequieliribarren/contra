@@ -20,60 +20,60 @@ const Work = () => {
     var enlace = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&gid=${sheetId}`;
     return enlace;
   }
-  
-// Para la primer hoja
-function generarEnlaceConParametros1() {
-  return generarEnlaceConParametros("0");
-}
 
-useEffect(() => {
-  const enlaceHoja1 = generarEnlaceConParametros1();
+  // Para la primer hoja
+  function generarEnlaceConParametros1() {
+    return generarEnlaceConParametros("0");
+  }
 
-  const fetchAndPreloadGifs = async () => {
-    try {
-      const startTime = performance.now();
-      // Realiza la lógica para obtener los GIFs
-      const response = await fetch(enlaceHoja1);
-      const textData = await response.text();
-      const jsonData = textData.substring(47, textData.length - 2);
-      const parsedData = JSON.parse(jsonData);
+  useEffect(() => {
+    const enlaceHoja1 = generarEnlaceConParametros1();
 
-      console.log("Datos de gif:", parsedData.table.rows);
+    const fetchAndPreloadGifs = async () => {
+      try {
+        const startTime = performance.now();
+        // Realiza la lógica para obtener los GIFs
+        const response = await fetch(enlaceHoja1);
+        const textData = await response.text();
+        const jsonData = textData.substring(47, textData.length - 2);
+        const parsedData = JSON.parse(jsonData);
 
-      // Modifica esta parte para adaptarla a la estructura de tu JSON
-      const gifs = parsedData.table.rows.map((row) => row.c[22]?.v).filter(Boolean);
+        console.log("Datos de gif:", parsedData.table.rows);
 
-      console.log('GIFs:', gifs);
+        // Modifica esta parte para adaptarla a la estructura de tu JSON
+        const gifs = parsedData.table.rows.map((row) => row.c[22]?.v).filter(Boolean);
 
-      // Realizar acciones después de cargar los GIFs
-      // Marca el tiempo de finalización
-      const endTime = performance.now();
+        console.log('GIFs:', gifs);
 
-      // Calcula el tiempo total en milisegundos
-      const totalTime = endTime - startTime;
-      console.log(`Tiempo total de descarga de GIFs: ${totalTime} ms`);
-      console.log('GIFs cargados. Puedes realizar acciones adicionales aquí.');
+        // Realizar acciones después de cargar los GIFs
+        // Marca el tiempo de finalización
+        const endTime = performance.now();
 
-      // Precargar las URLs de los GIFs en el encabezado del documento HTML
-      gifs.forEach((url) => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = url;
-        document.head.appendChild(link);
-      });
+        // Calcula el tiempo total en milisegundos
+        const totalTime = endTime - startTime;
+        console.log(`Tiempo total de descarga de GIFs: ${totalTime} ms`);
+        console.log('GIFs cargados. Puedes realizar acciones adicionales aquí.');
 
-      // Ocultar el preloader después de cargar los GIFs
-      setPreloaderVisible(false);
-    } catch (error) {
-      console.error('Error fetching GIFs:', error);
-    }
-  };
+        // Precargar las URLs de los GIFs en el encabezado del documento HTML
+        gifs.forEach((url) => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = url;
+          document.head.appendChild(link);
+        });
 
-  fetchAndPreloadGifs();
-}, []);
+        // Ocultar el preloader después de cargar los GIFs
+        setPreloaderVisible(false);
+      } catch (error) {
+        console.error('Error fetching GIFs:', error);
+      }
+    };
 
-  
+    fetchAndPreloadGifs();
+  }, []);
+
+
   useEffect(() => {
     // Scroll al principio de la página después de 100 ms
     const scrollToTop = setTimeout(() => {
@@ -95,7 +95,7 @@ useEffect(() => {
 
   return (
     <main className='work'>
-      <Nav nav='nav-black' mitad='mitad-black' img='images/logo-black.png' work='orange fixed' more='black fixed' about='black fixed' />
+      <Nav nav='top-left-button' mitad="mitad" img='images/logo-white.png' work='orange fixed blend-none' more='fixed' about='fixed' />
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact-work' />
       <div className="desktop-only-work">
         <Projects />

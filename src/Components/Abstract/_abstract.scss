@@ -5,9 +5,6 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  padding-top: 3rem;
-  padding: 0 2rem;
-
 }
 
 .abstract-box{
@@ -49,8 +46,8 @@
 
 .abstract-p {
   color: white;
-  margin: 2rem 0;
-  padding: 0 4rem;
+  margin: 1.4rem 0;
+  padding: 0 3rem;
   font-size: 1.3rem;
 }
 
@@ -58,7 +55,6 @@
   display: flex;
   justify-content: center;
   margin-left: 4rem;
-  margin-top: 1rem;
 
   .abstract-item {
     display: flex;
@@ -116,8 +112,17 @@
   transform: scale(1.2);
   color: orange;
 }
+@media (max-width: 1250px) {
+  .abstract-box {
+    width: 50% !important;
 
-@media (max-width: 750px) {
+  }
+
+  .abstract-p{
+    font-size: 1.25rem !important;
+  }
+}
+@media (max-width: 700px) {
   .abstract-box {
     width: 100% !important;
 

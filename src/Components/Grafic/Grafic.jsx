@@ -14,7 +14,7 @@ const Grafic = ({ graficData, selectedMembers }) => {
   }, []);
 
   useEffect(() => {
-    const mappedSkills = fourData.map((row) => row.c[8]?.v);
+    const mappedSkills = fourData.map((row) => row.c[10]?.v);
     setSkills(mappedSkills);
   }, [fourData]);
 
@@ -35,10 +35,10 @@ const Grafic = ({ graficData, selectedMembers }) => {
       data: {
         labels: skills,
         datasets: fourData.map((user, index) => {
-          const hasData = user.c[7]?.v && user.c[7]?.v.length > 0;
+          const hasData = user.c[9]?.v && user.c[9]?.v.length > 0;
           return {
-            label: hasData ? user.c[3]?.v || `User ${index + 1}` : '',
-            data: hasData ? user.c[7]?.v : [],
+            label: hasData ? user.c[5]?.v || `User ${index + 1}` : '',
+            data: hasData ? user.c[9]?.v : [],
             tension: 0.5,
             fill: {
               target: 'origin',

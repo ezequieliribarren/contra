@@ -56,7 +56,7 @@ const WorkMobile = ({ showProjectDetails }) => {
 
   return (
     <section id='workMobile'>
-      <Nav about='none' mitad='mitad' nav='top-left-button blend' work='none' more='none'/>
+      <Nav about='none'   work='none' more='none'/>
       <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact-work' />
       {data.map((row, index) => {
         const imageUrls = [

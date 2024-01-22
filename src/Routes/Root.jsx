@@ -37,16 +37,13 @@ const Root = () => {
       <GifsProvider />
    
       <Nav
-        mitad="mitad"
         nav="top-left-button"
-        img="images/logo-white.png"
         work="fixed"
         about="fixed"
         more="fixed"
         customClass={'hidden'}
-        blend='blend'
       />
-      <Nav3 isWhatOpen={isWhatOpen} setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
+      <Nav3 isWhatOpen={isWhatOpen} mitad='mitad' setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
       <div className="desktop-only">
         <Slider />
         <Favorites />
@@ -57,7 +54,7 @@ const Root = () => {
         <CallActionWork />
         <WorkMobile />
       </div>
-      <Footer background='background-home' color='background-home' logo='images/logo-footer.png' contact='contact' />
+      <Footer background='background-home' color='background-home' colora='white' logo='images/logo-footer.png' contact='contact' />
     </>
   );
 };
