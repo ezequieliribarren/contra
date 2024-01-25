@@ -78,7 +78,7 @@ footer {
   }
 
   a {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: white;
     z-index: 1;
   }
@@ -135,7 +135,7 @@ footer {
   .a3 {
     position: relative;
     display: flex;
-    top: 12.5%;
+    top: 15.5%;
     width: 40rem;
     display: flex !important;
 
@@ -147,8 +147,6 @@ footer {
       margin-right: 0.5rem;
       display: flex;
       cursor: none !important;
-
-
     }
   }
 
@@ -163,11 +161,15 @@ footer {
 
   .a4 {
     position: relative;
-    top: -19%;
+    top: -18%;
     left: 68%;
     padding: 0;
     width: 25rem;
     border-radius: 20%;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 
     a {
       cursor: none !important;
@@ -230,7 +232,7 @@ footer {
 
 .redes-h4 {
   margin: 0 1rem;
-
+  font-size: 1.5rem !important;
 }
 
 .span-footer {
@@ -245,7 +247,7 @@ footer {
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   footer {
     padding-top: 10rem;
   }
@@ -269,18 +271,21 @@ footer {
 
   .a2 {
     right: 22% !important;
-    top: 4% !important;
+    top: 3% !important;
     width: 20rem;
   }
 
   .a3 {
-    top: 15.5% !important;
+    top: 21.5% !important;
     right: 20% !important;
+
 
   }
 
   .a4 {
+    top: -17% !important;
     left: 66% !important;
+    height: 7rem !important;
   }
 
   .a0 {
@@ -296,10 +301,6 @@ footer {
     a {
       font-size: 1.35rem;
     }
-  }
-
-  .a4 {
-    top: -25% !important;
   }
 
   .ver-proyectos-footer {
@@ -325,7 +326,7 @@ footer {
       justify-content: center;
 
       img {
-        width: 4rem;
+        width: 3rem;
         margin: 0 2rem;
       }
     }

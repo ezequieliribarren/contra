@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useLayoutEffect, useMemo } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
+import Preloader2 from '../Preloader2/Preloader2';
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,7 +84,9 @@ const Slider = () => {
   };
 
   const shuffledData = useMemo(() => {
-    return shuffleVideos(secondData);
+    // Filtrar celdas en blanco antes de la mezcla
+    const nonEmptyData = secondData.filter(item => item.c[1]?.v);
+    return shuffleVideos(nonEmptyData);
   }, [secondData]);
 
   return (
@@ -102,6 +105,7 @@ const Slider = () => {
 
         return (
           <div key={index} className={`slider-image ${isCurrentVideo ? 'active' : ''}`}>
+                        <Preloader2/>
             <div className="video-container">
               <video
                 ref={(el) => {

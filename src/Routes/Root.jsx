@@ -1,4 +1,3 @@
-// Root.js
 import React, { useState, useEffect } from 'react';
 import Favorites from '../Components/Favorites/Favorites';
 import Nav from '../Components/Nav/Nav';
@@ -7,33 +6,16 @@ import Nav3 from '../Components/Nav3/Nav3';
 import WorkMobile from '../Components/WorkMobile/WorkMobile';
 import CallActionWork from '../Components/CallActionWork/CallActionWork';
 import FavoritesMobile from '../Components/FavoritesMobile/FavoritesMobile';
-import Preloader from '../Components/Preloader/Preloader';
 import Slider from '../Components/Slider/Slider';
 import SliderMobile from '../Components/SliderMobile/SliderMobile';
 import { GifsProvider } from '../../Context/Context';
 
 const Root = () => {
   const [isWhatOpen, setIsWhatOpen] = useState(false);
-  // const [preloaderVisible, setPreloaderVisible] = useState(true);
-
-  // // Función para ocultar el preloader después de 3 segundos
-  // const hidePreloader = () => {
-  //   setPreloaderVisible(false);
-  //   window.scrollTo(0, 0);
-  // };
-
-  // useEffect(() => {
-  //   // Ocultar el preloader después de 3 segundos
-  //   const hidePreloaderTimeout = setTimeout(hidePreloader, 3000);
-
-  //   // Limpieza del temporizador al desmontar el componente
-  //   return () => {
-  //     clearTimeout(hidePreloaderTimeout);
-  //   };
-  // }, []);
 
   return (
-    <>   <Preloader />
+    <>
+    
       <GifsProvider />
    
       <Nav
@@ -55,6 +37,8 @@ const Root = () => {
         <WorkMobile />
       </div>
       <Footer background='background-home' color='background-home' colora='white' logo='images/logo-footer.png' contact='contact' />
+
+
     </>
   );
 };

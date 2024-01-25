@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useLayoutEffect, useMemo } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { useSecondData } from '../../../Context/Context';
+import Preloader2 from '../Preloader2/Preloader2';
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,12 +12,14 @@ const Slider = () => {
   const [showPreloader, setShowPreloader] = useState(true);
   const secondData = useSecondData();
 
-  const handleVideoEnd = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledData.length);
+  const shuffleVideos = (videos) => {
+    // Filtrar celdas en blanco antes de mezclar
+    const nonEmptyVideos = videos.filter(item => item.c[0]?.v);
+    return nonEmptyVideos.slice().sort(() => Math.random() - 0.5);
   };
 
-  const shuffleVideos = (videos) => {
-    return videos.slice().sort(() => Math.random() - 0.5);
+  const handleVideoEnd = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledData.length);
   };
 
   const handleScrollToSection = () => {
@@ -49,6 +52,19 @@ const Slider = () => {
     };
   }, []);
 
+  const handleVideoLoaded = () => {
+    setAreVideosLoaded(true);
+
+    // Ocultar el preloader después de 5 segundos
+    setTimeout(() => {
+      setShowPreloader(false);
+    }, 5000);
+  };
+
+  const shuffledData = useMemo(() => {
+    return shuffleVideos(secondData);
+  }, [secondData]);
+
   useEffect(() => {
     if (currentIndex !== null && currentIndex !== undefined) {
       videoRefs.current.forEach((videoRef, index) => {
@@ -71,20 +87,7 @@ const Slider = () => {
         });
       };
     }
-  }, [currentIndex, secondData]);
-
-  const handleVideoLoaded = () => {
-    setAreVideosLoaded(true);
-
-    // Ocultar el preloader después de 5 segundos
-    setTimeout(() => {
-      setShowPreloader(false);
-    }, 5000);
-  };
-
-  const shuffledData = useMemo(() => {
-    return shuffleVideos(secondData);
-  }, [secondData]);
+  }, [currentIndex, secondData, shuffledData.length]);
 
   return (
     <header className="slider-container" ref={myRef} id="slider" onWheel={handleScroll}>
@@ -95,13 +98,14 @@ const Slider = () => {
         const videoUrl = item.c[0]?.v;
         const isCurrentVideo = index === currentIndex;
 
-        // Skip rendering and playing videos when videoUrl is empty or null
+        // Omitir renderización y reproducción de videos en celdas en blanco
         if (!videoUrl) {
           return null;
         }
 
         return (
           <div key={index} className={`slider-image ${isCurrentVideo ? 'active' : ''}`}>
+            <Preloader2/>
             <div className="video-container">
               <video
                 ref={(el) => {

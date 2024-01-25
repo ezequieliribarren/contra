@@ -2,41 +2,39 @@
 import React, { useEffect, useState } from 'react';
 import { useSecondData } from '../../../Context/Context';
 
-const Preloader = ({ visible, onLoaded }) => {
+const Preloader = () => {
   const secondData = useSecondData();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   const images = secondData.map((item) => item.c[5]?.v).filter(Boolean);
+  console.log("Images" + images)
 
   useEffect(() => {
     let intervalId;
 
-    if (visible) {
-      const startImageRotation = () => {
-        intervalId = setInterval(() => {
-          setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 3000); // Cambiado a 3000 milisegundos (3 segundos)
-      };
-
-      startImageRotation();
-
-      const hidePreloaderTimeout = setTimeout(() => {
-        clearInterval(intervalId);
-        if (typeof onLoaded === 'function') {
-          onLoaded();
-        }
+    const startImageRotation = () => {
+      intervalId = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
       }, 3000);
+    };
 
-      return () => {
-        clearInterval(intervalId);
-        clearTimeout(hidePreloaderTimeout);
-      };
-    }
-  }, [images, onLoaded, visible]);
+    startImageRotation();
+
+    const hidePreloaderTimeout = setTimeout(() => {
+      clearInterval(intervalId);
+      setVisible(false);
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(hidePreloaderTimeout);
+    };
+  }, [images]);
 
   return (
     <div className={`preloader-container ${visible ? '' : 'loaded'}`}>
-      {visible && <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />}
+      <img src="images/insta.png" alt="" />
     </div>
   );
 };

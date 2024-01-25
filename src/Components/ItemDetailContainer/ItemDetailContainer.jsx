@@ -29,6 +29,12 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   const [activeSlide, setActiveSlide] = useState(0);
 
 
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  }, []);
+
 
   const handleWhatClick = () => {
     if (onWhatClick) {
@@ -179,6 +185,7 @@ const ItemDetailContainer = ({ onAbstractClick, onWhatClick }) => {
   };
   return (
     <div className='item-detail-container' ref={itemDetailRef}>
+      
       <Nav about='none' mitad='mitad blend' nav='top-left-button blend' work='none' more='none' />
       <Nav2
         onAbstractClick={handleAbstractClick}
