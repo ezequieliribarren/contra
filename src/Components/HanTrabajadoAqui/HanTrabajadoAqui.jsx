@@ -81,7 +81,8 @@ const HanTrabajadoAqui = () => {
                   key={index}
                   onMouseEnter={() => setHoveredIndexRight(index)}
                   onMouseLeave={() => setHoveredIndexRight(null)}
-                  style={{ backgroundImage: `url(${hoveredIndexRight === index ? member.c[17]?.v : ''})` }}
+                  style={{ backgroundImage: `url(${hoveredIndexRight === index ? member.c[17]?.v : ''})`, 
+                backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "20%"}}
                 >
                   <h4>{member.c[12]?.v}</h4>
                 </li>
@@ -90,7 +91,7 @@ const HanTrabajadoAqui = () => {
           </div>
         </div>
       </div>
-      {/* Utiliza ScrollLink para ir a la sección #marcas */}
+
       <ScrollLink
         to="marcas"
         spy={true}

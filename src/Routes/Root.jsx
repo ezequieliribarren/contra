@@ -25,7 +25,7 @@ const Root = () => {
         more="fixed"
         customClass={'hidden'}
       />
-      <Nav3 isWhatOpen={isWhatOpen} mitad='mitad' setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
+      <Nav3 isWhatOpen={isWhatOpen}  nav="top-left-button" mitad='mitad' fixed='fixed' img='images/logo-white.png' setIsWhatOpen={setIsWhatOpen} burguer='images/burguer-white.png' to='#contact' />
       <div className="desktop-only">
         <Slider />
         <Favorites />

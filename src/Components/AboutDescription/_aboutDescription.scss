@@ -6,24 +6,22 @@
     align-items: center;
     justify-content: center;
     padding-top: 1rem;
-    overflow-x: hidden !important;
-
-
 
     .row {
         display: flex;
-        justify-content: center;
-        align-items: start;
-        margin-top: 4rem;
+        justify-content: start;
+        align-items: center;
         padding-left: 3%;
         height: 100%;
 
         .about-grafic {
             display: flex;
             justify-content: center;
+            img{
+                width: 100% !important;
+                height: 100vh !important;
+            }
         }
-
- 
 
         .about-description-text {
             margin-bottom: 5rem;
@@ -49,9 +47,6 @@
             margin-bottom: 6rem;
         }
 
-        img {
-            max-width: 55rem;
-        }
 
     }
 

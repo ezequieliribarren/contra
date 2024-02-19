@@ -3,8 +3,12 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   flex-direction: column;
   position: relative;
+  padding-top: 3rem;
+  padding: 0 5rem;
+
 }
 
 .abstract-box{
@@ -16,7 +20,7 @@
   background-color: transparent;
   color: white;
   font-family: machina;
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   padding: 0;
   margin-top: 7rem;
   display: flex;
@@ -41,13 +45,14 @@
   color: white;
   font-size: 3rem;
   font-family: machina;
-  margin-top: 6rem;
+margin-top: 4rem;
+margin-bottom: 2rem;
+  text-align: center;
+
 }
 
 .abstract-p {
   color: white;
-  margin: 1.4rem 0;
-  padding: 0 3rem;
   font-size: 1.3rem;
 }
 
@@ -55,6 +60,7 @@
   display: flex;
   justify-content: center;
   margin-left: 4rem;
+  margin-top: 1rem;
 
   .abstract-item {
     display: flex;
@@ -112,17 +118,30 @@
   transform: scale(1.2);
   color: orange;
 }
-@media (max-width: 1250px) {
-  .abstract-box {
-    width: 50% !important;
-
+@media (max-width: 1055px) {
+  .abstract-h2{
+    font-size: 2.6rem;
   }
-
-  .abstract-p{
-    font-size: 1.25rem !important;
+  .abstract-close-button{
+    font-size: 2.8rem;
   }
 }
-@media (max-width: 700px) {
+
+@media (max-width: 855px) {
+  .abstract{
+    padding: 0 3rem;
+  }
+  .abstract-close-button{
+    font-size: 2.6rem;
+  }
+  .abstract-h2{
+    font-size: 2.4rem;
+  }
+  .abstract-p{
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 750px) {
   .abstract-box {
     width: 100% !important;
 
@@ -186,9 +205,6 @@
     }
   }
 
-  .abstract-close-button {
-    font-size: 1.5rem;
-  }
 
   .abstract-menu {
     .abstract-item {
@@ -223,9 +239,10 @@
   .abstract {
     transition: none;
     padding-top: 6rem;
+    padding: 0 4rem;
 
-    h2 {
-      font-size: 2.6rem !important;
+    .abstract-h2 {
+      font-size: 2rem !important;
     }
 
     p {

@@ -127,7 +127,7 @@
 }
 
 .equipo li {
-    width: 27rem;
+    width: 32rem;
     margin: 3rem 0;
     cursor: none;
 
@@ -156,6 +156,7 @@
 
 .equipo li:hover {
     width: 32rem;
+    display: block;
 
     .equipo-description {
         opacity: 1;

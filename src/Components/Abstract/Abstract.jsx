@@ -49,11 +49,7 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
           <div className='abstract-sombra'>
             <h2 className='abstract-h2'>{title}</h2>
             <button className='abstract-close-button' onClick={onClose}>( x )</button>
-            <div>
-              {ver}
-            </div>
-          </div>
-          <div>
+            <div>   <div>
             <p className='abstract-p'>
               {p1}
             </p>
@@ -64,6 +60,10 @@ const Abstract = ({ p1, p2, p3, title, id, abstract, img, none, ver, dossier, op
               {p3}
             </p>
           </div>
+              {ver}
+            </div>
+          </div>
+       
           <div className={`abstract-menu ${none}`}>
             <div className='abstract-item'>
               <a target='_blank' download={title} className='abstract-a1' href={dossier}><img src="images/abstract/descargar.svg" alt="Descargar" /></a>

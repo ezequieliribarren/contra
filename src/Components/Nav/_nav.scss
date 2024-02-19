@@ -16,6 +16,7 @@
 
 .top-left-button{
   mix-blend-mode: difference;
+  position: fixed !important;
 }
 
 
@@ -92,7 +93,7 @@
 
 
 .mitad {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   background-image: url(https://res.cloudinary.com/domktwtar/image/upload/v1704305865/LOGOS/logo-mitad-white_nbvspl.png);
   background-repeat: no-repeat;
@@ -101,7 +102,7 @@
   left: 3rem;
   height: 8rem;
   margin-top: 1rem;
-  z-index: 111;
+  z-index: 1111111 !important;
 }
 
 .navbar-mobile {
@@ -109,7 +110,7 @@
 }
 
 .nav3 {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   z-index: 9999999999;
   display: none;
@@ -120,7 +121,7 @@
 
 @media (max-width: 1050px) {
   .nav3 {
-    display: inherit;
+    display: inherit !important;
   }
 
   .project-bottom-right-button,
